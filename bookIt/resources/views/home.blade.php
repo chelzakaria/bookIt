@@ -1,8 +1,32 @@
  @extends('layouts.app')
     @section('content') 
     
-        @include('layouts.nav') 
-       
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+        <title>{{ config('app.name', 'Laravel') }}</title>
+    
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
+    
+        <!-- Fonts -->
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <style>
+            body{
+               font-family: 'Montserrat', sans-serif;
+               min-width: 100vh;
+            }
+        </style>
+        
+    </head>
+    <body>
+  <div id="b">
+        @include('layouts.nav')
+    <div id="a">   
         <div class="container mb-5">
             <div class="row">
                 <div class="col mt-5">
@@ -91,6 +115,8 @@
                 <div class="col-4 mt-5">
                     <div class=" d-inline mt-5 mb-3" >
                        
+
+
                         <div class="card" style="width: 250px;background-color:#F0F5FB;">
                              
                             <div class="card-body"  >
@@ -110,6 +136,7 @@
                     
                         </div>
                     </div>
+
                 </div>
                 <div class="col-4 mt-5">
                         
@@ -148,12 +175,26 @@
                 </div>
            
         </div>
-
-
-
-
-
-
         @include('layouts.footer')
+    </div>
+</div>
+<div id="d" style="display: none">
+    @include('layouts.footer')
+</div>
+       <script>
+    
+    var element = document.getElementById('tst'); // li for sign in
+    
+element.addEventListener('click', function() {
+    document.getElementById('a').innerHTML=document.getElementById('d').innerHTML;
+    document.getElementById('a').style.display="block";
+
+   
+    });
+           </script>
+    </body>
+    </html>
+     
+        
     @endsection  
  
