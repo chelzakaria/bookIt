@@ -12,13 +12,12 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
         <!-- Styles -->
          <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
+     
        
     </head>
     <body>
  
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light " style="font-family: 'Montserrat', sans-serif; font-weight:400; color:black;">
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="nav-item active">
@@ -27,7 +26,7 @@
                    
                 </ul>
                 <ul class="nav navbar-nav mx-auto ">
-                    <li class="nav-item  "><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item text-dark "><a class="nav-link" href="#">Home</a></li>
                     <li class="nav-item  "><a class="nav-link" href="#">About</a></li>
                     <li class="nav-item  "><a class="nav-link" href="#">Pricing</a></li>
 
