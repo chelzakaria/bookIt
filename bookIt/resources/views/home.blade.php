@@ -91,7 +91,7 @@
                 <div class="col-4 mt-5">
                     <div class=" d-inline mt-5 mb-3" >
                        
-                        <div class="card" style="width: 270px;background-color:#F0F5FB;">
+                        <div class="card" style="width: 250px;background-color:#F0F5FB;">
                              
                             <div class="card-body"  >
                               <span class="card-title" style="font-weight: 700; font-size:30px;">Free</span>
@@ -113,7 +113,7 @@
                 </div>
                 <div class="col-4 mt-5">
                         
-                        <div class="card" style="width: 270px;background-color:#94aae5a1;">
+                        <div class="card" style="width: 250px;background-color:#94aae5a1;">
                              
                             <div class="card-body"  >
                               <span class="card-title" style="font-weight: 700; font-size:30px;">Free</span>
