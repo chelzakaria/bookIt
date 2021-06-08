@@ -161,11 +161,11 @@
     </div>
 </div>
 <div id="d" style="display: none">
-    @include('layouts.footer')
+    @include('about')
 </div>
        <script>
      
-    var element = document.getElementById('tst'); // li for sign in
+    var element = document.getElementById('about'); // li for about
     
 element.addEventListener('click', function() {
     document.getElementById('a').innerHTML=document.getElementById('d').innerHTML;
