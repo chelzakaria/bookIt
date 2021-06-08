@@ -50,8 +50,8 @@
             </div>
         </nav>
         <div class="container">
-            <img src="/images/notes_home_page.svg" class="float-right mt-5" alt="..." style="width:42%; height:auto;">
-            <div class=" d-inline float-left mt-3" style="width: 40%">
+            <img src="/images/notes_home_page.svg" class="float-right mt-4" alt="..." style="width:42%; height:auto;">
+            <div class=" d-inline float-left mt-5" style="width: 40%">
                <p class="mb-4" style="color: #1F1A6B; font-weight:800; font-size:50px; line-height: normal;">Don’t worry. <br>
                 We are here for
                 every solution.</p>  
