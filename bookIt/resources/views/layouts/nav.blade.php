@@ -8,7 +8,7 @@
         </ul>
         <ul class="nav navbar-nav mx-auto ">
             <li class="nav-item text-dark"><a class="nav-link border-bottom border-primary  " href="{{ route('home') }}">Home</a></li>
-            <li class="nav-item "><a class="nav-link" href="#">About</a></li>
+            <li class="nav-item "><a class="nav-link" href="{{ route('about') }}">About</a></li>
             <li class="nav-item "><a class="nav-link" href="#">Pricing</a></li>
 
             <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
