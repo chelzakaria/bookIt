@@ -17,7 +17,7 @@
     </head>
     <body>
  
-        <nav class="navbar navbar-expand-lg navbar-light bg-light " style="font-family: 'Montserrat', sans-serif; font-weight:400; color:black;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light " style="font-family: 'Montserrat', sans-serif; font-weight:500; color:black;">
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="nav-item active">
