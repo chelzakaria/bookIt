@@ -26,10 +26,12 @@
                min-width: 100vh;
             }
         </style>
+        
     </head>
     <body>
+  <div id="b">
         @include('layouts.nav')
-       
+    <div id="a">   
         <div class="container mb-5">
             <div class="row">
                 <div class="col mt-5">
@@ -147,12 +149,26 @@
                       </nav>
                    </div>
                 
-                    
+                </div>  
                 </div>
                  
         </div>
- 
-       
+    </div>
+</div>
+<div id="d" style="display: none">
+    @include('layouts.footer')
+</div>
+       <script>
+           //document.getElementById('a').innerHTML="hh";
+    var element = document.getElementById('tst'); // grab a reference to your element
+    
+element.addEventListener('click', function() {
+    document.getElementById('a').innerHTML=document.getElementById('d').innerHTML;
+    document.getElementById('a').style.display="block";
+
+   
+    });
+           </script>
     </body>
     </html>
      
