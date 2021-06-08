@@ -115,32 +115,14 @@
                 <div class="col-4 mt-5">
                     <div class=" d-inline mt-5 mb-3" >
                        
-
-
-                        <div class="card" style="width: 250px;background-color:#F0F5FB;">
-                             
-                            <div class="card-body"  >
-                              <span class="card-title" style="font-weight: 700; font-size:30px;">Free</span>
-                              <span class="card-title float-right" style="font-weight: 600; font-size:25px;">0$</span>
-
-                              <div class="card-text"><p style="font-weight: 500;">Plan includes :</p>
-                            <p style="font-weight:300;">Up to 50 notes</p>
-                            <p style="font-weight:300;">Up to 50 notes</p>
-                            <p style="font-weight:300;">Up to 50 notes</p>
-                            </div>
-                             <div class="text-center">
-                                <button type="button" class="btn  btn-lg mt-3 mb-1" style="background-color: #94A9E5; font-weight:700; color: #FFF">Get Started </button>  </div>                          
-                            <p class="mb-0" style="font-weight:600;color:#000; font-size:10px; text-align:center; ">View all the features</p>
-                            </div>
-
-                    
-                        </div>
-                    </div>
-
+                      </nav>
+                   </div>
+                
+                </div>  
                 </div>
                 <div class="col-4 mt-5">
                         
-                        <div class="card" style="width: 250px;background-color:#94aae5a1;">
+                        <div class="card" style="width: 270px;background-color:#94aae5a1;">
                              
                             <div class="card-body"  >
                               <span class="card-title" style="font-weight: 700; font-size:30px;">Free</span>
@@ -179,11 +161,11 @@
     </div>
 </div>
 <div id="d" style="display: none">
-    @include('layouts.footer')
+    @include('about')
 </div>
        <script>
-    
-    var element = document.getElementById('tst'); // li for sign in
+     
+    var element = document.getElementById('about'); // li for about
     
 element.addEventListener('click', function() {
     document.getElementById('a').innerHTML=document.getElementById('d').innerHTML;

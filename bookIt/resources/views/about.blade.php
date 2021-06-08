@@ -1,6 +1,5 @@
-@extends('layouts.app')
-    @section('content') 
-        @include('layouts.nav') 
+
+       
 
         <div class="container " style="height: 100vh; text-align:center;">
             About Page
@@ -9,4 +8,4 @@
 
 
         @include('layouts.footer')
-    @endsection  
+   
