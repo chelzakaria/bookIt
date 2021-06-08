@@ -1,7 +1,6 @@
  @extends('layouts.app')
     @section('content') 
     
-<<<<<<< HEAD
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
     
@@ -28,10 +27,6 @@
   <div id="b">
         @include('layouts.nav')
     <div id="a">   
-=======
-        @include('layouts.nav') 
-       
->>>>>>> 75f5c2b52bc9ab4a1b8ac11ad054ebc130e6a893
         <div class="container mb-5">
             <div class="row">
                 <div class="col mt-5">
@@ -120,32 +115,10 @@
                 <div class="col-4 mt-5">
                     <div class=" d-inline mt-5 mb-3" >
                        
-<<<<<<< HEAD
                       </nav>
                    </div>
                 
                 </div>  
-=======
-                        <div class="card" style="width: 270px;background-color:#F0F5FB;">
-                             
-                            <div class="card-body"  >
-                              <span class="card-title" style="font-weight: 700; font-size:30px;">Free</span>
-                              <span class="card-title float-right" style="font-weight: 600; font-size:25px;">0$</span>
-
-                              <div class="card-text"><p style="font-weight: 500;">Plan includes :</p>
-                            <p style="font-weight:300;">Up to 50 notes</p>
-                            <p style="font-weight:300;">Up to 50 notes</p>
-                            <p style="font-weight:300;">Up to 50 notes</p>
-                            </div>
-                             <div class="text-center">
-                                <button type="button" class="btn  btn-lg mt-3 mb-1" style="background-color: #94A9E5; font-weight:700; color: #FFF">Get Started </button>  </div>                          
-                            <p class="mb-0" style="font-weight:600;color:#000; font-size:10px; text-align:center; ">View all the features</p>
-                            </div>
-
-                    
-                        </div>
-                    </div>
->>>>>>> 75f5c2b52bc9ab4a1b8ac11ad054ebc130e6a893
                 </div>
                 <div class="col-4 mt-5">
                         
@@ -184,15 +157,15 @@
                 </div>
            
         </div>
-<<<<<<< HEAD
+        @include('layouts.footer')
     </div>
 </div>
 <div id="d" style="display: none">
     @include('layouts.footer')
 </div>
        <script>
-           //document.getElementById('a').innerHTML="hh";
-    var element = document.getElementById('tst'); // grab a reference to your element
+    
+    var element = document.getElementById('tst'); // li for sign in
     
 element.addEventListener('click', function() {
     document.getElementById('a').innerHTML=document.getElementById('d').innerHTML;
@@ -204,14 +177,6 @@ element.addEventListener('click', function() {
     </body>
     </html>
      
-=======
->>>>>>> 75f5c2b52bc9ab4a1b8ac11ad054ebc130e6a893
-
-
-
-
-
-
-        @include('layouts.footer')
+        
     @endsection  
  
