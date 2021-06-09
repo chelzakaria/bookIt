@@ -16,8 +16,8 @@ class HomeController extends Controller
     {
         return view('about');
     }
-    public function pricing()
+    public function contact()
     {
-        return view('pricing');
+        return view('contact');
     }
 }
