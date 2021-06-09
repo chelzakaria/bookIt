@@ -1,12 +1,8 @@
-
-       <div onclick="x()">
+<div onclick="x()">
 @include('layouts.nav')
         <div class="container " style="height: 100vh; text-align:center;">
-            About Page
+            Contact Page
         </div>
-
-
-
-        @include('layouts.footer')
-   
-       </div>
+    
+ @include('layouts.footer')
+</div>

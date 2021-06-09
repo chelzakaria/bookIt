@@ -159,19 +159,38 @@
                 @include('layouts.footer')
             </div>
         </div>
-        <div id="d" style="display: none">
+
+        <div id="i1" style="display: none">
             @include('about')
         </div>
+        <div id="i2" style="display: none">
+            @include('pricing')
+        </div>
+        <div id="i3" style="display: none">
+            @include('contact')
+        </div>
             <script>
-            
-            var element = document.getElementById('about'); // li for about
-            
-        element.addEventListener('click', function() {
-            document.getElementById('b').innerHTML=document.getElementById('d').innerHTML;
+                function x(){
+            //for about
+            var element = document.getElementById('about'); 
+            element.addEventListener('click', function() {
+            document.getElementById('b').innerHTML=document.getElementById('i1').innerHTML;
             document.getElementById('b').style.display="block";
-
-        
-            });
+            },false);
+            //for pricing
+            var element = document.getElementById('pricing'); 
+            element.addEventListener('click', function() {
+            document.getElementById('b').innerHTML=document.getElementById('i2').innerHTML;
+            document.getElementById('b').style.display="block";
+            },false);
+            //for contact
+            var element2 = document.getElementById('contact'); 
+            element2.addEventListener('click', function() {
+            document.getElementById('b').innerHTML=document.getElementById('i3').innerHTML;
+            document.getElementById('b').style.display="block";
+            },false);
+                }
+                x();
                 </script>
             </body>
             </html>
