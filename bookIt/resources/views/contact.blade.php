@@ -8,16 +8,16 @@
            ::placeholder{
              
         
-        font-weight: bold;
-        font-size: 17px;
-        line-height: 20px;
+            font-weight: 600;
+             font-size: 16px;
+             line-height: 20px;
          
            }
            input, .form-control{
-                 
-                 
-                font-family: 'Montserrat', sans-serif;
-                font-weight: 700;    
+            font-family: 'Montserrat', sans-serif;
+                 font-weight: 700; 
+                  border-radius:12px;
+                  
                 }
            </style>
        <div style="position: absolute;
@@ -39,7 +39,7 @@
             Contact Us
         </p>
     <p style="position: absolute;  margin-left:27%;margin-top:130px">
-        <input type="text" placeholder="Your Name" style="position: absolute;
+        <input class=" py-4"  type="text" placeholder="Your Name" style="position: absolute;
         width: 380px;
         height: 43px;
         border:none;
@@ -49,7 +49,7 @@
         outline:none;">
     </p>
     <p style="position: absolute;  margin-left:27%;margin-top:190px">
-        <input type="text" placeholder="Your Email" style="position: absolute;
+        <input class=" py-4" type="text" placeholder="Your Email" style="position: absolute;
         width: 380px;
         height: 43px;
         border:none;
@@ -59,7 +59,7 @@
         padding:15px;">
     </p>
     <p style="position: absolute;  margin-left:27%;margin-top:250px">
-        <textarea class="form-control" placeholder="Your Email" style="position: absolute;
+        <textarea class=" py-4" class="form-control" placeholder="Your Email" style="position: absolute;
         width: 380px;
         height: 170px;
         border:none;
@@ -71,13 +71,13 @@
         
     </p>
     <p style="position: absolute;  margin-left:27%;margin-top:430px">
-        <input type="submit" value="Send Message" style="position: absolute;
+        <input   type="submit" value="Send Message" style="position: absolute;
         width: 380px;
         height: 43px;
         background: #0B1A67;
         color:white;
          
-        font-weight: 700;
+        font-weight: 600;
         font-size: 20px;
         line-height: 20px;
         border:none;

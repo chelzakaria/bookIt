@@ -14,8 +14,8 @@
          <div class="col ">
           <nav class="nav flex-column " style="font-weight: 300;">
               <span class="nav-link text-white " style="font-weight: 600;" href="#">Join Us</span>
-              <a class="nav-link text-white" href="#">Sign In</a>
-              <a class="nav-link text-white" href="#">Sign Up</a>
+              <a class="nav-link text-white" href="{{ route('login') }}">Sign In</a>
+              <a class="nav-link text-white" href="{{ route('register') }}">Sign Up</a>
          
              
             </nav>
