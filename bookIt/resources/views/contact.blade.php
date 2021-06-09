@@ -38,6 +38,7 @@
         color: #0B1A67;">
             Contact Us
         </p>
+        <form>
     <p style="position: absolute;  margin-left:27%;margin-top:130px">
         <input class=" py-4"  type="text" placeholder="Your Name" style="position: absolute;
         width: 380px;
@@ -59,7 +60,7 @@
         padding:15px;">
     </p>
     <p style="position: absolute;  margin-left:27%;margin-top:250px">
-        <textarea class=" py-4" class="form-control" placeholder="Your Email" style="position: absolute;
+        <textarea class=" py-4" class="form-control" placeholder="Write your M" style="position: absolute;
         width: 380px;
         height: 170px;
         border:none;
@@ -86,6 +87,7 @@
          ">
          
     </p>
+        </form>
     </div>
     </div>
         @include('layouts.footer')
