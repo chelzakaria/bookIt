@@ -6,7 +6,7 @@
               <span class="nav-link text-white " style="font-weight: 600;" href="#">Company</span>
               <a class="nav-link text-white"  href="{{ route('home') }}">Home</a>
               <a class="nav-link text-white" href="{{ route('about') }}">About</a>
-              <a class="nav-link text-white" href="#">Pricing</a>
+              <a class="nav-link text-white" href="{{ route('pricing') }}">Pricing</a>
               <a class="nav-link text-white" href="#">Contact</a>
              
             </nav>

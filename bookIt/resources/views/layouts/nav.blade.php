@@ -11,7 +11,7 @@
             <li class="nav-item text-dark"><a class="nav-link " href="{{ route('home') }}">Home</a></li>
             <li class="nav-item "><a class="nav-link" href="{{ route('about') }}" id="about">About</a></li>
  
-            <li class="nav-item "><a class="nav-link" href="#" id="pricing">Pricing</a></li>
+            <li class="nav-item "><a class="nav-link" href="{{ route('pricing') }}" id="pricing">Pricing</a></li>
 
             <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}" id="contact">Contact</a></li>
 
