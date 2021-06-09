@@ -36,10 +36,8 @@
                     <p style="color:#3E63F6; font-weight:700; font-size:38px;">Let’s get started</p>
                 </a>
 
- 
             </div>
         </div>
     </div>
- 
         @include('layouts.footer')
-        @endsection  
+        @endsection
