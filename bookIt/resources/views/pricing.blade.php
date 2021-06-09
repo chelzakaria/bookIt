@@ -32,10 +32,12 @@
                         Overview
                     </div>
                     <div class="col-4 text-center py-5" style="font-weight: 700;background:#F0F5FB; ">
-                        Free
+                        Free<br>
+                        0$
                     </div>
                     <div class="col-4 text-center py-5" style="font-weight: 700; background:#94A9E5; color:#FFF;">
-                        Premium
+                        Premium<br>
+                        <p id="p">50$</p>
                     </div>
                 </div>
                 <div class="row mx-4" style="font-size:20px;">
