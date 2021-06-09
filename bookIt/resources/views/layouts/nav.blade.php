@@ -18,10 +18,10 @@
         </ul>
         <ul class="nav navbar-nav" id="liste">
             <li class="nav-item" >
-                <a class="nav-link" href="#" id="lien1">Sign In</a>
+                <a class="nav-link" href="{{ route('login') }}" id="lien1">Sign In</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Sign Up</a>
+                <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
             </li>
            
         </ul>
