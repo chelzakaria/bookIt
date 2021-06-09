@@ -1,3 +1,8 @@
+<style>
+    nav ul li :hover{
+        color: #fff;
+    }
+</style>
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5" style="font-family: 'Montserrat', sans-serif; font-weight:500; color:black;">
     <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
@@ -6,9 +11,10 @@
             </li>
            
         </ul>
-        <ul class="nav navbar-nav mx-auto ">
-            <li class="nav-item text-dark"><a class="nav-link border-bottom border-primary  " href="{{ route('home') }}">Home</a></li>
-            <li class="nav-item "><a class="nav-link" href="#" id="about">About</a></li>
+      
+        <ul class="nav navbar-nav mx-auto">
+            <li class="nav-item text-dark border-bottom border-primary"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" id="about">About</a></li>
             <li class="nav-item "><a class="nav-link" href="#" id="pricing">Pricing</a></li>
 
             <li class="nav-item"><a class="nav-link" href="#" id="contact">Contact</a></li>

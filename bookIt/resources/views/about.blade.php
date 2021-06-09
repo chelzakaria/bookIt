@@ -5,8 +5,6 @@
             About Page
         </div>
 
-
-
         @include('layouts.footer')
    
        </div>
