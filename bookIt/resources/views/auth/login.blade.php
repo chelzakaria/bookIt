@@ -2,7 +2,7 @@
 @section('content') 
    
 @include('layouts.nav')
-    <div class="container mb-5">
+    <div class="container mb-5 mt-3 ">
     <div style="height: 500px; width:800px; margin-left:15%;background-color:#BDDDF8;border-radius:15px">
        <style>
            ::placeholder{
