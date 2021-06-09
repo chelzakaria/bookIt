@@ -1,5 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5" style="font-family: 'Montserrat', sans-serif; font-weight:500; color:black;">
-    <div class="collapse navbar-collapse">
+<nav class="navbar navbar-expand-sm navbar-light bg-light mb-5" style="font-family: 'Montserrat', sans-serif; font-weight:500; color:black;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="nav navbar-nav">
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('home') }}"><img src="/images/logos/logo_top.svg" style=" width:90px; height:auto;" alt=""></a>
