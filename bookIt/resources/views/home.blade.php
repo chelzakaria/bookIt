@@ -1,8 +1,8 @@
  @extends('layouts.app')
     @section('content') 
     
-        
-
+      
+    
   <div id="b">
         @include('layouts.nav')
     <div id="a">   
@@ -17,66 +17,68 @@
                             begin now controlling your ideas and <br> thoughts. We help you efficiently <br> manage your notes.
                         </p>
                         <button type="button" class="btn btn-primary btn-lg" style="background-color: #1F1A6B; font-weight:700; ">Get Started </button>
- 
                         
+                    </div>
                         </div>
-                        <div style="background: #BDDDF8; width:100%;" class="pt-4 pl-5 mb-5">
-                            <div class="container ">
-                                <div class="row mb-3 justify-content-md-center">
-                                <div class="col col-4">
-                                    <img src="/images/icons/note_icon.svg" alt="">
-                                </div>
-                                <div class="col col-4">
-                                    <img src="/images/icons/image_icon.svg" alt="">
-                                    
-                                </div>
-                                <div class="col  col-3">
-                                    <img src="/images/icons/task_icon.svg" alt="">
+                <div class="col">
+            <img src="/images/notes_home_page.svg" class=" mt-4  " alt="..." style="width:90%; height:auto;">
+                </div>
+                
+            </div>
+           
+        </div>
+        <div style="background: #BDDDF8; width:100%;" class="pt-4 pl-5 mb-5">
+            <div class="container ">
+                <div class="row mb-3 justify-content-md-center">
+                   <div class="col col-4">
+                       <img src="/images/icons/note_icon.svg" alt="">
+                   </div>
+                   <div class="col col-4">
+                    <img src="/images/icons/image_icon.svg" alt="">
+                    
+                </div>
+                <div class="col  col-3">
+                    <img src="/images/icons/task_icon.svg" alt="">
 
-                                </div>
-                                </div>
-                                <div class="row justify-content-md-center">
-                                    <div class="col col-4">
-                                        <p style="color: #6F6D6D; font-weight:300; font-size:15px; line-height: 1.6;">
-                                            Take notes of every page <br> of your book.
-                                        </p>
-                                    </div>
-                                    <div class="col col-4">
-                                        <p style="color: #6F6D6D; font-weight:300; font-size:15px; line-height: 1.6;">
-                                            Take notes of every page <br> of your book.
-                                        </p>
-                                </div>
-                                <div class="col col-3  ">
-                                    <p style="color: #6F6D6D; font-weight:300; font-size:15px; line-height: 1.6;">
-                                        Take notes of every page <br> of your book.
-                                    </p>
-                                </div>
-                                </div>
-                                
-                            </div>
+                </div>
+                </div>
+                <div class="row justify-content-md-center">
+                    <div class="col col-4">
+                        <p style="color: #6F6D6D; font-weight:300; font-size:15px; line-height: 1.6;">
+                            Take notes of every page <br> of your book.
+                        </p>
+                    </div>
+                    <div class="col col-4">
+                        <p style="color: #6F6D6D; font-weight:300; font-size:15px; line-height: 1.6;">
+                            Take notes of every page <br> of your book.
+                        </p>
+                 </div>
+                 <div class="col col-3  ">
+                    <p style="color: #6F6D6D; font-weight:300; font-size:15px; line-height: 1.6;">
+                        Take notes of every page <br> of your book.
+                    </p>
+                 </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="container mb-5">
+            <div class="row">
+                <div class="col">
+                    <img src="/images/tasks_home_page.svg" class=" mt-4  " alt="..." style="width:90%; height:auto;">
                         </div>
-                        <div class="container mb-5">
-                            <div class="row">
-                                <div class="col">
-                                    <img src="/images/tasks_home_page.svg" class=" mt-4  " alt="..." style="width:90%; height:auto;">
-                                        </div>
-                                <div class="col mt-5">
-                                    <div class=" d-inline mt-5 mb-3" style="">
-                                    <p class="mb-4" style="color: #1F1A6B; font-weight:800; font-size:50px; line-height: normal;">Save more time <br>
-                                        by using our <br>
-                                        website.</p>  
-                                        <p class="mb-4" style="color: #6F6D6D; font-weight:300; font-size:20px; line-height: 1.6;">
-                                            Take your notes or write down your <br> thoughts about your book while <br> reading it. You can even set your goals <br> of reading or completing your books as <br> soon as possible!
-                                        </p>
-                                        
-                                        
-                                    </div>
-                                        </div>
+                <div class="col mt-5">
+                    <div class=" d-inline mt-5 mb-3" style="">
+                       <p class="mb-4" style="color: #1F1A6B; font-weight:800; font-size:50px; line-height: normal;">Save more time <br>
+                        by using our <br>
+                        website.</p>  
+                        <p class="mb-4" style="color: #6F6D6D; font-weight:300; font-size:20px; line-height: 1.6;">
+                            Take your notes or write down your <br> thoughts about your book while <br> reading it. You can even set your goals <br> of reading or completing your books as <br> soon as possible!
+                        </p>
                         
-                                
-                            </div>
+                        
+                    </div>
                         </div>
- 
            
                 
             </div>
@@ -103,7 +105,6 @@
                             <p style="font-weight:300;">Up to 50 notes</p>
                             <p style="font-weight:300;">Files size limited to 1GB</p>
                             <p style="font-weight:300;">Add up to 100 books</p>
-                            <p style="font-weight:300;">&nbsp; </p>
                             </div>
                              <div class="text-center">
                                 <button type="button"   class="btn btn-lg mt-3 mb-1" style="background-color: #94A9E5; font-weight:700; color:#FFF;">Get Started </button>  </div>                          
@@ -168,43 +169,13 @@
 element.addEventListener('click', function() {
     document.getElementById('a').innerHTML=document.getElementById('d').innerHTML;
     document.getElementById('a').style.display="block";
- 
 
-        <div id="i1" style="display: none">
-            @include('about')
-        </div>
-        <div id="i2" style="display: none">
-            @include('pricing')
-        </div>
-        <div id="i3" style="display: none">
-            @include('contact')
-        </div>
-            <script>
-                function x(){
-            //for about
-            var element = document.getElementById('about'); 
-            element.addEventListener('click', function() {
-            document.getElementById('b').innerHTML=document.getElementById('i1').innerHTML;
-            document.getElementById('b').style.display="block";
-            },false);
-            //for pricing
-            var element = document.getElementById('pricing'); 
-            element.addEventListener('click', function() {
-            document.getElementById('b').innerHTML=document.getElementById('i2').innerHTML;
-            document.getElementById('b').style.display="block";
-            },false);
-            //for contact
-            var element2 = document.getElementById('contact'); 
-            element2.addEventListener('click', function() {
-            document.getElementById('b').innerHTML=document.getElementById('i3').innerHTML;
-            document.getElementById('b').style.display="block";
-            },false);
-                }
-                x();
-                </script>
-            </body>
-            </html>
-            
-                
-            @endsection  
+   
+    });
+           </script>
+    </body>
+    </html>
+     
         
+    @endsection  
+ 
