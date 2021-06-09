@@ -13,7 +13,7 @@
  
             <li class="nav-item "><a class="nav-link" href="#" id="pricing">Pricing</a></li>
 
-            <li class="nav-item"><a class="nav-link" href="#" id="contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}" id="contact">Contact</a></li>
 
         </ul>
         <ul class="nav navbar-nav" id="liste">
