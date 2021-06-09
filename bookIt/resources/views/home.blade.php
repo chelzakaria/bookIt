@@ -1,29 +1,7 @@
  @extends('layouts.app')
     @section('content') 
     
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-    
-        <title>{{ config('app.name', 'Laravel') }}</title>
-    
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    
-        <!-- Fonts -->
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-        <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <style>
-            body{
-               font-family: 'Montserrat', sans-serif;
-               min-width: 100vh;
-            }
-        </style>
         
-    </head>
-    <body>
   <div id="b">
         @include('layouts.nav')
     <div id="a">   
@@ -112,17 +90,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-4 mt-5">
-                    <div class=" d-inline mt-5 mb-3" >
-                       
-                      </nav>
-                   </div>
+                  
                 
-                </div>  
-                </div>
                 <div class="col-4 mt-5">
                         
-                        <div class="card" style="width: 270px;background-color:#94aae5a1;">
+                        <div class="card" style="width: 250px;background-color:#F0F5FB;">
                              
                             <div class="card-body"  >
                               <span class="card-title" style="font-weight: 700; font-size:30px;">Free</span>
@@ -130,27 +102,54 @@
 
                               <div class="card-text"><p style="font-weight: 500;">Plan includes :</p>
                             <p style="font-weight:300;">Up to 50 notes</p>
-                            <p style="font-weight:300;">Up to 50 notes</p>
-                            <p style="font-weight:300;">Up to 50 notes</p>
+                            <p style="font-weight:300;">Files size limited to 1GB</p>
+                            <p style="font-weight:300;">Add up to 100 books</p>
+                            <p style="font-weight:300;">&nbsp; </p>
                             </div>
                              <div class="text-center">
-                                <button type="button"   class="btn btn-lg mt-3 mb-1" style="background-color: #F0F5FB; font-weight:700; color:#000;">Get Started </button>  </div>                          
-                            <p class="mb-0" style="font-weight:600;color:#000; font-size:10px; text-align:center;">View all the features</p>
+                                <button type="button"   class="btn btn-lg mt-3 mb-1" style="background-color: #94A9E5; font-weight:700; color:#FFF;">Get Started </button>  </div>                          
+                            <a href="#"><p class="mb-0" style="font-weight:600;color:#000; font-size:10px; text-align:center;">View all the features</p></a>
                             </div>
 
                     
                         </div>
             
-                </div>
-                </div>
-           
+                </div> <div class="col-4 mt-5">
+                        
+                    <div class="card" style="width: 250px;background-color:#94aae5a1;">
+                         
+                        <div class="card-body"  >
+                          <span class="card-title" style="font-weight: 700; font-size:30px;">Free</span>
+                          <span class="card-title float-right" style="font-weight: 600; font-size:25px;">0$</span>
+
+                          <div class="card-text"><p style="font-weight: 500;">All of free plus :</p>
+                        <p style="font-weight:300;">Unlimited notes</p>
+                        <p style="font-weight:300;">Free books </p>
+                        <p style="font-weight:300;">Up to 100GB of files </p>
+                        <p style="font-weight:300;">Unlimited books acces</p>
+                        
+                        </div>
+                         <div class="text-center"  >
+                              
+                            <button type="button"  class="btn btn-lg mt-3 mb-1" style="background-color: #F0F5FB; font-weight:700; color:#000;">Get Started </button>  </div>  
+                            
+                            
+                            <a href="#"><p class="mb-0" style="font-weight:600;color:#000; font-size:10px; text-align:center;">View all the features</p></a>
+                        </div>
+
+                
+                    </div>
+        
             </div>
-            <div class="container " style="position: relative; bottom:400px; margin-bottom:-350px; ">
+            </div>
+           
+        </div>
+        <div class="container " style="position: relative; bottom:400px; margin-bottom:-350px; z-index:-10;">
                 <div class="row">
                     <div class="col-6" >
                         
                     </div>
-                    <div class="col-6 " style="position: relative;   z-index:-10;">
+                    <div class="col-6 ">
                 <img src="/images/payment_home_page.svg" class=" mt-4  " alt="..." style="width:90%; height:auto;">
                     </div>
                     
@@ -160,9 +159,9 @@
         @include('layouts.footer')
     </div>
 </div>
-<div id="d" style="display: none">
+{{-- <div id="d" style="display: none">
     @include('about')
-</div>
+</div> --}}
        <script>
      
     var element = document.getElementById('about'); // li for about
