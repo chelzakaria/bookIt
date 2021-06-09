@@ -38,7 +38,8 @@
             Login
         </p>
         <p style="position:absolute; font-weight: 600;margin-left:27%;margin-top:15%; color:#6F6D6D; font-size:14px;">Don't have an account ?  <a href="{{ route('register') }}" style="color:#3859DD;  ">Sign Up.</a> </p>
-    <p style="position: absolute;  margin-left:27%;margin-top:20%">
+        <form>
+        <p style="position: absolute;  margin-left:27%;margin-top:20%">
         <input class=" py-4"  type="text" placeholder="Your Name" style="position: absolute;
         width: 380px;
         height: 43px;
@@ -75,6 +76,7 @@
          ">
          
     </p>
+    </form>
     </div>
     </div>
         @endsection  
