@@ -7,8 +7,10 @@
            
         </ul>
         <ul class="nav navbar-nav mx-auto ">
+ 
             <li class="nav-item text-dark"><a class="nav-link " href="{{ route('home') }}">Home</a></li>
             <li class="nav-item "><a class="nav-link" href="{{ route('about') }}" id="about">About</a></li>
+ 
             <li class="nav-item "><a class="nav-link" href="#" id="pricing">Pricing</a></li>
 
             <li class="nav-item"><a class="nav-link" href="#" id="contact">Contact</a></li>

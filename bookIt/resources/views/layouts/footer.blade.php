@@ -23,10 +23,10 @@
            <div class="col ">
             <nav class="nav flex-column " style="font-weight: 300;">
                 <span class="nav-link text-white " style="font-weight: 600;" href="#">Follow Us</span>
-                <a class="nav-link text-white" href="https://instagram.com/" target="_blank"> <img src="/images/icons/insta_icon.svg" alt="">&nbsp; Instagram</a>
-                <a class="nav-link text-white" href="https://facebook.com/" target="_blank"> <img src="/images/icons/facebook_icon.svg" alt="">&nbsp; Facebook</a>
-                <a class="nav-link text-white" href="https://twitter.com/" target="_blank"> <img src="/images/icons/twitter_icon.svg" alt="">&nbsp;  Twitter</a>
-                <a class="nav-link text-white" href="https://discord.com/" target="_blank"> <img src="/images/icons/discord_icon.svg" alt="">&nbsp;&nbsp; Discord</a>
+                <a class="nav-link text-white" href="#">Instagram</a>
+                <a class="nav-link text-white" href="#">Facebook</a>
+                <a class="nav-link text-white" href="#">Twitter</a>
+                <a class="nav-link text-white" href="#">Discord</a>
                
               </nav>
            </div>
