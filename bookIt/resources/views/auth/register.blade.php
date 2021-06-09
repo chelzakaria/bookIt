@@ -33,28 +33,28 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                    
-                                  <input type="email" class="form-control py-4"  placeholder="First name">
+                                  <input type="text" class="form-control py-4"  placeholder="First name">
                                 </div>
 
                                 <div class="form-group col-md-6">
                                    
-                                    <input type="email" class="form-control py-4"  placeholder="Last name">
+                                    <input type="text" class="form-control py-4"  placeholder="Last name">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control py-4"   placeholder="Username">
                               </div>
                               <div class="form-group">
-                                <input type="text" class="form-control py-4"   placeholder="Username">
+                                <input type="email" class="form-control py-4"   placeholder="Email">
                               </div>
                               <div class="form-group">
-                                <input type="text" class="form-control py-4 py-4"   placeholder="Username">
+                                <input type="password" class="form-control py-4 py-4"   placeholder="Password">
                               </div>
                               <div class="form-group">
-                                <input type="text" class="form-control py-4"   placeholder="Username">
+                                <input type="password" class="form-control py-4"   placeholder="Confirm Password">
                               </div>
                               <div class="form-group">
-                                <input type="text" class="form-control py-4"   placeholder="Username">
+                                <input type="text" class="form-control py-4"   placeholder="birth date">
                               </div>
                               <button type="submit" class="btn  btn-lg btn-block btn-primary"
                               style="background-color:#1F1A6B;font-weight:600;font-size:22px; border-radius:12px;   "
