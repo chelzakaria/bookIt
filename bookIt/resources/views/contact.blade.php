@@ -60,7 +60,7 @@
         padding:15px;">
     </p>
     <p style="position: absolute;  margin-left:27%;margin-top:250px">
-        <textarea class=" py-4" class="form-control" placeholder="Write your M" style="position: absolute;
+        <textarea class=" py-4" class="form-control" placeholder="Write your Message.." style="position: absolute;
         width: 380px;
         height: 170px;
         border:none;
