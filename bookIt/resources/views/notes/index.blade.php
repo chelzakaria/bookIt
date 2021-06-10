@@ -4,8 +4,8 @@
             <div class="row">
                 @include('notes.layouts.sidebar')
                 
-                <div class="col">
-
+                <div class="col"">
+                   
                 </div>
             </div>
         </div>
