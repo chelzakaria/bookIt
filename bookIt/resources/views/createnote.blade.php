@@ -3,37 +3,91 @@
         <div class="container-fluid">
             <div class="row">
                 @include('notes.layouts.sidebar')
+                <style>
+                          ::placeholder{
+            font-weight: 600;
+             font-size: 16px;
+             line-height: 20px;
+           }
+                    </style>
                 <div class="col">
                     <div class="container py-3">
                         <div class="d-flex flex-row">
                             <p style="font-weight:700; font-size:30px;">
-                                Notes
+                                Create Note
                             </p>  
                             <div class="ml-auto mr-0"  style="width: 45px; height:45px; border-radius:50%;background:#000;">
                                 <img src="images/about_img.svg" alt="" style="max-width:100%;
                                 max-height:100%; ">
                             </div>
                         </div>
-                        <div class="d-flex flex-row">
-                             <form action="" >
-                                <div class="form-group">
-                                    <input type="email" class="form-control rounded" placeholder="Search notes" style="padding-left: 25px; " >
-                                </div>
-                             </form>
-                            <div class="ml-auto mr-0">
-                                <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('createnote')}}" style="text-decoration: none; color:#fff;">Create new note</a> </button>
-                            </div>
-                        </div>
+                    
                         <hr style="border-top: 1px solid #00000023;">
-                        
+                        <form>
                             <div class="row">
-                               
-                         
-                                    <p>No notes found</p>
-                             
-                                  
-                              </div>
+                                <div class="col-md-4">
+                                    <div class="col-md-12">
+                                     <div class="card" style="border-radius:30px; border:0;">
+                                        <div class="form-group">
+                                            <input type="password" class="form-control py-4 py-4"  style="border-radius:10px; background: #E4F1FF;" placeholder="Title">
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>  
 
+                                 <div class="col-md-4">
+                                    <div class="col-md-12">
+                                     <div class="card" style="width: 18rem;border-radius:10px; border:0;">
+                                        <div class="form-group">
+                                            <select class="form-control py-4 py-4"   placeholder="Password" style="border-radius:10px; background: #E4F1FF;">
+                                                <option>Commedy</option>
+                                                <option>Action</option>
+                                            </select>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div> 
+
+                                 <div class="col-md-4">
+                                    <div class="col-md-12">
+                                     <div class="card" style="width: 18rem;border-radius:10px; border:0;">
+                                        <div class="form-group">
+                                            <select class="form-control py-4 py-4" title="jj"  placeholder="Password" style="border-radius:10px; background: #E4F1FF;">
+                                                <option>Commedy</option>
+                                                <option>Action</option>
+                                            </select>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                    <div class="col-md-6" style="width: 600px">
+                                        <div class="col-md-6">
+                                     <div class="card" style="width: 18rem;border-radius:10px; border:0;margin-top:10px;">
+                                        <div >
+                                            
+                                            <textarea id="F" class=" py-4 form-control" placeholder="Write your notes.." style="position: absolute;
+                                            width: 990px;
+                                            height: 300px;
+                                            border:none;
+                                            background: #E4F1FF;
+                                            border-radius: 12px;
+                                            outline:none;
+                                            padding:15px; 
+                                            resize: none; "  ></textarea>
+                                          </div>
+                                       </div>
+                                        
+                                    </div>
+                                 </div>
+                            <div style="margin-top: 350px;margin-left:34%"><button type="submit" class="btn  btn-lg btn-block btn-primary"
+                                style="background-color:#1F1A6B;font-weight:600;font-size:22px; border-radius:12px;   "
+                                onclick="javascript:function(){ $val=document.getElementById('F').value ;
+                                alert($val) 
+                                });" >Create</button></div>
+                              </div>
+                        </form>
+                        <
+                             
                     </div>
   
        
