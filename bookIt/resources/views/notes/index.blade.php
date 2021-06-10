@@ -39,6 +39,7 @@
                                       </div>
                                    </div>
                                 </div>
+                                
                                 <div class="col-md-4">
                                     <div class="col-md-12">
                                      <div class="card" style="width: 18rem;border-radius:10px;background:#142aee57;">
@@ -49,7 +50,8 @@
                                          </div>
                                        </div>
                                     </div>
-                                 </div><div class="col-md-4">
+                                 </div>
+                                    <div class="col-md-4">
                                     <div class="col-md-12">
                                      <div class="card" style="width: 18rem;border-radius:10px;background:#16e56957;">
                                          <div class="card-body pb-0">
