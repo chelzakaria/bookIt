@@ -83,12 +83,14 @@
         .slider.round:before {
         border-radius: 50%;
         }
+
     </style>
     
 </head>
 <body>
     <div id="app">
             @yield('content')
+            
     </div>
    <script>
        document.addEventListener('DOMContentLoaded', function () {
@@ -103,6 +105,7 @@
     }
   });
 });
+
        </script>
 </body>
 </html>
