@@ -37,7 +37,7 @@
                                              <div class="card-body pb-0">
                                                <h5 class="card-title" style="font-weight: 800;">Note title</h5>
                                                <p class="card-text " style="font-weight: 400;font-size:15px;">{{ $note->body }}</p>
-                                                <p class="text-muted float-right" style="font-weight: 300;font-size:13px;">6/7/2021 - 11:25 am</p>
+                                                <p class="text-muted float-right" style="font-weight: 300;font-size:13px;">{{ $note->created_at }}</p>
                                              </div>
                                            </div>
                                         </div>
