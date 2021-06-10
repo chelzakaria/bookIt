@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\NoteController;
  
 
 /*
@@ -30,3 +31,4 @@ Route::get('/register', [App\Http\Controllers\auth\RegisterController::class, 'i
 
 Route::get('/login', [App\Http\Controllers\auth\LoginController::class, 'index'])->name('login');
  
+Route::get('/notes', [App\Http\Controllers\NoteController::class, 'index'])->name('notes');
