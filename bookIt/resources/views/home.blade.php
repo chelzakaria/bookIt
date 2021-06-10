@@ -14,7 +14,7 @@
                     <p class="mb-4" style="color: #6F6D6D; font-weight:300; font-size:20px; line-height: 1.6;">
                         begin now controlling your ideas and <br> thoughts. We help you efficiently <br> manage your notes.
                     </p>
-                    <button type="button" class="btn btn-primary btn-lg" style="background-color: #1F1A6B; font-weight:700; ">Get Started </button>
+                    <button type="button" class="btn btn-primary btn-lg" style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('register')}} " style="text-decoration: none; color:#fff;">Get Started</a> </button>
                     
                 </div>
             </div>
@@ -104,8 +104,8 @@
                         <p>&nbsp;</p>
                         </div>
                          <div class="text-center">
-                            <button type="button"   class="btn btn-lg mt-3 mb-1" style="background-color: #94A9E5; font-weight:700; color:#FFF;">Get Started </button>  </div>                          
-                        <a href="#"><p class="mb-0" style="font-weight:600;color:#000; font-size:10px; text-align:center;">View all the features</p></a>
+                            <button type="button"   class="btn btn-lg mt-3 mb-1" style="background-color: #94A9E5; font-weight:700; color:#FFF;"><a href=" {{route('register')}} " style="text-decoration: none; color:#fff;">Get Started</a> </button>  </div>                          
+                        <a href=" {{route('pricing')}} "><p class="mb-0" style="font-weight:600;color:#000; font-size:10px; text-align:center;">View all the features</p></a>
                         </div>
 
                 
@@ -128,10 +128,10 @@
                         </div>
                         <div class="text-center"  >
                             
-                            <button type="button"  class="btn btn-lg mt-3 mb-1" style="background-color: #F0F5FB; font-weight:700; color:#000;">Get Started </button>  </div>  
+                            <button type="button"  class="btn btn-lg mt-3 mb-1" style="background-color: #F0F5FB; font-weight:700; color:#000;"><a href=" {{route('register')}} " style="text-decoration: none; color:#000;">Get Started</a> </button>  </div>  
                             
                             
-                            <a href="#"><p class="mb-0" style="font-weight:600;color:#000; font-size:10px; text-align:center;">View all the features</p></a>
+                            <a href=" {{route('pricing')}} "><p class="mb-0" style="font-weight:600;color:#000; font-size:10px; text-align:center;">View all the features</p></a>
                     </div>
 
             

@@ -32,7 +32,7 @@
         <div class="row mt-5">
             <div class="col-12 text-center">
                 <p style="font-size:38px;">What are you waiting for ?</p>
-                <a href="#" style="text-decoration: none;">
+                <a href=" {{route('register')}} " style="text-decoration: none;">
                     <p style="color:#3E63F6; font-weight:700; font-size:38px;">Let’s get started</p>
                 </a>
 
