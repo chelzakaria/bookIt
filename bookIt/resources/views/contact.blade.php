@@ -3,21 +3,19 @@
    
 @include('layouts.nav')
 <style>
-    #tout {
-width:1000px;
-margin: 0 auto;
+@media screen and (max-width: 1100px) {
+  #im {
+   display: none
+  }
 }
     </style>
     <div class="container">
-    <div style="height: 500px; width:800px; margin-left:15%;  background-color: #BDDDF8;border-radius:15px">
+    <div style="height: 500px;width:800px; margin-left:15%;  background-color: #BDDDF8;border-radius:15px">
        <style>
            ::placeholder{
-             
-        
             font-weight: 600;
              font-size: 16px;
              line-height: 20px;
-         
            }
            input, .form-control{
             font-family: 'Montserrat', sans-serif;
@@ -26,7 +24,7 @@ margin: 0 auto;
                   
                 }
            </style>
-       <div style="position: absolute;
+       <div id="im" style="position: absolute;
         width: 286px;
         height: 500px;
         background: url(/images/contact_image2.svg);
@@ -44,8 +42,8 @@ margin: 0 auto;
         color: #0B1A67;">
             Contact Us
         </p>
-        <form>
-    <p style="position: absolute;  margin-left:27%;margin-top:130px">
+        <form class="column">
+    <p class="" style="position: absolute;  margin-left:27%;margin-top:130px">
         <input class=" py-4"  type="text" placeholder="Your Name" style="position: absolute;
         width: 380px;
         height: 43px;
