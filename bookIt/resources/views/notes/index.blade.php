@@ -3,6 +3,7 @@
         <div class="container-fluid">
             <div class="row">
                 @include('notes.layouts.sidebar')
+ 
                 <div class="col">
                     <div class="container py-3">
                         <div class="d-flex flex-row">
@@ -63,6 +64,8 @@
                               </div>
 
                     </div>
+  
+ 
                 </div>
             </div>
         </div>
