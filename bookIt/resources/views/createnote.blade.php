@@ -81,9 +81,7 @@
                                  </div>
                             <div style="margin-top: 350px;margin-left:34%"><button type="submit" class="btn  btn-lg btn-block btn-primary"
                                 style="background-color:#1F1A6B;font-weight:600;font-size:22px; border-radius:12px;   "
-                                onclick="javascript:function(){ $val=document.getElementById('F').value ;
-                                alert($val) 
-                                });" >Create</button></div>
+                                onclick="javascript:;" >Create</button></div>
                               </div>
                         </form>
                         <
