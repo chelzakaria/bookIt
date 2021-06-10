@@ -28,23 +28,9 @@
                         
                             <div class="row">
                                
-                                @if ($notes->count())
-                                    @foreach ($notes as $note)
-                                    <div class="col-md-4">
-                                        <div class="col-md-12">
-                                         <div class="card" style="width: 18rem;border-radius:10px;background:#16e56957;">
-                                             <div class="card-body pb-0">
-                                               <h5 class="card-title" style="font-weight: 800;">Note title</h5>
-                                               <p class="card-text " style="font-weight: 400;font-size:15px;">{{ $note->body }}</p>
-                                                <p class="text-muted float-right" style="font-weight: 300;font-size:13px;">6/7/2021 - 11:25 am</p>
-                                             </div>
-                                           </div>
-                                        </div>
-                                     </div>
-                                    @endforeach
-                                @else
+                         
                                     <p>No notes found</p>
-                                @endif
+                             
                                   
                               </div>
 

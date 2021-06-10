@@ -15,6 +15,11 @@ class NoteController extends Controller
             'notes' => $notes
         ]);
     }
+    public function createnote()
+    {
+        return view('createnote');
+    }
+    
     public function store(Request $request){
         $this->validate($request,[
             'body' => 'required'

@@ -32,3 +32,4 @@ Route::get('/register', [App\Http\Controllers\auth\RegisterController::class, 'i
 Route::get('/login', [App\Http\Controllers\auth\LoginController::class, 'index'])->name('login');
  
 Route::get('/notes', [App\Http\Controllers\NoteController::class, 'index'])->name('notes');
+Route::get('/createnote', [App\Http\Controllers\NoteController::class, 'createnote'])->name('createnote');
