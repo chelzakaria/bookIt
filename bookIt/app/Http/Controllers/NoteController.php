@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Note;
+use CreateNotesTable;
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
@@ -14,11 +15,20 @@ class NoteController extends Controller
         $this->validate($request,[
             'body' => 'required'
         ]);
+
         $this->validate($request,[
-            'created at' => 'required'
+            'type' => 'quote'
         ]);
-        $this->validate($request,[
-            'type' => 'required'
-        ]);
+        Note::create([
+             
+            'body' => $request->body,
+            'type'=>$request->type
+            
+
+       ]);
+
+     
+
+      return back();
     }
 }
