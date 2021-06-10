@@ -25,9 +25,7 @@ class NoteController extends Controller
             'body' => 'required'
         ]);
 
-        $this->validate($request,[
-            'type' => 'quote'
-        ]);
+       
         Note::create([
              
             'body' => $request->body,
