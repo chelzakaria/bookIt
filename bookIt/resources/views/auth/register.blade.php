@@ -17,18 +17,26 @@
                   border-radius:12px;
                     
                  }
+                  @media screen and (min-width: 1024px) {
+                  .myNewDivHeight{
+                      height:300px;
+                  }
+              } 
         </style>
-        <div class="container bg-success mb-5 mt-3 " style=" border-radius:  15px; ">
-            <div class="row " >
-                <div class="col-4 px-0 h-50 py-0"  >
-                     <img class="img-fluid" src="images/register_image.svg" alt=""    >
+        <div class="container mb-5 mt-3" style=" border-radius:  15px; ">
+            <div class="row justify-content-md-center"  >
+                <div class="col-4 d-none d-lg-block px-0 h-50 " >
+                 
+                    
+                      <img  src="images/register_image.svg" alt="" class="img-fluid">
+                
                 </div>
-                <div class="col" style=" padding:0px;border-radius: 0px 15px 15px 0px; background:#BDDDF8;">
-                    <div class="container">
+                <div class="col-sm-10 col-md-8 col-lg-6 " style=" padding:0px;border-radius: 0px 15px 15px 0px; background:#BDDDF8; ">
+                    <div class="container" >
                         
-                        <form class="py-4    px-4 mt-1">
-                            <p style="font-weight: 700; color:#1F1A6B; font-size:35px;">Get Started</p>
-                            <p style="font-weight: 600; color:#6F6D6D; font-size:14px;">Already have an account ?  <a href="{{ route('login') }}" style="color:#3859DD;  ">Sign In.</a> </p>
+                        <form class="py-4 px-4  mb-0">
+                            <p  style="font-weight: 700; color:#1F1A6B; font-size:35px;">Get Started</p>
+                            <p   style="font-weight: 600; color:#6F6D6D; font-size:14px;">Already have an account ?  <a href="{{ route('login') }}" style="color:#3859DD;  ">Sign In.</a> </p>
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">

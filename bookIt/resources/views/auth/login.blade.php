@@ -23,8 +23,8 @@
        <div style="position: absolute;
         width: 286px;
         height: 500px;
-        background: url(/images/sign.png);
-        background-size: 286px ;
+        background: url(/images/login_image.svg);
+        background-size: 301px ;
         border-radius: 15px 0px 0px 15px;">
         </div>
         <p style="position: absolute; 

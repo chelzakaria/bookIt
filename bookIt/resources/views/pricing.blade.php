@@ -122,10 +122,10 @@
                         
                     </div>
                     <div class="col-4 text-center py-5" style="font-weight: 700;background:#F0F5FB; ">
-                        <button type="button"  class="btn btn-lg mt-3 mb-1" style="background-color: #94A9E5; font-weight:700; color:#fff;font-size:22px;">Get Started </button>
+                        <button type="button"  class="btn btn-lg mt-3 mb-1" style="background-color: #94A9E5; font-weight:700; color:#fff;font-size:22px;"><a href=" {{route('register')}} " style="text-decoration: none; color:#fff;">Get Started</a> </button>
                     </div>
                     <div class="col-4 text-center py-5" style="font-weight: 700; background:#94A9E5; color:#FFF;">
-                        <button type="button"  class="btn btn-lg mt-3 mb-1" style="background-color: #F0F5FB; font-weight:700; color:#000;font-size:22px;">Get Started </button>
+                        <button type="button"  class="btn btn-lg mt-3 mb-1" style="background-color: #F0F5FB; font-weight:700; color:#000;font-size:22px;"><a href=" {{route('register')}} " style="text-decoration: none; color:#000;">Get Started</a></button>
                     </div>
                 </div>
             </div>
