@@ -2,8 +2,14 @@
 @section('content') 
    
 @include('layouts.nav')
-    <div class="container mb-5">
-    <div style="height: 500px; width:800px; margin-left:15%;background-color:#BDDDF8;border-radius:15px">
+<style>
+    #tout {
+width:1000px;
+margin: 0 auto;
+}
+    </style>
+    <div class="container">
+    <div style="height: 500px; width:800px; margin-left:15%;  background-color: #BDDDF8;border-radius:15px">
        <style>
            ::placeholder{
              
@@ -60,7 +66,7 @@
         padding:15px;">
     </p>
     <p style="position: absolute;  margin-left:27%;margin-top:250px">
-        <textarea class=" py-4" class="form-control" placeholder="Write your M" style="position: absolute;
+        <textarea class=" py-4" class="form-control" placeholder="Write your Message.." style="position: absolute;
         width: 380px;
         height: 170px;
         border:none;
