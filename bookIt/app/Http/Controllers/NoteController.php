@@ -36,7 +36,7 @@ class NoteController extends Controller
             'type'=>$request->type
        ]);
 
-      return back();
+       return redirect('notes');
     }
 
     public function update(Request $request, $id)

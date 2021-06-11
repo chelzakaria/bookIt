@@ -17,7 +17,7 @@
                  
                     <hr style="border-top: 1px solid #00000023;">
                     <div class="card text-center" style="width: 18rem;">
-                        <img class="card-img-top " src="/images/about_img.svg" alt="Card image cap"  >
+                        <img class="card-img-top " src="/storage/cover_images/{{$book->cover}}" alt="Card image cap"  >
 
                         <div class="card-body">
                           <h5 class="card-title">{{$book->title}}</h5>

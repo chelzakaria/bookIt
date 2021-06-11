@@ -32,7 +32,7 @@
                             <div class="col-md-3">
                                 <div class="col-md-12">
                                     <div class="card">
-                                        <img class="card-img-top" src="..." alt=" ">
+                                        <img class="card-img-top" src="/storage/cover_images/{{$book->cover}}" alt=" ">
                                         <div class="card-body pb-0">
                                           <h5 class="card-title"> {{$book->title}} </h5>
                                            <p class="text-muted">{{$book->author}}</p>

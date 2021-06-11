@@ -44,17 +44,34 @@ class BookController extends Controller
             'title' => 'required',
             'author' => 'required',
             'rating' => 'required',
-            'num_page' => 'required'
+            'num_page' => 'required',
+            'cover' => 'image|nullable|max:1999'
         ]);
+
+        if($request->hasFile('cover'))
+        {
+            $fileNameWithExt = $request->file('cover')->getClientOriginalName();
+
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            $extension = $request->file('cover')->getClientOriginalExtension();
+
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+
+            $path = $request->file('cover')->storeAs('public/cover_images', $fileNameToStore);
+        }else {
+            $fileNameToStore = 'noimage.jpg';
+        }
  
         Book::create([
             'title' => $request->title,
             'author' => $request->author,
             'rating' => $request->rating,
-            'num_page' =>$request->num_page
+            'num_page' =>$request->num_page,
+            'cover' => $fileNameToStore
        ]);
 
-      return back();
+       return redirect('books');
     }
 
     /**
