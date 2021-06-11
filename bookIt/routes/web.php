@@ -35,10 +35,11 @@ Route::get('/notes', [App\Http\Controllers\NoteController::class, 'index'])->nam
 Route::post('/notes', [App\Http\Controllers\NoteController::class, 'store']);
 Route::get('/notes/create', function () {
     return view('notes.create');
-});
+}); 
 
 
 
+//
 
 // Route::get('/notes/create', [App\Http\Controllers\CreatenoteController::class, 'createnote'])->name('createnote');
 // Route::post('/notes', [App\Http\Controllers\CreatenoteController::class, 'create'])->name('notes');
