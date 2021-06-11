@@ -1,4 +1,4 @@
-@extends('layouts.app')
+  @extends('layouts.app')
     @section('content') 
         <div class="container-fluid">
             <div class="row">
@@ -34,7 +34,7 @@
                                         <div class="col-md-12">
                                          <div class="card" style="width: 18rem;border-radius:10px;background:#16e56957;">
                                              <div class="card-body pb-0">
-                                               <h5 class="card-title" style="font-weight: 800;">Note title</h5>
+                                               <h5 class="card-title" style="font-weight: 800;"><a href="/notes/{{$note->id}}">title</a></h5>
                                                <p class="card-text " style="font-weight: 400;font-size:15px;">{{ $note->body }}</p>
                                                 <p class="text-muted float-right" style="font-weight: 300;font-size:13px;">{{ $note->created_at }}</p>
                                              </div>
@@ -56,4 +56,5 @@
             </div>
                         
         </div>
-    @endsection
+    @endsection  
+ 
