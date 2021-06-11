@@ -23,7 +23,7 @@
                     </div>
                 
                     <hr style="border-top: 1px solid #00000023;">
-                    <form action="{{route('notes')}}" method="post">
+                    <form action="{{route('books')}}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-md-3">
@@ -77,7 +77,7 @@
                                 <div class="col-md-12">
                                  <div class="card" style="border-radius:30px; border:0;">
                                     <div class="form-group">
-                                        <input type="text" name="pages" class="form-control py-4 py-4"  style="border-radius:10px; background: #E4F1FF;" placeholder="number of pages">
+                                        <input type="text" name="num_page" class="form-control py-4 py-4"  style="border-radius:10px; background: #E4F1FF;" placeholder="number of pages">
                                       </div>
                                    </div>
                                 </div>
