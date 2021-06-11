@@ -23,7 +23,7 @@
                         </div>
                     
                         <hr style="border-top: 1px solid #00000023;">
-                        <form action="{{route('notes')}}" method="post">
+                        <form action="{{route('notes.update', $note->id)}}" method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
@@ -80,10 +80,12 @@
                                         
                                     </div>
                                  </div>
-                            <div style="margin-top: 350px;margin-left:34%"><button type="submit"  name="create" class="btn  btn-lg btn-block btn-primary"
-                                style="background-color:#1F1A6B;font-weight:600;font-size:22px; border-radius:12px;   "
-                                onclick="javascript:;" >Create</button></div>
-                              </div>
+                                
+                                    
+                                 <div style="margin-top: 350px;margin-left:34%"><button type="submit"  name="create" class="btn  btn-lg btn-block btn-primary"
+                                    style="background-color:#1F1A6B;font-weight:600;font-size:22px; border-radius:12px;   "
+                                    onclick="javascript:;" >Edit</button></div>                               
+                                   
                         </form>
                         
                              
