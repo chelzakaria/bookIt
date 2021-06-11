@@ -19,20 +19,14 @@ class NoteController extends Controller
     public function store(Request $request){
        
         $this->validate($request,[
-            'body' => 'required'
+            'body' => 'required',
+            'type' => 'required'
         ]);
-
-      
-           
+ 
         Note::create([
-             
             'body' => $request->body,
             'type'=>$request->type
-            
-
        ]);
-   
- 
 
       return back();
     }
