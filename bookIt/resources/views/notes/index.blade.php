@@ -3,7 +3,6 @@
         <div class="container-fluid">
             <div class="row">
                 @include('notes.layouts.sidebar')
- 
                 <div class="col">
                     <div class="container py-3">
                         <div class="d-flex flex-row">
@@ -22,7 +21,7 @@
                                 </div>
                              </form>
                             <div class="ml-auto mr-0">
-                                <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('notes')}}" style="text-decoration: none; color:#fff;">Create new note</a> </button>
+                                <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('createnote')}}" style="text-decoration: none; color:#fff;">Create new note</a> </button>
                             </div>
                         </div>
                         <hr style="border-top: 1px solid #00000023;">
@@ -48,12 +47,13 @@
                                 @endif
                                   
                               </div>
-                               
 
                     </div>
   
- 
+       
                 </div>
+  
             </div>
+                        
         </div>
     @endsection
