@@ -20,7 +20,14 @@
                                {{ $note->body}}
                            </div>
                            <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('createnote')}}" style="text-decoration: none; color:#fff;">Edit note</a> </button>
-                           <button type="button" class="btn " style="background-color: #ac1818; font-weight:700;"> <a href=" {{route('createnote')}}" style="text-decoration: none; color:#fff;">delete note</a> </button>
+
+                           <form action="{{route('notes.destroy',  $note->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn " style="background-color: #af6f6f; font-weight:700;"> delete note  </button>
+                       
+                            </form>
+                           
 
                 </div>
 
