@@ -31,4 +31,13 @@ class NoteController extends Controller
       return back();
     }
 
+
+    public function destroy($id)
+    {
+        $note = Note::find($id);
+      
+        $note->delete();
+         return redirect('notes');
+    }
+
 }
