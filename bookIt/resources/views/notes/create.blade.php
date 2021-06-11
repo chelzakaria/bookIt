@@ -47,9 +47,9 @@
                                           </div>
                                        </div>
                                     </div>
-                                 </div>  --}}
+                                 </div>  
 
-                                 {{-- <div class="col-md-4">
+                                {{--  <div class="col-md-4">
                                     <div class="col-md-12">
                                      <div class="card" style="width: 18rem;border-radius:10px; border:0;">
                                         <div class="form-group">
@@ -61,7 +61,7 @@
                                        </div>
                                     </div>
                                  </div> --}}
-                                    {{-- <div class="col-md-6" style="width: 600px">
+                                    <div class="col-md-6" style="width: 600px">
                                         <div class="col-md-6">
                                      <div class="card" style="width: 18rem;border-radius:10px; border:0;margin-top:10px;">
                                         <div >

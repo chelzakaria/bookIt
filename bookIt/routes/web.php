@@ -57,3 +57,4 @@ Route::get('/books/create', function () {
 })->name('createbook'); 
 
  
+Route::post('/books', [App\Http\Controllers\BookController::class, 'store']);
