@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\Note;
 use CreateNotesTable;
@@ -15,17 +14,16 @@ class NoteController extends Controller
             'notes' => $notes
         ]);
     }
-    public function createnote()
-    {
-        return view('createnote');
-    }
+
     
     public function store(Request $request){
+       
         $this->validate($request,[
             'body' => 'required'
         ]);
 
-       
+      
+           
         Note::create([
              
             'body' => $request->body,
@@ -33,9 +31,10 @@ class NoteController extends Controller
             
 
        ]);
-
-     
+   
+ 
 
       return back();
     }
+
 }
