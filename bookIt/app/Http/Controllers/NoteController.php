@@ -14,8 +14,8 @@ class NoteController extends Controller
             'notes' => $notes
         ]);
     }
+ 
 
-    
     public function store(Request $request){
        
         $this->validate($request,[
