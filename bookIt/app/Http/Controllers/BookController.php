@@ -120,13 +120,13 @@ class BookController extends Controller
             'cover' => 'image|nullable|max:1999'
         ]);
 
-        $book->body = $request->input('title');
-        $book->type = $request->input('author');
-        $book->type = $request->input('rating');
-        $book->type = $request->input('num_page');
-        $book->type = $request->input('cover');
+        $book->id = $request->input('title');
+        $book->author = $request->input('author');
+        $book->rating = $request->input('rating');
+        $book->num_page = $request->input('num_page');
+        $book->cover = $request->input('cover');
         $book->save();
-        return redirect('books');
+        return redirect()->route('books');
     }
 
 
