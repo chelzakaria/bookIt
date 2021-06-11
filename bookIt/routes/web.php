@@ -7,6 +7,7 @@ use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\BookController;
  
 
 /*
@@ -48,7 +49,8 @@ Route::delete('/notes/{id}',[NoteController::class, 'destroy'])->name('notes.des
 Route::get('/notes/{id}/edit',[NoteController::class, 'edit']);
 Route::post('/notes/{id}',[NoteController::class, 'update'])->name('notes.update');
 
-
+//books
+Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books');
 
 Route::get('/books/create', function () {
     return view('books.create');
