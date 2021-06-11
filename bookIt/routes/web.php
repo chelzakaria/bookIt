@@ -33,9 +33,10 @@ Route::get('/login', [App\Http\Controllers\auth\LoginController::class, 'index']
  
 Route::get('/notes', [App\Http\Controllers\NoteController::class, 'index'])->name('notes');
 Route::post('/notes', [App\Http\Controllers\NoteController::class, 'store']);
-Route::get('/notes/create', function () {
+Route::get('/notes.create', function () {
     return view('notes.create');
-}); 
+})->name('createnote');
+
 
 
 
