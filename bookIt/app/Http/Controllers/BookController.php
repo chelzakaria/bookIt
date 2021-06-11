@@ -98,7 +98,8 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book = Book::find($id);
+        return view('books.edit')->with('book', $book);
     }
 
     /**
@@ -110,17 +111,39 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $book = Book::find($id);
+        $this->validate($request, [
+            'title' => 'required',
+            'author' => 'required',
+            'rating' => 'required',
+            'num_page' => 'required',
+            'cover' => 'image|nullable|max:1999'
+        ]);
+
+        $book->title = $request->input('title');
+        $book->author = $request->input('author');
+        $book->rating = $request->input('rating');
+        $book->num_page = $request->input('num_page');
+        $book->cover = $request->input('cover');
+        $book->save();
+        return redirect()->route('books');
     }
 
+
+ 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
-        //
+        $book = Book::find($id);
+      
+        $book->delete();
+         return redirect('books');
     }
+
 }
