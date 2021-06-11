@@ -30,12 +30,12 @@
                       </div>
                            <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href="/books/{{$book->id}}/edit"  style="text-decoration: none; color:#fff;">Edit book</a> </button>
 
-                           {{-- <form action="{{route('book.destroy',  $book->id)}}" method="post">
+                            <form action="{{route('books.destroy',  $book->id)}}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn " style="background-color: #af6f6f; font-weight:700;"> delete book  </button>
                        
-                            </form> --}}
+                            </form> 
                            
 
                 </div>
