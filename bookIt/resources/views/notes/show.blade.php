@@ -19,7 +19,7 @@
                            <div class="jumbotron bg-success" style="height: 60vh;">
                                {{ $note->body}}
                            </div>
-                           <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('createnote')}}" style="text-decoration: none; color:#fff;">Edit note</a> </button>
+                           <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href="/notes/{{$note->id}}/edit" style="text-decoration: none; color:#fff;">Edit note</a> </button>
 
                            <form action="{{route('notes.destroy',  $note->id)}}" method="post">
                             @csrf
