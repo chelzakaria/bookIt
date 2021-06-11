@@ -12,7 +12,7 @@ class CreatenoteController extends Controller
     {
        
         $notes = Note::all();
-        return view('createnote',['users' => $notes]);
+        return view('notes.create',['users' => $notes]);
     }
     public function create(Request $request) {
         $name = $request->input('note');

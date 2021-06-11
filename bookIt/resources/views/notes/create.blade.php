@@ -30,7 +30,7 @@
                                     <div class="col-md-12">
                                      <div class="card" style="border-radius:30px; border:0;">
                                         <div class="form-group">
-                                            <input type="password" name="title" class="form-control py-4 py-4"  style="border-radius:10px; background: #E4F1FF;" placeholder="Title">
+                                            <input type="text" name="title" class="form-control py-4 py-4"  style="border-radius:10px; background: #E4F1FF;" placeholder="Title">
                                           </div>
                                        </div>
                                     </div>
@@ -40,7 +40,7 @@
                                     <div class="col-md-12">
                                      <div class="card" style="width: 18rem;border-radius:10px; border:0;">
                                         <div class="form-group">
-                                            <select class="form-control py-4 py-4"  name="category" placeholder="Password" style="border-radius:10px; background: #E4F1FF;">
+                                            <select class="form-control py-4 py-4"  name="type" placeholder="Password" style="border-radius:10px; background: #E4F1FF;">
                                                 <option>Commedy</option>
                                                 <option>Action</option>
                                             </select>
@@ -49,7 +49,7 @@
                                     </div>
                                  </div> 
 
-                                 <div class="col-md-4">
+                                 {{-- <div class="col-md-4">
                                     <div class="col-md-12">
                                      <div class="card" style="width: 18rem;border-radius:10px; border:0;">
                                         <div class="form-group">
@@ -60,13 +60,13 @@
                                           </div>
                                        </div>
                                     </div>
-                                 </div>
+                                 </div> --}}
                                     <div class="col-md-6" style="width: 600px">
                                         <div class="col-md-6">
                                      <div class="card" style="width: 18rem;border-radius:10px; border:0;margin-top:10px;">
                                         <div >
                                             
-                                            <textarea id="F" class=" py-4 form-control" name="note" placeholder="Write your notes.." style="position: absolute;
+                                            <textarea id="F" class=" py-4 form-control" name="body" placeholder="Write your notes.." style="position: absolute;
                                             width: 990px;
                                             height: 300px;
                                             border:none;
