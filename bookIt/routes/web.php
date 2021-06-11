@@ -36,6 +36,7 @@ Route::post('/notes', [App\Http\Controllers\NoteController::class, 'store']);
 Route::get('/notes/create', function () {
     return view('notes.create');
 })->name('createnote'); 
+Route::delete('/notes/{id}',[PostController::class, 'destroy'])->name('notes.destroy');
  
 
 
