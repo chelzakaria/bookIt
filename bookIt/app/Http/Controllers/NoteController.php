@@ -39,6 +39,32 @@ class NoteController extends Controller
       return back();
     }
 
+    public function update(Request $request, $id)
+    {
+        
+
+       
+        $note = Note::find($id);
+               
+
+        $this->validate($request, [
+            'body' => 'required',
+            'type' => 'required'
+        ]);
+
+        
+
+        $note = Note::find($id);  
+        $note->body = $request->input('body');
+        $note->type = $request->input('type');
+        
+    
+
+        $note->save();
+
+        return redirect('notes');
+    }
+
 
     public function destroy($id)
     {

@@ -46,7 +46,8 @@ Route::get('/notes/{id}', function ($id) {
 });  
 Route::delete('/notes/{id}',[NoteController::class, 'destroy'])->name('notes.destroy');
 Route::get('/notes/{id}/edit',[NoteController::class, 'edit']);
- 
+Route::post('/notes/{id}',[NoteController::class, 'update'])->name('notes.update');
+
 
 //
 
