@@ -49,7 +49,9 @@ Route::get('/notes/{id}/edit',[NoteController::class, 'edit']);
 Route::post('/notes/{id}',[NoteController::class, 'update'])->name('notes.update');
 
 
-//
 
-// Route::get('/notes/create', [App\Http\Controllers\CreatenoteController::class, 'createnote'])->name('createnote');
-// Route::post('/notes', [App\Http\Controllers\CreatenoteController::class, 'create'])->name('notes');
+Route::get('/books/create', function () {
+    return view('books.create');
+})->name('createbook'); 
+
+ 
