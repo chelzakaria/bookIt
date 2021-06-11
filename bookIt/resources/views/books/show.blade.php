@@ -15,6 +15,7 @@
                         </div>
                     </div>
                  
+
                     <hr style="border-top: 1px solid #00000023;">
                     <div class="card text-center" style="width: 18rem;">
                         <img class="card-img-top " src="/storage/cover_images/{{$book->cover}}" alt="Card image cap"  >
@@ -27,7 +28,7 @@
                             {{$book->author}}
                                                </div>
                       </div>
-                           <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a {{--href="/books/{{$book->id}}/edit" --}} style="text-decoration: none; color:#fff;">Edit book</a> </button>
+                           <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href="/books/{{$book->id}}/edit"  style="text-decoration: none; color:#fff;">Edit book</a> </button>
 
                            {{-- <form action="{{route('book.destroy',  $book->id)}}" method="post">
                             @csrf

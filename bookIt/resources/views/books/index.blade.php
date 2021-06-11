@@ -34,7 +34,7 @@
                                     <div class="card">
                                         <img class="card-img-top" src="/storage/cover_images/{{$book->cover}}" alt=" ">
                                         <div class="card-body pb-0">
-                                          <h5 class="card-title"> {{$book->title}} </h5>
+                                            <a href="/books/{{$book->id}}">  <h5 class="card-title"> {{$book->title}} </h5> </a>
                                            <p class="text-muted">{{$book->author}}</p>
                                            <p class="text-center">* * * * *</p>
                                          </div>

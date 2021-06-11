@@ -59,4 +59,6 @@ Route::get('/books/create', function () {
  
 Route::post('/books', [App\Http\Controllers\BookController::class, 'store']);
 Route::get('/books/{id}',[App\Http\Controllers\BookController::class, 'show']);
+Route::get('/books/{id}/edit',[NoteController::class, 'edit']);
+Route::post('/books/{id}',[NoteController::class, 'update'])->name('books.update');
 
