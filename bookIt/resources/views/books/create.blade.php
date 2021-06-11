@@ -21,9 +21,11 @@
                             max-height:100%; ">
                         </div>
                     </div>
-                
+                @error('cover')
+                 <p> {{$message}} </p>   
+                @enderror
                     <hr style="border-top: 1px solid #00000023;">
-                    <form action="{{route('books')}}" method="post">
+                    <form action="{{route('books')}}" method="post" enctype="multipart/form-data"  >
                         @csrf
                         <div class="row">
                             <div class="col-md-3">
@@ -84,7 +86,7 @@
                              </div> 
                              <div class="col-md-3">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <input type="file" class="custom-file-input" id="customFile" name="cover"  >
                                     <label class="custom-file-label" for="customFile">Choose image</label>
                                   </div>
                              </div>
