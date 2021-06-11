@@ -41,10 +41,12 @@ Route::get('/notes/create', function () {
 Route::get('/notes/{id}', function ($id) {
     $note = DB::table('notes')->find($id);
     return view('notes.show',[
-        'user' => $note
+        'note' => $note
     ]);
 });  
-
+Route::delete('/notes/{id}',[NoteController::class, 'destroy'])->name('notes.destroy');
+Route::get('/notes/{id}/edit',[NoteController::class, 'edit']);
+ 
 
 //
 
