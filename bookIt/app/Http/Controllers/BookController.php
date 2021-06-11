@@ -120,7 +120,7 @@ class BookController extends Controller
             'cover' => 'image|nullable|max:1999'
         ]);
 
-        $book->id = $request->input('title');
+        $book->title = $request->input('title');
         $book->author = $request->input('author');
         $book->rating = $request->input('rating');
         $book->num_page = $request->input('num_page');
