@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\NoteController;
+use Illuminate\Support\Facades\DB;
  
 
 /*
@@ -36,8 +37,13 @@ Route::post('/notes', [App\Http\Controllers\NoteController::class, 'store']);
 Route::get('/notes/create', function () {
     return view('notes.create');
 })->name('createnote'); 
- 
 
+Route::get('/notes/{id}', function ($id) {
+    $note = DB::table('notes')->find($id);
+    return view('notes.show',[
+        'user' => $note
+    ]);
+});  
 
 
 //

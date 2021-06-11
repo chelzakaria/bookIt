@@ -3,9 +3,17 @@ namespace App\Http\Controllers;
 use App\Models\Note;
 use CreateNotesTable;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class NoteController extends Controller
 {
+  /*  public function show()
+    {
+        $user = DB::table('users')->find(3);
+        return view('notes.show',[
+            'user' => $user
+        ]);
+
+    }*/
     public function index()
     {
         $notes = Note::all();
