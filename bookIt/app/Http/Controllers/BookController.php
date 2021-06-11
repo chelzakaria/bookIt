@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -64,7 +65,12 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+       
+            $book = DB::table('books')->find($id);
+            return view('books.show',[
+                'book' => $book
+            ]);
+      
     }
 
     /**

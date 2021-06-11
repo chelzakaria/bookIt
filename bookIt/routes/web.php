@@ -58,3 +58,5 @@ Route::get('/books/create', function () {
 
  
 Route::post('/books', [App\Http\Controllers\BookController::class, 'store']);
+Route::get('/books/{id}',[App\Http\Controllers\BookController::class, 'show']);
+
