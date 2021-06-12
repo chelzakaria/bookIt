@@ -25,13 +25,30 @@
                       margin-top: 50px;
                   }
               } 
+
+              @media screen and (max-width: 767px) {
+            
+            .c3{
+                  border-radius: 15px;
+                   
+              }
+              
+          } 
+          @media screen and (min-width: 767px) {
+         
+              .c3 {
+                border-radius: 0px 15px 15px 0px;
+              }
+              
+          }  
+               
         </style>
         <div class="container mb-5 mt-3" style=" border-radius:  15px; ">
             <div class="row justify-content-md-center"  >
                 <div class="col-4 d-none d-md-block px-0 h-50" >
                       <img  src="images/login_image.svg" alt="" class="img-fluid">                
                 </div>
-                <div class="col-sm-10 col-md-7 col-lg-6 " style=" padding:0px;border-radius: 0px 15px 15px 0px; background:#BDDDF8; ">
+                <div class="col-sm-10 col-md-7 col-lg-6 c3" style=" padding:0px;  background:#BDDDF8; ">
                     <div class="container c1 h-50" >
                         <form class="py-4 px-4  c1">
                             <p style="font-weight: 700; color:#1F1A6B; font-size:35px;">Login</p>
