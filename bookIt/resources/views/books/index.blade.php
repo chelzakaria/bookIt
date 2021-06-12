@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('content') 
+<style>
+    .checked {
+  color: orange;
+}
+
+</style>
     <div class="container-fluid">
         <div class="row">
             @include('notes.layouts.sidebar')
@@ -36,7 +42,14 @@
                                         <div class="card-body pb-0">
                                             <a href="/books/{{$book->id}}">  <h5 class="card-title"> {{$book->title}} </h5> </a>
                                            <p class="text-muted">{{$book->author}}</p>
-                                           <p class="text-center">* * * * *</p>
+                                           <p class="text-center"><span class="fa fa-star <?php if($book->rating>=1) echo 'checked' ?>"></span>
+                                            <span class="fa fa-star <?php if($book->rating>=2) echo 'checked' ?>" ></span>
+                                            <span class="fa fa-star <?php if($book->rating>=3) echo 'checked' ?>"></span>
+                                            <span class="fa fa-star <?php if($book->rating>=4) echo 'checked' ?>"></span>
+                                            <span class="fa fa-star <?php if($book->rating>=5) echo 'checked' ?>"></span></p>
+                                          <script>
+                                            alert({{$book->author}})
+                                              </script>
                                          </div>
                                       </div>
                                 </div>
