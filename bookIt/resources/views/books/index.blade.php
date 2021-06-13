@@ -42,15 +42,16 @@
                                         <div class="card-body pb-0">
                                             <a href="/books/{{$book->id}}">  <h5 class="card-title"> {{$book->title}} </h5> </a>
                                            <p class="text-muted">{{$book->author}}</p>
-                                           <p class="text-center"><span class="fa fa-star <?php if($book->rating>=1) echo 'checked' ?>"></span>
-                                            <span class="fa fa-star @if($book->rating>=2) checked @endif "></span>
-                                            <span class="fa fa-star @if($book->rating>=3) checked @endif "></span>
-                                            <span class="fa fa-star @if($book->rating>=4) checked @endif"></span>
-                                            <span class="fa fa-star @if($book->rating>=5) checked @endif"></span></p>
-                                         
                                          </div>
                                       </div>
-                                      
+                                     <div class="mx-5" style="text-align: center"><h6>{{$book->title}}</h6>
+                                    <div class="mx-1">{{$book->author}}</div>
+                                    <p class="text-center"><span class="fa fa-star <?php if($book->rating>=1) echo 'checked' ?>"></span>
+                                        <span class="fa fa-star @if($book->rating>=2) checked @endif "></span>
+                                        <span class="fa fa-star @if($book->rating>=3) checked @endif "></span>
+                                        <span class="fa fa-star @if($book->rating>=4) checked @endif"></span>
+                                        <span class="fa fa-star @if($book->rating>=5) checked @endif"></span></p>
+                                    </div> 
                                 </div>
                             </div>
                             @endforeach
