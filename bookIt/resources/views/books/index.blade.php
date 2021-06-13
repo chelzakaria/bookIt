@@ -44,7 +44,7 @@
                                            <p class="text-muted">{{$book->author}}</p>
                                          </div>
                                       </div>
-                                     <div class="mx-5 mt-2" style="text-align: center"><h6>{{$book->title}}</h6>
+                                     <div class="mx-5 mt-2 " style="text-align: center"><h6 class="font-weight-bold">{{$book->title}}</h6>
                                     <div class="mx-1">{{$book->author}}</div>
                                     <p class="text-center"><span class="fa fa-star <?php if($book->rating>=1) echo 'checked' ?>"></span>
                                         <span class="fa fa-star @if($book->rating>=2) checked @endif "></span>
