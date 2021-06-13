@@ -43,10 +43,10 @@
                                             <a href="/books/{{$book->id}}">  <h5 class="card-title"> {{$book->title}} </h5> </a>
                                            <p class="text-muted">{{$book->author}}</p>
                                            <p class="text-center"><span class="fa fa-star <?php if($book->rating>=1) echo 'checked' ?>"></span>
-                                            <span class="fa fa-star <?php if($book->rating>=2) echo 'checked' ?>" ></span>
-                                            <span class="fa fa-star <?php if($book->rating>=3) echo 'checked' ?>"></span>
-                                            <span class="fa fa-star <?php if($book->rating>=4) echo 'checked' ?>"></span>
-                                            <span class="fa fa-star <?php if($book->rating>=5) echo 'checked' ?>"></span></p>
+                                            <span class="fa fa-star @if($book->rating>=2) checked @endif "></span>
+                                            <span class="fa fa-star @if($book->rating>=3) checked @endif "></span>
+                                            <span class="fa fa-star @if($book->rating>=4) checked @endif"></span>
+                                            <span class="fa fa-star @if($book->rating>=5) checked @endif"></span></p>
                                           <script>
                                             alert({{$book->author}})
                                               </script>
