@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('content') 
+<style>
+    .checked {
+  color: orange;
+}
+
+</style>
     <div class="container-fluid">
         <div class="row">
             @include('notes.layouts.sidebar')
