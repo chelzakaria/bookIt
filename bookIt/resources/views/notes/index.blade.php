@@ -1,5 +1,6 @@
   @extends('layouts.app')
     @section('content') 
+    
         <div class="container-fluid">
             <div class="row">
                 @include('notes.layouts.sidebar')
@@ -32,13 +33,35 @@
                                     @foreach ($notes as $note)
                                     <div class="col-md-4">
                                         <div class="col-md-12">
-                                         <div class="card" style="width: 18rem;border-radius:10px;background:#16e56957;">
+                                            <a href="/notes/{{$note->id}}" style="text-decoration: none;color:black;"> 
+                                         <div class="card mb-5 " style="width: 18rem; height:9rem;border-radius:10px;background:
+                                         @switch($note->type)
+                                            @case("Quote")
+                                                #B8BFFA;
+                                                @break
+
+                                            @case("Idea")
+                                            #F6B9B9;
+                                                @break
+                                                @case("Thought")
+                                                #16e56957;
+                                                @break
+                                            @default
+                                               #FEFAAF;
+                                        @endswitch
+                                         ">
                                              <div class="card-body pb-0">
-                                               <h5 class="card-title" style="font-weight: 800;"><a href="/notes/{{$note->id}}">title</a></h5>
-                                               <p class="card-text " style="font-weight: 400;font-size:15px;">{{ $note->body }}</p>
-                                                <p class="text-muted float-right" style="font-weight: 300;font-size:13px;">{{ $note->created_at }}</p>
+                                               {{-- <h5 class="card-title" style="font-weight: 800;"><a href="/notes/{{$note->id}}">title</a></h5> --}}
+                                               <p class="card-text " style="font-weight: 400;font-size:15px; 
+                                                 height:4.5rem;     overflow: hidden;
+                                                    display: -webkit-box;
+                                                    -webkit-line-clamp: 3;
+                                                    -webkit-box-orient: vertical;   
+                                                 ">{{ $note->body }}</p>
+                                                <p class="text-muted float-right mb-0" style="font-weight: 300;font-size:13px;">{{ $note->created_at }}</p>
                                              </div>
                                            </div>
+                                        </a>
                                         </div>
                                      </div>
                                     @endforeach

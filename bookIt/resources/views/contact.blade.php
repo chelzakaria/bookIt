@@ -63,7 +63,7 @@
                                 <input type="email" class="form-control py-4 py-4"   placeholder="Your Email">
                               </div>
                               <div class="form-group  ">
-                                <textarea rows="4"  style="resize: none; " class="form-control py-4 c3"  placeholder="Write your message..."></textarea>
+                                <textarea rows="4"  style="resize: none; " class="form-control py-4 "  placeholder="Write your message..."></textarea>
                               </div>
                              
                                
