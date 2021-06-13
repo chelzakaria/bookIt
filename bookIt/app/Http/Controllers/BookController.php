@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 
 class BookController extends Controller
 {
@@ -111,20 +113,38 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->hasFile('cover'))
+        {
+            $fileNameWithExt = $request->file('cover')->getClientOriginalName();
+
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            $extension = $request->file('cover')->getClientOriginalExtension();
+
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+
+            $path = $request->file('cover')->storeAs('public/cover_images', $fileNameToStore);
+        }else {
+            $fileNameToStore = 'noimage.jpg';
+        }
         $book = Book::find($id);
+
+        if($book->cover != 'noimage.jpg') {
+            Storage::delete('public/cover_images/'.$book->cover);
+        }  
         $this->validate($request, [
             'title' => 'required',
             'author' => 'required',
             'rating' => 'required',
             'num_page' => 'required',
-            'cover' => 'image|nullable|max:1999'
+             
         ]);
 
         $book->title = $request->input('title');
         $book->author = $request->input('author');
         $book->rating = $request->input('rating');
         $book->num_page = $request->input('num_page');
-        $book->cover = $request->input('cover');
+        $book->cover = $fileNameToStore;
         $book->save();
         return redirect()->route('books');
     }
@@ -141,6 +161,10 @@ class BookController extends Controller
     public function destroy($id)
     {
         $book = Book::find($id);
+        if($book->cover != 'noimage.jpg')
+        {
+            Storage::delete('public/cover_images/'.$book->cover);
+         } 
       
         $book->delete();
          return redirect('books');
