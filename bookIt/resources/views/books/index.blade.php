@@ -38,8 +38,8 @@
                             <div class="col-md-3 mt-4">
                                 <div class="col-md-12">
                                     <a href="/books/{{$book->id}}">
-                                    <div class="card">
-                                        <img class="card-img-top" src="/storage/cover_images/{{$book->cover}}" alt=" ">
+                                    <div class="card align-self-stretch ml-auto mr-auto" style="width: 100px" >
+                                        <img class="card-img-top" src="/storage/cover_images/{{$book->cover}}" >
                                    
                                       </div>
                                     </a>
