@@ -40,7 +40,7 @@
                                     <a href="/books/{{$book->id}}">
                                     <div class="card align-self-stretch ml-auto mr-auto" style="width: 180px; height:230px; border-radius:15px" >
                                         <img class="card-img-top" src="/storage/cover_images/{{$book->cover}}" >
-                                   
+                                   dd({{$book->cover}})
                                       </div>
                                     </a>
                                      <div class="mx-5 mt-2 " style="text-align: center"><h6 class="font-weight-bold">{{$book->title}}</h6>
