@@ -15,7 +15,7 @@
                     <div class="container py-3">
                         <div class="d-flex flex-row">
                             <p style="font-weight:700; font-size:30px;">
-                                Create Note
+                                Edit Note
                             </p>  
                             <div class="ml-auto mr-0"  style="width: 45px; height:45px; border-radius:50%;background:#000;">
                                 <img src="images/about_img.svg" alt="" style="max-width:100%;
@@ -32,23 +32,18 @@
                                          <div class="form-group">
                                             <select class="custom-select"  name="type"   style="border-radius:10px; height:50px; ">
                                                 <option selected="true" disabled="disabled" >Select a category</option>
-                                                <option @if ($note->type =="Uncategorized")
-                                                    selected
-                                                @endif >Uncategorized</option>
-                                                <option @if ($note->type =="Quote")
-                                                    selected
-                                                @endif >Quote</option>
-                                                <option @if ($note->type =="Idea")
-                                                    selected
-                                                @endif >Idea</option>
-                                                <option @if ($note->type =="Thought")
-                                                    selected
-                                                @endif >Thought</option>
+                                                <option @if ($note->type=="Uncategorized") selected="true" @endif >Uncategorized</option>
+                                                <option @if ($note->type=="Quote") selected="true" @endif>Quote</option>
+                                                <option @if ($note->type=="Idea") selected="true" @endif>Idea</option>
+                                                <option @if ($note->type=="Thought") selected="true" @endif>Thought</option>
                                             </select>
+                                         
                                           </div>
                                        </div>
+                                       
                                   </div>  
                                   <div class="row">
+
                                         <div class="col">
                                             <textarea rows="12" class=" py-4 form-control" name="body" placeholder="Write your notes.." style=" 
                                             border:none;
@@ -56,25 +51,30 @@
                                             border-radius: 12px;
                                             outline:none;
                                             padding:15px; 
-                                            resize: none;">{{$note->body}}</textarea>
+                                            resize: none;"  >{{ $note->body}}</textarea>
                                           </div>
                                     </div>
                                          <div class="row mt-3">
                                             <div class="col">
-                                                <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('notes')}}" style="text-decoration: none; color:#fff;">Cancel</a> </button>
-                                            </div>
-                                            <div class="col">
-                                                <button type="submit" name="create" class="btn  btn-primary float-right"
-                                                style="background-color:#1F1A6B;font-weight:700;  " >Edit</button> 
+                                                <button type="submit"  name="create" class="btn  btn-lg btn-primary float-right"
+                                                style="background-color:#1F1A6B;font-weight:600;font-size:22px; border-radius:12px;" >Create</button> 
                                             </div>
                                         </div>
                                  </form>
-                                  
-                                 
-                                
                                  </div>
+                             
+                       
+                              
+                            
                               </div>
+                      
+                        
+                             
                     </div>
+                   
+                
+  
+       
                 </div>
             </div>  
         </div>

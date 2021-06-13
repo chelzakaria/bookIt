@@ -35,23 +35,22 @@
                         <div class="row">
                             @if ($books->count())
                             @foreach ($books as $book)
-                            <div class="col-md-3">
+                            <div class="col-md-3 mt-4">
                                 <div class="col-md-12">
-                                    <div class="card">
-                                        <img class="card-img-top" src="/storage/cover_images/{{$book->cover}}" alt=" ">
-                                        <div class="card-body pb-0">
-                                            <a href="/books/{{$book->id}}">  <h5 class="card-title"> {{$book->title}} </h5> </a>
-                                           <p class="text-muted">{{$book->author}}</p>
-                                           <p class="text-center"><span class="fa fa-star <?php if($book->rating>=1) echo 'checked' ?>"></span>
-                                            <span class="fa fa-star <?php if($book->rating>=2) echo 'checked' ?>" ></span>
-                                            <span class="fa fa-star <?php if($book->rating>=3) echo 'checked' ?>"></span>
-                                            <span class="fa fa-star <?php if($book->rating>=4) echo 'checked' ?>"></span>
-                                            <span class="fa fa-star <?php if($book->rating>=5) echo 'checked' ?>"></span></p>
-                                          <script>
-                                            alert({{$book->author}})
-                                              </script>
-                                         </div>
+                                    <a href="/books/{{$book->id}}">
+                                    <div class="card align-self-stretch ml-auto mr-auto rounded" style="width: 200px; height:200px" >
+                                        <img class="card-img-top" src="/storage/cover_images/{{$book->cover}}" >
+                                   
                                       </div>
+                                    </a>
+                                     <div class="mx-5 mt-2 " style="text-align: center"><h6 class="font-weight-bold">{{$book->title}}</h6>
+                                    <div class="mx-1 text-muted">{{$book->author}}</div>
+                                    <p class="text-center"><span class="fa fa-star <?php if($book->rating>=1) echo 'checked' ?>"></span>
+                                        <span class="fa fa-star @if($book->rating>=2) checked @endif "></span>
+                                        <span class="fa fa-star @if($book->rating>=3) checked @endif "></span>
+                                        <span class="fa fa-star @if($book->rating>=4) checked @endif"></span>
+                                        <span class="fa fa-star @if($book->rating>=5) checked @endif"></span></p>
+                                    </div> 
                                 </div>
                             </div>
                             @endforeach
