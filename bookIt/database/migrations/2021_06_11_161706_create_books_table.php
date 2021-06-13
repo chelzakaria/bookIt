@@ -13,7 +13,7 @@ class CreateBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+       Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('title');
@@ -22,6 +22,9 @@ class CreateBooksTable extends Migration
             $table->integer('rating');
             $table->string('cover');
 
+        });
+        Schema::table('books', function (Blueprint $table) {
+            $table->text('description');
         });
     }
 

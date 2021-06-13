@@ -48,11 +48,7 @@
                                 <span class="fa fa-star @if($book->rating>=5) checked @endif"></span></p>
                                 <hr style="border-top: 1px solid #00000023;" class="mb-2 mt-4">
                                 <div>
-                                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorem aperiam accusantium explicabo. Consequuntur nihil nulla mollitia fugiat ratione vitae sit ipsum aperiam eligendi perferendis, excepturi quidem quae ducimus aut, maxime, molestiae aliquam.
-                                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorem aperiam accusantium explicabo. Consequuntur nihil nulla mollitia fugiat ratione vitae sit ipsum aperiam eligendi perferendis, excepturi quidem quae ducimus aut, maxime, molestiae aliquam.periam accusantium explicabo. Consequuntur nihil nulla mollitia fugiat ratione vitae sit  
-                                   vitae sit ipsum aperiam eligendi perferendis, excepturi quidem quae ducimus aut, maxime, molestiae aliquam.
-                                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic dolorem aperiam accusantium explicabo. Consequuntur nihil nulla mollitia fugiat ratione vitae sit ipsum aperiam eligendi perferendis, excepturi quidem  
-                                   
+                                   {{$book->description}}
                                 </div>
 
                         </div>
