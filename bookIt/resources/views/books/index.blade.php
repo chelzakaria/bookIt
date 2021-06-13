@@ -35,7 +35,7 @@
                         <div class="row">
                             @if ($books->count())
                             @foreach ($books as $book)
-                            <div class="col-md-3">
+                            <div class="col-md-3 mt-4">
                                 <div class="col-md-12">
                                     <div class="card">
                                         <img class="card-img-top" src="/storage/cover_images/{{$book->cover}}" alt=" ">
@@ -47,11 +47,10 @@
                                             <span class="fa fa-star @if($book->rating>=3) checked @endif "></span>
                                             <span class="fa fa-star @if($book->rating>=4) checked @endif"></span>
                                             <span class="fa fa-star @if($book->rating>=5) checked @endif"></span></p>
-                                          <script>
-                                            alert({{$book->author}})
-                                              </script>
+                                         
                                          </div>
                                       </div>
+                                      
                                 </div>
                             </div>
                             @endforeach
