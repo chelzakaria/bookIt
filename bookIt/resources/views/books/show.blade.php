@@ -14,7 +14,12 @@
                             max-height:100%; ">
                         </div>
                     </div>
-                 
+                    <div class="d-flex flex-row">
+                        
+                        <div>
+                            <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('books')}}" style="text-decoration: none; color:#fff;">Back</a> </button>
+                        </div>
+                    </div>
 
                     <hr style="border-top: 1px solid #00000023;">
                     <div class="card text-center" style="width: 18rem;">
