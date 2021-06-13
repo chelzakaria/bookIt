@@ -4,7 +4,7 @@
 @include('layouts.nav')
     <div class="container mb-5">
         <div class="row">
-            <div class="col">
+            <div class="col-lg-6 col-md-6  col-sm-12 col-10">
                 <p style="font-weight:300; font-size:38px; margin-bottom:50px;">
                     About 
                     <img   src="/images/logos/about_logo.svg" style="width:140px; height:auto;" alt="">
@@ -25,12 +25,12 @@
                       entertaining.
                 </p>    
             </div>
-            <div class="col">
+            <div class="col d-none d-md-block">
                 <img src="/images/about_img.svg" style="width: 90%; height:auto;" alt="">
             </div>
         </div>
         <div class="row mt-5">
-            <div class="col-12 text-center">
+            <div class="col-lg-12 col-md-12  col-sm-12 col-10 text-center">
                 <p style="font-size:38px;">What are you waiting for ?</p>
                 <a href=" {{route('register')}} " style="text-decoration: none;">
                     <p style="color:#3E63F6; font-weight:700; font-size:38px;">Let’s get started</p>
