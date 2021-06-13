@@ -37,13 +37,15 @@
                             @foreach ($books as $book)
                             <div class="col-md-3 mt-4">
                                 <div class="col-md-12">
+                                    <a href="/books/{{$book->id}}">
                                     <div class="card">
                                         <img class="card-img-top" src="/storage/cover_images/{{$book->cover}}" alt=" ">
                                         <div class="card-body pb-0">
-                                            <a href="/books/{{$book->id}}">  <h5 class="card-title"> {{$book->title}} </h5> </a>
-                                           <p class="text-muted">{{$book->author}}</p>
+                                           
+                                           
                                          </div>
                                       </div>
+                                    </a>
                                      <div class="mx-5 mt-2 " style="text-align: center"><h6 class="font-weight-bold">{{$book->title}}</h6>
                                     <div class="mx-1 text-muted">{{$book->author}}</div>
                                     <p class="text-center"><span class="fa fa-star <?php if($book->rating>=1) echo 'checked' ?>"></span>
