@@ -87,7 +87,7 @@
                              <div class="col-md-3">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="customFile" name="cover" value="{{$book->cover}}" >
-                                    <label class="custom-file-label" for="customFile">Choose image</label>hhh{{$book->cover}}kkk
+                                    <label class="custom-file-label" for="customFile">Choose image</label>
                                   </div>
                              </div>
                             
