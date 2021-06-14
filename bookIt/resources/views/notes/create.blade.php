@@ -23,16 +23,40 @@
                             </div>
                         </div>
                     
-                        <hr style="border-top: 1px solid #00000023;">
+                        <hr style="border-top: 1px solid #00000023;margin-top:5px;">
+                        <div class="row mt-0">
+                            @error('type')
+                            <div class="col text-center ">
+                                   
+                                   <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+
+                                   {{$message}}
+                                    </div>
+
+                                    
+                            </div>
+                            @enderror
+                            @error('body')
+                            <div class="col text-center ">
+                                <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+                                {{$message}}
+                                 </div>
+                                
+                         </div>
+                         @enderror
+                        </div>
+                         
                         <form action="{{route('notes')}}" method="post">
                             @csrf
                             <div class="row">
                                  
                                  <div class="col-md-4">
-                                         <div class="form-group">
-                                            <select class="custom-select"  name="type"   style="border-radius:10px; height:50px; ">
-                                                <option selected="true" disabled="disabled" >Select a category</option>
-                                                <option >Uncategorized</option>
+                                         <div class="form-group ">
+                                            <select class="custom-select @error('type')
+                                            border border-danger
+                                            @enderror"   name="type"   style="border-radius:10px; height:50px; ">
+                                                <option selected="true" disabled="disabled" >Select a type</option>
+                                                <option>Uncategorized</option>
                                                 <option>Quote</option>
                                                 <option>Idea</option>
                                                 <option>Thought</option>
@@ -42,16 +66,19 @@
                                        </div>
                                        
                                   </div>  
+                                
                                   <div class="row">
-
+                                    
                                         <div class="col">
-                                            <textarea rows="12" class=" py-4 form-control" name="body" placeholder="Write your notes.." style=" 
+                                            <textarea rows="12" class=" py-4 form-control @error('body')
+                                            border border-danger
+                                            @enderror" name="body" placeholder="Write your notes.." style=" 
                                             border:none;
                                             background: #E4F1FF;
                                             border-radius: 12px;
                                             outline:none;
                                             padding:15px; 
-                                            resize: none;"  ></textarea>
+                                            resize: none;" >{{old('body')}}</textarea>
                                           </div>
                                     </div>
                                          <div class="row mt-3">
