@@ -131,7 +131,7 @@ class BookController extends Controller
         }
         $book = Book::find($id);
 
-        if($book->cover != 'noimage.jpg') {
+        if($book->cover != $fileNameToStore && $fileNameToStore != 'noimage.jpg') {
             Storage::delete('public/cover_images/'.$book->cover);
         }  
         $this->validate($request, [
@@ -147,8 +147,11 @@ class BookController extends Controller
         $book->author = $request->input('author');
         $book->rating = $request->input('rating');
         $book->num_page = $request->input('num_page');
-        $book->description = $request->input('description');
-        $book->cover = $fileNameToStore;
+
+        if($request->hasFile('cover'))
+        {
+            $book->cover = $fileNameToStore;
+        }
         $book->save();
         return redirect()->route('books');
     }
