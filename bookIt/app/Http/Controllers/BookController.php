@@ -47,6 +47,7 @@ class BookController extends Controller
             'author' => 'required',
             'rating' => 'required',
             'num_page' => 'required',
+            'description' =>'description',
             'cover' => 'image|nullable|max:1999'
         ]);
 
@@ -70,7 +71,8 @@ class BookController extends Controller
             'author' => $request->author,
             'rating' => $request->rating,
             'num_page' =>$request->num_page,
-            'cover' => $fileNameToStore
+            'cover' => $fileNameToStore,
+            'description' => $request->description
        ]);
 
        return redirect('books');
@@ -137,6 +139,7 @@ class BookController extends Controller
             'author' => 'required',
             'rating' => 'required',
             'num_page' => 'required',
+            'description'=>'required'
              
         ]);
 
@@ -144,6 +147,7 @@ class BookController extends Controller
         $book->author = $request->input('author');
         $book->rating = $request->input('rating');
         $book->num_page = $request->input('num_page');
+        $book->description=$request->input('description');
         if($request->hasFile('cover'))
         {
             $book->cover = $fileNameToStore;
