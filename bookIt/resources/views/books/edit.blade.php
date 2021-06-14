@@ -17,7 +17,7 @@
                         <div class="d-flex flex-row">
                             <p style="font-weight:700; font-size:30px;">
 
-                                Add Book
+                                Edit Book
 
                             </p>  
                             <div class="ml-auto mr-0"  style="width: 45px; height:45px; border-radius:50%;background:#000;">
