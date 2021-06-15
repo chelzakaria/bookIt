@@ -15,11 +15,11 @@
                                 max-height:100%; ">
                             </div>
                         </div>
-                        <form action="{{route('notes.search')}}" method="GET" role="search" >
+                        <form action="{{route('notes.search')}}" method="POST" role="search" >
 
                         <div class="d-flex flex-row">
                                 @csrf
-                                <div class="form-group d-inline mt-0">
+                                 <div class="form-group d-inline mt-0">
                                     <select class="custom-select mb-0 mr-5"  name="word">
                                         <option selected="true" disabled="disabled" >Filter notes</option>
                                         <option>Quote</option>

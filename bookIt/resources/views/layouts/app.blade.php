@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Book it</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -86,6 +86,7 @@
         }
 
     </style>
+     <link rel = "icon" href ="/images/icons/logo_icon.svg" type = "image/x-icon">
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
     
 </head>
