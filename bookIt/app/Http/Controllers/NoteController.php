@@ -22,6 +22,15 @@ class NoteController extends Controller
             'notes' => $notes
         ]);
     }
+
+    public function search(Request $request)
+    {
+
+        $notes = Note::where('type','LIKE','%'.$request->input('word').'%')->get();
+        return view('notes.index',[
+            'notes' => $notes
+        ]);
+     }
  
 
     public function store(Request $request){
