@@ -27,10 +27,7 @@ class NoteController extends Controller
     {
 
         $notes = Note::where('type','LIKE','%'.$request->input('word').'%')->get();
-        if ($request->input('word')=="All") {
-            $notes = Note::all();
-        }
-        
+      
         return view('notes.index',[
             'notes' => $notes
         ]);

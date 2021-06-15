@@ -22,7 +22,6 @@
                                 <div class="form-group d-inline mt-0">
                                     <select class="custom-select mb-0 mr-5"  name="word">
                                         <option selected="true" disabled="disabled" >Filter notes</option>
-                                        <option>All</option>
                                         <option>Quote</option>
                                         <option>Idea</option>
                                         <option>Thought</option>
