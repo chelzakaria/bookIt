@@ -15,12 +15,22 @@
                                 max-height:100%; ">
                             </div>
                         </div>
+                        <form action="{{route('notes.search')}}" method="GET" role="search" >
+
                         <div class="d-flex flex-row">
-                             <form action="" >
-                                <div class="form-group">
-                                    <input type="email" class="form-control rounded" placeholder="Search notes" style="padding-left: 25px; " >
+                                @csrf
+                                <div class="form-group d-inline mt-0">
+                                    <select class="custom-select mb-0 mr-5"  name="word">
+                                        <option selected="true" disabled="disabled" >Filter notes</option>
+                                        <option>Quote</option>
+                                        <option>Idea</option>
+                                        <option>Thought</option>
+                                        <option>Uncategorized</option>
+                                    </select>
                                 </div>
-                             </form>
+                                <button class="btn" type="submit" style="position: relative; bottom:10px"> <span class="iconify" data-inline="false" data-icon="codicon:filter-filled" style="color: #000; font-size: 30px;"></span></button>
+                            </form>
+                            
                             <div class="ml-auto mr-0">
                                 <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('createnote')}}" style="text-decoration: none; color:#fff;">Create new note</a> </button>
                             </div>
@@ -28,7 +38,7 @@
                         <hr style="border-top: 1px solid #00000023;">
                         
                             <div class="row">
-                               
+ 
                                 @if ($notes->count())
                                     @foreach ($notes as $note)
                                     <div class="col-md-4">
@@ -68,8 +78,7 @@
                                 @else
                                     <p>No notes found</p>
                                 @endif
-                                  
-                              </div>
+                               </div>
 
                     </div>
   
