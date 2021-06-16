@@ -58,7 +58,47 @@ input[type="color"]::-webkit-color-swatch {
                                         </div>
 
                                     </div>
-                                    </div></div>
+                                    <p style="font-weight:700; font-size:20px;">
+                                        Apparance
+                                    </p> 
+                                    
+                                    <div class="row mr-5" >
+                                        <div class="col-12 text-center">
+                                        <span class="mr-3 position-relative" style="color: #6F6D6D; font-weight:300;font-size:18px;line-height: 1.6; top:12%;">
+                                            Dark
+                                        </span>
+                                          <label class="switch">
+                                            <input type="checkbox" checked>
+                                            <span class="slider round"></span>
+                                          </label> 
+                                          <span class="ml-3 position-relative" style="color: #6F6D6D; font-weight:300;font-size:18px;line-height: 1.6; top:12%;">
+                                            Light
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <p  class="mt-5" style="font-weight:700; font-size:20px;">
+                                       Account type
+                                    </p>
+                                    <button name="upgrade" class="btn  btn-lg btn-primary"
+                                    style="background-color:#1548d5;font-weight:600;font-size:18px; border-radius:12px; width:150px;" >Upgrade</button> 
+                                    <button name="downgrade" class="btn  btn-lg btn-primary ml-4"
+                                    style="background-color:#948bc5;font-weight:600;font-size:18px; border-radius:12px; width:150px;" >Downgrade</button> 
+
+                                    <p  class="mt-5" style="font-weight:700; font-size:20px;">
+                                        Danger zone
+                                     </p>
+                                     <button name="upgrade" class="btn  btn-lg btn-primary"
+                                    style="background-color:red;font-weight:600;font-size:18px; border-radius:12px; width:200px;" >Delete Account</button> 
+                                    <p  class="mt-5" style="font-weight:700; font-size:20px;">
+                                        
+                                     </p>
+                                    <button name="upgrade" type="submit" class="btn  btn-lg btn-primary"
+                                    style="background-color:#0d1a3d;font-weight:800;font-size:18px; border-radius:12px; width:100px;" >Save</button> 
+                                    <button name="downgrade" type="reset" class="btn  btn-lg btn-primary ml-4"
+                                    style=" color:black;background-color:#9fd1e9;font-weight:800;font-size:18px; border-radius:12px; width:100px;" >Cancel</button> 
+                                     
+                                </div>
+                                    </div>
                             </div>
                     </form>
                 </div>
