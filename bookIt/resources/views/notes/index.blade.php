@@ -28,7 +28,7 @@
                                         <option>Uncategorized</option>
                                     </select>
                                 </div>
-                                <button class="btn" type="submit" style="position: relative; bottom:10px"> <span class="iconify" data-inline="false" data-icon="codicon:filter-filled" style="color: #000; font-size: 30px;"></span></button>
+                                <button class="btn" type="submit" style="position: relative; bottom:5px"> <span class="iconify" data-inline="false" data-icon="codicon:filter-filled" style="color: #000; font-size: 30px;"></span></button>
                             </form>
                             {{--test--}}
                    
@@ -74,6 +74,7 @@
                                                  {!! html_entity_decode($note->body) !!}</span>  
                                                   
                                                 <p class="text-muted float-right mb-0 mt-4" style="font-weight: 300;font-size:13px;">{{ $note->created_at }}</p>
+                                                <p class="mb-0 mt-4 " style="font-weight: 700;font-size:12px;color:#353535">book title</p>
                                              </div>
                                            </div>
                                         </a>

@@ -94,7 +94,7 @@
                                             border-radius: 12px;
                                             outline:none;
                                             padding:15px; 
-                                            resize: none;"  ></textarea>
+                                            resize: none;">{{$book->description}}</textarea>
                                           </div>
                                     </div>
                                         <div class="row mt-3">
