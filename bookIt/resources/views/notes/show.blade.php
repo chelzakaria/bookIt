@@ -25,7 +25,7 @@
                            <div class="jumbotron  pt-4 pb-2" >
                             <div class="row" style="min-height: 95%">
                             <div class="col">
-                                {{ $note->body}}
+                                {!! html_entity_decode($note->body) !!}
 
                             </div>
                              </div>

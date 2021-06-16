@@ -65,13 +65,15 @@
                                          ">
                                              <div class="card-body pb-0">
                                                {{-- <h5 class="card-title" style="font-weight: 800;"><a href="/notes/{{$note->id}}">title</a></h5> --}}
-                                               <p class="card-text " style="font-weight: 400;font-size:15px; 
-                                                 height:4.5rem;     overflow: hidden;
+                                               <span class="card-text " style="font-weight: 400;font-size:15px; 
+                                                 height:4.2rem;     overflow: hidden;
                                                     display: -webkit-box;
                                                     -webkit-line-clamp: 3;
                                                     -webkit-box-orient: vertical;   
-                                                 ">{{ $note->body }}</p>
-                                                <p class="text-muted float-right mb-0" style="font-weight: 300;font-size:13px;">{{ $note->created_at }}</p>
+                                                 ">
+                                                 {!! html_entity_decode($note->body) !!}</span>  
+                                                  
+                                                <p class="text-muted float-right mb-0 mt-4" style="font-weight: 300;font-size:13px;">{{ $note->created_at }}</p>
                                              </div>
                                            </div>
                                         </a>
