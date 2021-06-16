@@ -30,8 +30,12 @@ Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])-
 Route::get('/pricing', [App\Http\Controllers\HomeController::class, 'pricing'])->name('pricing');
 
 Route::get('/register', [App\Http\Controllers\auth\RegisterController::class, 'index'])->name('register');
-
 Route::get('/login', [App\Http\Controllers\auth\LoginController::class, 'index'])->name('login');
+
+Route::get('/profile', function(){
+    return view('profile');
+})->name('profile');
+
  
 Route::get('/notes', [App\Http\Controllers\NoteController::class, 'index'])->name('notes');
 Route::post('/notes', [App\Http\Controllers\NoteController::class, 'store']);
