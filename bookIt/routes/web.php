@@ -36,6 +36,11 @@ Route::get('/profile', function(){
     return view('profile');
 })->name('profile');
 
+Route::get('/password/change', function(){
+    return view('password.change');
+})->name('password.chnage');
+
+
  
 Route::get('/notes', [App\Http\Controllers\NoteController::class, 'index'])->name('notes');
 Route::post('/notes', [App\Http\Controllers\NoteController::class, 'store']);
