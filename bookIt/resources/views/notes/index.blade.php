@@ -30,6 +30,9 @@
                                 </div>
                                 <button class="btn" type="submit" style="position: relative; bottom:10px"> <span class="iconify" data-inline="false" data-icon="codicon:filter-filled" style="color: #000; font-size: 30px;"></span></button>
                             </form>
+                            {{--test--}}
+                   
+                            {{----}}
                             
                             <div class="ml-auto mr-0">
                                 <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('createnote')}}" style="text-decoration: none; color:#fff;">Create new note</a> </button>
