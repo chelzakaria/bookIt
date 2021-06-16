@@ -11,6 +11,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+     
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,6 +22,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
+      .ck-editor__editable_inline {
+    min-height: 300px !important;
+}
         body{
            font-family: 'Montserrat', sans-serif;
            min-width: 100vh;
@@ -88,6 +93,7 @@
     </style>
      <link rel = "icon" href ="/images/icons/logo_icon.svg" type = "image/x-icon">
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+
     
 </head>
 <body>

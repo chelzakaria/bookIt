@@ -45,13 +45,16 @@
                                   <div class="row">
 
                                         <div class="col">
-                                            <textarea rows="12" class=" py-4 form-control" name="body" placeholder="Write your notes.." style=" 
+                                            {{-- <textarea rows="12" class=" py-4 form-control" name="body" placeholder="Write your notes.." style=" 
                                             border:none;
                                             background: #E4F1FF;
                                             border-radius: 12px;
                                             outline:none;
                                             padding:15px; 
-                                            resize: none;"  >{{ $note->body}}</textarea>
+                                            resize: none;"  >{!! $note->body !!}</textarea> --}}
+                                            <textarea class="form-control" id="body" placeholder="Enter the Description" name="body">
+                                                {{$note->body}}
+                                            </textarea>
                                           </div>
                                     </div>
                                          <div class="row mt-3">
@@ -78,6 +81,10 @@
                 </div>
             </div>  
         </div>
+        <script src="//cdn.ckeditor.com/4.14.0/basic/ckeditor.js"></script>
+            <script>
+            CKEDITOR.replace( 'body' );
+            </script>
     @endsection  
 
   
