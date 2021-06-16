@@ -64,3 +64,7 @@ Route::get('/books/{id}/edit',[BookController::class, 'edit']);
 Route::post('/books/{id}',[BookController::class, 'update'])->name('books.update');
 Route::delete('/books/{id}',[BookController::class, 'destroy'])->name('books.destroy');
 
+//setting
+Route::get('/setting', function () {
+    return view('setting');
+})->name('setting'); 
