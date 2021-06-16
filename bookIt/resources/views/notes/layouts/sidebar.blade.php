@@ -11,7 +11,7 @@
             <a style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href="#"><img class="mr-3" src="/images/icons/dashboard_icon.svg" alt="" style="height:auto; width:26px;" > <span class="d-none d-md-inline">Dashboard</span></a>
         </div>
         <div class="mb-4 hv ">
-            <a   style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href=""><img class="mr-3 " src="/images/icons/profile_icon.svg" alt="" style="height:auto; width:26px;"  > <span class="d-none d-md-inline">Profile</span></a>
+            <a   style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href=" {{route('profile')}} "><img class="mr-3 " src="/images/icons/profile_icon.svg" alt="" style="height:auto; width:26px;"  > <span class="d-none d-md-inline">Profile</span></a>
         </div>
         <div class="mb-4 hv">
             <a   style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href="{{route('notes')}}"><img class="mr-3 " src="/images/icons/notes_icon.svg" alt="" style="height:auto; width:24px;"  > <span class="d-none d-md-inline">Notes</span></a>
