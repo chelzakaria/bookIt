@@ -116,9 +116,9 @@
                         
         </div>
         <script src="//cdn.ckeditor.com/4.14.0/basic/ckeditor.js"></script>
-<script>
-CKEDITOR.replace( 'body' );
-</script>
+            <script>
+            CKEDITOR.replace( 'body' );
+            </script>
     @endsection  
 
   

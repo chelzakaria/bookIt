@@ -4,19 +4,7 @@
     
         @include('layouts.nav')
         <style>
-             ::placeholder{
-             font-weight: 600;
-             font-size: 16px;
-             line-height: 20px;
-              
-              
-                }
-                .form-control   {
-                 font-family: 'Montserrat', sans-serif;
-                 font-weight: 700; 
-                  border-radius:12px;
-                    
-                 }
+             
                   @media screen and (min-width: 990px) {
                   .c1{
                       padding-top: 70px;
