@@ -89,6 +89,19 @@
         .slider.round:before {
         border-radius: 50%;
         }
+        ::placeholder{
+             font-weight: 600;
+             font-size: 16px;
+             line-height: 20px;
+              
+              
+                }
+                .form-control   {
+                 font-family: 'Montserrat', sans-serif;
+                 font-weight: 700; 
+                  border-radius:10px;
+                    
+                 }
 
     </style>
      <link rel = "icon" href ="/images/icons/logo_icon.svg" type = "image/x-icon">
