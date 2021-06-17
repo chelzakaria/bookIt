@@ -41,7 +41,12 @@ class NoteController extends Controller
         ]);
         $book = DB::table('books')->where('title',$request->titlebook )->first();
 
-        Note::create([
+        // Note::create([
+        //     'body' => $request->body,
+        //     'type'=>$request->type,
+        //     'idbook'=>$book->id
+        // ]);
+        $request->user()->notes()->create([
             'body' => $request->body,
             'type'=>$request->type,
             'idbook'=>$book->id
