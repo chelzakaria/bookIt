@@ -73,7 +73,7 @@
                                                  ">
                                                  {!! html_entity_decode($note->body) !!}</span>  
                                                   
-                                                <p class="text-muted float-right mb-0 mt-4" style="font-weight: 300;font-size:13px;">{{ $note->created_at }}</p>
+                                                <p class="text-muted float-right mb-0 mt-4" style="font-weight: 300;font-size:13px;">{{ $note->created_at->diffForHumans() }}</p>
                                                 <p class="mb-0 mt-4 " style="font-weight: 700;font-size:12px;color:#353535">book title</p>
                                              </div>
                                            </div>
