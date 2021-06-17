@@ -60,10 +60,24 @@
                                                 <option>Quote</option>
                                                 <option>Idea</option>
                                                 <option>Thought</option>
-                                            </select>
-                                         
+                                         </select>
                                           </div>
-                                       </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                               <select class="custom-select @error('type')
+                                               border border-danger
+                                               @enderror"   name="titlebook"   style="border-radius:10px; height:50px; ">
+                                                   <option selected="true" disabled="disabled" >Select a Book</option>
+                                                   <?php 
+                                                    use App\Models\Book;
+                                                   $books = Book::all(); ?>
+                                                   @foreach ($books as $book)
+                                                     <option>{{$book->title}}</option>  
+                                                   @endforeach
+                                            </select>
+                                             </div>
+                                           </div>
                                        
                                   </div>  
                                 

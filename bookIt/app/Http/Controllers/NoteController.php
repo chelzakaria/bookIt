@@ -6,14 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class NoteController extends Controller
 {
-  /*  public function show()
-    {
-        $user = DB::table('users')->find(3);
-        return view('notes.show',[
-            'user' => $user
-        ]);
 
-    }*/
     public function index()
     {
         $notes = Note::all();
@@ -38,13 +31,16 @@ class NoteController extends Controller
        
         $this->validate($request,[
             'body' => 'required',
-            'type' => 'required'
+            'type' => 'required',
+            'titlebook'=>'required'
         ]);
- 
+        $book = DB::table('books')->where('title',$request->titlebook )->first();
+
         Note::create([
             'body' => $request->body,
-            'type'=>$request->type
-       ]);
+            'type'=>$request->type,
+            'idbook'=>$book->id
+        ]);
 
        return redirect('notes');
     }
