@@ -10,6 +10,9 @@
                             <p style="font-weight:700; font-size:30px;">
                                 Notes
                             </p>  
+                          
+                                {{-- {{auth()->user()->firstName}} --}}
+                             
                             <div class="ml-auto mr-0"  style="width: 45px; height:45px; border-radius:50%;background:#000;">
                                 <img src="images/about_img.svg" alt="" style="max-width:100%;
                                 max-height:100%; ">

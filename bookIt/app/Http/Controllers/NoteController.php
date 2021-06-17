@@ -7,8 +7,13 @@ use Illuminate\Support\Facades\DB;
 class NoteController extends Controller
 {
 
+    public function __construct(){
+        $this->middleware(['auth']);
+    }
+
     public function index()
     {
+        // dd(auth()->user());
         $notes = Note::all();
 
         return view('notes.index',[
