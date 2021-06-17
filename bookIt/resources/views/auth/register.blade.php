@@ -55,38 +55,54 @@
                       <img  src="images/register_image.svg" alt="" class="img-fluid">                
                 </div>
                 <div class="col-sm-10 col-md-8 col-lg-6 col-8 c2" style=" padding:0px; background:#BDDDF8; ">
+                  
                     <div class="container " >
                         
-                        <form class="c1 px-4  mb-3">
+                        <form class="c1 px-4  mb-3" action="{{route('register')}}" method="POST">
+                          @csrf
                             <p class="mb-0" style="font-weight: 700; color:#1F1A6B; font-size:35px;">Get Started</p>
                             <p  class="mt-0" style="font-weight: 600; color:#6F6D6D; font-size:14px;">Already have an account ?  <a href="{{ route('login') }}" style="color:#3859DD;  ">Sign In.</a> </p>
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                    
-                                  <input type="text" class="form-control py-4"  placeholder="First name">
+                                  <input type="text" class="form-control py-4 @error('fName')
+                                  border border-danger
+                                  @enderror"  placeholder="First name" name="fName" value="{{old('fName')}}">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control py-4"  placeholder="Last name">
+                                    <input type="text" class="form-control py-4 @error('lName')
+                                    border border-danger
+                                    @enderror"  placeholder="Last name" name="lName" value="{{old('lName')}}">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control py-4"   placeholder="Username">
+                                <input type="text" class="form-control py-4 @error('username')
+                                border border-danger
+                                @enderror"   placeholder="Username" name="username" value="{{old('username')}}">
                               </div>
                               <div class="form-group">
-                                <input type="email" class="form-control py-4"   placeholder="Email">
+                                <input type="email" class="form-control py-4 @error('email')
+                                border border-danger
+                                @enderror"   placeholder="Email" name="email" value="{{old('email')}}">
                               </div>
                               <div class="form-row">
                                 <div class="form-group col-md-6">
                                    
-                                  <input type="password" class="form-control py-4 py-4"   placeholder="Password">
+                                  <input type="password" class="form-control py-4 @error('password')
+                                  border border-danger
+                                  @enderror"   placeholder="Password" name="password" >
                                 </div>
                                 <div class="form-group col-md-6">
-                                  <input type="password" class="form-control py-4"   placeholder="Confirm Password">
+                                  <input type="password" class="form-control py-4 @error('password_confirmation')
+                                  border border-danger
+                                  @enderror"   placeholder="Confirm Password" name="password_confirmation">
                                 </div>
                             </div>
                             <div class="form-group">
-                              <input type="email" class="form-control py-4"   placeholder="Email">
+                              <input type="date" class="form-control py-4 @error('birthDate')
+                              border border-danger
+                              @enderror"   placeholder="Birth date" name="birthDate" value="{{old('birthDate')}}">
                             </div>
                             
                               <button type="submit" class="btn  btn-lg btn-block btn-primary"

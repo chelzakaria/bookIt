@@ -3,11 +3,12 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\auth\RegisterController;
-use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\LogoutController;
  
 
 /*
@@ -29,8 +30,15 @@ Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->nam
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 Route::get('/pricing', [App\Http\Controllers\HomeController::class, 'pricing'])->name('pricing');
 
-Route::get('/register', [App\Http\Controllers\auth\RegisterController::class, 'index'])->name('register');
-Route::get('/login', [App\Http\Controllers\auth\LoginController::class, 'index'])->name('login');
+Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'index'])->name('register');
+Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'store']);
+
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+
+
+Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'index'])->name('login');
+Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'store']);
 
 Route::get('/profile', function(){
     return view('profile');
@@ -77,3 +85,8 @@ Route::delete('/books/{id}',[BookController::class, 'destroy'])->name('books.des
 Route::get('/setting', function () {
     return view('setting');
 })->name('setting'); 
+
+
+ 
+ 
+ 
