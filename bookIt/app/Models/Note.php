@@ -12,4 +12,9 @@ class Note extends Model
         'body','type','idbook'
          
     ];
+
+     public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
