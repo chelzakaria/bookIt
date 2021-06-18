@@ -21,24 +21,34 @@
                         <hr style="border-top: 1px solid #00000023;" class="mt-0">
                         <div class="container px-5 mr-auto py-5">
                             
-                            @if(session()->has('error'))
-                            <span class="alert alert-danger">
-                                <strong>{{ session()->get('error') }}</strong>
-                            </span>
-                        @endif
+                            
+                            @if(session('error'))
+                            <div class="col text-center w-50 mr-auto mb-3">
+                                    <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+                                        {{ session('error') }}
+                                    </div>
+                                </div>
+                            @endif
+
                             <form method="POST" action="{{ route('password.change') }}">
                                 @csrf
                                 <div class="form-group w-75">
                                   <label for="oldPass">Old password </label>
-                                  <input type="password" class="form-control" id="oldPass"  name="oldPassword">
+                                  <input type="password" class="form-control @error('oldPassword')
+                                  border border-danger
+                                  @enderror" id="oldPass"  name="oldPassword">
                                 </div>
                                 <div class="form-group w-75">
                                     <label for="newPass">New password </label>
-                                    <input type="password" class="form-control" id="newPass"  name="password">
+                                    <input type="password" class="form-control @error('password')
+                                    border border-danger
+                                    @enderror" id="newPass"  name="password">
                                   </div>
                                   <div class="form-group w-75">
                                     <label for="newPassRep">Repeat new password </label>
-                                    <input type="password" class="form-control" id="newPassRep"  name="password_confirmation">
+                                    <input type="password" class="form-control @error('password_confirmation')
+                                    border border-danger
+                                    @enderror" id="newPassRep"  name="password_confirmation">
                                   </div>
                                
                                 <div class="row mt-4">
