@@ -59,11 +59,11 @@
                                     </div>
                                          <div class="row mt-3"> 
                                             <div class="col">
-                                                <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('notes')}}" style="text-decoration: none; color:#fff;">Cancel</a> </button>
+                                                <button type="button" class="btn " style="background-color: #D4E5F9; font-weight:700;"> <a href=" {{route('notes')}}" style="text-decoration: none; color:#000;">Cancel</a> </button>
                                             </div>
                                             <div class="col">
-                                                <button type="submit"  name="create" class="btn  btn-lg btn-primary float-right"
-                                                style="background-color:#1F1A6B;font-weight:600;font-size:22px; border-radius:12px;" >Edit</button> 
+                                                <button type="submit"  name="create" class="btn  btn-primary float-right" 
+                                                style="background-color: #1F1A6B; font-weight:700;" >Edit</button> 
                                             </div>
                                         </div>
                                  </form>
