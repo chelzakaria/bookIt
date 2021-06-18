@@ -51,7 +51,7 @@ class NoteController extends Controller
         $request->user()->notes()->create([
             'body' => $request->body,
             'type'=>$request->type,
-            'idbook'=>$book->id
+            'book_id'=>$book->id
         ]);
 
        return redirect('notes');
