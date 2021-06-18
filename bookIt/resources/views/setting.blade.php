@@ -81,21 +81,20 @@ input[type="color"]::-webkit-color-swatch {
                                     </p>
                                     <button name="upgrade" class="btn  btn-lg btn-primary"
                                     style="background-color:#1548d5;font-weight:600;font-size:18px; border-radius:12px; width:150px;" >Upgrade</button> 
-                                    <button name="downgrade" class="btn  btn-lg btn-primary ml-4"
-                                    style="background-color:#948bc5;font-weight:600;font-size:18px; border-radius:12px; width:150px;" >Downgrade</button> 
+                                    {{-- <button name="downgrade" class="btn  btn-lg btn-primary ml-4"
+                                    style="background-color:#948bc5;font-weight:600;font-size:18px; border-radius:12px; width:150px;" >Downgrade</button>  --}}
 
                                     <p  class="mt-5" style="font-weight:700; font-size:20px;">
                                         Danger zone
                                      </p>
-                                     <button name="delete account" class="btn  btn-lg btn-primary"
-                                    style="background-color:red;font-weight:600;font-size:18px; border-radius:12px; width:200px;" >Delete Account</button> 
+                                     <button name="delete account" class="btn  btn-lg  bg-danger text-white"
+                                    style=" font-weight:600;font-size:18px; border-radius:12px; width:200px;" >Delete Account</button> 
                                     <p  class="mt-5" style="font-weight:700; font-size:20px;">
                                         
                                      </p>
-                                    <button name="save" type="submit" class="btn  btn-lg btn-primary"
-                                    style="background-color:#0d1a3d;font-weight:800;font-size:18px; border-radius:12px; width:100px;" >Save</button> 
-                                    <button name="cancel" type="reset" class="btn  btn-lg btn-primary ml-4"
-                                    style=" color:black;background-color:#9fd1e9;font-weight:800;font-size:18px; border-radius:12px; width:100px;" >Cancel</button> 
+                                     <button type="submit"  name="save" class="btn btn-primary float-right"
+                                     style="background-color:#1F1A6B;font-weight:700;  " >Create</button> 
+                                     <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('notes')}}" style="text-decoration: none; color:#fff;">Cancel</a> </button>
                                      
                                 </div>
                                     </div>
