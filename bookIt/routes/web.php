@@ -89,7 +89,8 @@ Route::get('/setting', function () {
     return view('setting');
 })->name('setting'); 
 
-
+Route::get('/task', function () {
+    return view('task.task');});
  
  
  

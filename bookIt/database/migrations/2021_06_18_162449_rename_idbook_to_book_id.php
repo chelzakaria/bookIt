@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIdbookToNotesTable extends Migration
+class RenameIdbookToBookId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class AddIdbookToNotesTable extends Migration
      */
     public function up()
     {
-
         Schema::table('notes', function (Blueprint $table) {
- 
-           
-            $table->foreignId('book_id')->constrained()->onDelete('cascade');
+            $table->dropColumn('idbook');
         });
-        
-        
     }
 
     /**
@@ -30,7 +25,7 @@ class AddIdbookToNotesTable extends Migration
      */
     public function down()
     {
-        Schema::table('notes', function (Blueprint $table) {
+        Schema::table('book_id', function (Blueprint $table) {
             //
         });
     }
