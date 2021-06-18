@@ -16,10 +16,10 @@ class NoteController extends Controller
     {
        
         $notes = Note::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
-
+        $book = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
         return view('notes.index',[
-            'notes' => $notes
-           
+            'notes' => $notes,
+            'book' =>$book
         ]);
     }
 
