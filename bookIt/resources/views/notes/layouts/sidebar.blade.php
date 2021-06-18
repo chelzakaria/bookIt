@@ -25,8 +25,8 @@
         <div class="mb-4 hv">
             <a   style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href="{{route('setting')}}"><img class="mr-3 " src="/images/icons/setting_icon.svg" alt="" style="height:auto; width:26px;" > <span class="d-none d-md-inline">Setting</span></a>
         </div>
-        <div class="fixed-bottom mb-3 ml-4">
-             <form action="{{ route('logout') }}" method="POST">
+        <div class="fixed-bottom mb-3 ml-4" style="width: 20%">
+             <form action="{{ route('logout') }}" method="POST" >
                 @csrf
                 <button type="submit" class="btn"  style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" >
                      <img class="mr-2 " src="/images/icons/logout_icon.svg" alt="" style="height:auto; width:30px;" > <span class="d-none d-md-inline">Log out</span> 

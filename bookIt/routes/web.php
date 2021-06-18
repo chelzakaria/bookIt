@@ -11,6 +11,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\LogoutController;
 use App\Models\Book;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\ProfileController;
  
 
 /*
@@ -42,9 +43,11 @@ Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logou
 Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'index'])->name('login');
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'store']);
 
-Route::get('/profile', function(){
-    return view('profile');
-})->name('profile');
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store']);
+
+ 
+
 
 Route::get('/password/change',[App\Http\Controllers\ChangePasswordController::class, 'index'] )->name('password.change');
 Route::post('/password/change',[App\Http\Controllers\ChangePasswordController::class, 'store']);
