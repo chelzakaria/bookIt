@@ -17,7 +17,9 @@
                                 Profile
                             </p>  
                         </div>
+                       
                         <hr style="border-top: 1px solid #00000023;" class="mt-0">
+                         
                         @if(session('success'))
                             <div class="col text-center w-50 mx-auto mb-3">
                                   <div class="jumbotron py-2 mb-2 bg-success text-white   mx-auto">
@@ -25,37 +27,56 @@
                                   </div>
                             </div>
                         @endif
+                        @if(session('error'))
+                        <div class="col text-center w-50 mx-auto mb-3">
+                              <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+                                    {{ session('error') }}
+                              </div>
+                        </div>
+                    @endif
                         <div class="container px-5 mr-auto">
-                            <form >
+                            <form method="POST" action="{{ route('profile') }}">
+                              @csrf
                                 <div class="d-flex flex-row mb-0">
                                     <div class="mb-3"   style="width: 75px; height:75px; border-radius:50%; ">
                                         <img src="images/about_img.svg" alt="" style="max-width:100%;
                                         max-height:100%; ">
                                     </div>
-                                    <div class="mt-5" style="margin-left:-20px;">
-                                        <button type="button" class="btn"> <a href="{{route('profile')}}"  ><img src="images/icons/edit_profile_image_icon.svg" alt="" style="max-width:100%;
-                                            max-height:100%;"></a> </button>
+                                    <div class="mt-5" style="margin-left:-12px;">
+                                      
+                                      <label for="customFile" ><img src="images/icons/edit_profile_image_icon.svg" alt="" style="max-width:100%;
+                                        max-height:100%;cursor: pointer;"> <input type="file" id="customFile" name="profile_image" style="display:none"> </label>
+                                        {{-- <button type="button" class="btn"> <a href="{{route('profile')}}"  ><img src="images/icons/edit_profile_image_icon.svg" alt="" style="max-width:100%;
+                                            max-height:100%;"></a> </button> --}}
                                     </div>
                                 </div>
                                 
                                  <div class="form-row w-75">
                                     <div class="form-group col-md-6">
                                       <label for="fname">First Name</label>
-                                      <input type="text" class="form-control " id="fname"  value="{{ Auth::user()->firstName}}" name="fName">
+                                      <input type="text" class="form-control @error('fName')
+                                      border border-danger
+                                      @enderror" id="fname"  value="{{ Auth::user()->firstName}}" name="fName">
                                     </div>
                                     <div class="form-group col-md-6">
                                       <label for="lname">Last Name</label>
-                                      <input type="text" class="form-control " value="{{ Auth::user()->lastName}}" id="lname" name="lName">
+                                      <input type="text" class="form-control @error('lName')
+                                      border border-danger
+                                      @enderror" value="{{ Auth::user()->lastName}}" id="lname" name="lName">
                                     </div>
                                   </div>
                                 <div class="form-group w-75">
                                   <label for="email">Email </label>
-                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" value="{{ Auth::user()->email}}" name="email">
+                                  <input type="email" class="form-control @error('email')
+                                  border border-danger
+                                  @enderror" id="email" aria-describedby="emailHelp" value="{{ Auth::user()->email}}" name="email">
                                   
                                 </div>
                                 <div class="form-group w-75">
                                     <label for="username">Username </label>
-                                    <input type="text" class="form-control" id="username"  value="{{ Auth::user()->username}}" name="username">
+                                    <input type="text" class="form-control @error('username')
+                                    border border-danger
+                                    @enderror" id="username"  value="{{ Auth::user()->username}}" name="username">
                                   </div>
                                 <div class="form-group   ">
                                   <label for="exampleInputPassword1">Password</label>
@@ -66,10 +87,10 @@
                                    
                                 </div>
                                
-                                <div class="row mt-4">
+                                <div class="row mt-4" style="z-index:100;">
                                     <div class="col">
                                         <button type="submit" name="create" class="btn btn-primary"
-                                        style="background-color:#1F1A6B;font-weight:700;" >Save</button>
+                                        style="background-color:#1F1A6B;font-weight:700; " >Save</button>
 
                                         <button type="button" class="btn ml-5" style="background-color: #D4E5F9; font-weight:700;"> <a href=" {{route('profile')}}" style="text-decoration: none; color:#000;">Cancel</a> </button>
                                     </div>
