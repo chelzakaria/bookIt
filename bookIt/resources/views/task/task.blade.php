@@ -62,10 +62,10 @@
                                  <div class="col-md-4">
                                     <div class="col-md-12">
                                       
-                                     <div class="card mb-5 d-flex flex-column" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 18rem; height:29rem;border-radius:10px;background-color:rgb(217, 222, 224) ">
+                                    <div class="card mb-5 d-flex flex-column" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 18rem; height:29rem;border-radius:10px;background-color:rgb(217, 222, 224) ">
                                         <!-- div 1 --> 
                                         
-                                        <div class="draggable card mb-5 p-2 ml-3 mt-3 "   draggable="true"  ondragstart="drag(event)" id="drag1" style="width: 16rem; height:9rem;border-radius:10px;background-color:rgb(114, 189, 15) ">
+                                        <div class="draggable card mb-5 p-2 ml-3 mt-3 "   draggable="true"  ondragstart="drag(event)"  style="width: 16rem; height:9rem;border-radius:10px;background-color:rgb(114, 189, 15) ">
                                         <div class="card-body pb-0"  >
                                            <span class="card-text "  style="font-weight: 400;font-size:15px; 
                                              height:4.2rem;     overflow: hidden;
@@ -99,6 +99,7 @@
                                              </div>
                                             </div>
                                             <!-- -->
+                                      
                                        </div>
                                     </div>
                                  </div>
