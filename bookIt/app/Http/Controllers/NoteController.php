@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Note;
+use App\Models\Book;
 use CreateNotesTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,11 +14,12 @@ class NoteController extends Controller
 
     public function index()
     {
-        // dd(auth()->user());
+       
         $notes = Note::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
 
         return view('notes.index',[
             'notes' => $notes
+           
         ]);
     }
 
