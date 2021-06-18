@@ -14,8 +14,9 @@ class AddIdbookToNotesTable extends Migration
     public function up()
     {
         Schema::table('notes', function (Blueprint $table) {
+ 
            
-                $table->foreign('idbook')->references('id')->on('books');
+            $table->foreignId('book_id')->constrained()->onDelete('cascade');
         });
         
     }
