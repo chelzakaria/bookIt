@@ -20,7 +20,14 @@
                         </div>
                         <hr style="border-top: 1px solid #00000023;" class="mt-0">
                         <div class="container px-5 mr-auto py-5">
-                            <form >
+                            
+                            @if(session()->has('error'))
+                            <span class="alert alert-danger">
+                                <strong>{{ session()->get('error') }}</strong>
+                            </span>
+                        @endif
+                            <form method="POST" action="{{ route('password.change') }}">
+                                @csrf
                                 <div class="form-group w-75">
                                   <label for="oldPass">Old password </label>
                                   <input type="password" class="form-control" id="oldPass"  name="oldPassword">

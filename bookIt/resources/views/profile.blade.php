@@ -36,27 +36,27 @@
                                  <div class="form-row w-75">
                                     <div class="form-group col-md-6">
                                       <label for="fname">First Name</label>
-                                      <input type="text" class="form-control " id="fname"  value="nom" name="fName">
+                                      <input type="text" class="form-control " id="fname"  value="{{ Auth::user()->firstName}}" name="fName">
                                     </div>
                                     <div class="form-group col-md-6">
                                       <label for="lname">Last Name</label>
-                                      <input type="text" class="form-control " value="prenom" id="lname" name="lName">
+                                      <input type="text" class="form-control " value="{{ Auth::user()->lastName}}" id="lname" name="lName">
                                     </div>
                                   </div>
                                 <div class="form-group w-75">
                                   <label for="email">Email </label>
-                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" value="email@email.com" name="email">
+                                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" value="{{ Auth::user()->email}}" name="email">
                                   
                                 </div>
                                 <div class="form-group w-75">
                                     <label for="username">Username </label>
-                                    <input type="text" class="form-control" id="username"  value="username" name="username">
+                                    <input type="text" class="form-control" id="username"  value="{{ Auth::user()->username}}" name="username">
                                   </div>
                                 <div class="form-group   ">
                                   <label for="exampleInputPassword1">Password</label>
                                   <br>
                                   <input type="password" class="form-control d-inline  w-75" id="exampleInputPassword1" value="*********" disabled>
-                                  <button type="button" class="btn"> <a href=" {{route('profile')}}" style="text-decoration: none; color:#000;"><img src="/images/icons/edit_password_icon.svg" alt=""></a> </button>
+                                  <button type="button" class="btn"> <a href=" {{route('password.change')}}" style="text-decoration: none; color:#000;"><img src="/images/icons/edit_password_icon.svg" alt=""></a> </button>
                                   
                                    
                                 </div>

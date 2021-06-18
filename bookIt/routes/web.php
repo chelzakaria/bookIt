@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\LogoutController;
 use App\Models\Book;
+use App\Http\Controllers\ChangePasswordController;
  
 
 /*
@@ -45,10 +46,8 @@ Route::get('/profile', function(){
     return view('profile');
 })->name('profile');
 
-Route::get('/password/change', function(){
-    return view('password.change');
-})->name('password.chnage');
-
+Route::get('/password/change',[App\Http\Controllers\ChangePasswordController::class, 'index'] )->name('password.change');
+Route::post('/password/change',[App\Http\Controllers\ChangePasswordController::class, 'store']);
 
  
 Route::get('/notes', [App\Http\Controllers\NoteController::class, 'index'])->name('notes');
