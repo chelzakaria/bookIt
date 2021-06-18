@@ -54,14 +54,25 @@ class NoteController extends Controller
 
        return redirect('notes');
     }
+    public function show($id){
+        $note = DB::table('notes')->find($id);
+         if(auth()->user()->id !== $note->user_id)
+        {
+            return abort(403, 'Unauthorized action.');
+        } 
+        return view('notes.show',[
+            'note' => $note
+        ]);
+    }
 
     public function update(Request $request, $id)
     {
         
-
-       
         $note = Note::find($id);
-               
+        if(auth()->user()->id !== $note->user_id)
+        {
+            return abort(403, 'Unauthorized action.');
+        } 
 
         $this->validate($request, [
             'body' => 'required',
@@ -85,7 +96,10 @@ class NoteController extends Controller
     public function destroy($id)
     {
         $note = Note::find($id);
-      
+      if(auth()->user()->id !== $note->user_id)
+        {
+            return abort(403, 'Unauthorized action.');
+        } 
         $note->delete();
          return redirect('notes');
     }
@@ -94,7 +108,10 @@ class NoteController extends Controller
     {
         $note = Note::find($id);
          
-
+        if(auth()->user()->id !== $note->user_id)
+        {
+            return abort(403, 'Unauthorized action.');
+        } 
         return view('notes.edit')->with('note', $note);
     }
 

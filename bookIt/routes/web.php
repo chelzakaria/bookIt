@@ -9,6 +9,7 @@ use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\LogoutController;
+use App\Models\Book;
  
 
 /*
@@ -53,15 +54,15 @@ Route::get('/password/change', function(){
 Route::get('/notes', [App\Http\Controllers\NoteController::class, 'index'])->name('notes');
 Route::post('/notes', [App\Http\Controllers\NoteController::class, 'store']);
 Route::get('/notes/create', function () {
-    return view('notes.create');
+    $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+
+    return view('notes.create',[
+        'books' => $books
+    ]);
 })->name('createnote'); 
 
-Route::get('/notes/{id}', function ($id) {
-    $note = DB::table('notes')->find($id);
-    return view('notes.show',[
-        'note' => $note
-    ]);
-});  
+Route::get('/notes/{id}',[App\Http\Controllers\NoteController::class, 'show']); 
+
 Route::delete('/notes/{id}',[NoteController::class, 'destroy'])->name('notes.destroy');
 Route::get('/notes/{id}/edit',[NoteController::class, 'edit']);
 Route::post('/notes/{id}',[NoteController::class, 'update'])->name('notes.update');

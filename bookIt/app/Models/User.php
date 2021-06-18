@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Mockery\Matcher\Not;
 use App\Models\Note;
+use App\Models\Book;
 
 class User extends Authenticatable
 {
@@ -49,5 +50,10 @@ class User extends Authenticatable
 
     public function notes(){
         return $this->hasMany(Note::class);
+    }
+
+    
+    public function books(){
+        return $this->hasMany(Book::class);
     }
 }

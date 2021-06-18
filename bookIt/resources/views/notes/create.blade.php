@@ -69,9 +69,7 @@
                                                border border-danger
                                                @enderror"   name="titlebook"   style="border-radius:10px; height:50px; ">
                                                    <option selected="true" disabled="disabled" >Select a Book</option>
-                                                   <?php 
-                                                    use App\Models\Book;
-                                                   $books = Book::all(); ?>
+                                                    
                                                    @foreach ($books as $book)
                                                      <option>{{$book->title}}</option>  
                                                    @endforeach
