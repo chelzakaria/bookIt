@@ -80,10 +80,12 @@
                                                 <p class="mb-0 mt-4 " style="font-weight: 700;font-size:12px;color:#353535">
                                                
                                                     {{-- title book --}}
-                                                    @foreach ($book as $b)
-                                                @if($b->id==$note->book_id) 
+
+                                                    @foreach ($books as $book)
+                                                @if($book->id===$note->book_id) 
+
                                                    
-                                                 {{$b->title}}
+                                                 {{$book->title}}
                                                 @endif
                                                  @endforeach
                                                 </p>

@@ -16,20 +16,22 @@ class NoteController extends Controller
     {
        
         $notes = Note::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
-        $book = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+        $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
         return view('notes.index',[
             'notes' => $notes,
-            'book' =>$book
+            'books' =>$books
         ]);
     }
 
     public function search(Request $request)
     {
+        $notes = Note::where('user_id', auth()->user()->id)->where('type','LIKE','%'.$request->input('word').'%')->get();
 
-        $notes = Note::where('type','LIKE','%'.$request->input('word').'%')->get();
-      
+        $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+
         return view('notes.index',[
-            'notes' => $notes
+            'notes' => $notes,
+            'books' =>$books
         ]);
      }
  
