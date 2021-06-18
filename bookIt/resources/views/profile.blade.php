@@ -16,9 +16,15 @@
                             <p style="font-weight:700; font-size:30px;">
                                 Profile
                             </p>  
-                             
                         </div>
                         <hr style="border-top: 1px solid #00000023;" class="mt-0">
+                        @if(session('success'))
+                            <div class="col text-center w-50 mx-auto mb-3">
+                                  <div class="jumbotron py-2 mb-2 bg-success text-white   mx-auto">
+                                        {{ session('success') }}
+                                  </div>
+                            </div>
+                        @endif
                         <div class="container px-5 mr-auto">
                             <form >
                                 <div class="d-flex flex-row mb-0">
@@ -27,7 +33,6 @@
                                         max-height:100%; ">
                                     </div>
                                     <div class="mt-5" style="margin-left:-20px;">
-                                        
                                         <button type="button" class="btn"> <a href="{{route('profile')}}"  ><img src="images/icons/edit_profile_image_icon.svg" alt="" style="max-width:100%;
                                             max-height:100%;"></a> </button>
                                     </div>
