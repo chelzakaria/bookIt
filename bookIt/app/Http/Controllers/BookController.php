@@ -13,14 +13,10 @@ class BookController extends Controller
         $this->middleware(['auth']);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
-        $books = Book::all();
+        $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
 
         return view('books.index',[
             'books' => $books
@@ -70,7 +66,7 @@ class BookController extends Controller
             $fileNameToStore = 'noimage.jpg';
         }
  
-        Book::create([
+        $request->user()->books()->create([
             'title' => $request->title,
             'author' => $request->author,
             'rating' => $request->rating,
@@ -92,6 +88,10 @@ class BookController extends Controller
     {
        
             $book = DB::table('books')->find($id);
+            if(auth()->user()->id !== $book->user_id)
+            {
+                return abort(403, 'Unauthorized action.');
+            } 
             return view('books.show',[
                 'book' => $book
             ]);
@@ -107,6 +107,10 @@ class BookController extends Controller
     public function edit($id)
     {
         $book = Book::find($id);
+        if(auth()->user()->id !== $book->user_id)
+        {
+            return abort(403, 'Unauthorized action.');
+        } 
         return view('books.edit')->with('book', $book);
     }
 
@@ -134,6 +138,10 @@ class BookController extends Controller
             $fileNameToStore = 'noimage.jpg';
         }
         $book = Book::find($id);
+        if(auth()->user()->id !== $book->user_id)
+        {
+            return abort(403, 'Unauthorized action.');
+        } 
 
         if($book->cover != $fileNameToStore && $fileNameToStore != 'noimage.jpg') {
             Storage::delete('public/cover_images/'.$book->cover);
@@ -172,6 +180,10 @@ class BookController extends Controller
     public function destroy($id)
     {
         $book = Book::find($id);
+        if(auth()->user()->id !== $book->user_id)
+        {
+            return abort(403, 'Unauthorized action.');
+        } 
         if($book->cover != 'noimage.jpg')
         {
             Storage::delete('public/cover_images/'.$book->cover);

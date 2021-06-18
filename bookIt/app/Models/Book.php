@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Book extends Model
 {
@@ -12,4 +13,9 @@ class Book extends Model
         'title','author','rating','num_page','cover','description'
          
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
