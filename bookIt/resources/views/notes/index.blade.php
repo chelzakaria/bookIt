@@ -81,7 +81,7 @@
                                                
                                                     {{-- title book --}}
                                                     @foreach ($book as $b)
-                                                @if($b->id==$note->idbook) 
+                                                @if($b->id==$note->book_id) 
                                                    
                                                  {{$b->title}}
                                                 @endif
