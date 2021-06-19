@@ -128,10 +128,10 @@ function unwrap(node) {
                         <!--task1-->
                         
 
-                        
-                        <div class="card draggable shadow-sm" style="border-radius: 20px" id="cd2" draggable="true" ondragstart="drag(event)">
+
+                        <div class="card draggable shadow-sm" style="border-radius: 20px;background-color:rgb(255, 0, 0);" id="cd2" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
-                                <div class="card-title">
+                                <div class="card-title" >
                                 
                                     <p style="font-weight:700; font-size:15px;">Task2</p>
                                 </div>
@@ -152,7 +152,7 @@ function unwrap(node) {
                 <div class="card-body" style="background-color: #E3F0FF">
                     <h6 style="font-weight:700; font-size:20px;">In progress</h6>
                     <div class="items " id="f">
-                        <div class="card draggable shadow-sm" style="border-radius: 20px" id="cd9" draggable="true" ondragstart="drag(event)">
+                        <div class="card draggable shadow-sm" style="border-radius: 20px;background-color:yellow" id="cd9" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
                                   
@@ -174,7 +174,7 @@ function unwrap(node) {
                 <div class="card-body" style="background-color: #E3F0FF; ">
                     <h6 style="font-weight:700; font-size:20px;">Completed</h6>
                     <div class="items " id="g">
-                        <div class="card draggable shadow-sm" style="border-radius: 20px" id="cd11" draggable="true" ondragstart="drag(event)">
+                        <div class="card draggable shadow-sm" style="border-radius: 20px;background-color:green" id="cd11" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
