@@ -34,6 +34,8 @@ const drop = (event) => {
   event.preventDefault();
   const data = event.dataTransfer.getData("text/plain");
   const element = document.querySelector(`#${data}`);
+  var x=document.getElementById(data)
+ 
   try {
     // remove the spacer content from dropzone
     event.target.removeChild(event.target.firstChild);
@@ -100,12 +102,12 @@ function unwrap(node) {
         
         <div class="col-sm-6 col-md-4 col-xl-3 ml-5" >
             <div class="card bg-light" style="width: 270px">
-                <div class="card-body" style="background-color: #E3F0FF" >
+                <div class="card-body"  style="background-color: #E3F0FF" >
                     <h6 style="font-weight:700; font-size:20px;">To do</h6>
-                    <div class="items " >
+                    <div class="items " id="e" >
                         <!--task1-->
                         <div class="card draggable shadow-sm " style="border-radius: 20px" id="cd1" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2 " >
+                            <div class="card-body p-2 " id="c" >
                                 <div class="card-title">
                                  
                                     <p style="font-weight:700; font-size:15px;">Task1</p>
@@ -184,7 +186,8 @@ function unwrap(node) {
         </div>
     </div>
 </div>
-<!--fin-->        
+<!--fin-->  
+ 
                            </div>
 
                 </div>
@@ -193,6 +196,6 @@ function unwrap(node) {
             </div>
 
         </div>
-                    
+                  
     
 @endsection  
