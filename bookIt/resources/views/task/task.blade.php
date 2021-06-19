@@ -1,22 +1,81 @@
 @extends('layouts.app')
 @section('content') 
+<style>
+.card.draggable {
+    margin-bottom: 1rem;
+    cursor: grab;
+}
 
+.droppable {
+    background-color: var(--success);
+    min-height: 120px;
+    margin-bottom: 1rem;
+}
+
+    </style>
     <div class="container-fluid">
         <script>
-            function allowDrop(ev) {
-              ev.preventDefault();
-            }
-            
-            function drag(ev) {
-              ev.dataTransfer.setData("text", ev.target.id);
-            }
-            
-            function drop(ev) {
-              ev.preventDefault();
-              var data = ev.dataTransfer.getData("text");
-              ev.target.appendChild(document.getElementById(data));
-              console.log(document.getElementById(data).innerHTML)
-            }
+        const drag = (event) => {
+  event.dataTransfer.setData("text/plain", event.target.id);
+}
+
+const allowDrop = (ev) => {
+  ev.preventDefault();
+  if (hasClass(ev.target,"dropzone")) {
+    addClass(ev.target,"droppable");
+  }
+}
+
+const clearDrop = (ev) => {
+    removeClass(ev.target,"droppable");
+}
+
+const drop = (event) => {
+  event.preventDefault();
+  const data = event.dataTransfer.getData("text/plain");
+  const element = document.querySelector(`#${data}`);
+  var x=document.getElementById(data)
+ 
+  try {
+    // remove the spacer content from dropzone
+    event.target.removeChild(event.target.firstChild);
+    // add the draggable content
+    event.target.appendChild(element);
+    // remove the dropzone parent
+    unwrap(event.target);
+  } catch (error) {
+    console.warn("can't move the item to the same place")
+  }
+  updateDropzones();
+}
+
+const updateDropzones = () => {
+
+    var dz = $('<div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>');
+    $('.dropzone').remove();
+    dz.insertAfter('.card.draggable');
+    $(".items:not(:has(.card.draggable))").append(dz);
+};
+
+function hasClass(target, className) {
+    return new RegExp('(\\s|^)' + className + '(\\s|$)').test(target.className);
+}
+
+function addClass(ele,cls) {
+  if (!hasClass(ele,cls)) ele.className += " "+cls;
+}
+
+function removeClass(ele,cls) {
+  if (hasClass(ele,cls)) {
+    var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+    ele.className=ele.className.replace(reg,' ');
+  }
+}
+
+function unwrap(node) {
+    node.replaceWith(...node.childNodes);
+}
+
             </script>
         <div class="row">
             @include('notes.layouts.sidebar')
@@ -36,64 +95,99 @@
                     <hr style="border-top: 1px solid #00000023;">
                     
                         <div class="row">
+<!--debut-->
 
-                                <div class="col-md-4">
-                                    <div class="col-md-12">
-                                      
-                                     <div class="card mb-5 d-flex flex-column " ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 18rem; height:29rem;border-radius:10px;background-color:rgb(217, 222, 224) ">
-                                         
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-4">
-                                    <div class="col-md-12">
-                                      
-                                     <div class="card mb-5 d-flex flex-column" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 18rem; height:29rem;border-radius:10px;background-color:rgb(217, 222, 224) ">
-                                      
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col-md-4">
-                                    <div class="col-md-12">
-                                      
-                                     <div class="card mb-5 d-flex flex-column" ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 18rem; height:29rem;border-radius:10px;background-color:rgb(217, 222, 224) ">
-                                        <!-- div 1 --> 
-                                        <div class="card mb-5 p-2 ml-3 mt-3 " draggable="true" ondragstart="drag(event)" id="drag1" style="width: 16rem; height:9rem;border-radius:10px;background-color:rgb(114, 189, 15) ">
-                                        <div class="card-body pb-0">
-                                           <span class="card-text " style="font-weight: 400;font-size:15px; 
-                                             height:4.2rem;     overflow: hidden;
-                                                display: -webkit-box;
-                                                -webkit-line-clamp: 3;
-                                                -webkit-box-orient: vertical;   
-                                             ">
-                                             hihpipi</span>  
-                                              
-                                            <p class="text-muted float-right mb-0 mt-4" style="font-weight: 300;font-size:13px;">jj</p>
-                                            <p class="mb-0 mt-4 " style="font-weight: 700;font-size:12px;color:#353535">
-                                            </p>
-                                         </div>
-                                        </div>
-                                        <!-- -->
-                                          <!-- div 2 --> 
-                                          <div class="card mb-5 p-2 ml-3 mt-3" draggable="true" ondragstart="drag(event)" id="drag2" style="width: 16rem; height:9rem;border-radius:10px;background-color:rgb(174, 15, 189) ">
-                                            <div class="card-body pb-0">
-                                               <span class="card-text " style="font-weight: 400;font-size:15px; 
-                                                 height:4.2rem;     overflow: hidden;
-                                                    display: -webkit-box;
-                                                    -webkit-line-clamp: 3;
-                                                    -webkit-box-orient: vertical;   
-                                                 ">
-                                                 this is a task</span>  
-                                                  
-                                                <p class="text-muted float-right mb-0 mt-4" style="font-weight: 300;font-size:13px;">jj</p>
-                                                <p class="mb-0 mt-4 " style="font-weight: 700;font-size:12px;color:#353535">
-                                                </p>
-                                             </div>
-                                            </div>
-                                            <!-- -->
-                                       </div>
-                                    </div>
-                                 </div>
+<div class="container-fluid pt-3">
+    <div class="row flex-row flex-sm-nowrap py-3">
+        
+        <div class="col-sm-6 col-md-4 col-xl-3 ml-5" >
+            <div class="card bg-light" style="width: 270px">
+                <div class="card-body"  style="background-color: #E3F0FF" >
+                    <h6 style="font-weight:700; font-size:20px;">To do</h6>
+                    <div class="items " id="e" >
+                        <!--task1-->
+                        <div class="card draggable shadow-sm " style="border-radius: 20px" id="cd1" draggable="true" ondragstart="drag(event)">
+                            <div class="card-body p-2 " id="c" >
+                                <div class="card-title">
+                                 
+                                    <p style="font-weight:700; font-size:15px;">Task1</p>
+                                </div>
+                                <p>
+                                  description
+                                </p>
+                                <button class="btn btn-primary btn-sm">View</button>
+                            </div>
+                        </div>
+                        <!--task2-->
+                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        <div class="card draggable shadow-sm" style="border-radius: 20px" id="cd2" draggable="true" ondragstart="drag(event)">
+                            <div class="card-body p-2">
+                                <div class="card-title">
+                                
+                                    <p style="font-weight:700; font-size:15px;">Task2</p>
+                                </div>
+                                <p>
+                                    this is a description
+                                </p>
+                                <button class="btn btn-primary btn-sm">View</button>
+                            </div>
+                        </div>
+                        <!---->
+                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-xl-3 ml-5">
+            <div class="card bg-light"  style="width: 270px">
+                <div class="card-body" style="background-color: #E3F0FF">
+                    <h6 style="font-weight:700; font-size:20px;">In progress</h6>
+                    <div class="items ">
+                        <div class="card draggable shadow-sm" style="border-radius: 20px" id="cd9" draggable="true" ondragstart="drag(event)">
+                            <div class="card-body p-2">
+                                <div class="card-title">
+                                  
+                                    <p style="font-weight:700; font-size:15px;">Task3</p>
+                                </div>
+                                <p>
+                                    This is a description 
+                                </p>
+                                <button class="btn btn-primary btn-sm">View</button>
+                            </div>
+                        </div>
+                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-xl-3 ml-5 ">
+            <div class="card bg-light "  style="width: 270px;">
+                <div class="card-body" style="background-color: #E3F0FF; ">
+                    <h6 style="font-weight:700; font-size:20px;">Completed</h6>
+                    <div class="items " >
+                        <div class="card draggable shadow-sm" style="border-radius: 20px" id="cd11" draggable="true" ondragstart="drag(event)">
+                            <div class="card-body p-2">
+                                <div class="card-title">
+                                   
+                                    <p style="font-weight:700; font-size:15px;">Task4</p>
+                                </div>
+                                <p>
+                                    This is a description
+                                </p>
+                                <button class="btn btn-primary btn-sm">View</button>
+                            </div>
+                        </div>
+                        
+
+                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--fin-->  
+ 
                            </div>
 
                 </div>
@@ -102,6 +196,6 @@
             </div>
 
         </div>
-                    
-    </div>
+                  
+    
 @endsection  
