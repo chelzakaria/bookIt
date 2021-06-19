@@ -55,6 +55,7 @@ const updateDropzones = () => {
     $('.dropzone').remove();
     dz.insertAfter('.card.draggable');
     $(".items:not(:has(.card.draggable))").append(dz);
+    
 };
 
 function hasClass(target, className) {
@@ -74,6 +75,7 @@ function removeClass(ele,cls) {
 
 function unwrap(node) {
     node.replaceWith(...node.childNodes);
+    console.log(document.getElementById('e').innerHTML.div[0])
 }
 
             </script>
@@ -119,7 +121,7 @@ function unwrap(node) {
                             </div>
                         </div>
                         <!--task2-->
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        <div class="dropzone rounded" ondrop="drop(event)"  ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                         <div class="card draggable shadow-sm" style="border-radius: 20px" id="cd2" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
