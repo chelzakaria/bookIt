@@ -84,8 +84,12 @@ function unwrap(node) {
     var i=0
     document.getElementById('f').childNodes.forEach(element => {
       if(document.getElementById('f').childNodes[i].className=="card draggable shadow-sm")  
-      document.getElementById('f').childNodes[i].style.backgroundColor="yellow"
+     { document.getElementById('f').childNodes[i].style.backgroundColor="yellow"
+     var value= document.getElementById('f').childNodes[i].id
+     
+     }
       i++;
+      
     });
     var i=0
     document.getElementById('g').childNodes.forEach(element => {
@@ -132,7 +136,6 @@ function unwrap(node) {
                         <div class="card draggable shadow-sm" style="border-radius: 20px;background-color:rgb(255, 0, 0);" id="cd<?php echo $task->id?>" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title" >
-                                
                                     <p style="font-weight:700; font-size:15px;">{{$task->task_name}}</p>
                                 </div>
                                 <p>
