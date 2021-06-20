@@ -14,7 +14,7 @@ class AddBookIdToNotesTable extends Migration
     public function up()
     {
         Schema::table('notes', function (Blueprint $table) {
-            $table->integer('book_id');
+            // $table->integer('book_id');
         });
     }
 
