@@ -128,7 +128,7 @@ function unwrap(node) {
                     <h6 style="font-weight:700; font-size:20px;">To do</h6>
                     <div class="items " id="e" >
                         <!--task1-->
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
+                        <div class="dropzone rounded " ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
                         <div class="draggable shadow-sm"></div>
                             @foreach ($tasks1 as $task)
 
@@ -147,8 +147,7 @@ function unwrap(node) {
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                         
                         @endforeach
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
-                        <div class="draggable shadow-sm"></div>
+                        
                 </div>
                 </div>
             </div>
@@ -176,8 +175,7 @@ function unwrap(node) {
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                         
                         @endforeach
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
-                        <div class="draggable shadow-sm"></div>
+                       
                     </div>
                 </div>
             </div>
@@ -187,7 +185,7 @@ function unwrap(node) {
                 <div class="card-body" style="background-color: #E3F0FF; ">
                     <h6 style="font-weight:700; font-size:20px;">Completed</h6>
                     <div class="items " id="g">
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
+                        <div class="dropzone rounded " ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
                         <div class="draggable shadow-sm"></div>
                         @foreach ($tasks3 as $task)
                         <div class="card draggable shadow-sm" style="border-radius: 20px;background-color:green" id="cd<?php echo $task->id?>" draggable="true" ondragstart="drag(event)">
@@ -205,8 +203,7 @@ function unwrap(node) {
                         </div>
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                         @endforeach
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
-                        <div class="draggable shadow-sm"></div>
+                        
                     </div>
                 </div>
             </div>
