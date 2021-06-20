@@ -93,10 +93,12 @@ Route::get('/task', function () {
     $tasks1 = Task::where('status', "not started")->get();
     $tasks2 = Task::where('status', "in progress")->get();
     $tasks3 = Task::where('status', "done")->get();
+    
     return view('task.task',[
         'tasks1'=>$tasks1,
         'tasks2'=>$tasks2,
         'tasks3'=>$tasks3
+        
     ]);
 });
  
