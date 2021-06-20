@@ -55,6 +55,7 @@ const updateDropzones = () => {
     $('.dropzone').remove();
     dz.insertAfter('.card.draggable');
     $(".items:not(:has(.card.draggable))").append(dz);
+    
 };
 
 function hasClass(target, className) {
@@ -74,6 +75,31 @@ function removeClass(ele,cls) {
 
 function unwrap(node) {
     node.replaceWith(...node.childNodes);
+    var i=0
+    document.getElementById('e').childNodes.forEach(element => {
+      if(document.getElementById('e').childNodes[i].className=="card draggable shadow-sm")  
+      document.getElementById('e').childNodes[i].style.backgroundColor="red"
+      i++;
+    });
+    var i=0
+    document.getElementById('f').childNodes.forEach(element => {
+      if(document.getElementById('f').childNodes[i].className=="card draggable shadow-sm")  
+     { document.getElementById('f').childNodes[i].style.backgroundColor="yellow"
+     var value= document.getElementById('f').childNodes[i].id
+    
+     
+     
+     }
+      i++;
+      
+    });
+    var i=0
+    document.getElementById('g').childNodes.forEach(element => {
+      if(document.getElementById('g').childNodes[i].className=="card draggable shadow-sm")  
+      document.getElementById('g').childNodes[i].style.backgroundColor="green"
+      i++;
+    });
+    
 }
 
             </script>
@@ -106,35 +132,25 @@ function unwrap(node) {
                     <h6 style="font-weight:700; font-size:20px;">To do</h6>
                     <div class="items " id="e" >
                         <!--task1-->
-                        <div class="card draggable shadow-sm " style="border-radius: 20px" id="cd1" draggable="true" ondragstart="drag(event)">
-                            <div class="card-body p-2 " id="c" >
-                                <div class="card-title">
-                                 
-                                    <p style="font-weight:700; font-size:15px;">Task1</p>
-                                </div>
-                                <p>
-                                  description
-                                </p>
-                                <button class="btn btn-primary btn-sm">View</button>
-                            </div>
-                        </div>
-                        <!--task2-->
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
-                        <div class="card draggable shadow-sm" style="border-radius: 20px" id="cd2" draggable="true" ondragstart="drag(event)">
+                        
+                            @foreach ($tasks1 as $task)
+
+                        <div class="card draggable shadow-sm" style="border-radius: 20px;background-color:rgb(255, 0, 0);" id="cd<?php echo $task->id?>" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
-                                <div class="card-title">
-                                
-                                    <p style="font-weight:700; font-size:15px;">Task2</p>
+                                <div class="card-title" >
+                                    <p style="font-weight:700; font-size:15px;">{{$task->task_name}}</p>
                                 </div>
                                 <p>
-                                    this is a description
+                                    {{$task->task_description}}
                                 </p>
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
                         <!---->
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
-                    </div>
+                    @endforeach
+                      
+                </div>
                 </div>
             </div>
         </div>
@@ -142,20 +158,27 @@ function unwrap(node) {
             <div class="card bg-light"  style="width: 270px">
                 <div class="card-body" style="background-color: #E3F0FF">
                     <h6 style="font-weight:700; font-size:20px;">In progress</h6>
-                    <div class="items ">
-                        <div class="card draggable shadow-sm" style="border-radius: 20px" id="cd9" draggable="true" ondragstart="drag(event)">
+                    <div class="items " id="f">
+                        @if ($tasks2->count())
+                        @foreach ($tasks2 as $task)
+                        <div class="card draggable shadow-sm" style="border-radius: 20px;background-color:yellow" id="cd<?php echo $task->id?>" draggable="true" ondragstart="drag(event)">
                             <div class="card-body p-2">
                                 <div class="card-title">
                                   
-                                    <p style="font-weight:700; font-size:15px;">Task3</p>
+                                    <p style="font-weight:700; font-size:15px;">{{$task->task_name}}</p>
                                 </div>
                                 <p>
-                                    This is a description 
+                                    {{$task->task_description}} 
                                 </p>
                                 <button class="btn btn-primary btn-sm">View</button>
                             </div>
                         </div>
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                    @endforeach
+                    @else
+                    <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
+                    <div class="card draggable shadow-sm"></div>
+                    @endif
                     </div>
                 </div>
             </div>
@@ -164,22 +187,29 @@ function unwrap(node) {
             <div class="card bg-light "  style="width: 270px;">
                 <div class="card-body" style="background-color: #E3F0FF; ">
                     <h6 style="font-weight:700; font-size:20px;">Completed</h6>
-                    <div class="items " >
-                        <div class="card draggable shadow-sm" style="border-radius: 20px" id="cd11" draggable="true" ondragstart="drag(event)">
+                    <div class="items " id="g">
+                        @if ($tasks3->count())
+                        @foreach ($tasks3 as $task)
+                        <div class="card draggable shadow-sm" style="border-radius: 20px;background-color:green" id="cd<?php echo $task->id?>" draggable="true" ondragstart="drag(event)">
+                           <script> alert(id) </script>
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <p style="font-weight:700; font-size:15px;">Task4</p>
+                                    <p style="font-weight:700; font-size:15px;">{{$task->task_name}}</p>
                                 </div>
                                 <p>
                                     This is a description
                                 </p>
-                                <button class="btn btn-primary btn-sm">View</button>
+                                <button class="btn btn-primary btn-sm">{{$task->task_description}}</button>
                             </div>
                         </div>
-                        
-
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                    @endforeach
+                    
+                    @else
+                    <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
+                    <div class="card draggable shadow-sm"></div>
+                    @endif
                     </div>
                 </div>
             </div>

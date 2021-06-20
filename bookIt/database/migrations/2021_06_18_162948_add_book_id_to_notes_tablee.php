@@ -13,11 +13,12 @@ class AddBookIdToNotesTablee extends Migration
      */
     public function up()
     {
+        /*
         Schema::table('notes', function (Blueprint $table) {
  
            
             $table->foreignId('book_id')->constrained()->onDelete('cascade');
-        });
+        });*/
     }
 
     /**
