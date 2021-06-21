@@ -9,7 +9,7 @@ class Task extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'start_date','end_date','id_book','task_name','task_description','status'
+        'start_date','end_date','book_id','task_name','task_description','status','task_importance'
          
     ];
 }
