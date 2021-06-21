@@ -75,29 +75,30 @@ function removeClass(ele,cls) {
 
 function unwrap(node) {
     node.replaceWith(...node.childNodes);
-    /*
-    var i=0
-    document.getElementById('e').childNodes.forEach(element => {
-      if(document.getElementById('e').childNodes[i].className=="card draggable shadow-sm")  
-    //   document.getElementById('e').childNodes[i].style.backgroundColor="red"
-      i++;
-    });
-    var i=0
-    document.getElementById('f').childNodes.forEach(element => {
-      if(document.getElementById('f').childNodes[i].className=="card draggable shadow-sm")  
-     { 
-        //  document.getElementById('f').childNodes[i].style.backgroundColor="yellow"
-     var value= document.getElementById('f').childNodes[i].id
-     }
-      i++;
-    });
-    var i=0
-    document.getElementById('g').childNodes.forEach(element => {
-      if(document.getElementById('g').childNodes[i].className=="card draggable shadow-sm")  
-    //   document.getElementById('g').childNodes[i].style.backgroundColor="green"
-      i++;
-    });*/
     
+    var i=0
+    var i1=0
+    document.getElementById('e').childNodes.forEach(element => {
+      if(document.getElementById('e').childNodes[i].className=="card draggable shadow-sm")
+    i1++
+    i++
+    });
+
+    var j=0,j1=0
+    document.getElementById('f').childNodes.forEach(element => {
+      if(document.getElementById('f').childNodes[j].className=="card draggable shadow-sm")  
+        j1++;
+        j++
+    });
+    var h=0,h1=0
+    document.getElementById('g').childNodes.forEach(element => {
+      if(document.getElementById('g').childNodes[h].className=="card draggable shadow-sm")  
+        h1++;
+        h++
+    });
+    document.getElementById('span1').innerText=i1-1
+    document.getElementById('span2').innerText=j1-1
+    document.getElementById('span3').innerText=h1-1
 }
 
             </script>
@@ -128,7 +129,7 @@ function unwrap(node) {
             <div class="card bg-light" style="width: 270px; min-height:70vh">
                 <div class="card-body"  style="background-color: #E3F0FF" >
                     <h6 class="d-inline mb-2" style="font-weight:700; font-size:20px;">To do  </h6>
-                    <span class="float-right text-center" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
+                    <span class="float-right text-center" id="span1" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
                     <div class="items " id="e" >
                         <!--task1-->
                         
@@ -179,7 +180,7 @@ function unwrap(node) {
             <div class="card bg-light"  style="width: 270px">
                 <div class="card-body" style="background-color: #E3F0FF">
                     <h6 class="d-inline" style="font-weight:700; font-size:20px;">In progress  </h6>
-                    <span class="float-right text-center" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
+                    <span class="float-right text-center" id="span2" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
                     <div class="items " id="f">
  
                         <div class="card draggable shadow-sm" style="visibility: hidden"></div>
@@ -223,7 +224,7 @@ function unwrap(node) {
             <div class="card bg-light "  style="width: 270px;">
                 <div class="card-body" style="background-color: #E3F0FF; ">
                     <h6 class="d-inline" style="font-weight:700; font-size:20px;">Completed  </h6>
-                    <span class="float-right text-center" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
+                    <span class="float-right text-center" id="span3" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
                     <div class="items " id="g">
                         
                         <div class="card draggable shadow-sm" style="visibility: hidden"></div>
