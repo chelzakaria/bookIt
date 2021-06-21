@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Mockery\Matcher\Not;
 use App\Models\Note;
 use App\Models\Book;
+use App\Models\Task;
 
 class User extends Authenticatable
 {
@@ -55,5 +56,9 @@ class User extends Authenticatable
     
     public function books(){
         return $this->hasMany(Book::class);
+    }
+
+    public function tasks(){
+        return $this->hasMany(Task::class);
     }
 }
