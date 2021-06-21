@@ -15,7 +15,7 @@
                     <div class="container py-3">
                         <div class="d-flex flex-row">
                             <p style="font-weight:700; font-size:30px;">
-                                Create new task
+                                Edit task
                             </p>  
                             <div class="ml-auto mr-0"  style="width: 45px; height:45px; border-radius:50%;background:#000;">
                                 <img src="images/about_img.svg" alt="" style="max-width:100%;
@@ -24,7 +24,7 @@
                         </div>
                     
                         <hr style="border-top: 1px solid #00000023;">
-                        <form action="{{route('tasks')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{route('tasks.update', $task->id)}}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col">
@@ -39,9 +39,15 @@
                                          <div class="form-group">
                                             <select class="custom-select"  name="status"   style="border-radius:10px; height:50px; ">
                                                 <option selected="true" disabled="disabled" >Status</option>
-                                                <option>not started</option>
-                                                <option>in progress</option>
-                                                <option>done</option>
+                                                <option @if ($task->status == "not started")
+                                                    selected
+                                                @endif>not started</option>
+                                                <option @if ($task->status == "in progress")
+                                                    selected
+                                                @endif>in progress</option>
+                                                <option @if ($task->status == "done")
+                                                    selected
+                                                @endif>done</option>
                                              </select>
                                          
                                           </div>
@@ -50,9 +56,15 @@
                                         <div class="form-group">
                                            <select class="custom-select"  name="importance"   style="border-radius:10px; height:50px; ">
                                                <option selected="true" disabled="disabled" >Priority</option>
-                                                <option>high</option>
-                                               <option>medium</option>
-                                               <option>low</option>
+                                                <option @if ($task->task_importance == "high")
+                                                    selected
+                                                @endif >high</option>
+                                               <option @if ($task->task_importance == "medium")
+                                                selected
+                                            @endif>medium</option>
+                                               <option @if ($task->task_importance == "low")
+                                                selected
+                                            @endif>low</option>
                                                 
                                            </select>
                                         
@@ -87,7 +99,7 @@
                                     <div class="row mt-3">
                                         <div class="col-4">
                                             <div class="form-group">
-                                                <input type="date" class="form-control" name="end_date" placeholder="Due date"  style="border-radius:10px; height:50px;" value="{{$task->end_date}} ">
+                                                <input type="date" class="form-control" name="end_date" placeholder="Due date"  style="border-radius:10px; height:50px;" value="{{\Carbon\Carbon::parse( $task->end_date )->toDateString()}}">
                                             </div>
                                         </div>
                                         <div class="col-4">
@@ -102,11 +114,11 @@
                                          
                                         <div class="row mt-3">
                                             <div class="col">
-                                                <button type="button" class="btn " style="background-color: #D4E5F9; font-weight:700;"> <a href=" {{route('books')}}" style="text-decoration: none; color:#000;">Cancel</a> </button>
+                                                <button type="button" class="btn " style="background-color: #D4E5F9; font-weight:700;"> <a href=" {{route('tasks')}}" style="text-decoration: none; color:#000;">Cancel</a> </button>
                                             </div>
                                             <div class="col">
                                                 <button type="submit"  name="create" class="btn btn-primary float-right"
-                                                style="background-color:#1F1A6B;font-weight:700;" >Add</button> 
+                                                style="background-color:#1F1A6B;font-weight:700;" >Edit</button> 
                                             </div>
                                         </div>
                                  </form>

@@ -27,7 +27,8 @@ class TaskController extends Controller
             'importance' => 'required',
             'book' => 'required',
             'end_date' =>'required|date',
-            'notification' => 'required'
+            'notification' => 'required',
+            'description' => 'required'
         ]);
  
           
@@ -57,4 +58,43 @@ class TaskController extends Controller
         } 
         return view('tasks.edit')->with('task', $task);
     }
+
+    public function update(Request $request, $id)
+    {
+        
+        $task = Task::find($id);
+        if(auth()->user()->id !== $task->user_id)
+        {
+            return abort(403, 'Unauthorized action.');
+        } 
+
+        $this->validate($request, [
+            'task_name' => 'required',
+            'status' => 'required',
+            'importance' => 'required',
+            // 'book' => 'required',
+            'end_date' =>'required|date',
+            'description' => 'required'
+            // 'notification' => 'required'
+        ]);
+
+        
+
+        $task = Task::find($id);  
+        $task->task_name = $request->input('task_name');
+        $task->status = $request->input('status');
+        $task->task_importance = $request->input('importance');
+        $task->end_date = $request->input('end_date');
+        $task->task_description = $request->input('description');
+
+
+
+        
+    
+
+        $task->save();
+
+        return redirect('tasks');
+    }
+
 }
