@@ -90,7 +90,13 @@ Route::get('/setting', function () {
     return view('setting');
 })->name('setting'); 
 
+
+
+//tasks
+
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
+Route::post('/tasks', [TaskController::class, 'store']);
+
 Route::get('/tasks/create', function () {
     return view('tasks.create');
 })->name('createtask'); 

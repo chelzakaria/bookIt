@@ -5,7 +5,7 @@
             <div class="row">
                 @include('notes.layouts.sidebar')
                 <style>
-                          ::placeholder{
+                          ::placeholder, label{
                             font-weight: 600;
                             font-size: 16px;
                             line-height: 20px;
@@ -24,12 +24,12 @@
                         </div>
                     
                         <hr style="border-top: 1px solid #00000023;">
-                        <form action="{{route('books')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{route('tasks')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="name" placeholder="Task name" style="border-radius:10px; height:50px;"  autocomplete="off">
+                                        <input type="text" class="form-control" name="task_name" placeholder="Task name" style="border-radius:10px; height:50px;"  autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -87,12 +87,14 @@
                                     <div class="row mt-3">
                                         <div class="col-4">
                                             <div class="form-group">
-                                                <input type="date" class="form-control" name="name" placeholder="Due date" style="border-radius:10px; height:50px;" >
+                                                <input type="text" class="form-control" name="end_date" placeholder="Due date" onfocus="(this.type='date')" style="border-radius:10px; height:50px;" >
                                             </div>
                                         </div>
                                         <div class="col-4">
-                                            <div class="form-group">
-                                                <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" >
+                                            <div class="form-group my-2 ml-3">
+
+                                                <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" name="notification" >
+                                                <label for="">&nbsp; Alert</label>
 
                                             </div>
                                         </div>
