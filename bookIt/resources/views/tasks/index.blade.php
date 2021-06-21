@@ -162,9 +162,12 @@ function unwrap(node) {
                         </div>
                         
                         <!---->
+                        
+                        
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                         @endif
                         @endforeach
+                       
                 <a href="{{route('createtask')}}" style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
                 </div></a>
                         
@@ -207,10 +210,11 @@ function unwrap(node) {
                                 {{-- <button class="btn btn-primary btn-sm">View</button> --}}
                             </div>
                         </div>
+                        
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                         @endif
                         @endforeach
-                       
+                        
                     </div>
                 </div>
             </div>
@@ -249,6 +253,7 @@ function unwrap(node) {
                                 {{-- <button class="btn btn-primary btn-sm">{{$task->task_description}}</button> --}}
                             </div>
                         </div>
+                        
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                         @endif
                         @endforeach
