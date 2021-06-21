@@ -49,7 +49,7 @@
                                     @foreach ($notes as $note)
                                     <div class="col-md-4">
                                         <div class="col-md-12">
-                                            <a href="/notes/{{$note->id}}" style="text-decoration: none;color:black;"> 
+                                            
                                          <div class="card mb-5 " style="width: 18rem; height:9rem;border-radius:10px;background:
                                          @switch($note->type)
                                             @case("Quote")
@@ -66,15 +66,37 @@
                                                #FEFAAF;
                                         @endswitch
                                          ">
+                                           {{-- <a href="#" class="position-absolute float-right" style="top:10px; right:10px"><img src="/images/icons/dots_icon.svg" alt="" style="height: auto;width:80%;"></a> --}}
+                                           <div class="dropdown position-absolute" style="top:2px; right:2px">
+                                            <a class="btn  " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="/images/icons/dots_icon.svg" alt="" style="height: auto;width:;">                                            </a>
+                                          
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                              <a class="dropdown-item" href="/notes/{{$note->id}}/edit">Edit</a>
+                                              <form class="d-inline" action="{{route('notes.destroy',  $note->id)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn dropdown-item"> <span class="" >Delete</span>  </button>
+                                           
+                                                </form>
+                                              
+                                             
+                                            </div>
+                                          </div>
+                                         
                                              <div class="card-body pb-0">
-                                               {{-- <h5 class="card-title" style="font-weight: 800;"><a href="/notes/{{$note->id}}">title</a></h5> --}}
+                                                <a href="/notes/{{$note->id}}" style="text-decoration: none;color:black;">
+                                             
                                                <span class="card-text " style="font-weight: 400;font-size:15px; 
                                                  height:4.2rem;     overflow: hidden;
                                                     display: -webkit-box;
                                                     -webkit-line-clamp: 3;
                                                     -webkit-box-orient: vertical;   
-                                                 ">
-                                                 {!! html_entity_decode($note->body) !!}</span>  
+                                                 "> 
+                                                 {!! html_entity_decode($note->body)!!}
+                                              
+                                                </span>  
+                                        </a>
                                                   
                                                 <p class="text-muted float-right mb-0 mt-4" style="font-weight: 300;font-size:13px;">{{ $note->updated_at->diffForHumans() }}</p>
                                                 <p class="mb-0 mt-4 " style="font-weight: 700;font-size:12px;color:#353535">
@@ -91,7 +113,6 @@
                                                 </p>
                                              </div>
                                            </div>
-                                        </a>
                                         </div>
                                      </div>
                                     @endforeach
