@@ -101,6 +101,7 @@ Route::get('/tasks/create', function () {
     return view('tasks.create');
 })->name('createtask'); 
 Route::get('/tasks/{id}/edit',[TaskController::class, 'edit']);
+Route::post('/tasks/{id}',[TaskController::class, 'update'])->name('tasks.update');
  
 
  
