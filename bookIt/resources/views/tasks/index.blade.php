@@ -75,6 +75,7 @@ function removeClass(ele,cls) {
 
 function unwrap(node) {
     node.replaceWith(...node.childNodes);
+    /*
     var i=0
     document.getElementById('e').childNodes.forEach(element => {
       if(document.getElementById('e').childNodes[i].className=="card draggable shadow-sm")  
@@ -95,7 +96,7 @@ function unwrap(node) {
       if(document.getElementById('g').childNodes[i].className=="card draggable shadow-sm")  
     //   document.getElementById('g').childNodes[i].style.backgroundColor="green"
       i++;
-    });
+    });*/
     
 }
 
