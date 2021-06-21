@@ -20,7 +20,7 @@
             <a   style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href="{{route('books')}}"><img class="mr-3 " src="/images/icons/books_icon.svg" alt="" style="height:auto; width:24px;"  > <span class="d-none d-md-inline">Books</span></a>
         </div>
         <div class="mb-4 hv">
-            <a   style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href=""><img class="mr-3 " src="/images/icons/tasks_icon.svg" alt="" style="height:auto; width:25px;" > <span class="d-none d-md-inline">Tasks</span></a>
+            <a   style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href="{{route('tasks')}}"><img class="mr-3 " src="/images/icons/tasks_icon.svg" alt="" style="height:auto; width:25px;" > <span class="d-none d-md-inline">Tasks</span></a>
         </div>
         <div class="mb-4 hv">
             <a   style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href="{{route('setting')}}"><img class="mr-3 " src="/images/icons/setting_icon.svg" alt="" style="height:auto; width:26px;" > <span class="d-none d-md-inline">Setting</span></a>

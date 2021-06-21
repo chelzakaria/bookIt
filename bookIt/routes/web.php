@@ -13,6 +13,7 @@ use App\Models\Book;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Task;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,19 +90,10 @@ Route::get('/setting', function () {
     return view('setting');
 })->name('setting'); 
 
-Route::get('/task', function () {
-    $tasks1 = Task::where('status', "not started")->get();
-    $tasks2 = Task::where('status', "in progress")->get();
-    $tasks3 = Task::where('status', "done")->get();
-    
-    return view('task.task',[
-        'tasks1'=>$tasks1,
-        'tasks2'=>$tasks2,
-        'tasks3'=>$tasks3
-        
-    ]);
-});
- 
+Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
+Route::get('/tasks/create', function () {
+    return view('tasks.create');
+})->name('createtask'); 
  
 
  
