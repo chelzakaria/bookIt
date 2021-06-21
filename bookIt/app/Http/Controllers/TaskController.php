@@ -97,4 +97,15 @@ class TaskController extends Controller
         return redirect('tasks');
     }
 
+    public function destroy($id)
+    {
+        $task = Task::find($id);
+      if(auth()->user()->id !== $task->user_id)
+        {
+            return abort(403, 'Unauthorized action.');
+        } 
+        $task->delete();
+         return redirect('tasks');
+    }
+
 }
