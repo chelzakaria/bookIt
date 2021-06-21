@@ -131,7 +131,7 @@ function unwrap(node) {
                     <span class="float-right text-center" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
                     <div class="items " id="e" >
                         <!--task1-->
-                        <div class="dropzone rounded " ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
+                        <div class="dropzone rounded " ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp;</div> 
                         <div class="card draggable shadow-sm" style="visibility: hidden"></div>
                     
                             @foreach ($tasks as $task)
@@ -181,7 +181,7 @@ function unwrap(node) {
                     <h6 class="d-inline" style="font-weight:700; font-size:20px;">In progress  </h6>
                     <span class="float-right text-center" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
                     <div class="items " id="f">
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
+                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp;</div> 
                         <div class="card draggable shadow-sm" style="visibility: hidden"></div>
                         
                         @foreach ($tasks as $task)
@@ -211,7 +211,7 @@ function unwrap(node) {
                             </div>
                         </div>
                         
-                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
+                        <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)">  &nbsp; </div>
                         @endif
                         @endforeach
                         
@@ -225,7 +225,7 @@ function unwrap(node) {
                     <h6 class="d-inline" style="font-weight:700; font-size:20px;">Completed  </h6>
                     <span class="float-right text-center" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
                     <div class="items " id="g">
-                        <div class="dropzone rounded " ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
+                        <div class="dropzone rounded " ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp;</div> 
                         <div class="card draggable shadow-sm" style="visibility: hidden"></div>
                         @foreach ($tasks as $task)
                         @if ($task->status === "done")
