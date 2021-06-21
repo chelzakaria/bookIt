@@ -126,7 +126,7 @@ function unwrap(node) {
         <div class="col-sm-6 col-md-4 col-xl-3 ml-5" >
             <div class="card bg-light" style="width: 270px; min-height:70vh">
                 <div class="card-body"  style="background-color: #E3F0FF" >
-                    <h6 class="d-inline" style="font-weight:700; font-size:20px;">To do  </h6>
+                    <h6 class="d-inline mb-2" style="font-weight:700; font-size:20px;">To do  </h6>
                     <span class="float-right text-center" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
                     <div class="items " id="e" >
                         <!--task1-->
@@ -268,6 +268,7 @@ function unwrap(node) {
             </div>
 
         </div>
+        
                   
     
 @endsection  
