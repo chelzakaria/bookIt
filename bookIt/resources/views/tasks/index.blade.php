@@ -132,7 +132,7 @@ function unwrap(node) {
                     <div class="items " id="e" >
                         <!--task1-->
                         <div class="dropzone rounded " ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
-                        <div class="draggable shadow-sm"></div>
+                        <div class="card draggable shadow-sm"></div>
                     
                             @foreach ($tasks as $task)
                             @if ($task->status === "not started")
@@ -162,9 +162,12 @@ function unwrap(node) {
                         </div>
                         
                         <!---->
+                        
+                        
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                         @endif
                         @endforeach
+                       
                 <a href="{{route('createtask')}}" style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
                 </div></a>
                         
@@ -179,7 +182,7 @@ function unwrap(node) {
                     <span class="float-right text-center" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
                     <div class="items " id="f">
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
-                        <div class="draggable shadow-sm"></div>
+                        <div class="card draggable shadow-sm"></div>
                         
                         @foreach ($tasks as $task)
                         @if ($task->status === "in progress")
@@ -207,10 +210,11 @@ function unwrap(node) {
                                 {{-- <button class="btn btn-primary btn-sm">View</button> --}}
                             </div>
                         </div>
+                        
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                         @endif
                         @endforeach
-                       
+                        
                     </div>
                 </div>
             </div>
@@ -222,7 +226,7 @@ function unwrap(node) {
                     <span class="float-right text-center" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
                     <div class="items " id="g">
                         <div class="dropzone rounded " ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div> 
-                        <div class="draggable shadow-sm"></div>
+                        <div class="card draggable shadow-sm"></div>
                         @foreach ($tasks as $task)
                         @if ($task->status === "done")
                         <div class="card draggable shadow-sm" style="border-radius: 10px;background-color:@switch($task->task_importance)
@@ -249,6 +253,7 @@ function unwrap(node) {
                                 {{-- <button class="btn btn-primary btn-sm">{{$task->task_description}}</button> --}}
                             </div>
                         </div>
+                        
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                         @endif
                         @endforeach
