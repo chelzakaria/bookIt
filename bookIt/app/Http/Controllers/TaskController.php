@@ -9,9 +9,9 @@ class TaskController extends Controller
 {
     public function index()
     {
-        // $tasks = Task::where('user_id', auth()->user()->id)->get();
+         $tasks = Task::where('user_id', auth()->user()->id)->get();
 
-        $tasks = Task::all();
+        //$tasks = Task::all();
 
         return view('tasks.index',[
             'tasks' => $tasks
@@ -31,15 +31,7 @@ class TaskController extends Controller
         ]);
  
           
-    //     $request->user()->books()->create([
-    //         'title' => $request->title,
-    //         'author' => $request->author,
-    //         'rating' => $request->rating,
-    //         'num_page' =>$request->num_page,
-    //         'cover' => $fileNameToStore,
-    //         'description' => $request->description
-    //    ]);
-    Task::create([
+        $request->user()->tasks()->create([
             'task_name' => $request->task_name,
             'status'=>$request->status,
             'task_description'=>$request->description,
@@ -47,12 +39,22 @@ class TaskController extends Controller
             'book_id'=>27,
             'task_importance'=>$request->importance,
             'start_date'=>$request->end_date,
-
-
-        ]);
+       ]);
+    
 
 
 
        return redirect('tasks');
+    }
+
+    public function edit($id)
+    {
+        $task = Task::find($id);
+         
+        if(auth()->user()->id !== $task->user_id)
+        {
+            return abort(403, 'Unauthorized action.');
+        } 
+        return view('tasks.edit')->with('task', $task);
     }
 }
