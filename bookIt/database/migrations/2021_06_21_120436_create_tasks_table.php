@@ -13,18 +13,18 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
-            $table->string('status');
-            $table->foreignId('book_id')->constrained()->onDelete('cascade');
-            $table->string('task_name');
-            $table->string('task_description');
-            $table->string('task_importance');
+        // Schema::create('tasks', function (Blueprint $table) {
+            // $table->id();
+            // $table->timestamps();
+            // $table->dateTime('start_date');
+            // $table->dateTime('end_date');
+            // $table->string('status');
+            // $table->foreignId('book_id')->constrained()->onDelete('cascade');
+            // $table->string('task_name');
+            // $table->string('task_description');
+            // $table->string('task_importance');
 
-        });
+        // });
     }
 
     /**
@@ -34,6 +34,6 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        // Schema::dropIfExists('tasks');
     }
 }
