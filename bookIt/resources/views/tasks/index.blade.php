@@ -99,8 +99,9 @@ function unwrap(node) {
     document.getElementById('span1').innerText=i1-1
     document.getElementById('span2').innerText=j1-1
     document.getElementById('span3').innerText=h1-1
+    document.getElementById("tst").click();
+  
 }
-
             </script>
         <div class="row">
             @include('notes.layouts.sidebar')
@@ -130,9 +131,9 @@ function unwrap(node) {
                 <div class="card-body"  style="background-color: #E3F0FF" >
                     <h6 class="d-inline mb-2" style="font-weight:700; font-size:20px;">To do  </h6>
                     <span class="float-right text-center" id="span1" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
+                    <form id="formdrag">
                     <div class="items " id="e" >
                         <!--task1-->
-                        
                         <div class="card draggable shadow-sm" style="visibility: hidden"></div>
                         <div class="dropzone rounded " ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp;</div> 
                             @foreach ($tasks as $task)
@@ -168,11 +169,13 @@ function unwrap(node) {
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                         @endif
                         @endforeach
-                       
+                         
                 <a href="{{route('createtask')}}" style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
                 </div></a>
                         
                 </div>
+                <button type="submit" id="tst" style="visibility: hidden"></button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -266,7 +269,7 @@ function unwrap(node) {
         </div>
     </div>
 </div>
-<!--fin-->  
+<!--fin-->
  
                            </div>
 
@@ -276,7 +279,33 @@ function unwrap(node) {
             </div>
 
         </div>
-        
+ <script>
+    $('#formdrag').on('submit',function(e){
+    e.preventDefault();
+    var t=new Array()
+    var i=0,j=0
+    document.getElementById('e').childNodes.forEach(element => {
+      if(document.getElementById('e').childNodes[i].className=="card draggable shadow-sm")  
+        t.push(document.getElementById('e').childNodes[i].id)
+        i++
+    });
+    t.shift()
+    var str=t.join()
+    e.preventDefault();
+    $.ajax({
+        type:"UPDATE",
+        url:"/tasks/drag/"+str,
+        data: $('#formdrag').serialize(),
+        success: function(response){   
+        console.log(str)
+        },
+        error: function(error){
+            console.log(error)
+        }
+    });
+});
+
+ </script>       
                   
     
 @endsection  
