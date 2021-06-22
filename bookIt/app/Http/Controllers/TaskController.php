@@ -108,4 +108,60 @@ class TaskController extends Controller
          return redirect('tasks');
     }
 
+    public function updatedrag($id)
+    {
+        $tab=explode(",",$id);
+        for ($j=0; $j <sizeof($tab) ; $j++) 
+        { 
+            $x=str_replace("cd","",$tab[$j]);
+            $task = Task::find($x);
+            if(auth()->user()->id !== $task->user_id)
+            {
+                return abort(403, 'Unauthorized action.');
+            }
+            if($task->status!="not started")
+            {
+                $task->status="not started";
+                $task->save();
+            }
+        }
+    }
+
+    public function updatedrag2($id)
+    {
+        $tab=explode(",",$id);
+        for ($j=0; $j <sizeof($tab) ; $j++) 
+        { 
+            $x=str_replace("cd","",$tab[$j]);
+            $task = Task::find($x);
+            if(auth()->user()->id !== $task->user_id)
+            {
+                return abort(403, 'Unauthorized action.');
+            }
+            if($task->status!="in progress")
+            {
+                $task->status="in progress";
+                $task->save();
+            }
+        }
+    }
+
+    public function updatedrag3($id)
+    {
+        $tab=explode(",",$id);
+        for ($j=0; $j <sizeof($tab) ; $j++) 
+        { 
+            $x=str_replace("cd","",$tab[$j]);
+            $task = Task::find($x);
+            if(auth()->user()->id !== $task->user_id)
+            {
+                return abort(403, 'Unauthorized action.');
+            }
+            if($task->status!="done")
+            {
+                $task->status="done";
+                $task->save();
+            }
+        }
+    }
 }

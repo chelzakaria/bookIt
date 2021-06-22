@@ -105,6 +105,10 @@ Route::get('/tasks/{id}/edit',[TaskController::class, 'edit']);
 Route::post('/tasks/{id}',[TaskController::class, 'update'])->name('tasks.update');
 Route::delete('/tasks/{id}',[TaskController::class, 'destroy'])->name('tasks.destroy');
  
+//drag task
+Route::get('/tasks/drag/{id}',[TaskController::class, 'updatedrag']);
+Route::get('/tasks/drag2/{id}',[TaskController::class, 'updatedrag2']);
+Route::get('/tasks/drag3/{id}',[TaskController::class, 'updatedrag3']);
 // forgot password
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
