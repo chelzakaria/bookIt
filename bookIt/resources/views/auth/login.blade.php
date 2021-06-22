@@ -38,6 +38,13 @@
                 </div>
                 <div class="col-sm-10 col-md-7 col-lg-6 c3" style=" padding:0px;  background:#BDDDF8; ">
                     <div class="container c1 h-50" >
+                        @if (session('message'))
+                        <div class="col text-center ">
+                            <div class="jumbotron py-2 mb-2 bg-success text-white   mx-auto">
+                                {{session('message')}}
+                            </div>
+                        </div>
+                    @endif
                         @if (session('status'))
                             <div class="col text-center ">
                                 <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
@@ -81,7 +88,7 @@
                               <button type="submit" class="btn  btn-lg btn-block btn-primary"
                               style="background-color:#1F1A6B;font-weight:600;font-size:22px; border-radius:12px;   "
                               >Sign In</button>
-                              <p class="text-center mt-2" style="font-weight: 600; color:#6F6D6D; font-size:14px;">   <a href="{{ route('forget-password') }}" style="color:#3859DD;">Forgotten password?</a> </p>
+                              <p class="text-center mt-2" style="font-weight: 600; color:#6F6D6D; font-size:14px;">   <a href="{{ route('forget.password.get') }}" style="color:#3859DD;">Forgotten password?</a> </p>
                           </form>
                     </div>
  

@@ -106,5 +106,7 @@ Route::post('/tasks/{id}',[TaskController::class, 'update'])->name('tasks.update
 Route::delete('/tasks/{id}',[TaskController::class, 'destroy'])->name('tasks.destroy');
  
 // forgot password
-Route::get('/forget-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'getEmail'])->name('forget-password');
-Route::post('/forget-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'postEmail']);
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');

@@ -41,7 +41,7 @@
                         @if (session('message'))
                             <div class="col text-center ">
                                 <div class="jumbotron py-2 mb-2 bg-success text-white   mx-auto">
-                                    {{session('status')}}
+                                    {{session('message')}}
                                 </div>
                             </div>
                         @endif
@@ -54,7 +54,7 @@
                             </div>
                         @enderror
                         
-                        <form class="py-3 px-4  c1" action="{{ route('forget-password') }}" method="POST" >
+                        <form class="py-3 px-4  c1" action="{{ route('forget.password.post') }}" method="POST" >
                             @csrf
                             <p style="font-weight: 700; color:#1F1A6B; font-size:35px;">Forgot password ?</p>
                             <p style="font-weight: 600; color:#6F6D6D; font-size:12px;">Enter your email address and we’ll send you an email with reset link.    </p>
