@@ -293,7 +293,6 @@ function unwrap(node) {
     var str=t.join()
     e.preventDefault();
     $.ajax({
-        type:"UPDATE",
         url:"/tasks/drag/"+str,
         data: $('#formdrag').serialize(),
         success: function(response){   

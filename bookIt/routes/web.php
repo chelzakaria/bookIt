@@ -104,5 +104,22 @@ Route::get('/tasks/{id}/edit',[TaskController::class, 'edit']);
 Route::post('/tasks/{id}',[TaskController::class, 'update'])->name('tasks.update');
 Route::delete('/tasks/{id}',[TaskController::class, 'destroy'])->name('tasks.destroy');
  
-
+//drag task
+Route::get('/tasks/drag/{id}', function ($id) {
+    dd("f");
+    $tab=explode(",",$id);
+    for ($j=0; $j <sizeof($tab) ; $j++) { 
+        $x=str_replace("cd","",$tab[$j]);
+        $task = Task::find($x);
+        if(auth()->user()->id !== $task->user_id)
+        {
+            return abort(403, 'Unauthorized action.');
+        }
+        if($task->status!="not started")
+        {
+            $task->status="not started";
+            $task->save();
+        }
+    }
+}); 
  
