@@ -5,6 +5,7 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Note;
 
 
 class BookController extends Controller
@@ -88,12 +89,14 @@ class BookController extends Controller
     {
        
             $book = DB::table('books')->find($id);
+            $notes = Note::where('book_id', $id)->orderBy('updated_at', 'desc')->get();
+
             if(auth()->user()->id !== $book->user_id)
             {
                 return abort(403, 'Unauthorized action.');
             } 
             return view('books.show',[
-                'book' => $book
+                'book' => $book, 'notes'=> $notes
             ]);
       
     }
