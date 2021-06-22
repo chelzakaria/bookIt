@@ -100,6 +100,8 @@ function unwrap(node) {
     document.getElementById('span2').innerText=j1-1
     document.getElementById('span3').innerText=h1-1
     document.getElementById("tst").click();
+    document.getElementById("tst2").click();
+    document.getElementById("tst3").click();
   
 }
             </script>
@@ -184,6 +186,7 @@ function unwrap(node) {
                 <div class="card-body" style="background-color: #E3F0FF">
                     <h6 class="d-inline" style="font-weight:700; font-size:20px;">In progress  </h6>
                     <span class="float-right text-center" id="span2" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
+                    <form id="formdrag2">
                     <div class="items " id="f">
  
                         <div class="card draggable shadow-sm" style="visibility: hidden"></div>
@@ -220,6 +223,8 @@ function unwrap(node) {
                         @endforeach
                         
                     </div>
+                    <button type="submit" id="tst2" style="visibility: hidden"></button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -228,6 +233,7 @@ function unwrap(node) {
                 <div class="card-body" style="background-color: #E3F0FF; ">
                     <h6 class="d-inline" style="font-weight:700; font-size:20px;">Completed  </h6>
                     <span class="float-right text-center" id="span3" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
+                    <form id="formdrag3">
                     <div class="items " id="g">
                         
                         <div class="card draggable shadow-sm" style="visibility: hidden"></div>
@@ -264,6 +270,8 @@ function unwrap(node) {
                         @endforeach
                         
                     </div>
+                    <button type="submit" id="tst3" style="visibility: hidden"></button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -280,6 +288,7 @@ function unwrap(node) {
 
         </div>
  <script>
+     //for form1
     $('#formdrag').on('submit',function(e){
     e.preventDefault();
     var t=new Array()
@@ -293,7 +302,7 @@ function unwrap(node) {
     var str=t.join()
     e.preventDefault();
     $.ajax({
-        type:"UPDATE",
+        type:"get",
         url:"/tasks/drag/"+str,
         data: $('#formdrag').serialize(),
         success: function(response){   
@@ -304,7 +313,56 @@ function unwrap(node) {
         }
     });
 });
-
+//for form 2
+$('#formdrag2').on('submit',function(e){
+    e.preventDefault();
+    var t=new Array()
+    var i=0,j=0
+    document.getElementById('f').childNodes.forEach(element => {
+      if(document.getElementById('f').childNodes[i].className=="card draggable shadow-sm")  
+        t.push(document.getElementById('f').childNodes[i].id)
+        i++
+    });
+    t.shift()
+    var str=t.join()
+    e.preventDefault();
+    $.ajax({
+        type:"get",
+        url:"/tasks/drag2/"+str,
+        data: $('#formdrag2').serialize(),
+        success: function(response){   
+        console.log(response)
+        },
+        error: function(error){
+            console.log(error)
+        }
+    });
+});
+//for form3
+$('#formdrag3').on('submit',function(e){
+    e.preventDefault();
+    var t=new Array()
+    var i=0,j=0
+    document.getElementById('g').childNodes.forEach(element => {
+      if(document.getElementById('g').childNodes[i].className=="card draggable shadow-sm")  
+        t.push(document.getElementById('g').childNodes[i].id)
+        i++
+    });
+    t.shift()
+    var str=t.join()
+    e.preventDefault();
+    $.ajax({
+        type:"get",
+        url:"/tasks/drag3/"+str,
+        data: $('#formdrag3').serialize(),
+        success: function(response){   
+        console.log(response)
+        },
+        error: function(error){
+            console.log(error)
+        }
+    });
+});
  </script>       
                   
     
