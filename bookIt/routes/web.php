@@ -14,6 +14,7 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Task;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,5 +105,6 @@ Route::get('/tasks/{id}/edit',[TaskController::class, 'edit']);
 Route::post('/tasks/{id}',[TaskController::class, 'update'])->name('tasks.update');
 Route::delete('/tasks/{id}',[TaskController::class, 'destroy'])->name('tasks.destroy');
  
-
- 
+// forgot password
+Route::get('/forget-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'getEmail'])->name('forget-password');
+Route::post('/forget-password', [App\Http\Controllers\Auth\ForgotPasswordController::class, 'postEmail']);

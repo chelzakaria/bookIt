@@ -81,7 +81,7 @@
                               <button type="submit" class="btn  btn-lg btn-block btn-primary"
                               style="background-color:#1F1A6B;font-weight:600;font-size:22px; border-radius:12px;   "
                               >Sign In</button>
-                              <p class="text-center mt-2" style="font-weight: 600; color:#6F6D6D; font-size:14px;">   <a href="{{ route('register') }}" style="color:#3859DD;">Forgotten password?</a> </p>
+                              <p class="text-center mt-2" style="font-weight: 600; color:#6F6D6D; font-size:14px;">   <a href="{{ route('forget-password') }}" style="color:#3859DD;">Forgotten password?</a> </p>
                           </form>
                     </div>
  

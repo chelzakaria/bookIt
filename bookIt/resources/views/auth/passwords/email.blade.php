@@ -1,47 +1,80 @@
 @extends('layouts.app')
+    @section('content') 
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+    
+        @include('layouts.nav')
+        <style>
+             
+                  @media screen and (min-width: 990px) {
+                  .c1{
+                      padding-top: 70px;
+                  }
+                  .c2 {
+                      margin-top: 50px;
+                  }
+              } 
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+              @media screen and (max-width: 767px) {
+            
+            .c3{
+                  border-radius: 15px;
+                   
+              }
+              
+          } 
+          @media screen and (min-width: 767px) {
+         
+              .c3 {
+                border-radius: 0px 15px 15px 0px;
+              }
+              
+          }  
+               
+        </style>
+        <div class="container mb-5 mt-3" style=" border-radius:  15px; ">
+            <div class="row justify-content-md-center"  >
+                <div class="col-4 d-none d-md-block px-0 h-50" >
+                      <img  src="images/icons/forget_password.svg" alt="" class="img-fluid">                
+                </div>
+                <div class="col-sm-10 col-md-7 col-lg-6 c3" style=" padding:0px;  background:#BDDDF8; ">
+                    <div class="container c1 h-50" >
+                        @if (session('message'))
+                            <div class="col text-center ">
+                                <div class="jumbotron py-2 mb-2 bg-success text-white   mx-auto">
+                                    {{session('status')}}
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
+                        @endif
+                        @error('email')
+                            <div class="col text-center ">
+                                <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+                                {{$message}}
+                                </div>
+                                
                             </div>
-                        </div>
-                    </form>
+                        @enderror
+                        
+                        <form class="py-3 px-4  c1" action="{{ route('forget-password') }}" method="POST" >
+                            @csrf
+                            <p style="font-weight: 700; color:#1F1A6B; font-size:35px;">Forgot password ?</p>
+                            <p style="font-weight: 600; color:#6F6D6D; font-size:12px;">Enter your email address and we’ll send you an email with reset link.    </p>
+                            <div class="form-group c2">
+                                <input type="text" class="form-control py-4 @error('email')
+                                border border-danger
+                                @enderror"   placeholder="Email" name="email" >
+                              </div>
+                              
+                               
+                             
+                               
+                              <button type="submit" class="btn  btn-lg btn-block btn-primary"
+                              style="background-color:#1F1A6B;font-weight:600;font-size:22px; border-radius:12px;   "
+                              >Send email</button>
+                              <p class="text-center mt-2" style="font-weight: 600; color:#6F6D6D; font-size:14px;"> Back to  <a href="{{ route('login') }}" style="color:#3859DD;">Login.</a> </p>
+                          </form>
+                    </div>
+ 
                 </div>
             </div>
         </div>
-    </div>
-</div>
-@endsection
+    @endsection
