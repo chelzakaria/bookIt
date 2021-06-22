@@ -289,12 +289,13 @@ function unwrap(node) {
         t.push(document.getElementById('e').childNodes[i].id)
         i++
     });
+    t.shift()
     var str=t.join()
     e.preventDefault();
     $.ajax({
-        type:"UPDATE",
-        url:"/tasks/"+str,
-        data: $('#formdrag').serialize(),
+       /* type:"UPDATE",
+        url:"/tasks/drag/"+str,
+        data: $('#formdrag').serialize(),*/
         success: function(response){   
         console.log(str)
 
