@@ -293,12 +293,11 @@ function unwrap(node) {
     var str=t.join()
     e.preventDefault();
     $.ajax({
-       /* type:"UPDATE",
+        type:"UPDATE",
         url:"/tasks/drag/"+str,
-        data: $('#formdrag').serialize(),*/
+        data: $('#formdrag').serialize(),
         success: function(response){   
         console.log(str)
-
         },
         error: function(error){
             console.log(error)
