@@ -132,7 +132,7 @@ function unwrap(node) {
             <div class="card bg-light" style="width: 270px; min-height:70vh">
                 <div class="card-body"  style="background-color: #E3F0FF" >
                     <h6 class="d-inline mb-2" style="font-weight:700; font-size:20px;">To do  </h6>
-                    <span class="float-right text-center" id="span1" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
+                    <span class="float-right text-center" id="span1" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">{{$count1}}</span>
                     <form id="formdrag">
                     <div class="items " id="e" >
                         <!--task1-->
@@ -185,7 +185,7 @@ function unwrap(node) {
             <div class="card bg-light"  style="width: 270px">
                 <div class="card-body" style="background-color: #E3F0FF">
                     <h6 class="d-inline" style="font-weight:700; font-size:20px;">In progress  </h6>
-                    <span class="float-right text-center" id="span2" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
+                    <span class="float-right text-center" id="span2" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">{{$count2}}</span>
                     <form id="formdrag2">
                     <div class="items " id="f">
  
@@ -232,7 +232,7 @@ function unwrap(node) {
             <div class="card bg-light "  style="width: 270px;">
                 <div class="card-body" style="background-color: #E3F0FF; ">
                     <h6 class="d-inline" style="font-weight:700; font-size:20px;">Completed  </h6>
-                    <span class="float-right text-center" id="span3" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">1</span>
+                    <span class="float-right text-center" id="span3" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">{{$count3}}</span>
                     <form id="formdrag3">
                     <div class="items " id="g">
                         
@@ -259,7 +259,7 @@ function unwrap(node) {
                                     <p style="font-weight:700; font-size:15px;">{{$task->task_name}}</p>
                                 </div>
                                 <p>
-                                    This is a description
+                                    {{$task->task_description}}
                                 </p>
                                 {{-- <button class="btn btn-primary btn-sm">{{$task->task_description}}</button> --}}
                             </div>

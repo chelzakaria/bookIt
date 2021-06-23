@@ -10,11 +10,14 @@ class TaskController extends Controller
     public function index()
     {
          $tasks = Task::where('user_id', auth()->user()->id)->get();
-
-        //$tasks = Task::all();
-
+         $count1 = Task::where('user_id', auth()->user()->id)->where('status','=','not started')->count();
+         $count2 = Task::where('user_id', auth()->user()->id)->where('status','=','in progress')->count();
+         $count3 = Task::where('user_id', auth()->user()->id)->where('status','=','done')->count();
         return view('tasks.index',[
-            'tasks' => $tasks
+            'tasks' => $tasks,
+            'count1' =>$count1,
+            'count2' =>$count2,
+            'count3' =>$count3
         ]);
         
     }
