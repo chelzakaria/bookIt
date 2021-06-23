@@ -141,6 +141,63 @@
                              
                               
                          </div>
+                         <hr style="border-top: 1px solid #00000023;">
+                         <div class="row">
+                            @if ($tasks->count())
+                                    @foreach ($tasks as $task)
+                                    <div class="col-md-4">
+                                        <div class="col-md-12">
+                                            
+                                         <div class="card mb-5 " style="width: 18rem; height:9rem;border-radius:10px;background:
+                                         @switch($task->task_importance)
+                                            @case('high')
+                                                #EBB2B6
+                                                @break
+                                            @case('medium')
+                                                #FAF8C7
+                                                @break
+                                            @case('low')
+                                                #AFF0CF
+                                                @break
+                                                            @endswitch
+                                        ;">
+                                         
+                                           
+                                         
+                                             <div class="card-body pb-0">
+                                                <a href="/tasks/{{$task->id}}" style="text-decoration: none;color:black;">
+                                             
+                                               <span class="card-text " style="font-weight: 400;font-size:15px; 
+                                                 height:4.2rem;     overflow: hidden;
+                                                    display: -webkit-box;
+                                                    -webkit-line-clamp: 3;
+                                                    -webkit-box-orient: vertical;   
+                                                 "> 
+                                                 {{$task->task_description}}
+                                              
+                                                </span>  
+                                        </a>
+                                                  
+                                                 
+                                                <p class="mb-0 mt-4 " style="font-weight: 700;font-size:12px;color:#353535">
+                                               
+                                                    {{$task->task_importance}}
+
+                                                    
+                                                </p>
+                                             </div>
+                                           </div>
+                                        </div>
+                                     </div>
+                                    @endforeach
+                                @else
+                                    <p>No notes found</p>
+                                @endif
+                              
+                            
+                             
+                              
+                         </div>
                          <div class="row mt-2">
                             <div class="col mb-0">
                                 <hr style="border-top: 1px solid #00000023;" class="mb-2 mt-4">
