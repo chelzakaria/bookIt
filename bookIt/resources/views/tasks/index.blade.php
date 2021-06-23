@@ -17,7 +17,7 @@
 }
 
     </style>
-    <div class="container-fluid" onload="del();">
+    <div class="container-fluid">
         <script>
         const drag = (event) => {
   event.dataTransfer.setData("text/plain", event.target.id);
@@ -108,9 +108,7 @@ function unwrap(node) {
     document.getElementById("tst3").click();
   
 }
-function del(){
-    document.forms["delform"].submit()
-}
+
             </script>
             
         <div class="row">
@@ -173,8 +171,7 @@ function del(){
                                 <form class="d-inline" id="delform" action="{{route('tasks.destroy', $task->id)}}" method="post">
                                 @csrf
                                 @method('DELETE') 
-                                <button type="submit" class="btn dropdown-item"> <span>Delete</span>  </button>
-                           
+                                <button type="submit"  class="btn dropdown-item"> <span>Delete</span>  </button>
                                 </form>
                                 
                             </div>
