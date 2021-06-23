@@ -60,6 +60,14 @@
                                 
                             </div>
                         @enderror
+                        @error('username')
+                            <div class="col text-center ">
+                                <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+                                {{$message}}
+                                </div>
+                                
+                            </div>
+                        @enderror
                         @error('password')
                             <div class="col text-center ">
                                 <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
@@ -75,7 +83,7 @@
                             <div class="form-group c2">
                                 <input type="text" class="form-control py-4 @error('email')
                                 border border-danger
-                                @enderror"   placeholder="Username or Email" name="email" value="{{old('email')}}">
+                                @enderror"   placeholder="Username or Email" name="login" value="{{ old('username') ?: old('email') }}">
                               </div>
                               
                               <div class="form-group">

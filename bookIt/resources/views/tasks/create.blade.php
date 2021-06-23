@@ -62,8 +62,9 @@
                                     <div class="form-group">
                                        <select class="custom-select"  name="book"   style="border-radius:10px; height:50px; ">
                                            <option selected="true" disabled="disabled" >Select a book</option>
-                                            <option>book 1</option>
-                                           <option>book 2</option>
+                                           @foreach ($books as $book)
+                                           <option>{{$book->title}}</option>  
+                                         @endforeach
                                            
                                             
                                        </select>

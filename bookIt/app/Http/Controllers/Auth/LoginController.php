@@ -23,15 +23,34 @@ class LoginController extends Controller
    
 
     public function store(Request $request){
+        // $this->validate($request, [
+        //     'email' => 'required|email',
+        //     'password' => 'required',
+        // ]);
+        // if(!Auth::attempt($request->only('email', 'password'))){
+        //     return back()->with('status', 'Invalid login details');
+        // }
+
+        // return redirect()->route('notes');
         $this->validate($request, [
-            'email' => 'required|email',
+            'login'    => 'required',
             'password' => 'required',
         ]);
-        if(!Auth::attempt($request->only('email', 'password'))){
-            return back()->with('status', 'Invalid login details');
+    
+        $login_type = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL ) 
+            ? 'email' 
+            : 'username';
+    
+        $request->merge([
+            $login_type => $request->input('login')
+        ]);
+    
+        if (Auth::attempt($request->only($login_type, 'password'))) {
+            return redirect()->route('notes');
         }
-
-        return redirect()->route('notes');
+    
+        return back()->with('status', 'Invalid login details');
+        
 
 
     }
