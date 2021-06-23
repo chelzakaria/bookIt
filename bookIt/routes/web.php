@@ -104,7 +104,8 @@ Route::get('/tasks/create', function () {
 })->name('createtask'); 
 Route::get('/tasks/{id}/edit',[TaskController::class, 'edit']);
 Route::post('/tasks/{id}',[TaskController::class, 'update'])->name('tasks.update');
-Route::delete('/tasks/{id}',[TaskController::class, 'destroy'])->name('tasks.destroy');
+//Route::delete('/tasks/{id}',[TaskController::class, 'destroy'])->name('tasks.destroy');
+Route::get('/tasks/{id}',[TaskController::class, 'destroy'])->name('tasks.destroy');
  
 //drag task
 Route::get('/tasks/drag/{id}',[TaskController::class, 'updatedrag']);

@@ -17,7 +17,7 @@
 }
 
     </style>
-    <div class="container-fluid" onload="del();">
+    <div class="container-fluid">
         <script>
         const drag = (event) => {
   event.dataTransfer.setData("text/plain", event.target.id);
@@ -108,9 +108,7 @@ function unwrap(node) {
     document.getElementById("tst3").click();
   
 }
-function del(){
-    document.forms["delform"].submit()
-}
+
             </script>
             
         <div class="row">
@@ -170,16 +168,9 @@ function del(){
                           
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                               <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
-                                <form class="d-inline" id="delform" action="{{route('tasks.destroy', $task->id)}}" method="post">
-                                @csrf
-                                @method('DELETE') 
-                                <button type="submit" class="btn dropdown-item"> <span>Delete</span>  </button>
-                           
-                                </form>
-                                
+                                <a class="btn dropdown-item" href="{{route('tasks.destroy', $task->id)}}"> <span>Delete</span>  </a>
+                               
                             </div>
-                            
-                         
                           </div>
                             <div class="card-body p-2">
                                 <div class="card-title" >
@@ -238,6 +229,16 @@ function del(){
                                 @break
                                               @endswitch
                         ;" id="cd<?php echo $task->id?>" draggable="true" ondragstart="drag(event)">
+                              <div class="dropdown position-absolute" style="top:-3px; right:-2px">
+                                <a class="btn  " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: none">
+                                    <img src="/images/icons/dots_horizontal_icon.svg" alt="" style="height: auto;width:;">                                            </a>
+                              
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                  <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
+                                    <a class="btn dropdown-item" href="{{route('tasks.destroy', $task->id)}}"> <span>Delete</span>  </a>
+                                   
+                                </div>
+                              </div>
                             <div class="card-body p-2">
                                 <div class="card-title">
                                   
@@ -287,7 +288,16 @@ function del(){
                                 @break
                                               @endswitch;"
                          id="cd<?php echo $task->id?>" draggable="true" ondragstart="drag(event)">
+                         <div class="dropdown position-absolute" style="top:-3px; right:-2px">
+                            <a class="btn  " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: none">
+                                <img src="/images/icons/dots_horizontal_icon.svg" alt="" style="height: auto;width:;">                                            </a>
                           
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
+                                <a class="btn dropdown-item" href="{{route('tasks.destroy', $task->id)}}"> <span>Delete</span>  </a>
+                               
+                            </div>
+                          </div>
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
@@ -421,6 +431,7 @@ $('#formdrag3').on('submit',function(e){
 //         }
 //     });
 // });
+                           
  </script>       
                   
     
