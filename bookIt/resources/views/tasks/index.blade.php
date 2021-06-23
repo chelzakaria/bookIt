@@ -5,6 +5,10 @@
     margin-bottom: 1rem;
     cursor: grab;
 }
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
+}
 
 .droppable {
     background-color: #CAE3F9;
@@ -132,7 +136,9 @@ function unwrap(node) {
             <div class="card bg-light" style="width: 270px; min-height:70vh">
                 <div class="card-body"  style="background-color: #E3F0FF" >
                     <h6 class="d-inline mb-2" style="font-weight:700; font-size:20px;">To do  </h6>
+
                     <span class="float-right text-center" id="span1" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">{{$count1}}</span>
+
                     <form id="formdrag">
                     <div class="items " id="e" >
                         <!--task1-->
@@ -154,13 +160,33 @@ function unwrap(node) {
                             @break
                                           @endswitch 
                           ;" id="cd<?php echo $task->id?>" draggable="true" ondragstart="drag(event)">
+                          <div class="dropdown position-absolute" style="top:-3px; right:-2px">
+                            <a class="btn  " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: none">
+                                <img src="/images/icons/dots_horizontal_icon.svg" alt="" style="height: auto;width:;">                                            </a>
+                          
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
+                              <form class="d-inline" action="{{route('tasks.destroy', $task->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn dropdown-item"> <span class="" >Delete</span>  </button>
+                           
+                                </form>
+                                
+                            </div>
+                            
+                         
+                          </div>
                             <div class="card-body p-2">
                                 <div class="card-title" >
-                                    <p style="font-weight:700; font-size:15px;">{{$task->task_name}}</p>
-                                </div>
+                                    <a href="" style="text-decoration: none; color:#000;"><p style="font-weight:700; font-size:15px;">{{$task->task_name}}</p></a>
+                                                                </div>
                                 <p>
                                     {{$task->task_description}}
                                 </p>
+
+
+                                 
                                 {{-- <button class="btn btn-primary btn-sm">View</button> --}}
                             </div>
                         </div>
@@ -182,10 +208,12 @@ function unwrap(node) {
             </div>
         </div>
         <div class="col-sm-6 col-md-4 col-xl-3 ml-5">
-            <div class="card bg-light"  style="width: 270px">
+            <div class="card bg-light"  style="width: 270px; min-height:70vh">
                 <div class="card-body" style="background-color: #E3F0FF">
                     <h6 class="d-inline" style="font-weight:700; font-size:20px;">In progress  </h6>
+
                     <span class="float-right text-center" id="span2" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">{{$count2}}</span>
+
                     <form id="formdrag2">
                     <div class="items " id="f">
  
@@ -209,8 +237,7 @@ function unwrap(node) {
                             <div class="card-body p-2">
                                 <div class="card-title">
                                   
-                                    <p style="font-weight:700; font-size:15px;">{{$task->task_name}}</p>
-                                </div>
+                                    <a href="" style="text-decoration: none; color:#000;"><p style="font-weight:700; font-size:15px;">{{$task->task_name}}</p></a>                                </div>
                                 <p>
                                     {{$task->task_description}} 
                                 </p>
@@ -221,7 +248,9 @@ function unwrap(node) {
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)">  &nbsp; </div>
                         @endif
                         @endforeach
-                        
+
+                        <a href="{{route('createtask')}}" style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
+                        </div></a>
                     </div>
                     <button type="submit" id="tst2" style="visibility: hidden"></button>
                     </form>
@@ -229,10 +258,12 @@ function unwrap(node) {
             </div>
         </div>
         <div class="col-sm-6 col-md-4 col-xl-3 ml-5 ">
-            <div class="card bg-light "  style="width: 270px;">
+            <div class="card bg-light "  style="width: 270px;min-height:70vh">
                 <div class="card-body" style="background-color: #E3F0FF; ">
                     <h6 class="d-inline" style="font-weight:700; font-size:20px;">Completed  </h6>
+
                     <span class="float-right text-center" id="span3" style="font-weight:600; display: inline-block;width: 25px; background:#BDDDF8; border-radius:3px; font-size:17px;">{{$count3}}</span>
+
                     <form id="formdrag3">
                     <div class="items " id="g">
                         
@@ -256,10 +287,12 @@ function unwrap(node) {
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
-                                    <p style="font-weight:700; font-size:15px;">{{$task->task_name}}</p>
+                                    <a href="" style="text-decoration: none; color:#000;"><p style="font-weight:700; font-size:15px;">{{$task->task_name}}</p></a>
                                 </div>
                                 <p>
+
                                     {{$task->task_description}}
+
                                 </p>
                                 {{-- <button class="btn btn-primary btn-sm">{{$task->task_description}}</button> --}}
                             </div>
@@ -268,6 +301,9 @@ function unwrap(node) {
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)"> &nbsp; </div>
                         @endif
                         @endforeach
+
+                        <a href="{{route('createtask')}}" style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
+                        </div></a>
                         
                     </div>
                     <button type="submit" id="tst3" style="visibility: hidden"></button>
@@ -363,6 +399,24 @@ $('#formdrag3').on('submit',function(e){
         }
     });
 });
+
+//role-form
+// $('#role-form').on('submit',function(e){
+//     e.preventDefault();
+  
+     
+//     $.ajax({
+//         type:"post",
+//         url:"/tasks/1",
+//         data: $('#role-form').serialize(),
+//         success: function(response){   
+//         console.log(response)
+//         },
+//         error: function(error){
+//             console.log(error)
+//         }
+//     });
+// });
  </script>       
                   
     

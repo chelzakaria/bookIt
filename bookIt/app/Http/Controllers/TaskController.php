@@ -7,8 +7,19 @@ use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware(['auth']);
+    }
+
+    
     public function index()
     {
+        // $tasks = Task::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+
+        //$tasks = Task::all();
+
+
          $tasks = Task::where('user_id', auth()->user()->id)->get();
          $count1 = Task::where('user_id', auth()->user()->id)->where('status','=','not started')->count();
          $count2 = Task::where('user_id', auth()->user()->id)->where('status','=','in progress')->count();
@@ -34,13 +45,14 @@ class TaskController extends Controller
             'description' => 'required'
         ]);
  
+        $book = DB::table('books')->where('title',$request->book)->first();
           
         $request->user()->tasks()->create([
             'task_name' => $request->task_name,
             'status'=>$request->status,
             'task_description'=>$request->description,
             'end_date'=>$request->end_date,
-            'book_id'=>27,
+            'book_id'=>$book->id,
             'task_importance'=>$request->importance,
             'start_date'=>$request->end_date,
        ]);
@@ -99,6 +111,19 @@ class TaskController extends Controller
 
         return redirect('tasks');
     }
+
+
+    public function show($id){
+        $task = DB::table('tasks')->find($id);
+         if(auth()->user()->id !== $task->user_id)
+        {
+            return abort(403, 'Unauthorized action.');
+        } 
+        return view('tasks.show',[
+            'note' => $task
+        ]);
+    }
+
 
     public function destroy($id)
     {

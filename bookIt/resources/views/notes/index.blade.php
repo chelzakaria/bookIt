@@ -73,15 +73,44 @@
                                           
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                               <a class="dropdown-item" href="/notes/{{$note->id}}/edit">Edit</a>
-                                              <form class="d-inline" action="{{route('notes.destroy',  $note->id)}}" method="post">
+                                              <button type="submit" class="btn dropdown-item" data-toggle="modal" data-target="#exampleModal"> <span class="" >Delete</span>  </button>
+                                              {{-- <form class="d-inline" action="{{route('notes.destroy',  $note->id)}}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn dropdown-item"> <span class="" >Delete</span>  </button>
                                            
-                                                </form>
+                                                </form> --}}
                                               
                                              
                                             </div>
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this note?</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                            
+                                                        <div class="modal-footer">
+                                                            <div class="row mt-3">
+                                                                <div class="col">
+                                                                    <button type="button" class="btn " data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;">Cancel</button>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <form class="d-inline" action="{{route('notes.destroy',  $note->id)}}" method="post">
+                                                                        @csrf @method('DELETE')
+                                            
+                                                                        <button type="submit" name="create" class="btn btn-danger float-right" style="; font-weight: 700;">Delete</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
                                           </div>
                                          
                                              <div class="card-body pb-0">

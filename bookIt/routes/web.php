@@ -99,7 +99,8 @@ Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
 Route::post('/tasks', [TaskController::class, 'store']);
 
 Route::get('/tasks/create', function () {
-    return view('tasks.create');
+    $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+    return view('tasks.create')->with('books', $books);
 })->name('createtask'); 
 Route::get('/tasks/{id}/edit',[TaskController::class, 'edit']);
 Route::post('/tasks/{id}',[TaskController::class, 'update'])->name('tasks.update');
