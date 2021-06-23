@@ -167,13 +167,10 @@ function unwrap(node) {
                                 <img src="/images/icons/dots_horizontal_icon.svg" alt="" style="height: auto;width:;">                                            </a>
                           
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <!--<a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a> -->
                               <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
-                                <form class="d-inline" id="delform" action="{{route('tasks.destroy', $task->id)}}" method="post">
-                                @csrf
-                                @method('DELETE') 
-                                <button type="submit"  class="btn dropdown-item"> <span>Delete</span>  </button>
-                                </form>
-                                
+                                <a class="btn dropdown-item" href="{{route('tasks.destroy', $task->id)}}"> <span>Delete</span>  </a>
+                               
                             </div>
                             
                          
@@ -418,6 +415,7 @@ $('#formdrag3').on('submit',function(e){
 //         }
 //     });
 // });
+                           
  </script>       
                   
     
