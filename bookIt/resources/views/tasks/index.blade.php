@@ -17,7 +17,7 @@
 }
 
     </style>
-    <div class="container-fluid">
+    <div class="container-fluid" onload="del();">
         <script>
         const drag = (event) => {
   event.dataTransfer.setData("text/plain", event.target.id);
@@ -108,7 +108,11 @@ function unwrap(node) {
     document.getElementById("tst3").click();
   
 }
+function del(){
+    document.forms["delform"].submit()
+}
             </script>
+            
         <div class="row">
             @include('notes.layouts.sidebar')
             <div class="col">
@@ -166,10 +170,10 @@ function unwrap(node) {
                           
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                               <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
-                              <form class="d-inline" action="{{route('tasks.destroy', $task->id)}}" method="post">
+                                <form class="d-inline" id="delform" action="{{route('tasks.destroy', $task->id)}}" method="post">
                                 @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn dropdown-item"> <span class="" >Delete</span>  </button>
+                                @method('DELETE') 
+                                <button type="submit" class="btn dropdown-item"> <span>Delete</span>  </button>
                            
                                 </form>
                                 
