@@ -167,13 +167,10 @@ function unwrap(node) {
                                 <img src="/images/icons/dots_horizontal_icon.svg" alt="" style="height: auto;width:;">                                            </a>
                           
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                              <!--<a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a> -->
                               <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
                                 <a class="btn dropdown-item" href="{{route('tasks.destroy', $task->id)}}"> <span>Delete</span>  </a>
                                
                             </div>
-                            
-                         
                           </div>
                             <div class="card-body p-2">
                                 <div class="card-title" >
@@ -232,6 +229,16 @@ function unwrap(node) {
                                 @break
                                               @endswitch
                         ;" id="cd<?php echo $task->id?>" draggable="true" ondragstart="drag(event)">
+                              <div class="dropdown position-absolute" style="top:-3px; right:-2px">
+                                <a class="btn  " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: none">
+                                    <img src="/images/icons/dots_horizontal_icon.svg" alt="" style="height: auto;width:;">                                            </a>
+                              
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                  <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
+                                    <a class="btn dropdown-item" href="{{route('tasks.destroy', $task->id)}}"> <span>Delete</span>  </a>
+                                   
+                                </div>
+                              </div>
                             <div class="card-body p-2">
                                 <div class="card-title">
                                   
@@ -281,7 +288,16 @@ function unwrap(node) {
                                 @break
                                               @endswitch;"
                          id="cd<?php echo $task->id?>" draggable="true" ondragstart="drag(event)">
+                         <div class="dropdown position-absolute" style="top:-3px; right:-2px">
+                            <a class="btn  " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: none">
+                                <img src="/images/icons/dots_horizontal_icon.svg" alt="" style="height: auto;width:;">                                            </a>
                           
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
+                                <a class="btn dropdown-item" href="{{route('tasks.destroy', $task->id)}}"> <span>Delete</span>  </a>
+                               
+                            </div>
+                          </div>
                             <div class="card-body p-2">
                                 <div class="card-title">
                                    
