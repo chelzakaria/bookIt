@@ -126,7 +126,7 @@ class TaskController extends Controller
 
 
     public function destroy($id)
-    {
+    {   
         $task = Task::find($id);
       if(auth()->user()->id !== $task->user_id)
         {
