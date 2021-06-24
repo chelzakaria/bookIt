@@ -9,6 +9,7 @@
                     font-weight: 600;
                     font-size:13px;
                   }
+                  
               </style>
                 <div class="col">
                     <div class="container py-3 ">
@@ -35,17 +36,16 @@
                         </div>
                     @endif
                         <div class="container px-5 mr-auto">
-                            <form method="POST" action="{{ route('profile') }}">
+                            <form method="POST" action="{{ route('profile') }}"  enctype="multipart/form-data">
                               @csrf
                                 <div class="d-flex flex-row mb-0">
-                                    <div class="mb-3"   style="width: 75px; height:75px; border-radius:50%; ">
-                                        <img src="images/about_img.svg" alt="" style="max-width:100%;
-                                        max-height:100%; ">
-                                    </div>
-                                    <div class="mt-5" style="margin-left:-12px;">
+                                    {{-- <div class="mb-3"   style="width: 75px; height:75px; border-radius:50% ; "> --}}
+                                        <img class="mb-3"  src="/storage/profile_images/{{Auth::user()->profile_image}}" alt="" style="width: 100px; height:100px; border-radius:50%">
+                                    {{-- </div> --}}
+                                    <div class=" " style="margin-left:-25px;margin-top:70px">
                                       
                                       <label for="customFile" ><img src="images/icons/edit_profile_image_icon.svg" alt="" style="max-width:100%;
-                                        max-height:100%;cursor: pointer;"> <input type="file" id="customFile" name="profile_image" style="display:none"> </label>
+                                        max-height:100%;cursor: pointer;"> <input type="file" id="customFile" name="profile_image" style="display:none" name="profile_image"> </label>
                                         {{-- <button type="button" class="btn"> <a href="{{route('profile')}}"  ><img src="images/icons/edit_profile_image_icon.svg" alt="" style="max-width:100%;
                                             max-height:100%;"></a> </button> --}}
                                     </div>

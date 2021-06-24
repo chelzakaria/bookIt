@@ -27,9 +27,14 @@ class  RegisterController extends Controller
             'username' => 'required|max:255',
             'email' => 'required|email|max:255|unique:App\Models\User,email',
             'password' => 'required|confirmed',
-            'birthDate' => 'required|date'
+            'birthDate' => 'required|date',
+            
 
         ]);
+
+       
+            $fileNameToStore = 'no_image.png';
+        
 
         User::create([
             'firstName' => $request->fName,
@@ -37,7 +42,8 @@ class  RegisterController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'birthDate' => $request->birthDate
+            'birthDate' => $request->birthDate,
+            'profile_image' => $fileNameToStore,
         ]);
         
         auth()->user();
