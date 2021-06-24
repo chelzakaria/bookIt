@@ -52,7 +52,22 @@
                                 </div>
 
                         </div>
-                         </div>
+                        <!---->
+                        <div class="d-flex justify-content-end">
+                            <div class="mr-3">
+                            <button type="button" class="btn btn-primary">
+                                Tasks <span class="badge badge-light">{{$count_tasks}}</span>
+                              </button>
+                            </div>
+
+                            <div>
+                                <button type="button" class="btn btn-primary">
+                                Notes <span class="badge badge-light">{{$count_notes}}</span>
+                                  </button>
+                                </div>
+                        </div>
+                        <!---->
+                        </div>
                          <div class="row mt-5">
                             <div class="col-3 d-none d-lg-inline"></div>
                             <div class="col">

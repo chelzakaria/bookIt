@@ -91,8 +91,8 @@ class BookController extends Controller
             $book = DB::table('books')->find($id);
             $notes = Note::where('book_id', $id)->orderBy('updated_at', 'desc')->get();
             $tasks = Task::where('book_id', $id)->orderBy('updated_at', 'desc')->get();
-
-
+            $count_tasks = Task::where('user_id', auth()->user()->id)->where('book_id','=',$id)->count();
+            $count_notes = Note::where('user_id', auth()->user()->id)->where('book_id','=',$id)->count();
             if(auth()->user()->id !== $book->user_id)
             {
                 return abort(403, 'Unauthorized action.');
@@ -100,7 +100,9 @@ class BookController extends Controller
             return view('books.show',[
                 'book' => $book, 
                 'notes' => $notes,
-                'tasks' => $tasks
+                'tasks' => $tasks,
+                'count_tasks' =>$count_tasks,
+                'count_notes' =>$count_notes
             ]);
       
     }
