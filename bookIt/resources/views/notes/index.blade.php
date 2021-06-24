@@ -53,17 +53,21 @@
                                          <div class="card mb-5 " style="width: 18rem; height:9rem;border-radius:10px;background:
                                          @switch($note->type)
                                             @case("Quote")
-                                                #B8BFFA;
+                                            {{$setting->quote_color}}
+
                                                 @break
 
                                             @case("Idea")
-                                            #F6B9B9;
+                                            {{$setting->idea_color}}
+
                                                 @break
                                                 @case("Thought")
-                                                #16e56957;
+                                                {{$setting->thought_color}}
+
                                                 @break
                                             @default
-                                               #FEFAAF;
+                                            {{$setting->uncategorized_color}}
+
                                         @endswitch
                                          ">
                                            {{-- <a href="#" class="position-absolute float-right" style="top:10px; right:10px"><img src="/images/icons/dots_icon.svg" alt="" style="height: auto;width:80%;"></a> --}}

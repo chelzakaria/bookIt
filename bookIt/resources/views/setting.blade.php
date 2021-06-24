@@ -28,7 +28,7 @@ input[type="color"]::-webkit-color-swatch {
                         </p>  
                     </div>
                     <hr style="border-top: 1px solid #00000023;margin-top:5px;">
-                    <form id="form" method="POST" action="{{ route('setting') }}">
+                    <form id="form" method="POST" action="{{route('setting.update', Auth::user()->id)}}">
                         @csrf
                             <div class="row">
                                 <div class="col-md-4 ">
@@ -39,22 +39,22 @@ input[type="color"]::-webkit-color-swatch {
                                     <div class="d-flex flex-row">
 
                                         <div class="p-2 ">
-                                        <input type="color" id="ideaColor" value="#F6B9B9" title="Choose your color" name="idea">
+                                        <input type="color" id="ideaColor" value="{{$setting->idea_color}}" title="Choose your color" name="idea">
                                                 <p class="mb-5 ml-3 text-secondary">Idea</p>    
                                         </div>
 
                                         <div class="p-2 ml-3">
-                                            <input type="color" id="quoteColor" value="#B8BFFA" title="Choose your color" name="quote">
+                                            <input type="color" id="quoteColor" value="{{$setting->quote_color}}" title="Choose your color" name="quote">
                                                     <p class="mb-5 ml-3 text-secondary">Quote</p>    
                                         </div>
 
                                         <div class="p-2 ml-3">
-                                            <input type="color" id="thoughtColor" value="#B9F7D2" title="Choose your color" name="thought">
+                                            <input type="color" id="thoughtColor" value="{{$setting->thought_color}}" title="Choose your color" name="thought">
                                                     <p class="mb-5 ml-1 text-secondary">Thought</p>    
                                         </div>
 
                                         <div class="p-2 ml-3">
-                                            <input type="color" id="uncategorizedColor" value="#FEFAAF" title="Choose your color" class="ml-3" name="uncategorized">
+                                            <input type="color" id="uncategorizedColor" value="{{$setting->uncategorized_color}}" title="Choose your color" class="ml-3" name="uncategorized">
                                                     <p class="mb-5  text-secondary">Uncategorized</p>    
                                         </div>
 
@@ -65,17 +65,17 @@ input[type="color"]::-webkit-color-swatch {
                                 <div class="d-flex flex-row">
 
                                     <div class="p-2 ">
-                                    <input type="color" id="ideaColor" value="#EBB2B6" title="Choose your color" name="high">
+                                    <input type="color" id="ideaColor" value="{{$setting->high_color}}" title="Choose your color" name="high">
                                             <p class="mb-5 ml-3 text-secondary">High</p>    
                                     </div>
 
                                     <div class="p-2 ml-3">
-                                        <input type="color" id="quoteColor" value="#FAF8C7" title="Choose your color" name="medium">
+                                        <input type="color" id="quoteColor" value="{{$setting->medium_color}}" title="Choose your color" name="medium">
                                                 <p class="mb-5 ml-1 text-secondary">Medium</p>    
                                     </div>
 
                                     <div class="p-2 ml-3">
-                                        <input type="color" id="thoughtColor" value="#AFF0CF" title="Choose your color" name="low">
+                                        <input type="color" id="thoughtColor" value="{{$setting->low_color}}" title="Choose your color" name="low">
                                                 <p class="mb-5 ml-3 text-secondary">Low</p>    
                                     </div>
  
