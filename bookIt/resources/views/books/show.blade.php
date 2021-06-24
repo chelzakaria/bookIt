@@ -52,7 +52,24 @@
                                 </div>
 
                         </div>
-                         </div>
+                        <!---->
+                        <div class="d-flex justify-content-end">
+                            <div class="mr-3">
+                                <a href="#r1">
+                            <button type="button" class="btn btn-primary">
+                                Tasks <span class="badge badge-light">{{$count_tasks}}</span>
+                              </button></a>
+                            </div>
+
+                            <div>
+                                <a href="#r2">
+                                <button type="button" class="btn btn-primary">
+                                Notes <span class="badge badge-light">{{$count_notes}}</span>
+                                  </button></a>
+                                </div>
+                        </div>
+                        <!---->
+                        </div>
                          <div class="row mt-5">
                             <div class="col-3 d-none d-lg-inline"></div>
                             <div class="col">
@@ -82,7 +99,7 @@
                             </div>
                          </div>
                          <hr style="border-top: 1px solid #00000023;">
-                         <div class="row">
+                         <div class="row" id="r2">
                             @if ($notes->count())
                                     @foreach ($notes as $note)
                                     <div class="col-md-4">
@@ -142,7 +159,7 @@
                               
                          </div>
                          <hr style="border-top: 1px solid #00000023;">
-                         <div class="row">
+                         <div class="row" id="r1">
                             @if ($tasks->count())
                                     @foreach ($tasks as $task)
                                     <div class="col-md-4">
