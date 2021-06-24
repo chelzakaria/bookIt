@@ -2,7 +2,9 @@
 namespace App\Http\Controllers;
 use App\Models\Note;
 use App\Models\Book;
+use App\Models\Notification;
 use App\Models\Setting;
+use App\Models\Task;
 use CreateNotesTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,13 +18,17 @@ class NoteController extends Controller
 
     public function index()
     {
+        $notifications = Notification::where('user_id', Auth::user()->id)->get();  
         $Setting = Setting::where('user_id', Auth::user()->id)->first();  
+        $tasks = Task::where('user_id', auth()->user()->id)->get();
         $notes = Note::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
         $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
         return view('notes.index',[
             'notes' => $notes,
             'books' =>$books,
-            'setting' => $Setting
+            'setting' => $Setting,
+            'notifications' => $notifications,
+            'tasks' => $tasks
         ]);
     }
 

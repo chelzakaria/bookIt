@@ -1,6 +1,20 @@
   @extends('layouts.app')
     @section('content') 
-    
+    <style>
+        .btn:focus {
+  box-shadow: none !important;
+  outline: none !important; 
+}
+.example::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+    </style>
         <div class="container-fluid">
             <div class="row">
                 @include('notes.layouts.sidebar')
@@ -12,11 +26,40 @@
                             </p>  
                           
                                 {{-- {{auth()->user()->firstName}} --}}
+                                <div class="mb-3 ml-auto mr-0" >
+                                    <div class="btn-group dropleft position-absolute" style="top:30px; right: 155px">
+                                        <a class="btn px-0 " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: none; width:25px; height:25px">
+                                            <img class="mr-5"   src="/images/icons/notification_off_icon.svg" alt="" style="width:99%  ; height:auto;">                                         </a>
+                                      
+                                        <div class="dropdown-menu mt-4 example" aria-labelledby="dropdownMenuLink " style=" width: 300px;
+                                        max-height: 150px;  overflow-y: scroll;">
+                                          {{-- <div class="dropdown-item " style="background:rgb(241, 236, 236)">a</div> --}}
+                                          @if ($notifications->count())
+                                          @foreach ($notifications as $notification)
+                                          <div class="dropdown-item">
+                                               
+                                              @if (( strtotime($notification->due_date) - time() )<= 300 && $tasks->where('id', $notification->task_id)->first()->status !=="done" )
+                                             {{$tasks->where('id', $notification->task_id)->first()->task_name}}
+
+                                              @endif 
+                                            </div>
+                                          @endforeach
+                                          @endif
+                                          
+                                           
+                                        </div>
+                                      </div>
+
+
+                                   
+                            
+                                    <img  src="/storage/profile_images/{{Auth::user()->profile_image}}" alt="" style="width: 60px; height:60px; border-radius:50%">
+                                </div>
                              
-                            {{-- <div class="ml-auto mr-0"  style="width: 45px; height:45px; border-radius:50%;background:#000;"> --}}
-                                <img class="mb-3 ml-auto mr-0"  src="/storage/profile_images/{{Auth::user()->profile_image}}" alt="" style="width: 60px; height:60px; border-radius:50%">
-                            {{-- </div> --}}
+                              
+                            
                         </div>
+                        
                         <form action="{{route('notes.search')}}" method="POST" role="search" >
 
                         <div class="d-flex flex-row">
