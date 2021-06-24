@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -38,10 +39,13 @@ class  RegisterController extends Controller
             'password' => Hash::make($request->password),
             'birthDate' => $request->birthDate
         ]);
-
-        // auth()->user();
+        
+        auth()->user();
         Auth::attempt($request->only('email', 'password'));
-
+        Setting::create([
+            'user_id' => Auth::user()->id,
+             
+            ]);
         return redirect()->route('notes');
 
     }

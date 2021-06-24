@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Models\Task;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,9 +88,8 @@ Route::post('/books/{id}',[BookController::class, 'update'])->name('books.update
 Route::delete('/books/{id}',[BookController::class, 'destroy'])->name('books.destroy');
 
 //setting
-Route::get('/setting', function () {
-    return view('setting');
-})->name('setting'); 
+Route::get('/setting', [SettingController::class, 'index'])->name('setting'); 
+Route::post('/setting', [SettingController::class, 'store']); 
 
 
 

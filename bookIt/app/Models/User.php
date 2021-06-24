@@ -10,6 +10,7 @@ use Mockery\Matcher\Not;
 use App\Models\Note;
 use App\Models\Book;
 use App\Models\Task;
+use App\Models\Setting;
 
 class User extends Authenticatable
 {
@@ -60,5 +61,9 @@ class User extends Authenticatable
 
     public function tasks(){
         return $this->hasMany(Task::class);
+    }
+    public function setting()
+    {
+        return $this->hasOne(Setting::class);
     }
 }
