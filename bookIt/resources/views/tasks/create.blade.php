@@ -88,7 +88,7 @@
                                     <div class="row mt-3">
                                         <div class="col-4">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="end_date" placeholder="Due date" onfocus="(this.type='date')" style="border-radius:10px; height:50px;" >
+                                                <input type="text" class="form-control" name="end_date" placeholder="Due date" onfocus="(this.type='datetime-local')" style="border-radius:10px; height:50px;" >
                                             </div>
                                         </div>
                                         <div class="col-4">

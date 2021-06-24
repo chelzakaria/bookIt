@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\Setting;
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -39,6 +40,15 @@ class TaskController extends Controller
     }
     public function store(Request $request)
     {
+
+        
+        if($request->has('notification')){
+            $notification = "on";
+        }
+        else {
+            $notification = "off";
+        }
+
         
         $this->validate($request,[
             'task_name' => 'required',
@@ -46,21 +56,33 @@ class TaskController extends Controller
             'importance' => 'required',
             'book' => 'required',
             'end_date' =>'required|date',
-            'notification' => 'required',
             'description' => 'required'
         ]);
  
         $book = DB::table('books')->where('title',$request->book)->first();
           
-        $request->user()->tasks()->create([
-            'task_name' => $request->task_name,
-            'status'=>$request->status,
-            'task_description'=>$request->description,
-            'end_date'=>$request->end_date,
-            'book_id'=>$book->id,
-            'task_importance'=>$request->importance,
-            'start_date'=>$request->end_date,
-       ]);
+       $id = 
+       $request->user()->tasks()->create([
+        'task_name' => $request->task_name,
+        'status'=>$request->status,
+        'task_description'=>$request->description,
+        'end_date'=>$request->end_date,
+        'book_id'=>$book->id,
+        'task_importance'=>$request->importance,
+        'start_date'=>$request->end_date,
+        'notification' => $notification
+       ])->id;
+
+       $task = Task::find($id);
+       if($notification=="on"){
+         
+        Notification::create([
+            'task_id' => $task->id,
+            'user_id' => Auth::user()->id,
+             'status' => $task->status,
+             'due_date' => $task->end_date
+            ]);
+    }
     
 
 
@@ -81,6 +103,13 @@ class TaskController extends Controller
 
     public function update(Request $request, $id)
     {
+
+        if($request->has('notification')){
+            $notification = "on";
+        }
+        else {
+            $notification = "off";
+        }
         
         $task = Task::find($id);
         if(auth()->user()->id !== $task->user_id)
@@ -92,10 +121,8 @@ class TaskController extends Controller
             'task_name' => 'required',
             'status' => 'required',
             'importance' => 'required',
-            // 'book' => 'required',
             'end_date' =>'required|date',
             'description' => 'required'
-            // 'notification' => 'required'
         ]);
 
         
@@ -106,6 +133,9 @@ class TaskController extends Controller
         $task->task_importance = $request->input('importance');
         $task->end_date = $request->input('end_date');
         $task->task_description = $request->input('description');
+        $task->notification = $notification;
+
+      
 
 
 
@@ -113,6 +143,7 @@ class TaskController extends Controller
     
 
         $task->save();
+
 
         return redirect('tasks');
     }

@@ -88,13 +88,15 @@
                                     <div class="row mt-3">
                                         <div class="col-4">
                                             <div class="form-group">
-                                                <input type="date" class="form-control" name="end_date" placeholder="Due date"  style="border-radius:10px; height:50px;" value="{{\Carbon\Carbon::parse( $task->end_date )->toDateString()}}">
+                                                <input type="datetime-local" class="form-control" name="end_date" placeholder="Due date"  style="border-radius:10px; height:50px;" value="{{ date('Y-m-d\TH:i', strtotime($task->end_date)) }}">
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group my-2 ml-3">
 
-                                                <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" name="notification" >
+                                                <input type="checkbox" @if($task->notification=="on")
+                                                    checked
+                                                @endif data-toggle="toggle" data-onstyle="success" name="notification" >
                                                 <label for="">&nbsp; Alert</label>
 
                                             </div>
