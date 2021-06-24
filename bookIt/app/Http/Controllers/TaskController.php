@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Setting;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
@@ -19,6 +22,7 @@ class TaskController extends Controller
 
         //$tasks = Task::all();
 
+        $Setting = Setting::where('user_id', Auth::user()->id)->first();  
 
          $tasks = Task::where('user_id', auth()->user()->id)->get();
          $count1 = Task::where('user_id', auth()->user()->id)->where('status','=','not started')->count();
@@ -28,7 +32,8 @@ class TaskController extends Controller
             'tasks' => $tasks,
             'count1' =>$count1,
             'count2' =>$count2,
-            'count3' =>$count3
+            'count3' =>$count3,
+            'setting' => $Setting
         ]);
         
     }

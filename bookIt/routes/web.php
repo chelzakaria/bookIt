@@ -89,7 +89,7 @@ Route::delete('/books/{id}',[BookController::class, 'destroy'])->name('books.des
 
 //setting
 Route::get('/setting', [SettingController::class, 'index'])->name('setting'); 
-Route::post('/setting', [SettingController::class, 'store']); 
+Route::post('/setting/{id}',[SettingController::class, 'update'])->name('setting.update');
 
 
 

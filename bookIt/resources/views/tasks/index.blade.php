@@ -152,13 +152,13 @@ function unwrap(node) {
                              
                         <div class="card draggable shadow-sm" style="border-radius: 10px;background-color: @switch($task->task_importance)
                         @case('high')
-                            #EBB2B6
+                            {{$setting->high_color}}
                             @break
                         @case('medium')
-                            #FAF8C7
+                            {{$setting->medium_color}}
                             @break
                         @case('low')
-                            #AFF0CF
+                            {{$setting->low_color}}
                             @break
                                           @endswitch 
                           ;" id="cd<?php echo $task->id?>" draggable="true" ondragstart="drag(event)">
@@ -219,13 +219,13 @@ function unwrap(node) {
                             
                         <div class="card draggable shadow-sm" style="border-radius: 10px;background-color:@switch($task->task_importance)
                             @case('high')
-                                #EBB2B6
+                                $setting->high_color
                                 @break
                             @case('medium')
-                                #FAF8C7
+                                {{$setting->medium_color}}
                                 @break
                             @case('low')
-                                #AFF0CF
+                                {{$setting->low_color}}
                                 @break
                                               @endswitch
                         ;" id="cd<?php echo $task->id?>" draggable="true" ondragstart="drag(event)">
@@ -278,13 +278,13 @@ function unwrap(node) {
                         @if ($task->status === "done")
                         <div class="card draggable shadow-sm" style="border-radius: 10px;background-color:@switch($task->task_importance)
                             @case('high')
-                                #EBB2B6
+                                $setting->high_color
                                 @break
                             @case('medium')
-                                #FAF8C7
+                                {{$setting->medium_color}}
                                 @break
                             @case('low')
-                                #AFF0CF
+                                {{$setting->low_color}}
                                 @break
                                               @endswitch;"
                          id="cd<?php echo $task->id?>" draggable="true" ondragstart="drag(event)">
