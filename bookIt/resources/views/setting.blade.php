@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content') 
 
+
     <div class="container-fluid">
         <div class="row">
             @include('notes.layouts.sidebar')
@@ -27,73 +28,94 @@ input[type="color"]::-webkit-color-swatch {
                         </p>  
                     </div>
                     <hr style="border-top: 1px solid #00000023;margin-top:5px;">
-                    <form>
+                    <form id="form" method="POST" action="{{ route('setting') }}">
                         @csrf
                             <div class="row">
-                                <div class="col-md-4 mt-5">
+                                <div class="col-md-4 ">
                                     <div class="form-group ">
-                                        <p style="font-weight:700; font-size:20px;">
-                                            Customize colors
+                                        <p style="font-weight:700; font-size:18px;">
+                                            Customize notes colors
                                         </p> 
                                     <div class="d-flex flex-row">
 
                                         <div class="p-2 ">
-                                        <input type="color" id="ideaColor" value="#db4b4b" title="Choose your color">
+                                        <input type="color" id="ideaColor" value="#F6B9B9" title="Choose your color" name="idea">
                                                 <p class="mb-5 ml-3 text-secondary">Idea</p>    
                                         </div>
 
                                         <div class="p-2 ml-3">
-                                            <input type="color" id="quoteColor" value="#a48eb4" title="Choose your color">
+                                            <input type="color" id="quoteColor" value="#B8BFFA" title="Choose your color" name="quote">
                                                     <p class="mb-5 ml-3 text-secondary">Quote</p>    
                                         </div>
 
                                         <div class="p-2 ml-3">
-                                            <input type="color" id="thoughtColor" value="#21e06d" title="Choose your color">
+                                            <input type="color" id="thoughtColor" value="#B9F7D2" title="Choose your color" name="thought">
                                                     <p class="mb-5 ml-1 text-secondary">Thought</p>    
                                         </div>
 
                                         <div class="p-2 ml-3">
-                                            <input type="color" id="uncategorizedColor" value="#f8f128" title="Choose your color">
+                                            <input type="color" id="uncategorizedColor" value="#FEFAAF" title="Choose your color" class="ml-3" name="uncategorized">
                                                     <p class="mb-5  text-secondary">Uncategorized</p>    
                                         </div>
 
                                     </div>
-                                    <p style="font-weight:700; font-size:20px;">
-                                        Apparance
+                                    <p style="font-weight:700; font-size:18px;">
+                                        Customize tasks colors
+                                    </p> 
+                                <div class="d-flex flex-row">
+
+                                    <div class="p-2 ">
+                                    <input type="color" id="ideaColor" value="#EBB2B6" title="Choose your color" name="high">
+                                            <p class="mb-5 ml-3 text-secondary">High</p>    
+                                    </div>
+
+                                    <div class="p-2 ml-3">
+                                        <input type="color" id="quoteColor" value="#FAF8C7" title="Choose your color" name="medium">
+                                                <p class="mb-5 ml-1 text-secondary">Medium</p>    
+                                    </div>
+
+                                    <div class="p-2 ml-3">
+                                        <input type="color" id="thoughtColor" value="#AFF0CF" title="Choose your color" name="low">
+                                                <p class="mb-5 ml-3 text-secondary">Low</p>    
+                                    </div>
+ 
+
+                                </div>
+                                    <p style="font-weight:700; font-size:18px;">
+                                        Appearance
                                     </p> 
                                     
                                     <div class="row mr-5" >
-                                        <div class="col-12 text-center">
-                                        <span class="mr-3 position-relative" style="color: #6F6D6D; font-weight:300;font-size:18px;line-height: 1.6; top:12%;">
-                                            Dark
-                                        </span>
-                                          <label class="switch">
-                                            <input type="checkbox" checked>
-                                            <span class="slider round"></span>
-                                          </label> 
-                                          <span class="ml-3 position-relative" style="color: #6F6D6D; font-weight:300;font-size:18px;line-height: 1.6; top:12%;">
-                                            Light
-                                        </span>
+                                        <div class="form-group my-2 ml-3">
+
+                                            {{-- <input id="appe" type="checkbox" data-toggle="toggle" data-on="Light<br>Mode" data-off="Dark<br>Mode" name="appearance" data-width="100" data-onstyle="info"   onchange="check(this)"> --}}
+                                            <label class="toggle-switchy" for="example_textless_1" data-size="xl" data-text="false" data-style="rounded">
+                                                <input checked type="checkbox" id="example_textless_1" name="appearance">
+                                                <span class="toggle">
+                                                    <span class="switch"></span>
+                                                </span>
+                                            </label>
+ 
                                         </div>
                                     </div>
-                                    <p  class="mt-5" style="font-weight:700; font-size:20px;">
+                                    <p  class="mt-5" style="font-weight:700; font-size:18px;">
                                        Account type
                                     </p>
-                                    <button name="upgrade" class="btn  btn-lg btn-primary"
-                                    style="background-color:#1548d5;font-weight:600;font-size:18px; border-radius:12px; width:150px;" >Upgrade</button> 
-                                    {{-- <button name="downgrade" class="btn  btn-lg btn-primary ml-4"
-                                    style="background-color:#948bc5;font-weight:600;font-size:18px; border-radius:12px; width:150px;" >Downgrade</button>  --}}
+                                    <button name="upgrade" class="btn  btn-primary"
+                                    style="background-color:# ;font-weight:700;  "  >Upgrade</button> 
+                                    <button name="upgrade" class="btn  btn-secondary"
+                                    style="background-color:# ;font-weight:700;  "  >Downgrade</button>
 
-                                    <p  class="mt-5" style="font-weight:700; font-size:20px;">
+                                    <p  class="mt-5" style="font-weight:700; font-size:18px;">
                                         Danger zone
                                      </p>
-                                     <button name="delete account" class="btn  btn-lg  bg-danger text-white"
-                                    style=" font-weight:600;font-size:18px; border-radius:12px; width:200px;" >Delete Account</button> 
-                                    <p  class="mt-5" style="font-weight:700; font-size:20px;">
+                                     <button name="delete account" class="btn  bg-danger text-white"
+                                     style="font-weight:700;  "  >Delete Account</button> 
+                                    <p  class="mt-5" style="font-weight:700; font-size:18px;">
                                         
                                      </p>
                                      <button type="submit"  name="save" class="btn btn-primary float-right"
-                                     style="background-color:#1F1A6B;font-weight:700;  " >Create</button> 
+                                     style="background-color:#1F1A6B;font-weight:700;  " >Save</button> 
                                      <button type="button" class="btn " style="background-color: #D4E5F9; font-weight:700;"> <a href=" {{route('notes')}}" style="text-decoration: none; color:#000;">Cancel</a> </button>
                                      
                                 </div>
@@ -108,4 +130,39 @@ input[type="color"]::-webkit-color-swatch {
         </div>
                     
     </div>
+
+    <script>
+        $("#example_textless_1").on('change', function(){
+        if($("#example_textless_1").val()=="on")
+        {
+       
+
+            $("#example_textless_1").val("light")
+            alert($("#example_textless_1").val())
+        }    
+        else
+        {
+            $("#example_textless_1").val("dark")
+
+            alert($("#example_textless_1").val())
+
+
+        }
+
+        }
+
+        )
+        // function check(e)
+        // {
+        //     alert(e.value)
+        //     if(e.value==="on")
+        //     {
+        //         e.value="off";
+        //     }
+        //     else if(e.value==="off")
+        //     {
+        //         e.value="on";
+        //     }
+        // }
+      </script>
 @endsection  

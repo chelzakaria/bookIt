@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Note;
-
+use App\Models\Task;
 
 class BookController extends Controller
 {
@@ -90,13 +90,17 @@ class BookController extends Controller
        
             $book = DB::table('books')->find($id);
             $notes = Note::where('book_id', $id)->orderBy('updated_at', 'desc')->get();
+            $tasks = Task::where('book_id', $id)->orderBy('updated_at', 'desc')->get();
+
 
             if(auth()->user()->id !== $book->user_id)
             {
                 return abort(403, 'Unauthorized action.');
             } 
             return view('books.show',[
-                'book' => $book, 'notes'=> $notes
+                'book' => $book, 
+                'notes' => $notes,
+                'tasks' => $tasks
             ]);
       
     }
