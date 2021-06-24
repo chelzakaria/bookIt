@@ -149,6 +149,14 @@ class TaskController extends Controller
             }
             if($task->status!="not started")
             {
+                $old_status=$task->status;
+                $new_status="not started";
+                DB::table('task_histories')->insert([
+                    'task_id' => $task->id,
+                    'old_status' => $old_status,
+                    'new_status' =>$new_status,
+                    'created_at' =>  now()
+                ]);
                 $task->status="not started";
                 $task->save();
             }
@@ -168,6 +176,14 @@ class TaskController extends Controller
             }
             if($task->status!="in progress")
             {
+                $old_status=$task->status;
+                $new_status="in progress";
+                DB::table('task_histories')->insert([
+                    'task_id' => $task->id,
+                    'old_status' => $old_status,
+                    'new_status' =>$new_status,
+                    'created_at' =>  now()
+                ]);
                 $task->status="in progress";
                 $task->save();
             }
@@ -187,6 +203,14 @@ class TaskController extends Controller
             }
             if($task->status!="done")
             {
+                $old_status=$task->status;
+                $new_status="done";
+                DB::table('task_histories')->insert([
+                    'task_id' => $task->id,
+                    'old_status' => $old_status,
+                    'new_status' =>$new_status,
+                    'created_at' =>  now()
+                ]);
                 $task->status="done";
                 $task->save();
             }
