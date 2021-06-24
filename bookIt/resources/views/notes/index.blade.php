@@ -13,10 +13,9 @@
                           
                                 {{-- {{auth()->user()->firstName}} --}}
                              
-                            <div class="ml-auto mr-0"  style="width: 45px; height:45px; border-radius:50%;background:#000;">
-                                <img src="images/about_img.svg" alt="" style="max-width:100%;
-                                max-height:100%; ">
-                            </div>
+                            {{-- <div class="ml-auto mr-0"  style="width: 45px; height:45px; border-radius:50%;background:#000;"> --}}
+                                <img class="mb-3 ml-auto mr-0"  src="/storage/profile_images/{{Auth::user()->profile_image}}" alt="" style="width: 60px; height:60px; border-radius:50%">
+                            {{-- </div> --}}
                         </div>
                         <form action="{{route('notes.search')}}" method="POST" role="search" >
 

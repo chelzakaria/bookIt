@@ -132,26 +132,33 @@ input[type="color"]::-webkit-color-swatch {
     </div>
 
     <script>
-        $("#example_textless_1").on('change', function(){
-        if($("#example_textless_1").val()=="on")
-        {
+        // $("#example_textless_1").on('change', function(){
+        // if($("#example_textless_1").val()=="on")
+        // {
        
 
-            $("#example_textless_1").val("light")
-            alert($("#example_textless_1").val())
-        }    
-        else
-        {
-            $("#example_textless_1").val("dark")
+        //     $("#example_textless_1").val("dark")
+        //     alert($("#example_textless_1").val())
+        // }    
+        // else if($("#example_textless_1").val()=="light")
+        // {
+       
 
-            alert($("#example_textless_1").val())
+        //     $("#example_textless_1").val("dark")
+        //     alert($("#example_textless_1").val())
+        // }
+        // else
+        // {
+        //     $("#example_textless_1").val("light")
+
+        //     alert($("#example_textless_1").val())
 
 
-        }
+        // }
 
-        }
+        // }
 
-        )
+        // )
         // function check(e)
         // {
         //     alert(e.value)
