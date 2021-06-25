@@ -39,7 +39,7 @@
                                           
                                           <div class="dropdown-item">
                                              
-                                              @if ((strtotime($notification->due_date) - time())<= 300)
+                                              @if ((strtotime($notification->due_date) - time() )<= 300)
                                               {{$tasks->where('id', $notification->task_id)->first()->task_name}}
                                             
 
