@@ -36,13 +36,16 @@
                                           {{-- <div class="dropdown-item " style="background:rgb(241, 236, 236)">a</div> --}}
                                           @if ($notifications->count())
                                           @foreach ($notifications as $notification)
+                                          @if ((strtotime($notification->due_date) - time() ) < 300)
                                           <div class="dropdown-item">
-                                               
-                                              @if (( strtotime($notification->due_date) - time() )<= 300 && $tasks->where('id', $notification->task_id)->first()->status !=="done" )
-                                             {{$tasks->where('id', $notification->task_id)->first()->task_name}}
-
-                                              @endif 
+                                            
+                                              
+                                              {{$tasks->where('id', $notification->task_id)->first()->task_name}}
+                                              {{strtotime($notification->due_date) - time()}}    
+                           
+                                             
                                             </div>
+                                            @endif 
                                           @endforeach
                                           @endif
                                           
