@@ -181,8 +181,18 @@ function unwrap(node) {
                                 </p>
 
 
-                                 
-                                {{-- <button class="btn btn-primary btn-sm">View</button> --}}
+                               
+                                <span class="badge 
+                                @if((strtotime($task->end_date) - time() ) < 300)
+                                badge-danger
+                                @elseif((strtotime($task->end_date) - time() ) < 86400) 
+                                badge-warning
+                                @else
+                                badge-success
+                                @endif
+                                py-1 px-2 mt-1">
+                                    {{\Carbon\Carbon::parse($task->end_date)->rawFormat('D d')}}
+                                </span>
                             </div>
                         </div>
                         
@@ -246,8 +256,18 @@ function unwrap(node) {
                                 <p>
                                     {{$task->task_description}} 
                                 </p>
-                                {{-- <button class="btn btn-primary btn-sm">View</button> --}}
-                            </div>
+                                <span class="badge 
+                                @if((strtotime($task->end_date) - time() ) < 300)
+                                badge-danger
+                                @elseif((strtotime($task->end_date) - time() ) < 86400) 
+                                badge-warning
+                                @else
+                                badge-success
+                                @endif
+                                py-1 px-2 mt-1">
+                                    {{\Carbon\Carbon::parse($task->end_date)->rawFormat('D d')}}
+                                </span>
+                             </div>
                         </div>
                         
                         <div class="dropzone rounded" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="clearDrop(event)">  &nbsp; </div>
@@ -308,7 +328,17 @@ function unwrap(node) {
                                     {{$task->task_description}}
 
                                 </p>
-                                {{-- <button class="btn btn-primary btn-sm">{{$task->task_description}}</button> --}}
+                                <span class="badge 
+                                @if((strtotime($task->end_date) - time() ) < 300)
+                                badge-danger
+                                @elseif((strtotime($task->end_date) - time() ) < 86400) 
+                                badge-warning
+                                @else
+                                badge-success
+                                @endif
+                                py-1 px-2 mt-1">
+                                    {{\Carbon\Carbon::parse($task->end_date)->rawFormat('D d')}}
+                                </span>
                             </div>
                         </div>
                         
