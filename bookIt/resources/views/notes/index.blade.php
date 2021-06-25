@@ -35,21 +35,18 @@
                                         max-height: 150px;  overflow-y: scroll;">
                                           {{-- <div class="dropdown-item " style="background:rgb(241, 236, 236)">a</div> --}}
                                           @if ($notifications->count())
+                                          {{time()}}
                                           @foreach ($notifications as $notification)
-                                          @if ((strtotime($notification->due_date) - time() ) < 300)
-                                          <div class="dropdown-item">
-                                            
-                                              
-                                              {{$tasks->where('id', $notification->task_id)->first()->task_name}}
-                                              {{strtotime($notification->due_date) - time()}}    
-                           
                                              
-                                            </div>
-                                            @endif 
+                                              @if (( strtotime($notification->due_date) - time() )<= 3900 && $tasks->where('id', $notification->task_id)->first()->status !=="done" )
+                                              <div class="dropdown-item">
+                                              {{$tasks->where('id', $notification->task_id)->first()->task_name}}
+                                              </div>
+                                              @endif 
+                                            
                                           @endforeach
-                                          @endif
-                                          
-                                           
+                                        
+                                          @endif  
                                         </div>
                                       </div>
 
