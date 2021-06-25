@@ -37,7 +37,7 @@
                                           @if ($notifications->count())
                                           
                                           @foreach ($notifications as $notification)
-                                          @if ((strtotime($notification->due_date) - time() ) < 300)
+                                          @if ((strtotime($notification->due_date) - time() ) < 3900)
                                           <div class="dropdown-item">
                                           
                                               {{$tasks->where('id', $notification->task_id)->first()->task_name}}
