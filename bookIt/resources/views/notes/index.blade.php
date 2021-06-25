@@ -41,7 +41,7 @@
                                             
                                               
                                               {{$tasks->where('id', $notification->task_id)->first()->task_name}}
-                                              {{strtotime($notification->due_date) - time()}}    
+                                              {{\Carbon\Carbon::parse($notification->due_date)->rawFormat('D d')}}    
                            
                                              
                                             </div>
