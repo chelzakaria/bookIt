@@ -39,7 +39,24 @@
 
                         </div>
                         <div class="col">
-                            <p class="font-weight-bold mb-0" style="font-size: 22px;"> {{$book->title}} </p>
+                            <div class="d-flex">
+                                <p class="font-weight-bold mb-0" style="font-size: 22px;"> {{$book->title}}</p>
+                                <div class="ml-5 ">
+                                    <button style="border-radius: 10px" type="button" id="button_play" class="btn btn-success" onclick='buttonPlayPress()'>
+                                        <i class="fa fa-play"></i>
+                                      </button>
+                                </div>
+                                <div class="ml-2 ">
+                                    <button style="border-radius: 10px" type="button" id="button_pause" class="btn btn-warning" onclick='buttonStopPress()'>
+                                        <i class="fa fa-pause"></i>
+                                      </button>
+                                </div>
+                                <div class="ml-2 ">
+                                    <button style="border-radius: 10px" type="button" id="button_stop" class="btn btn-danger" onclick='buttonStopPress()'>
+                                        <i class="fa fa-stop"></i>
+                                      </button>
+                                </div>
+                            </div>
                             <p style="font-size:15px;"> By <span style="color: #81ABEA; " > {{$book->author}} </span> </p>
                             <p class="mt-0"><span class="fa fa-star @if($book->rating>=1) checked @endif"></span>
                                 <span class="fa fa-star @if($book->rating>=2) checked @endif "></span>
