@@ -264,6 +264,23 @@
                     
     </div>
     <script>
+        //ajax
+        $('#button_play').on('click',function(e){
+    e.preventDefault();
+    var time=time();
+    $.ajax({
+        type:"get",
+        url:"/books/start/"+time+"/"+{{$book->id}},
+        data: $('#button_play').serialize(),
+        success: function(response){   
+        console.log(response)
+        },
+        error: function(error){
+            console.log(error)
+        }
+    });
+});
+        //ajax
         // Set the date we're counting down to
         var countDownDate = new Date("Jun 26, 2021 15:19:03").getTime();
         
