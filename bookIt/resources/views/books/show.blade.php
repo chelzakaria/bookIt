@@ -42,19 +42,22 @@
                             <div class="d-flex">
                                 <p class="font-weight-bold mb-0" style="font-size: 22px;"> {{$book->title}}</p>
                                 <div class="ml-5 ">
-                                    <button style="border-radius: 10px" type="button" id="button_play" class="btn btn-success" onclick='buttonPlayPress()'>
+                                    <button style="border-radius: 20px" type="button" id="button_play" class="btn btn-success" onclick="start()">
                                         <i class="fa fa-play"></i>
                                       </button>
                                 </div>
                                 <div class="ml-2 ">
-                                    <button style="border-radius: 10px" type="button" id="button_pause" class="btn btn-warning" onclick='buttonStopPress()'>
+                                    <button style="border-radius: 20px" type="button" id="button_pause" class="btn btn-warning" onclick='buttonStopPress()'>
                                         <i class="fa fa-pause"></i>
                                       </button>
                                 </div>
                                 <div class="ml-2 ">
-                                    <button style="border-radius: 10px" type="button" id="button_stop" class="btn btn-danger" onclick='buttonStopPress()'>
+                                    <button style="border-radius: 20px" type="button" id="button_stop" class="btn btn-danger" onclick='buttonStopPress()'>
                                         <i class="fa fa-stop"></i>
                                       </button>
+                                </div>
+                                <div class="ml-3 mt-2 font-weight-bold" id="demo">
+                                 
                                 </div>
                             </div>
                             <p style="font-size:15px;"> By <span style="color: #81ABEA; " > {{$book->author}} </span> </p>
@@ -260,4 +263,48 @@
         </div>
                     
     </div>
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Jun 26, 2021 15:19:03").getTime();
+        
+        // Update the count down every 1 second
+        
+        var x;
+          
+        function myVar() {
+        
+        // Get today's date and time
+        var now = new Date().getTime();
+          
+        // Find the distance between now and the count down date
+        var distance = -countDownDate + now;
+          
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          
+        // Output the result in an element with id="demo"
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+          
+        // If the count down is over, write some text 
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+        }
+        function start(){
+          
+          x = setInterval(myVar, 1000);
+          
+        }
+        
+        function stopColor() {
+          countDownDate=new Date().getTime()
+        clearInterval(x);
+        
+        }
+        </script>
 @endsection
