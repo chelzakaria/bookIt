@@ -42,9 +42,11 @@
                             <div class="d-flex">
                                 <p class="font-weight-bold mb-0" style="font-size: 22px;"> {{$book->title}}</p>
                                 <div class="ml-5 ">
-                                    <button style="border-radius: 20px" type="button" id="button_play" class="btn btn-success" onclick="start()">
+                                    <form id="play">
+                                    <button type="submit" style="border-radius: 20px" type="button" id="button_play" class="btn btn-success" onclick="start()">
                                         <i class="fa fa-play"></i>
                                       </button>
+                                    </form>
                                 </div>
                                 <div class="ml-2 ">
                                     <button style="border-radius: 20px" type="button" id="button_pause" class="btn btn-warning" onclick='buttonStopPress()'>
@@ -265,18 +267,21 @@
     </div>
     <script>
         //ajax
-        $('#button_play').on('click',function(e){
-    e.preventDefault();
+        $('#play').on('submit',function(e){
+           
     var time=time();
+    e.preventDefault();
     $.ajax({
         type:"get",
-        url:"/books/start/"+time+"/"+{{$book->id}},
+        url:"/books/start/"+time+"/"+{{$book->user_id}}+"/"+{{$book->id}} ,
         data: $('#button_play').serialize(),
         success: function(response){   
-        console.log(response)
+            console.log(url)
+
         },
         error: function(error){
-            console.log(error)
+          
+            console.log(url)
         }
     });
 });
