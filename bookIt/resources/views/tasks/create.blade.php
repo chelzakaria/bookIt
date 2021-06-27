@@ -10,6 +10,20 @@
                             font-size: 16px;
                             line-height: 20px;
                           }
+                          .custom-checkbox {
+                            position: absolute;
+                            
+                            }
+
+                            .custom-checkbox-input {
+                            display: none;
+                            }
+
+                            
+
+ 
+
+
                     </style>
                 <div class="col">
                     <div class="container py-3">
@@ -92,12 +106,15 @@
                                             </div>
                                         </div>
                                         <div class="col-4">
-                                            <div class="form-group my-2 ml-3">
+                                     
 
-                                                <input type="checkbox" checked data-toggle="toggle" data-onstyle="success" name="notification" >
-                                                <label for="">&nbsp; Alert</label>
-
-                                            </div>
+                                              <div class="form-group mt-2">
+                                                <label class="custom-checkbox">
+                                             
+                                                    <input id="chekcbox-input" type="hidden" name="notification" value="true">
+                                                    <span class="custom-checkbox-text"><img id="checkbox-img" style="cursor: pointer" src="/images/icons/alert_on_icon.svg" alt=""> &nbsp;  Alert</span>
+                                                  </label>
+                                              </div>
                                         </div>
                                     </div>
                                          
@@ -130,6 +147,20 @@
             </div>
                         
         </div>
+        <script>
+              $(document).ready(function() {
+                $("#checkbox-img").click(function() {
+                    if ($("#chekcbox-input").val()=="true") {
+                        $("#checkbox-img").attr("src","/images/icons/alert_off_icon.svg");
+                       
+                       $("#chekcbox-input").val('false')
+                    } else {
+                        $("#checkbox-img").attr("src","/images/icons/alert_on_icon.svg");
+                        $("#chekcbox-input").val('true')
+                    }
+                });
+            });
+        </script>
     @endsection  
 
   

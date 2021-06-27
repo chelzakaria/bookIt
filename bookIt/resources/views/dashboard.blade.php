@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="row">&nbsp;</div>
-                                        <div class="row mb-1 pb-0 pl-3" ><span  style="font-weight: 700; font-size: 30px;">3</span></div>
+                                        <div class="row mb-1 pb-0 pl-3" ><span  style="font-weight: 700; font-size: 30px;"> {{$books->where('read', '1')->count()}} </span></div>
                                         <div class="row"><span style="font-weight: 600; font-size: 11px; color: #6f6d6d;">Books read</span></div>
                                     </div>
                                     <div class="col mr-4">

@@ -94,10 +94,17 @@
                                         <div class="col-4">
                                             <div class="form-group my-2 ml-3">
 
-                                                <input type="checkbox" @if($task->notification=="on")
-                                                    checked
-                                                @endif data-toggle="toggle" data-onstyle="success" name="notification" >
-                                                <label for="">&nbsp; Alert</label>
+                                               
+                                                <label class="custom-checkbox">
+                                                    {{-- <input id="false" type="hidden" name="notification" value="False" />
+                                                    <input class="custom-checkbox-input"  id="true" name="notification" value="True" type="checkbox"> --}}
+                                                    <input id="chekcbox-input" type="hidden" name="notification" @if($task->notification=="on") value="true" @else value="false" @endif>
+                                                    <span class="custom-checkbox-text"><img id="checkbox-img" style="cursor: pointer"  src="@if($task->notification=="on")
+                                                        /images/icons/alert_on_icon.svg
+                                                        @else
+                                                        /images/icons/alert_off_icon.svg
+                                                        @endif" alt=""> &nbsp;  Alert</span>
+                                                  </label>
 
                                             </div>
                                         </div>
@@ -132,6 +139,20 @@
             </div>
                         
         </div>
+        <script>
+            $(document).ready(function() {
+              $("#checkbox-img").click(function() {
+                  if ($("#chekcbox-input").val()=="true") {
+                      $("#checkbox-img").attr("src","/images/icons/alert_off_icon.svg");
+                     
+                     $("#chekcbox-input").val('false')
+                  } else {
+                      $("#checkbox-img").attr("src","/images/icons/alert_on_icon.svg");
+                      $("#chekcbox-input").val('true')
+                  }
+              });
+          });
+      </script>
     @endsection  
 
   
