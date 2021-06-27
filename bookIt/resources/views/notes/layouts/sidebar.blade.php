@@ -10,7 +10,7 @@
     <img  id="large_button"  class="d-none d-md-inline mb-4 mt-3"  src="/images/logos/logo_bottom.svg" alt="" style="width:75%; height:auto;cursor: pointer;">
     <img   class=" d-none  d-sm-block  d-md-none d-block d-sm-none mb-4 mt-1"  src="/images/logos/logo_sidebar.svg" alt="" style="width:37px; height:auto;cursor: pointer;">
         <div class="mb-4 mt-4 hv " >
-            <a style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href="#"><img class="mr-3" src="/images/icons/dashboard_icon.svg" alt="" style="height:auto; width:26px;" > <span class="d-none d-md-inline">Dashboard</span></a>
+            <a style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href="{{route('dashboard')}}"><img class="mr-3" src="/images/icons/dashboard_icon.svg" alt="" style="height:auto; width:26px;" > <span class="d-none d-md-inline">Dashboard</span></a>
         </div>
         <div class="mb-4 hv ">
             <a   style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href=" {{route('profile')}} "><img class="mr-3 " src="/images/icons/profile_icon.svg" alt="" style="height:auto; width:26px;"  > <span class="d-none d-md-inline">Profile</span></a>
@@ -49,7 +49,7 @@
         <div class="sticky-top">
      <img id="small_button"  class=" mb-4 mt-1"  src="/images/logos/logo_sidebar.svg" alt="" style="width:37px; height:auto; cursor: pointer;">
          <div class="mb-4 mt-4 hv " >
-             <a style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href="#"><img class="mr-3" src="/images/icons/dashboard_icon.svg" alt="" style="height:auto; width:26px;" >    </a>
+             <a style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href="{{route('dashboard')}}"><img class="mr-3" src="/images/icons/dashboard_icon.svg" alt="" style="height:auto; width:26px;" >    </a>
          </div>
          <div class="mb-4 hv ">
              <a   style="font-weight: 400; color:#fff; font-size:14px; text-decoration:none;" href=" {{route('profile')}} "><img class="mr-3 " src="/images/icons/profile_icon.svg" alt="" style="height:auto; width:26px;"  >  </a>

@@ -40,14 +40,15 @@ class TaskController extends Controller
     }
     public function store(Request $request)
     {
-
+         
         
-        if($request->has('notification')){
+        if($request->notification==="true"){
             $notification = "on";
         }
-        else {
+        else if($request->notification==="false") {
             $notification = "off";
         }
+        
 
         
         $this->validate($request,[
@@ -104,10 +105,10 @@ class TaskController extends Controller
     public function update(Request $request, $id)
     {
 
-        if($request->has('notification')){
+        if($request->notification==="true"){
             $notification = "on";
         }
-        else {
+        else if($request->notification==="false") {
             $notification = "off";
         }
         

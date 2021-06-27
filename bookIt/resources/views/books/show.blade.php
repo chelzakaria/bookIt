@@ -36,7 +36,7 @@
                             <div style="height:250px;width:auto">
                                 <img class="card-img-top" style="border-radius:10px; width:100%;height:100%" src="/storage/cover_images/{{$book->cover}}" >
                             </div>
-
+                           
                         </div>
                         <div class="col">
                             <div class="d-flex">
@@ -93,7 +93,14 @@
                         <!---->
                         </div>
                          <div class="row mt-5">
-                            <div class="col-3 d-none d-lg-inline"></div>
+                            <div class="col-3 d-none d-lg-inline text-center">
+                                <label class="custom-checkbox">
+                                             
+                                    <input id="chekcbox-input" type="hidden" name="read" @if($book->read) value="true" @else value="false" @endif>
+                                    <span class="custom-checkbox-text"><img id="checkbox-img" style="cursor: pointer" src="@if($book->read) /images/icons/read_true_icon.svg  @else /images/icons/read_false_icon.svg  @endif" alt=""  ></span>
+                                    <p class="mt-2">You read it ? </p>
+                                  </label>
+                            </div>
                             <div class="col">
                                 <hr style="border-top: 1px solid #00000023;" class="mb-3 mt-4">
                                 <div class="row text-center">
@@ -173,7 +180,7 @@
                                      </div>
                                     @endforeach
                                 @else
-                                    <p>No notes found</p>
+                                    <p class="mx-auto">This book has no notes.</p>
                                 @endif
                               
                             
@@ -230,7 +237,7 @@
                                      </div>
                                     @endforeach
                                 @else
-                                    <p>No notes found</p>
+                                    <p class="mx-auto">This book has no tasks.</p>
                                 @endif
                               
                             
@@ -330,4 +337,18 @@
         
         }
         </script>
+        <script>
+            $(document).ready(function() {
+              $("#checkbox-img").click(function() {
+                  if ($("#chekcbox-input").val()=="true") {
+                      $("#checkbox-img").attr("src","/images/icons/read_false_icon.svg");
+                     
+                     $("#chekcbox-input").val('false')
+                  } else {
+                      $("#checkbox-img").attr("src","/images/icons/read_true_icon.svg");
+                      $("#chekcbox-input").val('true')
+                  }
+              });
+          });
+      </script>
 @endsection

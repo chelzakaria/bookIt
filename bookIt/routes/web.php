@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Models\Task;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingController;
 
 /*
@@ -127,3 +128,7 @@ Route::get('/books/start/{id}/{id2}/{id3}', function ($id,$id2,$id3) {
       
     ]);
 })->name('book.start'); 
+
+
+//dashboard 
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
