@@ -119,7 +119,7 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 //counter time
 Route::get('/books/start/{id}/{id2}/{id3}', function ($id,$id2,$id3) {
-   dd($id);
+  
     DB::table('time_reads')->insert([
         'created_at' => $id,
         'user_id'=>$id2,

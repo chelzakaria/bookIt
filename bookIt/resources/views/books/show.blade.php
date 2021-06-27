@@ -268,12 +268,13 @@
     <script>
         //ajax
         $('#play').on('submit',function(e){
-           
+    var idb=<?php $book->user_id ?>
+    var idu=<?php $book->id      ?>
     var time=time();
     e.preventDefault();
     $.ajax({
         type:"get",
-        url:"/books/start/"+time+"/"+{{$book->user_id}}+"/"+{{$book->id}} ,
+        url:"/books/start/"+time+"/"+idb+"/"+idu ,
         data: $('#button_play').serialize(),
         success: function(response){   
             console.log(url)
