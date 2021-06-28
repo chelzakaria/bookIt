@@ -43,9 +43,10 @@
                                 <p class="font-weight-bold mb-0" style="font-size: 22px;"> {{$book->title}}</p>
 
                                 <div class="ml-5">
-                                    <form id="play" method="POST">
+                                    <form id="play">
+                                        <span id="book_id" style="visibility: hidden">{{$book->id}}</span>
                                         @csrf
-                                    <button type="submit" style="border-radius: 20px" type="button" id="button_play" class="btn btn-success" onclick="start()">
+                                     <button type="submit" style="border-radius: 20px"   id="button_play" class="btn btn-success" >
 
                                         <i class="fa fa-play"></i>
                                     </button>
@@ -282,11 +283,14 @@
  
         $('#play').on('submit',function(e){
             e.preventDefault();
-
+ 
+            let book_id = $('#book_id').text();
+ 
     $.ajax({
         
         type:"post",
-        url:"/books/start/",
+        url:"/read/"+book_id,
+         
         data: $('#play').serialize(),
         success: function(response){   
             console.log(response)
@@ -303,7 +307,7 @@
         var countDownDate = new Date("Jun 26, 2021 15:19:03").getTime();
         
         // Update the count down every 1 second
-        /*
+        //
         var x;
           
         function myVar() {

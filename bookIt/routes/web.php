@@ -17,6 +17,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\SettingController;
 
 /*
@@ -120,7 +121,7 @@ Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPa
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 //counter time
-Route::post('/books/start', [ReadingController::class, 'store'])->name('book.start'); 
+Route::post('/read/{id}', [ReadingController::class, 'store'])->name('book.start'); 
 
 
 //dashboard 

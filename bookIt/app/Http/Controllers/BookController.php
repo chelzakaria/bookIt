@@ -132,7 +132,7 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->hasFile('cover'))
+         if($request->hasFile('cover'))
         {
             $fileNameWithExt = $request->file('cover')->getClientOriginalName();
 
