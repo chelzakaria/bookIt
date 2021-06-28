@@ -49,7 +49,7 @@
                                      <button type="submit" style="border-radius: 20px"   id="button_play" class="btn btn-success" >
 
                                         <i class="fa fa-play"></i>
-                                      </button>
+                                    </button>
                                     </form>
                                 </div>
                                 <div class="ml-2 ">
@@ -283,7 +283,9 @@
  
         $('#play').on('submit',function(e){
             e.preventDefault();
+ 
             let book_id = $('#book_id').text();
+ 
     $.ajax({
         
         type:"post",
