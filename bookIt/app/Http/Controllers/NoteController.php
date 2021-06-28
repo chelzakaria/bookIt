@@ -28,19 +28,33 @@ class NoteController extends Controller
             'books' =>$books,
             'setting' => $Setting,
             'notifications' => $notifications,
-            'tasks' => $tasks
+            'tasks' => $tasks,
+            'selected' => "All"
         ]);
     }
 
     public function search(Request $request)
     {
-        $notes = Note::where('user_id', auth()->user()->id)->where('type','LIKE','%'.$request->input('word').'%')->get();
+        // dd($request->input('word'));
+        $notifications = Notification::where('user_id', Auth::user()->id)->get();  
+        $Setting = Setting::where('user_id', Auth::user()->id)->first();  
+        if($request->input('word')!=="All")
+       {
+        $notes = Note::where('user_id', auth()->user()->id)->where('type','LIKE','%'.$request->input('word').'%')->orderBy('updated_at', 'desc')->get();
+       }
+       else {
+        $notes = Note::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
 
+       }
         $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
 
         return view('notes.index',[
             'notes' => $notes,
-            'books' =>$books
+            'books' =>$books,
+            'notifications' => $notifications,
+            'setting' => $Setting,
+            'selected' => $request->input('word')
+
         ]);
      }
  
