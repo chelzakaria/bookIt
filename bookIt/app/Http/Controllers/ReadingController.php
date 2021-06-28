@@ -5,15 +5,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\TimeRead;
 use Illuminate\Http\Request;
-
 class ReadingController extends Controller
 {
-   public function store()
-   {
-    TimeRead::create([
-        'user_id' => 2,
-         'book_id' =>2,
-         'created_at' => time()
-        ]);
-   }
+   public function store(){
+   DB::table('time_reads')->insert([
+    'created_at' => time(),
+    'user_id' =>1,
+    'book_id' =>1
+ 
+]);
+}
 }

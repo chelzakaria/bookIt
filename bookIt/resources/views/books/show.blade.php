@@ -48,7 +48,7 @@
                                     <button type="submit" style="border-radius: 20px" type="button" id="button_play" class="btn btn-success" onclick="start()">
 
                                         <i class="fa fa-play"></i>
-                                      </button>
+                                    </button>
                                     </form>
                                 </div>
                                 <div class="ml-2 ">
@@ -281,6 +281,7 @@
         
  
         $('#play').on('submit',function(e){
+            e.preventDefault();
 
     $.ajax({
         
