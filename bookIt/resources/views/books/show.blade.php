@@ -41,10 +41,12 @@
                         <div class="col">
                             <div class="d-flex">
                                 <p class="font-weight-bold mb-0" style="font-size: 22px;"> {{$book->title}}</p>
+
                                 <div class="ml-5">
                                     <form id="play" method="POST">
                                         @csrf
                                     <button type="submit" style="border-radius: 20px" type="button" id="button_play" class="btn btn-success" onclick="start()">
+
                                         <i class="fa fa-play"></i>
                                       </button>
                                     </form>
@@ -274,8 +276,10 @@
                     
     </div>
     <script>
+ 
         //ajax
         
+ 
         $('#play').on('submit',function(e){
 
     $.ajax({
@@ -284,12 +288,12 @@
         url:"/books/start/",
         data: $('#play').serialize(),
         success: function(response){   
-            console.log(url)
+            console.log(response)
 
         },
         error: function(error){
           
-            console.log(url)
+            console.log(error)
         }
     });
 });
