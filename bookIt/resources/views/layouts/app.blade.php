@@ -46,6 +46,9 @@
       </script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
+     .btn:focus {
+  box-shadow: none;
+}
       .ck-editor__editable_inline {
     min-height: 300px !important;
 }

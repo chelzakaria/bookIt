@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Note;
+use App\Models\Notification;
+use App\Models\Setting;
 use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -87,7 +90,9 @@ class BookController extends Controller
      */
     public function show($id)
     {
-       
+            $notifications = Notification::where('user_id', Auth::user()->id)->get();  
+            $Setting = Setting::where('user_id', Auth::user()->id)->first();  
+
             $book = DB::table('books')->find($id);
             $notes = Note::where('book_id', $id)->orderBy('updated_at', 'desc')->get();
             $tasks = Task::where('book_id', $id)->orderBy('updated_at', 'desc')->get();
@@ -102,7 +107,9 @@ class BookController extends Controller
                 'notes' => $notes,
                 'tasks' => $tasks,
                 'count_tasks' =>$count_tasks,
-                'count_notes' =>$count_notes
+                'count_notes' =>$count_notes,
+                'notifications' => $notifications,
+                'setting' => $Setting,
             ]);
       
     }
@@ -200,6 +207,24 @@ class BookController extends Controller
       
         $book->delete();
          return redirect('books');
+    }
+
+    public function read($id)
+    {
+        $book = Book::find($id);
+        if(auth()->user()->id !== $book->user_id)
+        {
+            return abort(403, 'Unauthorized action.');
+        } 
+        if($book->read){
+            $book->read = 0;
+        }
+        else 
+            if(!$book->read) {
+            $book->read = 1;
+        }
+        $book->save();
+
     }
 
 }

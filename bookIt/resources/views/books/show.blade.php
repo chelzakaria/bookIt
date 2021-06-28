@@ -99,9 +99,16 @@
                          <div class="row mt-5">
                             <div class="col-3 d-none d-lg-inline text-center">
                                 <label class="custom-checkbox">
-                                             
                                     <input id="chekcbox-input" type="hidden" name="read" @if($book->read) value="true" @else value="false" @endif>
-                                    <span class="custom-checkbox-text"><img id="checkbox-img" style="cursor: pointer" src="@if($book->read) /images/icons/read_true_icon.svg  @else /images/icons/read_false_icon.svg  @endif" alt=""  ></span>
+                                    <span id="book_id" style="visibility: hidden">{{$book->id}}</span>
+                                    <form id="read">
+                                         @csrf
+                                     <button type="submit"  id="button_read" class="btn" >
+                                        <span class="custom-checkbox-text"><img id="checkbox-img" style="cursor: pointer" src="@if($book->read) /images/icons/read_true_icon.svg  @else /images/icons/read_false_icon.svg  @endif" alt=""  ></span>
+                                    </button>
+                                    </form>
+                                    
+                                    
                                     <p class="mt-2">You read it ? </p>
                                   </label>
                             </div>
@@ -141,17 +148,21 @@
                                          <div class="card mb-5 " style="width: 18rem; height:9rem;border-radius:10px;background:
                                          @switch($note->type)
                                             @case("Quote")
-                                                #B8BFFA;
+                                            {{$setting->quote_color}}
+
                                                 @break
 
                                             @case("Idea")
-                                            #F6B9B9;
+                                            {{$setting->idea_color}}
+
                                                 @break
                                                 @case("Thought")
-                                                #16e56957;
+                                                {{$setting->thought_color}}
+
                                                 @break
                                             @default
-                                               #FEFAAF;
+                                            {{$setting->uncategorized_color}}
+
                                         @endswitch
                                          ">
                                          
@@ -199,17 +210,17 @@
                                         <div class="col-md-12">
                                             
                                          <div class="card mb-5 " style="width: 18rem; height:9rem;border-radius:10px;background:
-                                         @switch($task->task_importance)
-                                            @case('high')
-                                                #EBB2B6
-                                                @break
-                                            @case('medium')
-                                                #FAF8C7
-                                                @break
-                                            @case('low')
-                                                #AFF0CF
-                                                @break
-                                                            @endswitch
+                                        @switch($task->task_importance)
+                                                @case('high')
+                                                    $setting->high_color
+                                                    @break
+                                                @case('medium')
+                                                    {{$setting->medium_color}}
+                                                    @break
+                                                @case('low')
+                                                    {{$setting->low_color}}
+                                                    @break
+                                              @endswitch
                                         ;">
                                          
                                            
@@ -253,12 +264,38 @@
                                 <hr style="border-top: 1px solid #00000023;" class="mb-2 mt-4">
                                 <button type="button" class="btn d-inline"> <a href="/books/{{$book->id}}/edit"  style="text-decoration: none; color:#fff;"><img src="/images/icons/edit_icon.svg" alt="" style="width: 80%; height:auto;"></a> </button>
 
-                                <form class="d-inline" action="{{route('books.destroy',  $book->id)}}" method="post">
-                                 @csrf
-                                 @method('DELETE')
-                                 <button type="submit" class="btn"> <img src="/images/icons/delete_icon.svg" alt="" style="width: 80%; height:auto;">  </button>
+                                 
+                                 
+                                  <button data-toggle="modal" data-target="#exampleModal" type="submit" class="btn"> <img src="/images/icons/delete_icon.svg" alt="" style="width: 80%; height:auto;">  </button>
                             
-                                 </form>
+ 
+                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this book?</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                
+                                            <div class="modal-footer">
+                                                <div class="row mt-3">
+                                                    <div class="col">
+                                                        <button type="button" class="btn " data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;">Cancel</button>
+                                                    </div>
+                                                    <div class="col">
+                                                        <form class="d-inline" action="{{route('books.destroy',  $book->id)}}" method="post">
+                                                            @csrf @method('DELETE')
+                                
+                                                            <button type="submit" name="create" class="btn btn-danger float-right" style="; font-weight: 700;">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                             </div>
@@ -359,5 +396,28 @@
                   }
               });
           });
+
+          // read book
+          $('#read').on('submit',function(e){
+            e.preventDefault();
+ 
+            let book_id = $('#book_id').text();
+ 
+        $.ajax({
+        
+        type:"post",
+        url:"/book/read/"+book_id,
+         
+        data: $('#read').serialize(),
+        success: function(response){   
+            console.log(response)
+
+        },
+        error: function(error){
+          
+            console.log(error)
+        }
+    });
+})
       </script>
 @endsection
