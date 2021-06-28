@@ -9,6 +9,6 @@ class TimeRead extends Model
 {
     use HasFactory;
     protected $fillable = [
-        
+        'user_id', 'book_id', 'created_at', 'reading_time'
     ];
 }
