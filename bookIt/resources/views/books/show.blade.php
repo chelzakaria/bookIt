@@ -41,8 +41,9 @@
                         <div class="col">
                             <div class="d-flex">
                                 <p class="font-weight-bold mb-0" style="font-size: 22px;"> {{$book->title}}</p>
-                                <div class="ml-5 ">
-                                    <form id="play">
+                                <div class="ml-5">
+                                    <form id="play" method="POST">
+                                        @csrf
                                     <button type="submit" style="border-radius: 20px" type="button" id="button_play" class="btn btn-success" onclick="start()">
                                         <i class="fa fa-play"></i>
                                       </button>
@@ -274,15 +275,14 @@
     </div>
     <script>
         //ajax
+        
         $('#play').on('submit',function(e){
-    var idb=<?php $book->user_id ?>
-    var idu=<?php $book->id      ?>
-    var time=time();
-    e.preventDefault();
+
     $.ajax({
-        type:"get",
-        url:"/books/start/"+time+"/"+idb+"/"+idu ,
-        data: $('#button_play').serialize(),
+        
+        type:"post",
+        url:"/books/start/",
+        data: $('#play').serialize(),
         success: function(response){   
             console.log(url)
 
@@ -298,7 +298,7 @@
         var countDownDate = new Date("Jun 26, 2021 15:19:03").getTime();
         
         // Update the count down every 1 second
-        
+        /*
         var x;
           
         function myVar() {

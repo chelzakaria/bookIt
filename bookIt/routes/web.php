@@ -119,15 +119,7 @@ Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPa
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 //counter time
-Route::get('/books/start/{id}/{id2}/{id3}', function ($id,$id2,$id3) {
-  
-    DB::table('time_reads')->insert([
-        'created_at' => $id,
-        'user_id'=>$id2,
-        'book_id'=>$id3
-      
-    ]);
-})->name('book.start'); 
+Route::post('/books/start', [ReadingController::class, 'store'])->name('book.start'); 
 
 
 //dashboard 
