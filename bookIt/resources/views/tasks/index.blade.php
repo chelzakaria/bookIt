@@ -191,7 +191,7 @@ function unwrap(node) {
                                 badge-success
                                 @endif
                                 py-1 px-2 mt-1">
-                                    {{\Carbon\Carbon::parse($task->end_date)->rawFormat('D d')}}
+                                    {{\Carbon\Carbon::parse($task->end_date)->rawFormat('d M')}}
                                 </span>
                             </div>
                         </div>
@@ -265,7 +265,7 @@ function unwrap(node) {
                                 badge-success
                                 @endif
                                 py-1 px-2 mt-1">
-                                    {{\Carbon\Carbon::parse($task->end_date)->rawFormat('D d')}}
+                                    {{\Carbon\Carbon::parse($task->end_date)->rawFormat('d M')}}
                                 </span>
                              </div>
                         </div>
@@ -337,7 +337,7 @@ function unwrap(node) {
                                 badge-success
                                 @endif
                                 py-1 px-2 mt-1">
-                                    {{\Carbon\Carbon::parse($task->end_date)->rawFormat('D d')}}
+                                    {{\Carbon\Carbon::parse($task->end_date)->rawFormat('d M')}}
                                 </span>
                             </div>
                         </div>

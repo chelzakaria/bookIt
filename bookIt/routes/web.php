@@ -16,6 +16,7 @@ use App\Models\Task;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SettingController;
 
 /*
@@ -132,3 +133,7 @@ Route::get('/books/start/{id}/{id2}/{id3}', function ($id,$id2,$id3) {
 
 //dashboard 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+//notification
+Route::post('/tasks/{id}', [NotificationController::class, 'store'])->name('notification.show');
+

@@ -42,7 +42,7 @@ class ProfileController extends Controller
 
             $path = $request->file('profile_image')->storeAs('public/profile_images', $fileNameToStore);
         }else {
-            $fileNameToStore = 'no_image.png';
+            $fileNameToStore = Auth::user()->profile_image;
         }
 
 
@@ -55,7 +55,7 @@ class ProfileController extends Controller
         && auth()->user()->firstName===$request->fName 
         &&auth()->user()->lastName===$request->lName 
         && auth()->user()->username===$request->username 
-        && $fileNameToStore === 'no_image.png'){
+        && $fileNameToStore === Auth::user()->profile_image){
             return back();
         }
 
@@ -65,7 +65,7 @@ class ProfileController extends Controller
 
         User::find(auth()->user()->id)->update([
             'firstName'=> $request->fName,
-            'firstName'=> $request->fName,
+            'lastName'=> $request->lName,
             'email'=> $request->email,
             'username' => $request->username,
             'profile_image' => $fileNameToStore

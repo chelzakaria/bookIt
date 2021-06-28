@@ -116,9 +116,67 @@
                        
                     </div>
                 </div>
+                <p style="font-weight: 700; font-size: 22px;" class="mt-4">
+                    Tasks activity
+                </p>
+                <div class="container ">
+                    <canvas class="mx-auto" id="myChart" style="width:100%;max-width:900px"></canvas>
+
+                </div>
             </div>
         </div>
     </div>
+    <script>
+    
+        let myChart = document.getElementById('myChart');
+        const labels = [
+                        '23',
+                        '24',
+                        '25',
+                        '26',
+                        '27',
+                        '28',
+                        '1st',
+                        '2nd'
+                        ];
+            const data = {
+            labels: labels,
+            datasets: [{
+                label: 'not started',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45, 100],
+            },{
+                label: 'in progress',
+                backgroundColor: 'rgb(25, 99, 132)',
+                borderColor: 'rgb(25, 99, 132)',
+                data: [0, 10, 15, 2, 20, 30, 45, 10],
+            }
+            ], 
+            };
+   
+      
+      let graph = new Chart(myChart, {
+        type:'line',  
+        data,
+        options: {
+        plugins: {
+            title: {
+                display: true,
+                // text: 'Custom Chart Title'
+            },
+            legend: {
+                display: true,
+               
+                    
+                 
+            }
+        }
+    }
+      });
+      </script>
+</div>
 
     @endsection
-</div>
+    
+

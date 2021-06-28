@@ -81,11 +81,17 @@ class TaskController extends Controller
             'task_id' => $task->id,
             'user_id' => Auth::user()->id,
              'status' => $task->status,
-             'due_date' => $task->end_date
+             'due_date' => $task->end_date,
+             'seen' => 0
             ]);
     }
     
-
+    DB::table('task_histories')->insert([
+        'task_id' => $task->id,
+        'old_status' => $request->status,
+        'new_status' =>$request->status,
+        'created_at' => now(),
+    ]);
 
 
        return redirect('tasks');
@@ -129,21 +135,36 @@ class TaskController extends Controller
         
 
         $task = Task::find($id);  
+
+        DB::table('task_histories')->insert([
+            'task_id' => $task->id,
+            'old_status' => $task->status,
+            'new_status' =>$request->status,
+            'created_at' => now(),
+        ]);
+
+
         $task->task_name = $request->input('task_name');
         $task->status = $request->input('status');
         $task->task_importance = $request->input('importance');
         $task->end_date = $request->input('end_date');
         $task->task_description = $request->input('description');
         $task->notification = $notification;
+        $task->save();
 
-      
+        if($notification=="on"){
+            
+         $Notif = Notification::where('task_id', $id)->first();
+           $Notif->due_date =  $task->end_date;
+           $Notif->save();
+            }
+    
 
 
 
         
     
 
-        $task->save();
 
 
         return redirect('tasks');
