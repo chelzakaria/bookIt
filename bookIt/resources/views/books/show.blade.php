@@ -318,31 +318,11 @@
                  
     </div>
     <script>
- 
-        //ajax
-        
- 
-        $('#play').on('submit',function(e){
-            e.preventDefault();
-            let book_id = $('#book_id').text();
-            let timeid = $('#idtime').text();
-    $.ajax({ 
-        type:"post",
-        url:"/read/"+book_id, 
-        data: $('#play').serialize(),
-        success: function(response){   
-            console.log(response)
-           
-        setInterval(
-        function () {
+ function str(){
+    var x=$('#gettime').text()
             var date0=new Date().getTime();
-            var x = $("#gettime").text();
-        
-         //var x="2021-06-29 00:51:26"
             var date2=new Date(x).getTime()
             var distance=date0-date2-3600000;
-            //var counter=parseInt(distance)-3600000
-            //alert(counter)
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -350,8 +330,37 @@
         var newcontent=  days + "d " + hours + "h "
         + minutes + "m " + seconds + "s "; 
     $('#up').html(newcontent);
-      
-
+        $('#demo').html(newcontent);
+ }
+ setInterval(str, 1000);    
+          
+  
+          
+ 
+        $('#play').on('submit',function(e){
+            e.preventDefault();
+            let book_id = $('#book_id').text();
+            let timeid = $('#idtime').text();
+           
+    $.ajax({ 
+        type:"post",
+        url:"/read/"+book_id, 
+        data: $('#play').serialize(),
+        success: function(response){   
+            console.log(response)
+              
+        setInterval(
+        function () {
+            var date0=new Date().getTime();
+            var date2=new Date(x).getTime()
+            var distance=date0-date2-3600000;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        var newcontent=  days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s "; 
+    $('#up').html(newcontent);
         $('#demo').html(newcontent);
         }, 1000);  
 
@@ -419,10 +428,7 @@ function () {
         }*/
         </script>
         <script>
-    
-            $(function(){
-                document.getElementById('demo').innerHTML=document.getElementById('up').innerHTML;
-            })
+
             $(document).ready(function() {
               $("#checkbox-img").click(function() {
                   if ($("#chekcbox-input").val()=="true") {
