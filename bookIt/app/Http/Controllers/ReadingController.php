@@ -19,6 +19,6 @@ class ReadingController extends Controller
         ]);
 
     }
+
  
-}
 }

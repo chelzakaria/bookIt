@@ -123,7 +123,6 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 //counter time
 Route::post('/read/{id}', [ReadingController::class, 'store'])->name('book.start'); 
 
-
 //dashboard 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

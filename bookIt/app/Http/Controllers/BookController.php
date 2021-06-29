@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Note;
 use App\Models\Task;
+use App\Models\TimeRead;
 
 class BookController extends Controller
 {
@@ -93,6 +94,13 @@ class BookController extends Controller
             $tasks = Task::where('book_id', $id)->orderBy('updated_at', 'desc')->get();
             $count_tasks = Task::where('user_id', auth()->user()->id)->where('book_id','=',$id)->count();
             $count_notes = Note::where('user_id', auth()->user()->id)->where('book_id','=',$id)->count();
+            $reads=TimeRead::all();
+        if($reads->isEmpty()){
+            $reads=0;
+            }
+            else{
+                $reads=TimeRead::all()->last();
+            }
             if(auth()->user()->id !== $book->user_id)
             {
                 return abort(403, 'Unauthorized action.');
@@ -102,7 +110,8 @@ class BookController extends Controller
                 'notes' => $notes,
                 'tasks' => $tasks,
                 'count_tasks' =>$count_tasks,
-                'count_notes' =>$count_notes
+                'count_notes' =>$count_notes,
+                'reads'=>$reads
             ]);
       
     }
