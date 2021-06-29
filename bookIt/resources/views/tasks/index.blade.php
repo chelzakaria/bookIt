@@ -168,8 +168,33 @@ function unwrap(node) {
                           
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                               <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
-                                <a class="btn dropdown-item" href="{{route('tasks.destroy', $task->id)}}"> <span>Delete</span>  </a>
+                              <a data-toggle="modal" data-target="#exampleModal" class="btn dropdown-item" href="#"> <span>Delete</span>  </a>
                                
+                            </div>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this note?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                            
+                                        <div class="modal-footer">
+                                            <div class="row mt-3">
+                                                <div class="col">
+                                                    <button type="button" class="btn " data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;">Cancel</button>
+                                                </div>
+                                                <div class="col">
+                                                     
+                                                    <a class="btn btn-danger " href="{{route('tasks.destroy', $task->id)}}" style="; font-weight: 700;"> <span>Delete</span>  </a>
+                                                     
+                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                           </div>
                             <div class="card-body p-2">
@@ -203,7 +228,7 @@ function unwrap(node) {
                         @endif
                         @endforeach
                          
-                <a href="{{route('createtask')}}" style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
+                <a href="{{route('tasks.create', 'not started')}}" style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
                 </div></a>
                         
                 </div>
@@ -245,8 +270,33 @@ function unwrap(node) {
                               
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                   <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
-                                    <a class="btn dropdown-item" href="{{route('tasks.destroy', $task->id)}}"> <span>Delete</span>  </a>
-                                   
+                                  <a data-toggle="modal" data-target="#exampleModal" class="btn dropdown-item" href="#"> <span>Delete</span>  </a>
+                               
+                                </div>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this note?</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                
+                                            <div class="modal-footer">
+                                                <div class="row mt-3">
+                                                    <div class="col">
+                                                        <button type="button" class="btn " data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;">Cancel</button>
+                                                    </div>
+                                                    <div class="col">
+                                                         
+                                                        <a class="btn btn-danger " href="{{route('tasks.destroy', $task->id)}}" style="; font-weight: 700;"> <span>Delete</span>  </a>
+                                                         
+                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                               </div>
                             <div class="card-body p-2">
@@ -274,7 +324,7 @@ function unwrap(node) {
                         @endif
                         @endforeach
 
-                        <a href="{{route('createtask')}}" style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
+                        <a href="{{route('tasks.create', 'in progress')}}" style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
                         </div></a>
                     </div>
                     <button type="submit" id="tst2" style="visibility: hidden"></button>
@@ -314,8 +364,33 @@ function unwrap(node) {
                           
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                               <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
-                                <a class="btn dropdown-item" href="{{route('tasks.destroy', $task->id)}}"> <span>Delete</span>  </a>
+                                <a data-toggle="modal" data-target="#exampleModal" class="btn dropdown-item" href="#"> <span>Delete</span>  </a>
                                
+                            </div>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this note?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                            
+                                        <div class="modal-footer">
+                                            <div class="row mt-3">
+                                                <div class="col">
+                                                    <button type="button" class="btn " data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;">Cancel</button>
+                                                </div>
+                                                <div class="col">
+                                                     
+                                                    <a class="btn btn-danger " href="{{route('tasks.destroy', $task->id)}}" style="; font-weight: 700;"> <span>Delete</span>  </a>
+                                                     
+                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                           </div>
                             <div class="card-body p-2">
@@ -346,7 +421,7 @@ function unwrap(node) {
                         @endif
                         @endforeach
 
-                        <a href="{{route('createtask')}}" style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
+                        <a href="{{route('tasks.create', 'done')}}" style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
                         </div></a>
                         
                     </div>

@@ -80,20 +80,32 @@
                             
                         </div>
                         
-                        <form action="{{route('notes.search')}}" method="POST" role="search" >
+                        <form action="{{route('notes.search')}}" method="POST" role="search" id="search_form">
+                            @csrf
 
                         <div class="d-flex flex-row">
-                                @csrf
                                  <div class="form-group d-inline mt-0">
-                                    <select class="custom-select mb-0 mr-5"  name="word">
-                                        <option selected="true" disabled="disabled" >Filter notes</option>
-                                        <option>Quote</option>
-                                        <option>Idea</option>
-                                        <option>Thought</option>
-                                        <option>Uncategorized</option>
+                                    <select class="custom-select mb-0 mr-5"  name="word" onchange="search()">
+                                        <option  disabled="disabled" >Filter notes</option>
+                                        <option @if ($selected==="Quote")
+                                            selected="true"
+                                        @endif >Quote</option>
+                                        <option  @if ($selected==="Idea")
+                                        selected="true"
+                                    @endif >Idea</option>
+                                        <option @if ($selected==="Thought")
+                                        selected="true"
+                                    @endif>Thought</option>
+                                        <option @if ($selected==="Uncategorized")
+                                        selected="true"
+                                    @endif>Uncategorized</option>
+                                        <option @if ($selected==="All")
+                                        selected="true"
+                                    @endif >All</option>
                                     </select>
                                 </div>
-                                <button class="btn" type="submit" style="position: relative; bottom:5px"> <span class="iconify" data-inline="false" data-icon="codicon:filter-filled" style="color: #000; font-size: 30px;"></span></button>
+                                {{-- <button class="btn" type="submit" style="position: relative; bottom:5px"> <span class="iconify" data-inline="false" data-icon="codicon:filter-filled" style="color: #000; font-size: 30px;"></span></button> --}}
+                                {{-- <input type="submit" id="search_submit"    value="search" >  --}}
                             </form>
                             {{--test--}}
                    
@@ -212,7 +224,7 @@
                                      </div>
                                     @endforeach
                                 @else
-                                    <p>No notes found</p>
+                                    <p class="mx-auto">No notes found.</p>
                                 @endif
                                </div>
 
@@ -224,5 +236,13 @@
             </div>
                         
         </div>
+        <script>
+           function search(value){
+             var form = document.getElementById("search_form");
+             
+            form.submit()
+           
+           }
+        </script>
     @endsection  
  

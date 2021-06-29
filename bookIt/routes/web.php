@@ -74,7 +74,7 @@ Route::get('/notes/{id}',[App\Http\Controllers\NoteController::class, 'show']);
 Route::delete('/notes/{id}',[NoteController::class, 'destroy'])->name('notes.destroy');
 Route::get('/notes/{id}/edit',[NoteController::class, 'edit']);
 Route::post('/notes/{id}',[NoteController::class, 'update'])->name('notes.update');
-Route::post('/search', [NoteController::class, 'search'])->name('notes.search');
+Route::post('/notes', [NoteController::class, 'search'])->name('notes.search');
 
 //books
 Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books');
@@ -90,6 +90,9 @@ Route::get('/books/{id}/edit',[BookController::class, 'edit']);
 Route::post('/books/{id}',[BookController::class, 'update'])->name('books.update');
 Route::delete('/books/{id}',[BookController::class, 'destroy'])->name('books.destroy');
 
+Route::post('/book/read/{id}', [BookController::class, 'read'])->name('book.read'); 
+
+
 //setting
 Route::get('/setting', [SettingController::class, 'index'])->name('setting'); 
 Route::post('/setting/{id}',[SettingController::class, 'update'])->name('setting.update');
@@ -101,11 +104,10 @@ Route::post('/setting/{id}',[SettingController::class, 'update'])->name('setting
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
 Route::post('/tasks', [TaskController::class, 'store']);
 
-Route::get('/tasks/create', function () {
-     
-    $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
-    return view('tasks.create', ['books' =>  $books]);
-})->name('createtask'); 
+Route::get('/tasks/create/{status}', function ($status) {
+     $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+    return view('tasks.create', ['books' =>  $books, 'status' => $status]);
+})->name('tasks.create'); 
 Route::get('/tasks/{id}/edit',[TaskController::class, 'edit']);
 Route::post('/tasks/{id}',[TaskController::class, 'update'])->name('tasks.update');
 //Route::delete('/tasks/{id}',[TaskController::class, 'destroy'])->name('tasks.destroy');

@@ -52,10 +52,16 @@
                                     <div class="col-md-4">
                                          <div class="form-group">
                                             <select class="custom-select"  name="status"   style="border-radius:10px; height:50px; ">
-                                                <option selected="true" disabled="disabled" >Status</option>
-                                                <option>not started</option>
-                                                <option>in progress</option>
-                                                <option>done</option>
+                                                <option  disabled="disabled" >Status</option>
+                                                <option @if ($status==="not started")
+                                                    selected
+                                                @endif>not started</option>
+                                                <option @if ($status==="in progress")
+                                                selected
+                                            @endif>in progress</option>
+                                                <option @if ($status==="done")
+                                                selected
+                                            @endif>done</option>
                                              </select>
                                          
                                           </div>
@@ -93,7 +99,7 @@
                                             <textarea rows="6" class=" py-4 form-control" name="description" placeholder="Task description..." style=" 
                                             border:none;
                                             background: #e9f4ff;
-                                            border-radius: 12px;
+                                            border-radius: 10px;
                                             outline:none;
                                             padding:15px; 
                                             resize: none;"  ></textarea>
