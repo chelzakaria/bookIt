@@ -4,8 +4,8 @@
     .checked {
   color: orange;
 }
-
 </style>
+<?php use App\Models\TimeRead; ?>
     <div class="container-fluid">
         <div class="row">
             @include('notes.layouts.sidebar')
@@ -44,9 +44,13 @@
 
                                 <div class="ml-5">
                                     <form id="play">
+                                       
                                         <span id="book_id" style="visibility: hidden">{{$book->id}}</span>
+                                        <span id="gettime" style="visibility: hidden" >{{$reads->created_at}}</span>  
+                                        <span id="idtime" style="visibility: hidden">{{$reads->id}}</span>
+                                        <span id="up" style="display:none"></span>
                                         @csrf
-                                     <button type="submit" style="border-radius: 20px"   id="button_play" class="btn btn-success" >
+                                     <button type="submit" style="border-radius: 20px"   id="button_play" class="btn btn-success">
 
                                         <i class="fa fa-play"></i>
                                     </button>
@@ -63,7 +67,7 @@
                                       </button>
                                 </div>
                                 <div class="ml-3 mt-2 font-weight-bold" id="demo">
-                                 
+                             <?php    echo strtotime($reads->created_at) ?> 
                                 </div>
                             </div>
                             <p style="font-size:15px;"> By <span style="color: #81ABEA; " > {{$book->author}} </span> </p>
@@ -311,26 +315,54 @@
             </div>
 
         </div>
-                    
+                 
     </div>
     <script>
- 
-        //ajax
-        
+ function str(){
+    var x=$('#gettime').text()
+            var date0=new Date().getTime();
+            var date2=new Date(x).getTime()
+            var distance=date0-date2-3600000;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        var newcontent=  days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s "; 
+    $('#up').html(newcontent);
+        $('#demo').html(newcontent);
+ }
+ setInterval(str, 1000);    
+          
+  
+          
  
         $('#play').on('submit',function(e){
             e.preventDefault();
- 
             let book_id = $('#book_id').text();
- 
-    $.ajax({
-        
+            let timeid = $('#idtime').text();
+           
+    $.ajax({ 
         type:"post",
-        url:"/read/"+book_id,
-         
+        url:"/read/"+book_id, 
         data: $('#play').serialize(),
         success: function(response){   
             console.log(response)
+              
+        setInterval(
+        function () {
+            var date0=new Date().getTime();
+            var date2=new Date(x).getTime()
+            var distance=date0-date2-3600000;
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        var newcontent=  days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s "; 
+    $('#up').html(newcontent);
+        $('#demo').html(newcontent);
+        }, 1000);  
 
         },
         error: function(error){
@@ -339,9 +371,21 @@
         }
     });
 });
+
+
+/*
+var counte={{strtotime("now")+3600-strtotime($reads->created_at)}} 
+var counter=parseInt(counte)
+var auto_refresh = setInterval(
+function () {
+    var newcontent= counter ;
+    $('#demo').html(newcontent);
+    counter++
+}, 1000); 
         //ajax
         // Set the date we're counting down to
-        var countDownDate = new Date("Jun 26, 2021 15:19:03").getTime();
+      /*
+        var countDownDate = new Date(time).getTime();
         
         // Update the count down every 1 second
         //
@@ -381,9 +425,10 @@
           countDownDate=new Date().getTime()
         clearInterval(x);
         
-        }
+        }*/
         </script>
         <script>
+
             $(document).ready(function() {
               $("#checkbox-img").click(function() {
                   if ($("#chekcbox-input").val()=="true") {
