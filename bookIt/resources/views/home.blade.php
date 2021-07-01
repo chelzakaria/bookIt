@@ -5,6 +5,13 @@
 @include('layouts.nav')
   
     <div class="container mb-5">
+        @if(session('message'))
+        <div class="col text-center   mr-auto mb-3">
+                <div class="jumbotron py-2 mb-2 bg-success text-white   mx-auto">
+                    {{ session('message') }}
+                </div>
+            </div>
+        @endif
         <div class="row">
             <div class="col mt-5">
                 <div class=" d-inline mt-5 mb-3" style="">

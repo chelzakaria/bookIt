@@ -168,10 +168,10 @@ function unwrap(node) {
                           
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                               <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
-                              <a data-toggle="modal" data-target="#exampleModal" class="btn dropdown-item" href="#"> <span>Delete</span>  </a>
+                              <a data-toggle="modal" data-target="#exampleModal{{$task->id}}" class="btn dropdown-item" href="#"> <span>Delete</span>  </a>
                                
                             </div>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -216,7 +216,8 @@ function unwrap(node) {
                                 badge-success
                                 @endif
                                 py-1 px-2 mt-1">
-                                    {{\Carbon\Carbon::parse($task->end_date)->rawFormat('d M')}}
+                                    {{-- {{\Carbon\Carbon::parse($task->end_date)->rawFormat('d M')}} --}}
+                                    {{\Carbon\Carbon::parse($task->end_date)->diffForHumans()}}
                                 </span>
                             </div>
                         </div>
@@ -254,7 +255,7 @@ function unwrap(node) {
                             
                         <div class="card draggable shadow-sm" style="border-radius: 10px;background-color:@switch($task->task_importance)
                             @case('high')
-                                $setting->high_color
+                            {{$setting->high_color}}
                                 @break
                             @case('medium')
                                 {{$setting->medium_color}}
@@ -270,10 +271,10 @@ function unwrap(node) {
                               
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                   <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
-                                  <a data-toggle="modal" data-target="#exampleModal" class="btn dropdown-item" href="#"> <span>Delete</span>  </a>
+                                  <a data-toggle="modal" data-target="#exampleModal{{$task->id}}" class="btn dropdown-item" href="#"> <span>Delete</span>  </a>
                                
                                 </div>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="exampleModal{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -315,7 +316,8 @@ function unwrap(node) {
                                 badge-success
                                 @endif
                                 py-1 px-2 mt-1">
-                                    {{\Carbon\Carbon::parse($task->end_date)->rawFormat('d M')}}
+                                    {{-- {{\Carbon\Carbon::parse($task->end_date)->rawFormat('d M')}} --}}
+                                    {{\Carbon\Carbon::parse($task->end_date)->diffForHumans()}}
                                 </span>
                              </div>
                         </div>
@@ -348,7 +350,7 @@ function unwrap(node) {
                         @if ($task->status === "done")
                         <div class="card draggable shadow-sm" style="border-radius: 10px;background-color:@switch($task->task_importance)
                             @case('high')
-                                $setting->high_color
+                                {{$setting->high_color}}
                                 @break
                             @case('medium')
                                 {{$setting->medium_color}}
@@ -364,14 +366,14 @@ function unwrap(node) {
                           
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                               <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
-                                <a data-toggle="modal" data-target="#exampleModal" class="btn dropdown-item" href="#"> <span>Delete</span>  </a>
+                                <a data-toggle="modal" data-target="#exampleModal{{$task->id}}" class="btn dropdown-item" href="#"> <span>Delete</span>  </a>
                                
                             </div>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this note?</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this note? {{$task->task_name}}</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -412,7 +414,8 @@ function unwrap(node) {
                                 badge-success
                                 @endif
                                 py-1 px-2 mt-1">
-                                    {{\Carbon\Carbon::parse($task->end_date)->rawFormat('d M')}}
+                                    {{-- {{\Carbon\Carbon::parse($task->end_date)->rawFormat('d M')}} --}}
+                                    {{\Carbon\Carbon::parse($task->end_date)->diffForHumans()}}
                                 </span>
                             </div>
                         </div>

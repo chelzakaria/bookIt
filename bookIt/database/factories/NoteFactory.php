@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Book;
 use App\Models\Note;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +23,15 @@ class NoteFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'book_id' => Book::pluck('id')->random(),
+            'user_id'=> 5,
+            'body' => $this->faker->sentence(50),
+            'type' => $this->faker->randomElement([
+                "Quote",
+                "Uncategorized",
+                "Thought",
+                "Idea"
+            ])
         ];
     }
 }

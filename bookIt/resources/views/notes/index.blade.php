@@ -22,12 +22,12 @@
                     <div class="container py-3">
                         <div class="d-flex flex-row">
                             <p style="font-weight:700; font-size:30px;">
-                                Notes
+                                Notes  
                             </p>  
                            <div class="d-none">
                             {{$i=0}}
                             @foreach ($notifications as $notification)
-                                          @if ((strtotime($notification->due_date) - time() ) < 300 && !$notification->seen)
+                                          @if ((strtotime($notification->due_date) - strtotime(\Carbon\Carbon::now())) < 300 && !$notification->seen)
                                         {{$i++}}
                                             @endif 
                                             
@@ -49,16 +49,20 @@
                                           @if ($notifications->count())
                                           
                                           @foreach ($notifications as $notification)
-                                          @if ((strtotime($notification->due_date) - time() ) < 300)
+                                          @if ((strtotime($notification->due_date) - strtotime(\Carbon\Carbon::now()->addHour()) ) < 300)
                                           <form action="{{route('notification.show', $notification->task_id)}}" method="POST">
                                               @csrf
+                                              @if ($tasks->where('id', $notification->task_id)->first())
+                                                  
+                                             
                                             <button type="submit" class="dropdown-item " @if(!$notification->seen) style="background: rgb(235, 229, 229)" bg-secondary @endif > 
                                                 You  have 1 day to complete  
                                                <b> {{$tasks->where('id', $notification->task_id)->first()->task_name}}</b>
                                                   <br>
-                                                  <span class="text-muted float-right" style="font-weight:600; font-size:12px;">{{$notification->due_date->subDays(1)->diffForHumans()}}</span>
+                                                  <span class="text-muted float-right" style="font-weight:600; font-size:12px;">{{$notification->due_date->subMinute(5)->diffForHumans()}}</span>
                              
                                             </button>
+                                            @endif
                                           </form>
                                             @endif 
                                             

@@ -28,6 +28,13 @@ input[type="color"]::-webkit-color-swatch {
                         </p>  
                     </div>
                     <hr style="border-top: 1px solid #00000023;margin-top:5px;">
+                    @if(session('error'))
+                    <div class="col text-center w-50 mr-auto mb-3">
+                            <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+                                {{ session('error') }}
+                            </div>
+                        </div>
+                    @endif
                     <form id="form" method="POST" action="{{route('setting.update', Auth::user()->id)}}">
                         @csrf
                             <div class="row">
@@ -81,15 +88,30 @@ input[type="color"]::-webkit-color-swatch {
  
 
                                 </div>
-                                    <p style="font-weight:700; font-size:18px;">
+                                    {{-- <p style="font-weight:700; font-size:18px;">
                                         Appearance
                                     </p> 
                                     
                                     <div class="row mr-5" >
                                         <div class="form-group my-2 ml-3">
 
-                                            {{-- <input id="appe" type="checkbox" data-toggle="toggle" data-on="Light<br>Mode" data-off="Dark<br>Mode" name="appearance" data-width="100" data-onstyle="info"   onchange="check(this)"> --}}
-                                            <label class="toggle-switchy" for="example_textless_1" data-size="xl" data-text="false" data-style="rounded">
+                                             <label class="toggle-switchy" for="example_textless_1" data-size="xl" data-text="false" data-style="rounded">
+                                                <input checked type="checkbox" id="example_textless_1" name="appearance">
+                                                <span class="toggle">
+                                                    <span class="switch"></span>
+                                                </span>
+                                            </label>
+ 
+                                        </div>
+                                    </div> --}}
+                                    <p style="font-weight:700; font-size:18px;">
+                                        Task alert time
+                                    </p> 
+                                    
+                                    <div class="row mr-5" >
+                                        <div class="form-group my-2 ml-3">
+
+                                             <label class="toggle-switchy" for="example_textless_1" data-size="xl" data-text="false" data-style="rounded">
                                                 <input checked type="checkbox" id="example_textless_1" name="appearance">
                                                 <span class="toggle">
                                                     <span class="switch"></span>
@@ -109,8 +131,11 @@ input[type="color"]::-webkit-color-swatch {
                                     <p  class="mt-5" style="font-weight:700; font-size:18px;">
                                         Danger zone
                                      </p>
-                                     <button name="delete account" class="btn  bg-danger text-white"
-                                     style="font-weight:700;  "  >Delete Account</button> 
+                                  
+                                    <div data-toggle="modal" data-target="#exampleModal" class="btn  bg-danger text-white"
+                                    style="font-weight:700;"  >Delete Account</div> 
+                                
+                                     
                                     <p  class="mt-5" style="font-weight:700; font-size:18px;">
                                         
                                      </p>
@@ -123,7 +148,64 @@ input[type="color"]::-webkit-color-swatch {
                             </div>
                     </form>
                 </div>
-
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete your account permanently  ?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                
+                            <div class="modal-footer">
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <button type="button" class="btn " data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;">Cancel</button>
+                                    </div>
+                                    <div class="col">
+                                         
+                
+                                            <button data-toggle="modal" data-target="#exampleModal2"  name="create" class="btn btn-danger float-right" style="; font-weight: 700;">Delete</button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Please enter your current password :</h5>
+                                
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group w-75">
+                                    <form class="d-inline" action="{{route('user.delete',  Auth::user()->id)}}" method="post">
+                                        @csrf 
+                                    <input type="password" class="mt-2 form-control @error('password')
+                                    border border-danger
+                                    @enderror" id="oldPass"  name="password" placeholder="password">
+                                  </div>
+                              </div>
+                            <div class="modal-footer">
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <button type="button" class="btn " data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;">Cancel</button>
+                                    </div>
+                                    <div class="col">
+                                       
+                
+                                            <button type="submit" name="create" class="btn btn-primary float-right" style="; font-weight: 700;">Confirm</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
    
             </div>
 

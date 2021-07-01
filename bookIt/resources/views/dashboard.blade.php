@@ -48,14 +48,14 @@
                         <div class="col mr-5" style="height: 150px; border-radius: 10px; background: #FFFDDB;">
                             <div class="container py-3">
                                 <div class="row mb-1"><img src="/images/icons/dashboard_average_icon.svg" alt="" /></div>
-                                <div class="row mb-1 pb-0"><span style="font-weight: 700; font-size: 30px;">{{$notes->count()/$books->count()}}</span></div>
+                                <div class="row mb-1 pb-0"><span style="font-weight: 700; font-size: 30px;">{{number_format(($notes->count()/$books->count()), 2, '.', ',')}}</span></div>
                                 <div class="row"><span style="font-weight: 500; font-size: 14px; color: #6f6d6d;">Avg.of notes <br> per book </span></div>
                             </div>
                         </div>
                         <div class="col mr-5" style="height: 150px; border-radius: 10px; background: #FFFDDB;">
                             <div class="container py-3">
                                 <div class="row mb-1"><img src="/images/icons/dashboard_average_icon.svg" alt="" /></div>
-                                <div class="row mb-1 pb-0"><span style="font-weight: 700; font-size: 30px;">{{$tasks->count()/$books->count()}}</span></div>
+                                <div class="row mb-1 pb-0"><span style="font-weight: 700; font-size: 30px;">{{number_format(($tasks->count()/$books->count()), 2, '.', ',')}}</span></div>
                                 <div class="row"><span style="font-weight: 500; font-size: 14px; color: #6f6d6d;">Avg.of tasks <br> per book </span></div>
                             </div>
                         </div>
@@ -151,6 +151,12 @@
                 backgroundColor: 'rgb(25, 99, 132)',
                 borderColor: 'rgb(25, 99, 132)',
                 data: [0, 10, 15, 2, 20, 30, 45, 10],
+            },
+            {
+                label: 'done',
+                backgroundColor: 'rgb(6, 186, 99)',
+                borderColor: 'rgb(6, 186, 99)',
+                data: [0, 10, 125, 2, 20, 30, 45, 10],
             }
             ], 
             };

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class  RegisterController extends Controller
 {
     public function __construct(){
-        $this->middleware(['guest']);
+        $this->middleware(['guest'])->except(['destroy']);
     }
 
     public function index(){
@@ -55,4 +55,23 @@ class  RegisterController extends Controller
         return redirect()->route('notes');
 
     }
+    public function destroy($id, Request $request)
+    {
+        $user = User::find($id);
+        if($user->id !== Auth()->user()->id)
+        {
+            return abort(403, 'Unauthorized action.');
+        }
+        if (!Hash::check($request->password, $user->password)) {
+             
+            return back()->with('error', 'Current password does not match!');
+        }
+
+        Auth::logout();
+    
+        if ($user->delete()) {
+    
+             return view('home')->with('message', 'Your account has been deleted!');
+        }
+     }
 }

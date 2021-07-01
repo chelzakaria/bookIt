@@ -35,6 +35,8 @@ class NoteController extends Controller
 
     public function search(Request $request)
     {
+    //    dd($request);
+
         // dd($request->input('word'));
         $notifications = Notification::where('user_id', Auth::user()->id)->get();  
         $Setting = Setting::where('user_id', Auth::user()->id)->first();  
@@ -47,12 +49,14 @@ class NoteController extends Controller
 
        }
         $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+        $tasks = Task::where('user_id', auth()->user()->id)->get();
 
         return view('notes.index',[
             'notes' => $notes,
             'books' =>$books,
             'notifications' => $notifications,
             'setting' => $Setting,
+            'tasks' => $tasks,
             'selected' => $request->input('word')
 
         ]);
@@ -60,7 +64,10 @@ class NoteController extends Controller
  
 
     public function store(Request $request){
+
        
+ 
+
         $this->validate($request,[
             'body' => 'required',
             'type' => 'required',
@@ -68,27 +75,53 @@ class NoteController extends Controller
         ]);
         $book = DB::table('books')->where('title',$request->titlebook )->first();
 
-        // Note::create([
-        //     'body' => $request->body,
-        //     'type'=>$request->type,
-        //     'idbook'=>$book->id
-        // ]);
+    
+        $id =
         $request->user()->notes()->create([
             'body' => $request->body,
             'type'=>$request->type,
             'book_id'=>$book->id
-        ]);
+        ])->id;
 
-       return redirect('notes');
+       $note = Note::find($id);
+
+        if($request->hasFile('note_images'))
+        {
+            foreach($request->file('note_images') as $file)
+            {
+                 $fileNameWithExt = $file->getClientOriginalName();
+
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+    
+                $extension = $file->getClientOriginalExtension();
+    
+                $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+    
+                $path = $file->storeAs('public/notes_images', $fileNameToStore);
+    
+                DB::table('notes_images')->insert([
+                    'note_id' => $note->id,
+                    'user_id' => Auth::user()->id,
+                    'image' =>$fileNameToStore,
+                ]);
+            }
+           
+        }
+
+        return redirect('notes');
+  
     }
     public function show($id){
         $note = DB::table('notes')->find($id);
+        $images = DB::table('notes_images')->where('note_id', $id)->paginate(10);
+
          if(auth()->user()->id !== $note->user_id)
         {
             return abort(403, 'Unauthorized action.');
         } 
         return view('notes.show',[
-            'note' => $note
+            'note' => $note,
+            'images' => $images
         ]);
     }
 
@@ -134,12 +167,17 @@ class NoteController extends Controller
     public function edit($id)
     {
         $note = Note::find($id);
-         
+
+        $images = DB::table('notes_images')->where('note_id', $id)->paginate(12);
+
         if(auth()->user()->id !== $note->user_id)
         {
             return abort(403, 'Unauthorized action.');
         } 
-        return view('notes.edit')->with('note', $note);
+        return view('notes.edit')->with([
+            'note'=> $note,
+            'images' => $images
+        ]);
     }
 
 }
