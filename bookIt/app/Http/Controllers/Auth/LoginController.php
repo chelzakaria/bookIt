@@ -46,7 +46,7 @@ class LoginController extends Controller
         ]);
     
         if (Auth::attempt($request->only($login_type, 'password'))) {
-            return redirect()->route('notes');
+            return redirect()->route('dashboard');
         }
     
         return back()->with('status', 'Invalid login details');

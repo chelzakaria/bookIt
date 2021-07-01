@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTimeReadsTable extends Migration
+class CreateReadingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateTimeReadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('time_reads', function (Blueprint $table) {
+        Schema::create('reading', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->foreignId('book_id')->constrained()->onDelete('cascade');
-            $table->foreignId('book_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer('reading_time');
         });
     }
@@ -29,6 +29,6 @@ class CreateTimeReadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('time_reads');
+        Schema::dropIfExists('reading');
     }
 }

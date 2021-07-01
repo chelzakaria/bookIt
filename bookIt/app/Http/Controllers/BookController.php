@@ -77,7 +77,8 @@ class BookController extends Controller
             'rating' => $request->rating,
             'num_page' =>$request->num_page,
             'cover' => $fileNameToStore,
-            'description' => $request->description
+            'description' => $request->description,
+            'read' => 0
        ]);
 
        return redirect('books');

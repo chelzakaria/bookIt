@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Models\Task;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ReadingController;
@@ -43,6 +44,7 @@ Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 'i
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'store']);
 
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+Route::post('/user/{id}/delete', [App\Http\Controllers\Auth\RegisterController::class, 'destroy'])->name('user.delete');
 
 
 
@@ -71,10 +73,10 @@ Route::get('/notes/create', function () {
 
 Route::get('/notes/{id}',[App\Http\Controllers\NoteController::class, 'show']); 
 
-Route::delete('/notes/{id}',[NoteController::class, 'destroy'])->name('notes.destroy');
+Route::delete('/notes/{id}',[NoteController::class, 'destroy'])->where('id', '[0-9]+')->name('notes.destroy');
 Route::get('/notes/{id}/edit',[NoteController::class, 'edit']);
-Route::post('/notes/{id}',[NoteController::class, 'update'])->name('notes.update');
-Route::post('/notes', [NoteController::class, 'search'])->name('notes.search');
+Route::post('/notes/{id}',[NoteController::class, 'update'])->where('id', '[0-9]+')->name('notes.update');
+Route::post('/notes/filter', [NoteController::class, 'search'])->name('notes.search');
 
 //books
 Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books');
@@ -109,7 +111,7 @@ Route::get('/tasks/create/{status}', function ($status) {
     return view('tasks.create', ['books' =>  $books, 'status' => $status]);
 })->name('tasks.create'); 
 Route::get('/tasks/{id}/edit',[TaskController::class, 'edit']);
-Route::post('/tasks/{id}',[TaskController::class, 'update'])->name('tasks.update');
+Route::post('/tasks/update/{id}',[TaskController::class, 'update'])->name('tasks.update');
 //Route::delete('/tasks/{id}',[TaskController::class, 'destroy'])->name('tasks.destroy');
 Route::get('/tasks/{id}',[TaskController::class, 'destroy'])->name('tasks.destroy');
  
@@ -130,4 +132,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 //notification
 Route::post('/tasks/{id}', [NotificationController::class, 'store'])->name('notification.show');
+
+
+//contact
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.post');
 

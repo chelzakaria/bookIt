@@ -99,6 +99,7 @@ class TaskController extends Controller
 
     public function edit($id)
     {
+        
         $task = Task::find($id);
          
         if(auth()->user()->id !== $task->user_id)
@@ -110,7 +111,6 @@ class TaskController extends Controller
 
     public function update(Request $request, $id)
     {
-
         if($request->notification==="true"){
             $notification = "on";
         }

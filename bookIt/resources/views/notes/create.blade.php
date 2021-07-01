@@ -10,6 +10,14 @@
                             font-size: 16px;
                             line-height: 20px;
                           }
+ 
+                  label {
+                    color: #6F6D6D;
+                    font-weight: 600;
+                    font-size:13px;
+                  }
+                  
+          
                     </style>
                 <div class="col">
                     <div class="container py-3">
@@ -46,7 +54,7 @@
                          @enderror
                         </div>
                          
-                        <form action="{{route('notes')}}" method="post">
+                        <form action="{{route('notes')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                  
@@ -97,6 +105,21 @@
 
                                             
                                           </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class=" mt-3 text-center " style="border-radius:10px; height:110px; width:175px; background:#D4E1F1; border:1px dashed #8A929D;     border-width:2px;  
+                                            ">
+                                                <label for="customFile"  class="my-4">
+                                                    <img  src="../images/icons/upload_image_icon.svg" alt="" style="width:35%;
+                                                    height:auto; cursor: pointer;">
+                                                    <p>Tap to add images</p>
+                                                     <input type="file" id="customFile" name="note_images[]" style="position: absolute;z-index:-100; bottom:7px; left:90px;font-weight:500;" multiple>
+                                                     </label>
+                                            </div>
+                                          
+                                               
+                                         </div>
                                     </div>
                                          <div class="row mt-3">
                                             <div class="col">

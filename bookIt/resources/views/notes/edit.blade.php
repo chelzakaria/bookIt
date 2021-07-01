@@ -57,6 +57,31 @@
                                             </textarea>
                                           </div>
                                     </div>
+                                    <div class="row">
+                                        @if ($images->count())
+                                            
+                                        @foreach ($images as $image)
+                            
+                                        <div class="col-2">
+                                           
+                                            <div class=" mt-3 text-center " style="border-radius:10px; height:150px; width:150px;  
+                                            ">
+                                           <img src="/storage/notes_images/{{$image->image}}" style="height:150px; width:150px;border-radius:2px; " alt="">
+                                             </div>
+                                         </div>
+                                       
+
+                                        @endforeach
+                                         
+                                         
+                                         
+                                         
+                                         
+                                    </div>
+                                    <div class="d-flex justify-content-end mt-3">
+                                        {!!$images->links()!!}
+                                     </div>
+                                    @endif
                                          <div class="row mt-3"> 
                                             <div class="col">
                                                 <button type="button" class="btn " style="background-color: #D4E5F9; font-weight:700;"> <a href=" {{route('notes')}}" style="text-decoration: none; color:#000;">Cancel</a> </button>

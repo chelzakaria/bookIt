@@ -29,6 +29,45 @@
 
                             </div>
                              </div>
+                             <div class="row">
+                                @if ($images->count())
+                                    
+                                @foreach ($images as $image)
+                                <div class="col-2">
+                                    <div class=" mt-3 text-center " style="border-radius:10px; height:150px; width:150px;  
+                                    ">
+                                    <a  data-toggle="modal" data-target="#showImage{{$image->id}}">
+                                    <img src="/storage/notes_images/{{$image->image}}" style="height:150px; width:150px;border-radius:2px; " alt="">
+                                </a>
+                                     </div>
+                                 </div>
+                                 <div class="modal fade" id="showImage{{$image->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                               
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                
+                                         <div class="modal-body">
+                                          <img src="/storage/notes_images/{{$image->image}}" alt="" style="width: 100%; height:auto;">
+                                         </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                                 
+                                 
+                                 
+                                 
+                                 
+                            </div>
+                            <div class="d-flex justify-content-end mt-3">
+                                {!!$images->links()!!}
+                             </div>
+                            @endif
                              <div class="row mt-2">
                                 <div class="col mb-0">
                                     <hr style="border-top: 1px solid #00000023;" class="mb-2 mt-4">
