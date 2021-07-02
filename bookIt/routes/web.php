@@ -18,8 +18,11 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\StripeController;
+use Stripe\StripeClient;
 
 /*
 |--------------------------------------------------------------------------
@@ -136,4 +139,18 @@ Route::post('/tasks/{id}', [NotificationController::class, 'store'])->name('noti
 
 //contact
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.post');
+
+//paypal
+Route::get('/paypal', function(){
+    return view('paypal');
+} );
+
+
+
+
+
+
+
+
+
 
