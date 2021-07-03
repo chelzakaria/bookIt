@@ -63,13 +63,45 @@
                                         @foreach ($images as $image)
                             
                                         <div class="col-2">
-                                           
+                                        
+
+
+
+                                        
+
+
                                             <div class=" mt-3 text-center " style="border-radius:10px; height:150px; width:150px;  
                                             ">
                                            <img src="/storage/notes_images/{{$image->image}}" style="height:150px; width:150px;border-radius:2px; " alt="">
                                              </div>
+                                             <a class="btn" style="width:100%" data-toggle="modal" data-target="#exampleModal{{$image->id}}"   > <img src="/images/icons/delete_icon.svg" alt="" style="width: 17%; height:auto;" class="mx-auto">  </a>
+                                           
                                          </div>
-                                       
+                                         <div class="modal fade" id="exampleModal{{$image->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this image?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                        
+                                                    <div class="modal-footer">
+                                                        <div class="row mt-3">
+                                                            <div class="col">
+                                                                <button type="button" class="btn " data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;">Cancel</button>
+                                                            </div>
+                                                            <div class="col">
+                                                                 
+                                                                <a class="btn btn-danger " href="{{route('images.destroy', $image->id)}}" style="; font-weight: 700;"> <span>Delete</span>  </a>
+                                                                 
+                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         @endforeach
                                          

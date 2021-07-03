@@ -63,7 +63,7 @@ Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store']
 Route::get('/password/change',[App\Http\Controllers\ChangePasswordController::class, 'index'] )->name('password.change');
 Route::post('/password/change',[App\Http\Controllers\ChangePasswordController::class, 'store']);
 
- 
+ //notes
 Route::get('/notes', [App\Http\Controllers\NoteController::class, 'index'])->name('notes');
 Route::post('/notes', [App\Http\Controllers\NoteController::class, 'store']);
 Route::get('/notes/create', function () {
@@ -80,6 +80,10 @@ Route::delete('/notes/{id}',[NoteController::class, 'destroy'])->where('id', '[0
 Route::get('/notes/{id}/edit',[NoteController::class, 'edit']);
 Route::post('/notes/{id}',[NoteController::class, 'update'])->where('id', '[0-9]+')->name('notes.update');
 Route::post('/notes/filter', [NoteController::class, 'search'])->name('notes.search');
+
+//notes images
+Route::get('/images/{id}',[NoteController::class, 'deleteImage'])->where('id', '[0-9]+')->name('images.destroy');
+
 
 //books
 Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books');

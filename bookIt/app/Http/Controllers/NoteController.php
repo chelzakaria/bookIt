@@ -180,4 +180,15 @@ class NoteController extends Controller
         ]);
     }
 
+    public function deleteImage($id)
+    {
+        $image =  DB::table('notes_images')->where('id', $id);
+          if(auth()->user()->id !== $image->first()->user_id)
+          {
+              return abort(403, 'Unauthorized action.');
+          } 
+          $image->delete();
+           return back();
+    }
+
 }

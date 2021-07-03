@@ -29,7 +29,9 @@
 
                             </div>
                              </div>
-                             <div class="row">
+                    <hr style="border-top: 1px solid #00000023;">
+
+                             <div class="row pr-3">
                                 @if ($images->count())
                                     
                                 @foreach ($images as $image)
