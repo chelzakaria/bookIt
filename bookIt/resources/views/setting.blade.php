@@ -141,7 +141,7 @@ input[type="color"]::-webkit-color-swatch {
                                      </p>
                                      <button type="submit"  name="save" class="btn btn-primary float-right"
                                      style="background-color:#1F1A6B;font-weight:700;  " >Save</button> 
-                                     <button type="button" class="btn " style="background-color: #D4E5F9; font-weight:700;"> <a href=" {{route('notes')}}" style="text-decoration: none; color:#000;">Cancel</a> </button>
+                                     <button type="button" class="btn " style="background-color: #D4E5F9; font-weight:700;"> <a href=" {{route('dashboard')}}" style="text-decoration: none; color:#000;">Cancel</a> </button>
                                      
                                 </div>
                                     </div>
