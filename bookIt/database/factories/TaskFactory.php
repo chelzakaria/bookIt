@@ -43,6 +43,15 @@ class TaskFactory extends Factory
             ]),
             'start_date' => $this->faker->dateTimeBetween('-30 days', '+30 days'),
             'end_date' => $this->faker->dateTimeBetween('-30 days', '+30 days'),
+            'reminder_time' => $this->faker->randomElement([
+                300,
+                600,
+                900,
+                3600,
+                7200,
+                86400,
+                172800
+             ])
         ];
     }
 }

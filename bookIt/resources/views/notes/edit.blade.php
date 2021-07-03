@@ -114,7 +114,7 @@
                                         {!!$images->links()!!}
                                      </div>
                                     @endif
-                                         <div class="row mt-3"> 
+                                         <div class="row mt-3 ml-1"> 
                                             <div class="col">
                                                 <button type="button" class="btn " style="background-color: #D4E5F9; font-weight:700;"> <a href=" {{route('notes')}}" style="text-decoration: none; color:#000;">Cancel</a> </button>
                                             </div>
