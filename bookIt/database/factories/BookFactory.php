@@ -30,7 +30,17 @@ class BookFactory extends Factory
             'description' => $this->faker->sentence(20),
             'rating' => $this->faker->numberBetween(0, 5),
             'cover' => "noimage.jpg",
-            'read' => $this->faker->numberBetween(0, 1)
+            'read' => $this->faker->numberBetween(0, 1),
+            'category' => $this->faker->randomElement([
+                "Arts & Music",
+                "Business",
+                "Comics",
+                "Cooking",
+                "Mysteries",
+                "Romance",
+                "Sports",
+                "Others"
+            ])
              
         ];
     }

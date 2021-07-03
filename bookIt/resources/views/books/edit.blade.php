@@ -11,6 +11,11 @@
                             font-size: 16px;
                             line-height: 20px;
                           }
+                    #select   {
+                        font-family: fontAwesome;
+                        
+                    }
+  
                     </style>
                 <div class="col">
                     <div class="container py-3">
@@ -54,34 +59,88 @@
                                     <div class="col-md-4">
                                          <div class="form-group">
                                             <select class="custom-select"  name="category"   style="border-radius:10px; height:50px; ">
-                                                <option selected="true" disabled="disabled" >Select a category</option>
-                                                <option >Uncategorized</option>
-                                                <option>Comedy</option>
-                                                <option>Science</option>
-                                                <option>Fiction</option>
+                                                <option  disabled="disabled" >Select a category</option>
+                                                <option @if ($book->category==="Arts & Music")
+                                                    selected
+                                                @endif>Arts & Music</option>
+                                                <option @if($book->category==="Biographies")
+                                                    selected
+                                                @endif>Biographies</option>
+                                                <option @if ($book->category==="Business")
+                                                    selected
+                                                @endif>Business</option>
+                                                <option @if ($book->category==="Comics")
+                                                    selected
+                                                @endif>Comics</option>
+                                                <option @if ($book->category==="Computers & Tech")
+                                                    selected
+                                                @endif>Computers & Tech</option>
+                                                <option @if ($book->category==="Cooking")
+                                                    selected
+                                                @endif>Cooking</option>
+                                                <option @if ($book->category==="Entertainment")
+                                                    selected
+                                                @endif>Entertainment</option>
+                                                <option @if ($book->category==="History")
+                                                    selected
+                                                @endif>History</option>
+                                                <option @if ($book->category==="Arts & Music")
+                                                    selected
+                                                @endif>Horror</option>
+                                                <option @if ($book->category==="Kids")
+                                                    selected
+                                                @endif>Kids</option>
+                                                <option @if ($book->category==="Mysteries")
+                                                    selected
+                                                @endif>Mysteries</option>
+                                                <option @if ($book->category==="Romance")
+                                                    selected
+                                                @endif>Romance</option>
+                                                <option @if ($book->category==="Sci-Fi & Fantasy")
+                                                    selected
+                                                @endif>Sci-Fi & Fantasy</option>
+                                                <option @if ($book->category==="Science")
+                                                    selected
+                                                @endif>Science</option>
+                                                <option @if ($book->category==="Sports")
+                                                    selected
+                                                @endif>Sports</option>
+                                                <option @if ($book->category==="True Crime")
+                                                    selected
+                                                @endif>True Crime</option>
+                                                <option @if ($book->category==="Others")
+                                                    selected
+                                                @endif>Others</option>
                                             </select>
                                           </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                           <select class="custom-select"  name="rating"   style="border-radius:10px; height:50px; ">
-                                               <option selected="true" disabled="disabled" >Rating</option>
-                                                <option @if ($book->rating == 1)
+                                            <select id="select" class="custom-select"  name="rating"   style="border-radius:10px; height:50px; ">
+                                                <option selected="true" disabled="disabled" >Rating</option>
+                                                @for ($i = 1; $i < 6; $i++)
+                                                <option @if ($book->rating === $i)
                                                     selected
-                                                @endif >1</option>
-                                               <option @if ($book->rating == 2)
-                                                selected
-                                            @endif>2</option>
-                                               <option @if ($book->rating == 3)
-                                                selected
-                                            @endif>3</option>
-                                               <option @if ($book->rating == 4)
-                                                selected
-                                            @endif>4</option>
-                                               <option @if ($book->rating == 5)
-                                                selected
-                                            @endif>5</option>
-                                           </select>
+                                                @endif  value={{$i}} style="color: #F0C808;">
+                                                 @if ($i>=1)
+                                                 &#xf005;
+                                                 @endif &nbsp;
+                                                 @if ($i>=2)
+                                                 &#xf005;
+                                                 @endif &nbsp;
+                                                 @if ($i>=3)
+                                                 &#xf005;
+                                                 @endif &nbsp;
+                                                 @if ($i>=4)
+                                                 &#xf005;
+                                                 @endif &nbsp;
+                                                 @if ($i>=5)
+                                                 &#xf005;
+                                                 @endif
+                                         
+                                                 @endfor
+                                        
+                                            </select>
                                         
                                          </div>
                                    </div>

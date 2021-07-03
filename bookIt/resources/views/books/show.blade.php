@@ -46,8 +46,16 @@
                                     <form id="play">
                                        
                                         <span id="book_id" style="visibility: hidden">{{$book->id}}</span>
-                                        <span id="gettime" style="visibility: hidden" >{{$reads->created_at}}</span>  
-                                        <span id="idtime" style="visibility: hidden">{{$reads->id}}</span>
+                                        <span id="gettime" style="visibility: hidden" >
+                                            {{-- @if ($reads->count())
+                                            {{$reads->created_at}}
+                                            @endif --}}
+                                            </span>  
+                                        <span id="idtime" style="visibility: hidden"> 
+                                            {{-- @if ($reads->count())
+                                            {{$reads->id}}
+                                            @endif --}}
+                                        </span>
                                         <span id="up" style="display:none"></span>
                                         @csrf
                                      <button type="submit" style="border-radius: 20px"   id="button_play" class="btn btn-success">
@@ -67,15 +75,19 @@
                                       </button>
                                 </div>
                                 <div class="ml-3 mt-2 font-weight-bold" id="demo">
-                             <?php    echo strtotime($reads->created_at) ?> 
+                               {{-- @if ($reads->count())
+                                {{strtotime($reads->created_at)}}
+                                @endif    --}}
                                 </div>
                             </div>
                             <p style="font-size:15px;"> By <span style="color: #81ABEA; " > {{$book->author}} </span> </p>
-                            <p class="mt-0"><span class="fa fa-star @if($book->rating>=1) checked @endif"></span>
+                            <p class="mt-0">
+                                <span class="fa fa-star @if($book->rating>=1) checked @endif"></span>
                                 <span class="fa fa-star @if($book->rating>=2) checked @endif "></span>
                                 <span class="fa fa-star @if($book->rating>=3) checked @endif "></span>
                                 <span class="fa fa-star @if($book->rating>=4) checked @endif"></span>
-                                <span class="fa fa-star @if($book->rating>=5) checked @endif"></span></p>
+                                <span class="fa fa-star @if($book->rating>=5) checked @endif"></span>
+                            </p>
                                 <hr style="border-top: 1px solid #00000023;" class="mb-2 mt-4">
                                 <div>
                                    {{$book->description}}
@@ -137,7 +149,7 @@
                                         <p class="mb-2" style="font-weight: 400; font-size:16px;">Category</p>
                                         <span class="iconify" data-inline="false" data-icon="bx:bxs-category" style="font-size: 40px;"></span>
 
-                                        <p class="mt-2 mb-0" style="font-weight: 700; font-size:14px;">   category  </p>
+                                        <p class="mt-2 mb-0" style="font-weight: 700; font-size:14px;">   {{$book->category}}  </p>
                                     </div>
                                 </div>
                             </div>
@@ -374,7 +386,7 @@
 
 
 /*
-var counte={{strtotime("now")+3600-strtotime($reads->created_at)}} 
+ // var counte={{strtotime("now")+3600 }} 
 var counter=parseInt(counte)
 var auto_refresh = setInterval(
 function () {

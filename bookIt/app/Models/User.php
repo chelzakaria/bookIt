@@ -11,8 +11,7 @@ use App\Models\Note;
 use App\Models\Book;
 use App\Models\Task;
 use App\Models\Setting;
-
-
+ 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
