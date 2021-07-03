@@ -91,7 +91,7 @@
                                                 <input type="datetime-local" class="form-control" name="end_date" placeholder="Due date"  style="border-radius:10px; height:50px;" value="{{ date('Y-m-d\TH:i', strtotime($task->end_date)) }}">
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-2">
                                             <div class="form-group my-2 ml-3">
 
                                                
@@ -107,6 +107,37 @@
                                                   </label>
 
                                             </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <select id="selectTime" class="custom-select"  name="reminder_time"   style="border-radius:10px; height:50px; " >
+                                                <option @if ($task->reminder_time ===0)
+                                                    selected
+                                                @endif disabled="disabled" >Set due date reminder</option>
+                                            
+                                                <option value="300" @if ($task->reminder_time ===300)
+                                                    selected
+                                                @endif>5 Minutes before</option>  
+                                                <option value="600" @if ($task->reminder_time ===600)
+                                                    selected
+                                                @endif>10 Minutes before</option>  
+                                                <option value="900" @if ($task->reminder_time ===900)
+                                                    selected
+                                                @endif>15 Minutes before</option>  
+                                                <option value="3600" @if ($task->reminder_time ===3600)
+                                                    selected
+                                                @endif>1 Hour before</option> 
+                                                <option value="7200" @if ($task->reminder_time ===7200)
+                                                    selected
+                                                @endif>2 Hours before</option>  
+                                                <option value="86400" @if ($task->reminder_time ===86400)
+                                                    selected
+                                                @endif>1 Day before</option>
+                                                <option value="172800" @if ($task->reminder_time ===172800)
+                                                    selected
+                                                @endif>2 Days before</option>
+
+
+                                            </select>
                                         </div>
                                     </div>
                                          

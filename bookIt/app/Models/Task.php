@@ -11,7 +11,7 @@ class Task extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'start_date','end_date','book_id','task_name','task_description','status','task_importance','notification'
+        'start_date','end_date','book_id','task_name','task_description','status','task_importance','notification', 'reminder_time'
          
     ];
 

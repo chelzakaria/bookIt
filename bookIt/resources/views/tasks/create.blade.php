@@ -111,7 +111,7 @@
                                                 <input type="text" class="form-control" name="end_date" placeholder="Due date" onfocus="(this.type='datetime-local')" style="border-radius:10px; height:50px;" >
                                             </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-2">
                                      
 
                                               <div class="form-group mt-2">
@@ -121,6 +121,21 @@
                                                     <span class="custom-checkbox-text"><img id="checkbox-img" style="cursor: pointer" src="/images/icons/alert_on_icon.svg" alt=""> &nbsp;  Alert</span>
                                                   </label>
                                               </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <select id="selectTime" class="custom-select"  name="reminder_time"   style="border-radius:10px; height:50px; " >
+                                                <option selected="true" disabled="disabled" >Set due date reminder</option>
+                                            
+                                                <option value="300">5 Minutes before</option>  
+                                                <option value="600">10 Minutes before</option>  
+                                                <option value="900">15 Minutes before</option>  
+                                                <option value="3600">1 Hour before</option> 
+                                                <option value="7200">2 Hours before</option>  
+                                                <option value="86400">1 Day before</option>
+                                                <option value="172800">2 Days before</option>
+
+
+                                            </select>
                                         </div>
                                     </div>
                                          
@@ -158,11 +173,13 @@
                 $("#checkbox-img").click(function() {
                     if ($("#chekcbox-input").val()=="true") {
                         $("#checkbox-img").attr("src","/images/icons/alert_off_icon.svg");
-                       
+                       $('#selectTime').prop( "disabled", true );
                        $("#chekcbox-input").val('false')
                     } else {
                         $("#checkbox-img").attr("src","/images/icons/alert_on_icon.svg");
-                        $("#chekcbox-input").val('true')
+                        $("#chekcbox-input").val('true');
+                       $('#selectTime').prop( "disabled", false );
+
                     }
                 });
             });

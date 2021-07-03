@@ -44,9 +44,11 @@ class TaskController extends Controller
         
         if($request->notification==="true"){
             $notification = "on";
+            $alert_time = $request->reminder_time;
         }
         else if($request->notification==="false") {
             $notification = "off";
+            $alert_time = 0;
         }
         
 
@@ -71,7 +73,8 @@ class TaskController extends Controller
         'book_id'=>$book->id,
         'task_importance'=>$request->importance,
         'start_date'=>$request->end_date,
-        'notification' => $notification
+        'notification' => $notification,
+        'reminder_time' => $alert_time, 
        ])->id;
 
        $task = Task::find($id);
@@ -113,9 +116,11 @@ class TaskController extends Controller
     {
         if($request->notification==="true"){
             $notification = "on";
+            $alert_time = $request->reminder_time;
         }
         else if($request->notification==="false") {
             $notification = "off";
+            $alert_time = 0;
         }
         
         $task = Task::find($id);
@@ -129,7 +134,8 @@ class TaskController extends Controller
             'status' => 'required',
             'importance' => 'required',
             'end_date' =>'required|date',
-            'description' => 'required'
+            'description' => 'required',
+            
         ]);
 
         
@@ -150,6 +156,7 @@ class TaskController extends Controller
         $task->end_date = $request->input('end_date');
         $task->task_description = $request->input('description');
         $task->notification = $notification;
+        $task->reminder_time = $alert_time;
         $task->save();
 
         if($notification=="on"){
