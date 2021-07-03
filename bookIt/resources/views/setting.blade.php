@@ -253,5 +253,6 @@ input[type="color"]::-webkit-color-swatch {
         //         e.value="on";
         //     }
         // }
+        // console.log(JSON.stringify({!! json_encode($setting) !!}));
       </script>
 @endsection  

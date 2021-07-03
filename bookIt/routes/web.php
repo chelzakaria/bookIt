@@ -96,10 +96,11 @@ Route::get('/books/create', function () {
 Route::post('/books', [App\Http\Controllers\BookController::class, 'store']);
 Route::get('/books/{id}',[App\Http\Controllers\BookController::class, 'show']);
 Route::get('/books/{id}/edit',[BookController::class, 'edit']);
-Route::post('/books/{id}',[BookController::class, 'update'])->name('books.update');
-Route::delete('/books/{id}',[BookController::class, 'destroy'])->name('books.destroy');
+Route::post('/books/{id}',[BookController::class, 'update'])->where('id', '[0-9]+')->name('books.update');
+Route::delete('/books/{id}',[BookController::class, 'destroy'])->where('id', '[0-9]+')->name('books.destroy');
 
 Route::post('/book/read/{id}', [BookController::class, 'read'])->name('book.read'); 
+Route::post('/books/search', [BookController::class, 'search'])->name('books.search');
 
 
 //setting

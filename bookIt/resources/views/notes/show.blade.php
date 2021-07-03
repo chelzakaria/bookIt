@@ -17,7 +17,7 @@
                     <div class="d-flex flex-row">
                         
                        <div>
-                           <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('notes')}}" style="text-decoration: none; color:#fff;">Back</a> </button>
+                           <button type="button" class="btn btn-primary" style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('notes')}}" style="text-decoration: none; color:#fff;">Back</a> </button>
                        </div>
                    </div>
                  

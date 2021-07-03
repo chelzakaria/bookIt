@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Note;
 use App\Models\Notification;
+use App\Models\Reading;
 use App\Models\Setting;
 use App\Models\Task;
 use App\Models\TimeRead;
@@ -24,7 +25,8 @@ class BookController extends Controller
         $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
 
         return view('books.index',[
-            'books' => $books
+            'books' => $books,
+            'search' => 'false'
         ]);
     }
 
@@ -53,7 +55,8 @@ class BookController extends Controller
             'rating' => 'required',
             'num_page' => 'required',
             'description' =>'required',
-            'cover' => 'image|nullable|max:1999'
+            'cover' => 'image|nullable|max:1999',
+            'category' => 'required'
         ]);
 
         if($request->hasFile('cover'))
@@ -68,7 +71,7 @@ class BookController extends Controller
 
             $path = $request->file('cover')->storeAs('public/cover_images', $fileNameToStore);
         }else {
-            $fileNameToStore = 'noimage.jpg';
+            $fileNameToStore = 'noimage.jpeg';
         }
  
         $request->user()->books()->create([
@@ -78,7 +81,8 @@ class BookController extends Controller
             'num_page' =>$request->num_page,
             'cover' => $fileNameToStore,
             'description' => $request->description,
-            'read' => 0
+            'read' => 0,
+            'category' => $request->category
        ]);
 
        return redirect('books');
@@ -100,13 +104,13 @@ class BookController extends Controller
             $tasks = Task::where('book_id', $id)->orderBy('updated_at', 'desc')->get();
             $count_tasks = Task::where('user_id', auth()->user()->id)->where('book_id','=',$id)->count();
             $count_notes = Note::where('user_id', auth()->user()->id)->where('book_id','=',$id)->count();
-            $reads=TimeRead::all();
-        if($reads->isEmpty()){
-            $reads=0;
-            }
-            else{
-                $reads=TimeRead::all()->last();
-            }
+        //     $reads=Reading::all();
+        // if($reads->isEmpty()){
+        //     //
+        //     }
+        //     else{
+        //         $reads=Reading::get()->last();
+        //     }
             if(auth()->user()->id !== $book->user_id)
             {
                 return abort(403, 'Unauthorized action.');
@@ -117,7 +121,7 @@ class BookController extends Controller
                 'tasks' => $tasks,
                 'count_tasks' =>$count_tasks,
                 'count_notes' =>$count_notes,
-                'reads'=>$reads,
+                // 'reads'=>$reads,
                 'notifications' => $notifications,
                 'setting' => $Setting
             ]);
@@ -235,6 +239,14 @@ class BookController extends Controller
         }
         $book->save();
 
+    }
+    public function search(Request $request)
+    {
+        $books = Book::where('title', 'like', '%'.$request->title.'%')->get();
+        return view('books.index',[
+            'books' => $books,
+            'search' => 'true'
+        ]);
     }
 
 }
