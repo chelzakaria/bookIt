@@ -3,9 +3,73 @@
 <style>
     .checked {
   color: orange;
+
+}
+
+.wrapper{
+ 
+  
+}
+.wrapper .search-input{
+  background: #fff;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+ }
+.search-input input{
+  height: 50px;
+  width: 100%;
+  outline: none;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 0 60px 0 20px;
+  font-size: 18px;
+ }
+.search-input.active input{
+  border-radius: 5px 5px 0 0;
+}
+.search-input .autocom-box{
+  padding: 0;
+  opacity: 0;
+  border: 1px solid #ced4da;
+  pointer-events: none;
+  max-height: 280px;
+  overflow-y: auto;
+}
+.search-input.active .autocom-box{
+  padding: 10px 8px;
+  opacity: 1;
+  pointer-events: auto;
+}
+.autocom-box li{
+  list-style: none;
+  padding: 8px 12px;
+  display: none;
+  width: 100%;
+  cursor: default;
+  border-radius: 3px;
+}
+.search-input.active .autocom-box li{
+  display: block;
+}
+.autocom-box li:hover{
+  background: #efefef;
+}
+.search-input .icon{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 55px;
+  font-size: 20px;
+  color: #1F1A6B;
+  cursor: pointer;
 }
 
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <div class="container-fluid">
         <div class="row">
             @include('notes.layouts.sidebar')
@@ -21,13 +85,29 @@
                         </div>
                     </div>
                     <div class="d-flex flex-row">
-                         <form action="" >
-                            <div class="form-group">
-                                <input type="email" class="form-control rounded" placeholder="Search books" style="padding-left: 25px; " >
+                        <form action="{{route('books.search')}}" method="POST" role="search" id="search_form">
+                            @csrf
+                             <div class="wrapper">
+                                 <div class="search-input">
+                                <a href="" target="_blank" hidden></a>
+                                <input class="form-control" type="text" placeholder="Search for books..." name="title" autocomplete="off">
+                                <div class="autocom-box ">
+                                    
+                                </div>
+                                <div class="icon"><i class="fas fa-search"></i></div>
+                              </div>
                             </div>
+                            
                          </form>
+                         @if ($search==="true")
+                             
+                        
+                         <div class="ml-3 mt-2">
+                            <button type="button" class="btn btn-info" style="background-color: #17a2b8; font-weight:700;"> <a href=" {{route('books')}}" style="text-decoration: none; color:#fff;">Clear</a> </button>
+                        </div>
+                        @endif
                         <div class="ml-auto mr-0">
-                            <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('createbook')}}" style="text-decoration: none; color:#fff;">Create new book</a> </button>
+                            <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('createbook')}}" style="text-decoration: none; color:#fff;">Add new book</a> </button>
                         </div>
                     </div>
                     <hr style="border-top: 1px solid #00000023;">
@@ -70,4 +150,75 @@
         </div>
                     
     </div>
+    <script>
+        let books = {!! json_encode($books) !!};
+          
+        let suggestions = [];
+        for(var i=0; i<books.length; i++)
+        {
+            suggestions[i] = 
+                    books[i].title
+                    ;
+        }
+         
+ 
+        const searchWrapper = document.querySelector(".search-input");
+        const inputBox = searchWrapper.querySelector("input");
+        const suggBox = searchWrapper.querySelector(".autocom-box");
+        const icon = searchWrapper.querySelector(".icon");
+        let linkTag = searchWrapper.querySelector("a");
+        let webLink;
+        // if user press any key and release
+        inputBox.onkeyup = (e)=>{
+             let userData = e.target.value; //user enetered data
+            let emptyArray = [];
+            if(userData){
+                icon.onclick = ()=>{
+                    var form = document.getElementById("search_form");
+             
+                    form.submit()
+                }
+                emptyArray = suggestions.filter((data)=>{
+                    //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
+                    console.log(data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase()));
+                    return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
+                });
+                emptyArray = emptyArray.map((data)=>{
+                    // passing return data inside li tag
+                    return data = `<li>${data}</li>`;
+                });
+                searchWrapper.classList.add("active"); //show autocomplete box
+                showSuggestions(emptyArray);
+                let allList = suggBox.querySelectorAll("li");
+               
+                for (let i = 0; i < allList.length; i++) {
+                    //adding onclick attribute in all li tag
+                    allList[i].setAttribute("onclick", "select(this)");
+                }
+            }else{
+                searchWrapper.classList.remove("active"); //hide autocomplete box
+            }
+        }
+        function select(element){
+            let selectData = element.textContent;
+            inputBox.value = selectData;
+            icon.onclick = ()=>{
+                var form = document.getElementById("search_form");
+             
+             form.submit()
+            }
+            searchWrapper.classList.remove("active");
+        }
+        function showSuggestions(list){
+            let listData;
+            if(!list.length){
+                userValue = inputBox.value;
+                listData = `<li>${userValue}</li>`;
+            }else{
+            listData = list.join('');
+            }
+            suggBox.innerHTML = listData;
+        }
+        
+    </script>
 @endsection  
