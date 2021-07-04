@@ -6,72 +6,16 @@
 }
 </style>
 <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<!-- bootstrap cdn -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" >
-<!-- Project Css file -->
-<title>Count Up Timer (Stopwatch) Example</title>
-<style type="text/css">
-    body {
-  background-color: #fafafa;
-}
-.main{
-    position: relative;
-    max-width: 960px;
-    margin: 150px auto;
-}
-.main > .item{
-    display: block;
-}
-.main > .item > p{
-    font-size: 70px;
-}
-.timer_button{
-    width: 100px;
-    height: 50px;
-}
-
-.countup {
-  text-align: center;
-  margin-bottom: 20px;
-}
-.countup .timeel {
-  display: inline-block;
-  padding: 10px;
-  background: #151515;
-  margin: 0;
-  color: white;
-  min-width: 2.6rem;
-  margin-left: 13px;
-  border-radius: 10px 0 0 10px;
-}
-.countup span[class*="timeRef"] {
-  border-radius: 0 10px 10px 0;
-  margin-left: 0;
-  background: #e8c152;
-  color: black;
-}
-
-</style>
-<script type="text/javascript">
-    window.addEventListener('load', function () {
-    // console.log("Windows loading");
-
-    //Getting dashboard  ( Checking if we are in dashboard or not)
+     <script>
+	 window.addEventListener('load', function () {
     var dashboard = document.getElementById("page_name");
-    //Start button 
     var start_button = document.getElementById("start_button");
-    //Stop button
     var stop_button = document.getElementById("timer_submit");
-    //timer 
     var hour = document.getElementById("hour");
     var mint = document.getElementById("min");
     var secd = document.getElementById("sec");
-
-    // console.log(timer.innerHTML);
-
     if (dashboard != null && localStorage.getItem('start_button') == null) {
-        // console.log("in Dashboard and start button not clicked");
-        //Declaring variable  
         var hr = 0;
         var min = 0;
         var sec = 0;
@@ -84,12 +28,8 @@
 
     }
 
-
-
-
     if (start_button) {
         start_button.addEventListener('click', function () {
-            // console.log('start button working');
             localStorage.setItem('start_button', 'clicked');
             $("#start_button").prop("disabled", true);
             $("#start_button").removeClass("btn-outline-success");
@@ -105,14 +45,13 @@
     }
     if (stop_button) {
         stop_button.addEventListener('click', function () {
-
-            // saveData(hr, min, sec);                          To get data after stop button active this fuction
             localStorage.clear();
             hour.innerHTML = '00';
             mint.innerHTML = '00';
             secd.innerHTML = '00';
             var total_time = document.getElementById("total_time");
             if (total_time) {
+                total_time.style.color="green";
                 total_time.innerHTML = hr + ':' + min + ':' + sec;
             }
             //Stopping the cycle
@@ -123,18 +62,17 @@
             $("#start_button").prop("disabled", false);
             $("#start_button").addClass("btn-success");
             $("#start_button").removeClass("btn-light");
-            start_button.innerHTML = "Start  ";
+            start_button.innerHTML = "Start";
 
 
         })
     }
-    //continue timer on other pages 
+
     if (dashboard == null && localStorage.getItem('start_button') != null) {
         sec = localStorage.getItem('sec');
         min = localStorage.getItem('min');
         hr = localStorage.getItem('hr');
         timerCycle();
-        //continue timer on coming back Dashboard
     } else if (dashboard != null && localStorage.getItem('start_button') != null) {
         sec = localStorage.getItem('sec');
         min = localStorage.getItem('min');
@@ -171,54 +109,17 @@
         localStorage.setItem('hr', hr);
         localStorage.setItem('min', min);
         localStorage.setItem('sec', sec);
-        // console.log(timer);
-        // console.log(timer.innerHTML);
-
+ 
         hour.innerHTML = hr;
         mint.innerHTML = min;
         secd.innerHTML = sec;
 
-       
         cycle = setTimeout(timerCycle, 1000);
     }
-
-   
 })
 
-</script>
-
-</script>
-     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"> </script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" ></script>
-     <script>
-try {
-  fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
-    return true;
-  }).catch(function(e) {
-    var carbonScript = document.createElement("script");
-    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
-    carbonScript.id = "_carbonads_js";
-    document.getElementById("carbon-block").appendChild(carbonScript);
-  });
-} catch (error) {
-  console.log(error);
-}
-</script>
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-36251023-1']);
-  _gaq.push(['_setDomainName', 'jqueryscript.net']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
--->
+	 </script>    
+<!---->
 <?php use App\Models\TimeRead; ?>
     <div class="container-fluid">
         <div class="row">
@@ -285,7 +186,7 @@ try {
                                       </button>
                                 </div>
                       
-                                <div class="ml-3 mt-2 font-weight-bold" id="demo">
+                                <div class="ml-3 mt-2 font-weight-bold" id="page_name"> 
                                     <div  class="item">  <div class="countup" id="countup1">
                                         <span id="hour">00</span>
                                         :
@@ -294,14 +195,10 @@ try {
                                         <span id="sec">00</span>
                                         
                                         </div>
-                                     
-                            <div class="col-auto mx-auto pt-4">
-                                <h1> <div id="total_time" >
-
-                                 </div> </h1>
-                            </div>
+                                    <div>&nbsp;</div>
+                                   <h5>     <div class="mb-3" id="total_time" ></div>    </h5>  
                        </div>
-                                </div>
+                                </div> 
                             </div>
                             <p style="font-size:15px;"> By <span style="color: #81ABEA; " > {{$book->author}} </span> </p>
                             <p class="mt-0">
