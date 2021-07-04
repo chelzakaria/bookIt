@@ -3,7 +3,7 @@
 
   
 @include('layouts.nav')
-  
+
     <div class="container mb-5">
         @if(session('message'))
         <div class="col text-center   mr-auto mb-3">
