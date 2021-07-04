@@ -5,8 +5,7 @@
   color: orange;
 }
 </style>
-<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" >
+
      <script>
 	 window.addEventListener('load', function () {
     var dashboard = document.getElementById("page_name");
