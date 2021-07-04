@@ -90,15 +90,7 @@
                                   <div class="row">
                                     
                                         <div class="col">
-                                            {{-- <textarea rows="12" class=" py-4 form-control @error('body')
-                                            border border-danger
-                                            @enderror" name="body" placeholder="Write your notes.." style=" 
-                                            border:none;
-                                            background: #E4F1FF;
-                                            border-radius: 12px;
-                                            outline:none;
-                                            padding:15px; 
-                                            resize: none;" >{{old('body')}}</textarea> --}}
+                                          
 
                                             <textarea class="form-control" id="body" placeholder="Enter the Description" name="body"></textarea>
                            

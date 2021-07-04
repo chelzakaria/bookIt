@@ -23,10 +23,14 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+        $notifications = Notification::where('user_id', Auth::user()->id)->get();  
+        $tasks = Task::where('user_id', auth()->user()->id)->get();
 
         return view('books.index',[
             'books' => $books,
-            'search' => 'false'
+            'search' => 'false',
+            'notifications' => $notifications,
+            'tasks' => $tasks
         ]);
     }
 
@@ -71,7 +75,7 @@ class BookController extends Controller
 
             $path = $request->file('cover')->storeAs('public/cover_images', $fileNameToStore);
         }else {
-            $fileNameToStore = 'noimage.jpeg';
+            $fileNameToStore = 'noimage.jpg';
         }
  
         $request->user()->books()->create([
@@ -243,9 +247,14 @@ class BookController extends Controller
     public function search(Request $request)
     {
         $books = Book::where('title', 'like', '%'.$request->title.'%')->get();
+        $notifications = Notification::where('user_id', Auth::user()->id)->get();  
+        $tasks = Task::where('user_id', auth()->user()->id)->get();
+
         return view('books.index',[
             'books' => $books,
-            'search' => 'true'
+            'search' => 'true',
+            'notifications' => $notifications,
+            'tasks' => $tasks
         ]);
     }
 

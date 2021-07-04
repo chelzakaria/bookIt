@@ -19,6 +19,7 @@ class NoteController extends Controller
     public function index()
     {
         $notifications = Notification::where('user_id', Auth::user()->id)->get();  
+        $images = DB::table('notes_images')->whereRaw('1 = 1')->paginate(12);
         $Setting = Setting::where('user_id', Auth::user()->id)->first();  
         $tasks = Task::where('user_id', auth()->user()->id)->get();
         $notes = Note::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
@@ -29,7 +30,8 @@ class NoteController extends Controller
             'setting' => $Setting,
             'notifications' => $notifications,
             'tasks' => $tasks,
-            'selected' => "All"
+            'selected' => "All",
+            'images' => $images
         ]);
     }
 
@@ -39,6 +41,8 @@ class NoteController extends Controller
 
         // dd($request->input('word'));
         $notifications = Notification::where('user_id', Auth::user()->id)->get();  
+        $images = DB::table('notes_images')->whereRaw('1 = 1')->paginate(12);
+ 
         $Setting = Setting::where('user_id', Auth::user()->id)->first();  
         if($request->input('word')!=="All")
        {
@@ -57,16 +61,16 @@ class NoteController extends Controller
             'notifications' => $notifications,
             'setting' => $Setting,
             'tasks' => $tasks,
-            'selected' => $request->input('word')
+            'selected' => $request->input('word'),
+            'images' => $images
+
 
         ]);
      }
  
 
     public function store(Request $request){
-
-       
- 
+  
 
         $this->validate($request,[
             'body' => 'required',
@@ -128,7 +132,7 @@ class NoteController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request->note_images);
+        // dd($request);
         
         $note = Note::find($id);
         if(auth()->user()->id !== $note->user_id)
@@ -137,7 +141,7 @@ class NoteController extends Controller
         } 
 
         $this->validate($request, [
-            'body' => 'required',
+            'body'.$id => 'required',
             'type' => 'required',
             'note_images.*' => 'image|nullable|max:1999',
         ]);
@@ -145,7 +149,7 @@ class NoteController extends Controller
         
 
         $note = Note::find($id);  
-        $note->body = $request->input('body');
+        $note->body = $request->input('body'.$id );
         $note->type = $request->input('type');
         if($request->hasFile('note_images'))
         {
