@@ -24,6 +24,7 @@ class TaskController extends Controller
         //$tasks = Task::all();
 
         $Setting = Setting::where('user_id', Auth::user()->id)->first();  
+        $notifications = Notification::where('user_id', Auth::user()->id)->get();  
 
          $tasks = Task::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
          $count1 = Task::where('user_id', auth()->user()->id)->where('status','=','not started')->count();
@@ -34,7 +35,9 @@ class TaskController extends Controller
             'count1' =>$count1,
             'count2' =>$count2,
             'count3' =>$count3,
-            'setting' => $Setting
+            'setting' => $Setting,
+            'notifications' => $notifications,
+
         ]);
         
     }
@@ -163,6 +166,7 @@ class TaskController extends Controller
             
          $Notif = Notification::where('task_id', $id)->first();
            $Notif->due_date =  $task->end_date;
+           $Notif->seen = 0;
            $Notif->save();
             }
     

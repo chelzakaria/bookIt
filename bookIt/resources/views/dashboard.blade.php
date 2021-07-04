@@ -71,7 +71,7 @@
                     </div>
 {{--  --}}
                     <div class="row mt-4">
-                        <div class="col mr-5" style="height: 150px; border-radius: 10px; background: #dfe2fd;">
+                        <div class="col mr-5" style="height: 150px; border-radius: 10px; background: #DFFBEB;">
                             <div class="container py-2 pl-3 pr-2">
                                 <div class="row">
                                     <div class="col">
@@ -93,7 +93,11 @@
                                     </div>
                                     <div class="col ml-2 mr-0">
                                         <div class="row">&nbsp;</div>
-                                        <div class="row mb-2 pb-0 pl-1" ><span  style="font-weight: 700; font-size: 27px;">0.72%</span></div>
+                                        <div class="row mb-2 pb-0 pl-1" ><span  style="font-weight: 700; font-size: 27px;">
+                                        @if ($tasks->where('status', 'done')->count())
+                                        {{($tasks_count) / $tasks->where('status', 'done')->count() *100}}%
+                                        @endif
+                                        </span></div>
                                         <div class="row"><span style="font-weight: 600; font-size: 11px; color: #6f6d6d;">Rate of completed
                                               tasks</span></div>
                                     </div>
@@ -143,8 +147,7 @@
     <script>
 
 let tasks_histories = {!! json_encode($tasks_histories) !!};
-        //  console.log(JSON.stringify({!! json_encode($tasks_histories[0]->created_at) !!}));
-      let not_started = [];
+       let not_started = [];
       let in_progress = [];
       let done = [];
 
