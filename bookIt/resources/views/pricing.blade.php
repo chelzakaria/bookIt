@@ -132,5 +132,19 @@
 
             
         @include('layouts.footer')
-
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+       var checkbox = document.querySelector('input[type="checkbox"]');
+     
+       checkbox.addEventListener('change', function () {
+         if (checkbox.checked) {
+           // do this
+           document.getElementById('p').innerHTML="50$"
+         } else {
+           document.getElementById('p').innerHTML="10$"
+         }
+       });
+     });
+     
+            </script>
     @endsection  

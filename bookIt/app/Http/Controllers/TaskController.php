@@ -25,7 +25,7 @@ class TaskController extends Controller
 
         $Setting = Setting::where('user_id', Auth::user()->id)->first();  
 
-         $tasks = Task::where('user_id', auth()->user()->id)->get();
+         $tasks = Task::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
          $count1 = Task::where('user_id', auth()->user()->id)->where('status','=','not started')->count();
          $count2 = Task::where('user_id', auth()->user()->id)->where('status','=','in progress')->count();
          $count3 = Task::where('user_id', auth()->user()->id)->where('status','=','done')->count();
@@ -220,7 +220,8 @@ class TaskController extends Controller
                     'task_id' => $task->id,
                     'old_status' => $old_status,
                     'new_status' =>$new_status,
-                    'created_at' =>  now()
+                    'created_at' =>  now(),
+                    'updated_at' =>  now(),
                 ]);
                 $task->status="not started";
                 $task->save();
@@ -247,7 +248,8 @@ class TaskController extends Controller
                     'task_id' => $task->id,
                     'old_status' => $old_status,
                     'new_status' =>$new_status,
-                    'created_at' =>  now()
+                    'updated_at' =>  now(),
+                    'created_at' =>  now(),
                 ]);
                 $task->status="in progress";
                 $task->save();
@@ -274,7 +276,8 @@ class TaskController extends Controller
                     'task_id' => $task->id,
                     'old_status' => $old_status,
                     'new_status' =>$new_status,
-                    'created_at' =>  now()
+                    'updated_at' =>  now(),
+                    'created_at' =>  now(),
                 ]);
                 $task->status="done";
                 $task->save();

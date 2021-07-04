@@ -9,7 +9,7 @@ class TaskHistory extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'created_at'
+        'created_at', 'updated_at'
          
     ];
 }

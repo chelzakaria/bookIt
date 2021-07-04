@@ -104,7 +104,7 @@ input[type="color"]::-webkit-color-swatch {
  
                                         </div>
                                     </div> --}}
-                                    <p style="font-weight:700; font-size:18px;">
+                                    {{-- <p style="font-weight:700; font-size:18px;">
                                         Task alert time
                                     </p> 
                                     
@@ -119,8 +119,8 @@ input[type="color"]::-webkit-color-swatch {
                                             </label>
  
                                         </div>
-                                    </div>
-                                    <p  class="mt-5" style="font-weight:700; font-size:18px;">
+                                    </div> --}}
+                                    <p  class="mt-0" style="font-weight:700; font-size:18px;">
                                        Account type
                                     </p>
                                     <button name="upgrade" class="btn  btn-primary"
