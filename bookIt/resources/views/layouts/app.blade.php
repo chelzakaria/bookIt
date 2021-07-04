@@ -144,21 +144,7 @@
             @yield('content')
             
     </div>
-   <script>
-       document.addEventListener('DOMContentLoaded', function () {
-  var checkbox = document.querySelector('input[type="checkbox"]');
 
-  checkbox.addEventListener('change', function () {
-    if (checkbox.checked) {
-      // do this
-      document.getElementById('p').innerHTML="50$"
-    } else {
-      document.getElementById('p').innerHTML="10$"
-    }
-  });
-});
-
-       </script>
        <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
        <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
       

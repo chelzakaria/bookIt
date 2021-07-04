@@ -155,6 +155,9 @@
                             </div>
                          </div>
                          <hr style="border-top: 1px solid #00000023;">
+                         <p class="font-weight-bold mb-4 " style="font-size: 22px;"> 
+                            Book’s notes    
+                        </p>
                          <div class="row" id="r2">
                             @if ($notes->count())
                                     @foreach ($notes as $note)
@@ -219,6 +222,9 @@
                               
                          </div>
                          <hr style="border-top: 1px solid #00000023;">
+                         <p class="font-weight-bold mb-4 " style="font-size: 22px;"> 
+                            Book’s tasks    
+                        </p>
                          <div class="row" id="r1">
                             @if ($tasks->count())
                                     @foreach ($tasks as $task)
@@ -254,6 +260,18 @@
                                               
                                                 </span>  
                                         </a>
+                                        <span class="badge 
+                                        @if((strtotime($task->end_date) - time() ) < 300)
+                                        badge-danger
+                                        @elseif((strtotime($task->end_date) - time() ) < 86400) 
+                                        badge-warning
+                                        @else
+                                        badge-success
+                                        @endif
+                                        py-1 px-2 mt-4 float-right">
+                                            {{-- {{\Carbon\Carbon::parse($task->end_date)->rawFormat('d M')}} --}}
+                                            {{\Carbon\Carbon::parse($task->end_date)->diffForHumans()}}
+                                        </span>
                                                   
                                                  
                                                 <p class="mb-0 mt-4 " style="font-weight: 700;font-size:12px;color:#353535">

@@ -71,7 +71,8 @@ class NoteController extends Controller
         $this->validate($request,[
             'body' => 'required',
             'type' => 'required',
-            'titlebook'=>'required'
+            'titlebook'=>'required',
+            'note_images.*' => 'image|nullable|max:1999',
         ]);
         $book = DB::table('books')->where('title',$request->titlebook )->first();
 
@@ -127,6 +128,7 @@ class NoteController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request->note_images);
         
         $note = Note::find($id);
         if(auth()->user()->id !== $note->user_id)
@@ -136,7 +138,8 @@ class NoteController extends Controller
 
         $this->validate($request, [
             'body' => 'required',
-            'type' => 'required'
+            'type' => 'required',
+            'note_images.*' => 'image|nullable|max:1999',
         ]);
 
         
@@ -144,7 +147,29 @@ class NoteController extends Controller
         $note = Note::find($id);  
         $note->body = $request->input('body');
         $note->type = $request->input('type');
-        
+        if($request->hasFile('note_images'))
+        {
+             
+            foreach($request->file('note_images') as $file)
+            {
+                 $fileNameWithExt = $file->getClientOriginalName();
+
+                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+    
+                $extension = $file->getClientOriginalExtension();
+    
+                $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+    
+                $path = $file->storeAs('public/notes_images', $fileNameToStore);
+    
+                DB::table('notes_images')->insert([
+                    'note_id' => $note->id,
+                    'user_id' => Auth::user()->id,
+                    'image' =>$fileNameToStore,
+                ]);
+            }
+           
+        }
     
 
         $note->save();

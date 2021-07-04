@@ -111,7 +111,7 @@
                                             <div class=" mt-3 text-center " style="border-radius:10px; height:110px; width:175px; background:#D4E1F1; border:1px dashed #8A929D;     border-width:2px;  
                                             ">
                                                 <label for="customFile"  class="my-4">
-                                                    <img  src="../images/icons/upload_image_icon.svg" alt="" style="width:35%;
+                                                    <img  src="/../images/icons/upload_image_icon.svg" alt="" style="width:35%;
                                                     height:auto; cursor: pointer;">
                                                     <p>Tap to add images</p>
                                                      <input type="file" id="customFile" name="note_images[]" style="position: absolute;z-index:-100; bottom:7px; left:90px;font-weight:500;" multiple>
@@ -121,6 +121,7 @@
                                                
                                          </div>
                                     </div>
+                                 
                                          <div class="row mt-3">
                                             <div class="col">
                                                 <button type="button" class="btn " style="background-color: #D4E5F9; font-weight:700;"> <a href=" {{route('notes')}}" style="text-decoration: none; color:#000;">Cancel</a> </button>
@@ -132,8 +133,6 @@
                                         </div>
                                  </form>
                                  </div>
-                             
-                       
                               
                             
                               </div>

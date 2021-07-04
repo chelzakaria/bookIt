@@ -29,10 +29,11 @@
 
                             </div>
                              </div>
+                             @if ($images->count())
+
                     <hr style="border-top: 1px solid #00000023;">
 
                              <div class="row pr-3">
-                                @if ($images->count())
                                     
                                 @foreach ($images as $image)
                                 <div class="col-2">
@@ -43,32 +44,36 @@
                                 </a>
                                      </div>
                                  </div>
-                                 <div class="modal fade" id="showImage{{$image->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
+                           
                                
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                
-                                         <div class="modal-body">
-                                          <img src="/storage/notes_images/{{$image->image}}" alt="" style="width: 100%; height:auto;">
-                                         </div>
+                                 
+                                 
+                                 
+                                 
+                                 
+                            
+                            <div class="modal fade" id="showImage{{$image->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                           
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
+                            
+                                     <div class="modal-body">
+                                      <img src="/storage/notes_images/{{$image->image}}" alt="" style="width: 100%; height:auto;">
+                                     </div>
                                     </div>
                                 </div>
-                                @endforeach
-                                 
-                                 
-                                 
-                                 
-                                 
                             </div>
+                        
+                            @endforeach
                             <div class="d-flex justify-content-end mt-3">
                                 {!!$images->links()!!}
                              </div>
+                            </div>
                             @endif
                              <div class="row mt-2">
                                 <div class="col mb-0">

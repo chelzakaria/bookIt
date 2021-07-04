@@ -24,10 +24,12 @@
                         </div>
                     
                         <hr style="border-top: 1px solid #00000023;">
-                        <form action="{{route('notes.update', $note->id)}}" method="post">
+                        <form action="{{route('notes.update', $note->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                 
+                                 @error('note_images')
+                                     {{$message}}
+                                 @enderror
                                  <div class="col-md-4">
                                          <div class="form-group">
                                             <select class="custom-select"  name="type"   style="border-radius:10px; height:50px; ">
@@ -104,12 +106,26 @@
                                         </div>
 
                                         @endforeach
+                                        @endif
+                                        <div class="col">
+                                            <div class=" mt-5 text-center " style="border-radius:10px; height:110px; width:175px; background:#D4E1F1; border:1px dashed #8A929D;     border-width:2px;  
+                                            ">
+                                                <label for="customFile"  class="mt-4">
+                                                    <img  src={{ URL::asset("../images/icons/upload_image_icon.svg")}} alt="" style="width:35%;
+                                                    height:auto; cursor: pointer;">
+                                                    <p>Tap to add images</p>
+                                                     <input type="file" id="customFile" name="note_images[]" style="position: absolute;z-index:-100; bottom:50px; left:82px;font-weight:500;" multiple>
+                                                     </label>
+                                            </div>
+                                          
+                                               
+                                         </div>
                                          
                                          
-                                         
-                                         
-                                         
+                                  
                                     </div>
+                                    @if ($images->count())
+
                                     <div class="d-flex justify-content-end mt-3">
                                         {!!$images->links()!!}
                                      </div>

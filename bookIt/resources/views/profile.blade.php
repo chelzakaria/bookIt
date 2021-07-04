@@ -92,7 +92,7 @@
                                         <button type="submit" name="create" class="btn btn-primary"
                                         style="background-color:#1F1A6B;font-weight:700; " >Save</button>
 
-                                        <button type="button" class="btn ml-5" style="background-color: #D4E5F9; font-weight:700;"> <a href=" {{route('profile')}}" style="text-decoration: none; color:#000;">Cancel</a> </button>
+                                        <button type="button" class="btn ml-5" style="background-color: #D4E5F9; font-weight:700;"> <a href=" {{route('dashboard')}}" style="text-decoration: none; color:#000;">Cancel</a> </button>
                                     </div>
                                 </div>                              
                             </form>
