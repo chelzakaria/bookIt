@@ -74,7 +74,7 @@ Route::get('/notes/create', function () {
     ]);
 })->name('createnote'); 
 
-Route::get('/notes/{id}',[App\Http\Controllers\NoteController::class, 'show']); 
+Route::get('/notes/{id}',[App\Http\Controllers\NoteController::class, 'show'])->where('id', '[0-9]+'); 
 
 Route::delete('/notes/{id}',[NoteController::class, 'destroy'])->where('id', '[0-9]+')->name('notes.destroy');
 Route::get('/notes/{id}/edit',[NoteController::class, 'edit']);

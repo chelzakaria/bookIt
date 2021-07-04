@@ -133,6 +133,20 @@
                     
                  }
 
+                 .btn:focus {
+  box-shadow: none !important;
+  outline: none !important; 
+}
+.example::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
     </style>
      <link rel = "icon" href ="/images/icons/logo_icon.svg" type = "image/x-icon">
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
