@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Membership;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,6 +47,11 @@ class LoginController extends Controller
         ]);
     
         if (Auth::attempt($request->only($login_type, 'password'))) {
+            if(Membership::where('user_id', Auth::user()->id)->first()->account_type=="none")
+            {
+                return view('payment');
+            }
+            
             return redirect()->route('dashboard');
         }
     

@@ -123,10 +123,15 @@ input[type="color"]::-webkit-color-swatch {
                                     <p  class="mt-0" style="font-weight:700; font-size:18px;">
                                        Account type
                                     </p>
+                                    @if ($account_type=="free")
                                     <button name="upgrade" class="btn  btn-primary"
-                                    style="background-color:# ;font-weight:700;  "  >Upgrade</button> 
+                                    style="background-color:# ;font-weight:700;  "  >Upgrade</button>
+                                    @elseif ($account_type=="premium")
                                     <button name="upgrade" class="btn  btn-secondary"
                                     style="background-color:# ;font-weight:700;  "  >Downgrade</button>
+                                    @endif
+                                     
+                                   
 
                                     <p  class="mt-5" style="font-weight:700; font-size:18px;">
                                         Danger zone

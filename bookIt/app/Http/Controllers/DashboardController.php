@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Middleware\CheckAccount;
 use App\Models\Book;
+use App\Models\Membership;
 use App\Models\Note;
 use App\Models\Task;
 use App\Models\TaskHistory;
@@ -13,7 +14,7 @@ class DashboardController extends Controller
 {
 
     public function __construct(){
-        $this->middleware(['auth']);
+        $this->middleware(['auth', CheckAccount::class]);
     }
 
     public function index()
@@ -30,13 +31,19 @@ class DashboardController extends Controller
         $tasks_count = 0;
         foreach($tasks as $task)
         {
-             if($task_history = TaskHistory::where('task_id', $task->id)->where('new_status', 'done')->where('updated_at', '<=', $task->end_date)->orderBy('updated_at', 'desc')->first())
+            $task_history = TaskHistory::where('task_id', $task->id)->where('new_status', 'done')->orderBy('updated_at', 'desc')->first();
+             if($task_history && $task->status === "done" && $task_history->updated_at <= $task->end_date)
             {
-                     $tasks_count++;
+                      
+                        $tasks_count++;
+                      
              }
              
         }
-
+        if(Membership::where('user_id', Auth::user()->id)->first()->account_type=="none")
+            {
+                return view('payment');
+            }
 
         return view('dashboard', [
             'notes' => $notes,
