@@ -100,7 +100,7 @@ class BookController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {       
             $notifications = Notification::where('user_id', Auth::user()->id)->get();  
             $Setting = Setting::where('user_id', Auth::user()->id)->first();  
 
@@ -128,7 +128,7 @@ class BookController extends Controller
                 'count_notes' =>$count_notes,
                 // 'reads'=>$reads,
                 'notifications' => $notifications,
-                'setting' => $Setting
+                'setting' => $Setting,
             ]);
       
     }
