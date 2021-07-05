@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Membership;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -24,7 +25,7 @@ class  RegisterController extends Controller
         $this->validate($request, [
             'fName' => 'required|max:255',
             'lName' => 'required|max:255',
-            'username' => 'required|max:255',
+            'username' => 'required|max:255|unique:App\Models\User,username',
             'email' => 'required|email|max:255|unique:App\Models\User,email',
             'password' => 'required|confirmed',
             'birthDate' => 'required|date',
@@ -52,7 +53,12 @@ class  RegisterController extends Controller
             'user_id' => Auth::user()->id,
              
             ]);
-        return redirect()->route('notes');
+        Membership::create([
+                'user_id' => Auth::user()->id,
+            ]);
+
+
+        return view('payment');
 
     }
     public function destroy($id, Request $request)
@@ -71,7 +77,7 @@ class  RegisterController extends Controller
     
         if ($user->delete()) {
     
-             return view('home')->with('message', 'Your account has been deleted!');
+             return redirect('home')->with('message', 'Your account has been deleted!');
         }
      }
 }

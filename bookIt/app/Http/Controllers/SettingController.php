@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Membership;
 use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,8 +20,12 @@ class SettingController extends Controller
     public function index()
     {
         $Setting = Setting::where('user_id', Auth::user()->id)->first();  
+        $account_type = Membership::where('user_id', Auth::user()->id)->first()->account_type;
 
-        return view('setting')->with('setting', $Setting);
+        return view('setting',[
+            'setting' => $Setting,
+            'account_type' => $account_type
+        ]);
     }
 
     public function update(Request $request, $id){
