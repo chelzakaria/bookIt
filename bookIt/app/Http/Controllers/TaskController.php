@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Middleware\CheckAccount;
 
 use App\Models\Notification;
 use App\Models\Setting;
@@ -13,7 +14,7 @@ class TaskController extends Controller
 {
 
     public function __construct(){
-        $this->middleware(['auth']);
+        $this->middleware(['auth', CheckAccount::class]);
     }
 
     
@@ -30,6 +31,9 @@ class TaskController extends Controller
          $count1 = Task::where('user_id', auth()->user()->id)->where('status','=','not started')->count();
          $count2 = Task::where('user_id', auth()->user()->id)->where('status','=','in progress')->count();
          $count3 = Task::where('user_id', auth()->user()->id)->where('status','=','done')->count();
+
+    
+
         return view('tasks.index',[
             'tasks' => $tasks,
             'count1' =>$count1,

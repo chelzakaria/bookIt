@@ -330,14 +330,14 @@
                                                         @endforeach
                                                         @endif
                                                         <div class="col">
-                                                            <div class=" mt-5 text-center " style="border-radius:10px; height:110px; width:175px; background:#D4E1F1; border:1px dashed #8A929D;     border-width:2px;  
+                                                            <div class=" mt-5 mb-3 text-center " style="border-radius:10px; height:110px; width:175px; background:#D4E1F1; border:1px dashed #8A929D;     border-width:2px;  
                                                             ">
-                                                                <label for="customFile"  class="mt-4">
-                                                                    <img  src={{ URL::asset("../images/icons/upload_image_icon.svg")}} alt="" style="width:35%;
-                                                                    height:auto; cursor: pointer;">
-                                                                    <p>Tap to add images</p>
-                                                                     <input type="file" id="customFile" name="note_images[]" style="position: absolute;z-index:-100; bottom:50px; left:82px;font-weight:500;" multiple>
-                                                                     </label>
+                                                           <label for="customFile"  class="my-4">
+                                                            <img  src="/../images/icons/upload_image_icon.svg" alt="" style="width:35%;
+                                                            height:auto; cursor: pointer;">
+                                                            <p>Tap to add images</p>
+                                                             <input type="file" id="customFile" name="note_images[]" style="position: absolute;z-index:-1;    bottom:7px; left:90px;font-weight:500;" multiple>
+                                                             </label>
                                                             </div>
                                                           
                                                                

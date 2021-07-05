@@ -1,7 +1,10 @@
 <?php
 namespace App\Http\Controllers;
+
+use App\Http\Middleware\CheckAccount;
 use App\Models\Note;
 use App\Models\Book;
+use App\Models\Membership;
 use App\Models\Notification;
 use App\Models\Setting;
 use App\Models\Task;
@@ -13,7 +16,7 @@ class NoteController extends Controller
 {
 
     public function __construct(){
-        $this->middleware(['auth']);
+        $this->middleware(['auth', CheckAccount::class]);
     }
 
     public function index()
@@ -24,6 +27,9 @@ class NoteController extends Controller
         $tasks = Task::where('user_id', auth()->user()->id)->get();
         $notes = Note::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
         $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+
+      
+
         return view('notes.index',[
             'notes' => $notes,
             'books' =>$books,
@@ -68,6 +74,14 @@ class NoteController extends Controller
         ]);
      }
  
+     public function create()
+     {
+        $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+
+        return view('notes.create',[
+            'books' => $books
+        ]);
+     }
 
     public function store(Request $request){
   

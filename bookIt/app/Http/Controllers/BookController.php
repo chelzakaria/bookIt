@@ -12,11 +12,12 @@ use App\Models\Setting;
 use App\Models\Task;
 use App\Models\TimeRead;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\CheckAccount;
 
 class BookController extends Controller
 {
     public function __construct(){
-        $this->middleware(['auth']);
+        $this->middleware(['auth', CheckAccount::class]);
     }
 
   

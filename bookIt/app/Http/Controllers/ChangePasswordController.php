@@ -7,12 +7,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Middleware\CheckAccount;
+
 
 class ChangePasswordController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', CheckAccount::class]);
     }
     public function index()
     {

@@ -66,13 +66,7 @@ Route::post('/password/change',[App\Http\Controllers\ChangePasswordController::c
  //notes
 Route::get('/notes', [App\Http\Controllers\NoteController::class, 'index'])->name('notes');
 Route::post('/notes', [App\Http\Controllers\NoteController::class, 'store']);
-Route::get('/notes/create', function () {
-    $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
-
-    return view('notes.create',[
-        'books' => $books
-    ]);
-})->name('createnote'); 
+Route::get('/notes/create',[App\Http\Controllers\NoteController::class, 'create'])->name('createnote'); 
 
 Route::get('/notes/{id}',[App\Http\Controllers\NoteController::class, 'show'])->where('id', '[0-9]+'); 
 
@@ -146,9 +140,16 @@ Route::post('/tasks/{id}', [NotificationController::class, 'store'])->name('noti
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.post');
 
 //paypal
-Route::get('/paypal', function(){
-    return view('paypal');
-} );
+// Route::get('/paypal', function(){
+//     return view('paypal');
+// } );
+Route::post('/pay', [PaymentController::class, 'store'])->name('pay');
+
+//payment
+// Route::get('/payment', function(){
+//     return view('payment');
+// });
+Route::post('/payment/get',[PaymentController::class, 'index'])->name('payment');
 
 
 
