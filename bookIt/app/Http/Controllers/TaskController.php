@@ -249,6 +249,7 @@ class TaskController extends Controller
                     'new_status' =>$new_status,
                     'created_at' =>  now(),
                     'updated_at' =>  now(),
+                    'user_id' => $task->user_id
                 ]);
                 $task->status="not started";
                 $task->save();
@@ -277,6 +278,7 @@ class TaskController extends Controller
                     'new_status' =>$new_status,
                     'updated_at' =>  now(),
                     'created_at' =>  now(),
+                    'user_id' => $task->user_id
                 ]);
                 $task->status="in progress";
                 $task->save();
@@ -305,6 +307,7 @@ class TaskController extends Controller
                     'new_status' =>$new_status,
                     'updated_at' =>  now(),
                     'created_at' =>  now(),
+                    'user_id' => $task->user_id
                 ]);
                 $task->status="done";
                 $task->save();
