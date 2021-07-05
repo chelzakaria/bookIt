@@ -5,7 +5,7 @@
   color: orange;
 }
 </style>
-   
+ 
 <!---->
 <?php use App\Models\TimeRead; ?>
     <div class="container-fluid">
@@ -72,7 +72,7 @@
                                         <i class="fa fa-pause"></i>
                                       </button>
                                 </div>
-                      
+                                
                                 <div class="ml-3 mt-2 font-weight-bold" id="page_name"> 
                                     <div  class="item">  <div class="countup" id="countup1">
                                         <span id="hour">00</span>
@@ -84,7 +84,7 @@
                                         </div>
                                     <div>&nbsp;</div>
                                    <h5>     <div class="mb-3" id="total_time" ></div>    </h5>  
-                       </div>
+                                     </div>
                                 </div> 
                             </div>
                             <p style="font-size:15px;"> By <span style="color: #81ABEA; " > {{$book->author}} </span> </p>
