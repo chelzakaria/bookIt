@@ -178,7 +178,7 @@ class BookController extends Controller
             return abort(403, 'Unauthorized action.');
         } 
 
-        if($book->cover != $fileNameToStore && $fileNameToStore != 'noimage.jpg') {
+        if($book->cover != $fileNameToStore && $fileNameToStore != 'noimage.jpg' && $book->cover != 'noimage.jpg') {
             Storage::delete('public/cover_images/'.$book->cover);
         }  
         $this->validate($request, [

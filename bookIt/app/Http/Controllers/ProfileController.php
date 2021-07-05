@@ -60,7 +60,7 @@ class ProfileController extends Controller
             return back();
         }
 
-        if(Auth::user()->profile_image != $fileNameToStore && $fileNameToStore != 'no_image.png') {
+        if(Auth::user()->profile_image != $fileNameToStore && Auth::user()->profile_image != 'no_image.png') {
             Storage::delete('public/profile_images/'.Auth::user()->profile_image );
         }  
 
@@ -74,5 +74,24 @@ class ProfileController extends Controller
         );
         return redirect('profile')->with('success', 'profile has been changed successfully');
 
+    }
+
+    public function deletePicture($id)
+    {
+        $image =  User::find($id)->profile_image;
+           if(auth()->user()->id !== User::find($id)->id)
+          {
+              return abort(403, 'Unauthorized action.');
+          } 
+          if($image !== "no_image.png")
+          {
+            Storage::delete('public/profile_images/'.Auth::user()->profile_image );
+            User::find(auth()->user()->id)->update([
+              
+                'profile_image' => "no_image.png"
+                ]
+            );
+          }
+           return redirect('profile');
     }
 }

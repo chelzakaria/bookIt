@@ -39,16 +39,49 @@
                             <form method="POST" action="{{ route('profile') }}"  enctype="multipart/form-data">
                               @csrf
                                 <div class="d-flex flex-row mb-0">
-                                    {{-- <div class="mb-3"   style="width: 75px; height:75px; border-radius:50% ; "> --}}
+                                  
                                         <img class="mb-3"  src="/storage/profile_images/{{Auth::user()->profile_image}}" alt="" style="width: 100px; height:100px; border-radius:50%">
-                                    {{-- </div> --}}
+                              
                                     <div class=" " style="margin-left:-25px;margin-top:70px">
                                       
-                                      <label for="customFile" ><img src="images/icons/edit_profile_image_icon.svg" alt="" style="max-width:100%;
+                                      <label for="customFile" ><img data-toggle="tooltip" data-placement="bottom" title="change profile picture" src="images/icons/edit_profile_image_icon.svg" alt="" style="max-width:100%;
                                         max-height:100%;cursor: pointer;"> <input type="file" id="customFile" name="profile_image" style="display:none" name="profile_image"> </label>
-                                        {{-- <button type="button" class="btn"> <a href="{{route('profile')}}"  ><img src="images/icons/edit_profile_image_icon.svg" alt="" style="max-width:100%;
-                                            max-height:100%;"></a> </button> --}}
+                                     
                                     </div>
+                                  @if (Auth::user()->profile_image !== "no_image.png")
+                                  <div class=" " style="margin-left:10px;margin-top:70px">
+                                      
+                                     <img data-toggle="modal" data-target="#exampleModal" data-toggle="tooltip" data-placement="bottom" title="delete profile picture" src="images/icons/delete_icon.svg" alt="" style="max-width:80%;
+                                      max-height:80%;cursor: pointer;">  
+                                   
+                                  </div>
+                                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete your profile picture?</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                
+                                            <div class="modal-footer">
+                                                <div class="row mt-3">
+                                                    <div class="col">
+                                                        <button type="button" class="btn " data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;">Cancel</button>
+                                                    </div>
+                                                    <div class="col">
+                                                         
+                                                        <a class="btn btn-danger " href="{{route('profile.picture.destroy', Auth::user()->id)}}" style="; font-weight: 700;"> <span>Delete</span>  </a>
+                                                         
+                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  @endif
+
                                 </div>
                                 
                                  <div class="form-row w-75">

@@ -5,6 +5,7 @@ use App\Http\Middleware\CheckAccount;
 use App\Models\Book;
 use App\Models\Membership;
 use App\Models\Note;
+use App\Models\Notification;
 use App\Models\Task;
 use App\Models\TaskHistory;
 use Illuminate\Http\Request;
@@ -23,11 +24,11 @@ class DashboardController extends Controller
         $tasks = Task::where('user_id', Auth::user()->id)->get();  
         $books = Book::where('user_id', Auth::user()->id)->get();
  
-        $from = date('2021-06-01');
-        $to = date('2021-07-01');
+        $from = now()->subMonth();
+        $to = now();
 
-
-        $tasks_histories = TaskHistory::whereBetween('created_at', [$from, $to])->get();
+        $notifications = Notification::where('user_id', Auth::user()->id)->get();
+        $tasks_histories = TaskHistory::where('user_id', Auth::user()->id)->whereBetween('created_at', [$from, $to])->get();
         $tasks_count = 0;
         foreach($tasks as $task)
         {
@@ -50,7 +51,8 @@ class DashboardController extends Controller
             'tasks' => $tasks,
             'books' => $books,
             'tasks_histories' => $tasks_histories,
-            'tasks_count' => $tasks_count
+            'tasks_count' => $tasks_count,
+            'notifications' => $notifications
             
         ]);
     }

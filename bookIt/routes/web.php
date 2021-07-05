@@ -56,6 +56,8 @@ Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'store'
 
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
 Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store']);
+Route::get('/profile/picture/{id}',[ProfileController::class, 'deletePicture'])->where('id', '[0-9]+')->name('profile.picture.destroy');
+
 
  
 

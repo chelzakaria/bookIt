@@ -15,6 +15,8 @@
                     <p style="font-weight: 700; font-size: 30px;">
                         Dashboard
                     </p>
+                    @include('layouts.notification')
+
                 </div>
 
                 <hr style="border-top: 1px solid #00000023;" class="mt-0" />
@@ -95,7 +97,7 @@
                                         <div class="row">&nbsp;</div>
                                         <div class="row mb-2 pb-0 pl-1" ><span  style="font-weight: 700; font-size: 27px;">
                                         @if ($tasks->where('status', 'done')->count())
-                                        {{($tasks_count) / $tasks->where('status', 'done')->count() *100}}%
+                                        {{number_format((($tasks_count) / $tasks->where('status', 'done')->count() *100), 2, '.', ',')}}%
                                         @else
                                         0%
                                         @endif 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Middleware\CheckAccount;
-
+use App\Models\Book;
 use App\Models\Notification;
 use App\Models\Setting;
 use App\Models\Task;
@@ -31,6 +31,7 @@ class TaskController extends Controller
          $count1 = Task::where('user_id', auth()->user()->id)->where('status','=','not started')->count();
          $count2 = Task::where('user_id', auth()->user()->id)->where('status','=','in progress')->count();
          $count3 = Task::where('user_id', auth()->user()->id)->where('status','=','done')->count();
+         $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
 
     
 
@@ -41,6 +42,7 @@ class TaskController extends Controller
             'count3' =>$count3,
             'setting' => $Setting,
             'notifications' => $notifications,
+            'books' => $books
 
         ]);
         
@@ -51,7 +53,12 @@ class TaskController extends Controller
         
         if($request->notification==="true"){
             $notification = "on";
+            if($request->reminder_time){
             $alert_time = $request->reminder_time;
+            }
+            else {
+                $alert_time = 600;
+            }
         }
         else if($request->notification==="false") {
             $notification = "off";
@@ -66,7 +73,8 @@ class TaskController extends Controller
             'importance' => 'required',
             'book' => 'required',
             'end_date' =>'required|date',
-            'description' => 'required'
+            'description' => 'required',
+             
         ]);
  
         $book = DB::table('books')->where('title',$request->book)->first();
@@ -97,6 +105,7 @@ class TaskController extends Controller
     }
     
     DB::table('task_histories')->insert([
+        'user_id' => Auth::user()->id,
         'task_id' => $task->id,
         'old_status' => $request->status,
         'new_status' =>$request->status,
@@ -150,6 +159,7 @@ class TaskController extends Controller
         $task = Task::find($id);  
 
         DB::table('task_histories')->insert([
+            'user_id' => Auth::user()->id,
             'task_id' => $task->id,
             'old_status' => $task->status,
             'new_status' =>$request->status,
@@ -168,12 +178,21 @@ class TaskController extends Controller
 
         if($notification=="on"){
             
-         $Notif = Notification::where('task_id', $id)->first();
+         if($Notif = Notification::where('task_id', $id)->first()){
            $Notif->due_date =  $task->end_date;
            $Notif->seen = 0;
            $Notif->save();
             }
-    
+            else {
+                Notification::create([
+                    'task_id' => $task->id,
+                    'user_id' => Auth::user()->id,
+                     'status' => $task->status,
+                     'due_date' => $task->end_date,
+                     'seen' => 0
+                    ]);
+            }
+        }
 
 
 

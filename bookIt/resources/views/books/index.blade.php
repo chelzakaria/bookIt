@@ -6,6 +6,11 @@
 
 }
 
+#select   {
+            font-family: fontAwesome;
+            
+        }
+
 .wrapper{
  
   
@@ -77,90 +82,15 @@
                 <div class="container py-3">
                     <div class="d-flex flex-row">
                         <p style="font-weight:700; font-size:30px;">
-                            Notes  
+                            Books  
                         </p>  
-                        <div class="d-none">
-                            {{$i=0}}
-                            @foreach ($notifications as $notification)
-                                        @if ((strtotime($notification->due_date) - strtotime(\Carbon\Carbon::now())) < App\Models\Task::where('id', $notification->task_id)->first()->reminder_time && !$notification->seen && $tasks->where('id', $notification->task_id)->first()->status !=="done")
-                                        {{$i++}}
-                                            @endif 
-                                            
-                                        @endforeach
-                        </div>
-                            {{-- {{auth()->user()->firstName}} --}}
-                            <div class="mb-3 ml-auto mr-0" >
-                                <div class="btn-group dropleft position-absolute" style="top:30px; right: 155px">
-                                    <a class="btn px-0 " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: none; width:25px; height:25px">
-                                        <img class="mr-5"  @if ($i>0)
-                                        src="/images/icons/notification_on_icon.svg"
-                                        @else
-                                        src="/images/icons/notification_off_icon.svg"
-                                        @endif  alt="" style="width:99%  ; height:auto;">                                         </a>
-                                  
-                                    <div class="dropdown-menu mt-4 example" aria-labelledby="dropdownMenuLink " style=" min-width: 300px;
-                                    max-height: 150px;  overflow-y: scroll;">
-                                      {{-- <div class="dropdown-item " style="background:rgb(241, 236, 236)">a</div> --}}
-                                      @if ($notifications->count())
-                                      
-                                      @foreach ($notifications as $notification)
-                                      @if ((strtotime($notification->due_date) - strtotime(\Carbon\Carbon::now()) ) < $tasks->where('id', $notification->task_id)->first()->reminder_time && $tasks->where('id', $notification->task_id)->first()->status !=="done")
-                                      <form action="{{route('notification.show', $notification->task_id)}}" method="POST">
-                                          @csrf
-                                          @if ($tasks->where('id', $notification->task_id)->first())
-                                              
-                                         
-                                        <button type="submit" class="dropdown-item " @if(!$notification->seen) style="background: rgb(235, 229, 229)" bg-secondary @endif > 
-                                            You  have
-                                        @switch($tasks->where('id', $notification->task_id)->first()->reminder_time)
-                                            @case(300)
-                                                5 minutes
-                                                @break
-                                            @case(600)
-                                                10 minutes
-                                                @break
-                                            @case(900)
-                                                15 minutes
-                                                @break
-                                            @case(3600)
-                                                1 hour
-                                                @break
-                                            @case(7200)
-                                                2 hours
-                                                @break
-                                            @case(86400)
-                                                1 day
-                                                @break
-                                            @case(172800)
-                                                2 days
-                                                @break
-                                           
-                                            @default
-                                                
-                                        @endswitch
-                                        to complete 
-                                           <b> {{$tasks->where('id', $notification->task_id)->first()->task_name}}</b>
-                                              <br>
-                                              <span class="text-muted float-right" style="font-weight:600; font-size:12px;">{{$notification->due_date->subSeconds($tasks->where('id', $notification->task_id)->first()->reminder_time)->diffForHumans()}}</span>
-                         
-                                        </button>
-                                        @endif
-                                      </form>
-                                        @endif 
-                                        
-                                      @endforeach
-                                    
-                                      @endif 
-                                    
-                                </div> 
-                                    </div>
-                                  </div>
+                        
           
+                        @include('layouts.notification')
             
                                
                         
-                                <img  src="/storage/profile_images/{{Auth::user()->profile_image}}" alt="" style="width: 60px; height:60px; border-radius:50%">
-                            </div>
+                             </div>
                          
                           
                         
@@ -188,7 +118,7 @@
                         </div>
                         @endif
                         <div class="ml-auto mr-0">
-                            <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;"> <a href=" {{route('createbook')}}" style="text-decoration: none; color:#fff;">Add new book</a> </button>
+                            <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;" data-toggle="modal" data-target="#addBook"> <a   style="text-decoration: none; color:#fff;">Add new book</a> </button>
                         </div>
                     </div>
                     <hr style="border-top: 1px solid #00000023;">
@@ -227,6 +157,154 @@
 
    
             </div>
+                {{-- add book modal --}}
+                <div class="modal fade" id="addBook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel" style="font-weight:700; font-size:25px;">Add book
+                                </h5>
+                            
+                            </div>
+                            <div class="modal-body">
+                                <div class="row mt-0">
+                                    @error('type')
+                                    <div class="col text-center ">
+                                        
+                                        <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+
+                                        {{$message}}
+                                            </div>
+
+                                            
+                                    </div>
+                                    @enderror
+                                    @error('body')
+                                    <div class="col text-center ">
+                                        <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+                                        {{$message}}
+                                        </div>
+                                        
+                                </div>
+                                @enderror
+                                </div>
+                                
+                                <form action="{{route('books')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="title" placeholder="Title" style="border-radius:10px; height:50px;"  autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="author" placeholder="Author" style="border-radius:10px; height:50px;"  autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <input type="number" class="form-control" name="num_page" placeholder="Number of pages" style="border-radius:10px; height:50px;" autocomplete="off" min="1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                         
+                                            <div class="col-md-4">
+                                                 <div class="form-group">
+                                                    <select class="custom-select"  name="category"   style="border-radius:10px; height:50px; ">
+                                                        <option selected="true" disabled="disabled" >Select a category</option>
+                                                        <option>Arts & Music</option>
+                                                        <option>Biographies</option>
+                                                        <option>Business</option>
+                                                        <option>Comics</option>
+                                                        <option>Computers & Tech</option>
+                                                        <option>Cooking</option>
+                                                        <option>Entertainment</option>
+                                                        <option>History</option>
+                                                        <option>Horror</option>
+                                                        <option>Kids</option>
+                                                        <option>Mysteries</option>
+                                                        <option>Romance</option>
+                                                        <option>Sci-Fi & Fantasy</option>
+                                                        <option>Science</option>
+                                                        <option>Sports</option>
+                                                        <option>True Crime</option>
+                                                        <option>Others</option>
+                                                    </select>
+                                                 
+                                                  </div>
+                                            </div>
+         
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                   <select id="select" class="custom-select"  name="rating"   style="border-radius:10px; height:50px; ">
+                                                       <option selected="true" disabled="disabled" >Rating</option>
+                                                       @for ($i = 1; $i < 6; $i++)
+                                                       <option value={{$i}} style="color: #F0C808;">
+                                                        @if ($i>=1)
+                                                        &#xf005;
+                                                        @endif &nbsp;
+                                                        @if ($i>=2)
+                                                        &#xf005;
+                                                        @endif &nbsp;
+                                                        @if ($i>=3)
+                                                        &#xf005;
+                                                        @endif &nbsp;
+                                                        @if ($i>=4)
+                                                        &#xf005;
+                                                        @endif &nbsp;
+                                                        @if ($i>=5)
+                                                        &#xf005;
+                                                        @endif
+                                                
+                                                        @endfor
+                                               
+                                                   </select>
+                                                
+                                                 </div>
+                                                 
+                                           </div>
+                                               
+                                          </div>  
+                                          <div class="row">
+        
+                                                <div class="col">
+                                                    <textarea rows="8" class=" py-4 form-control" name="description" placeholder="Description..." style=" 
+                                                    border:none;
+                                                    background: #e9f4ff;
+                                                    border-radius: 12px;
+                                                    outline:none;
+                                                    padding:15px; 
+                                                    resize: none;"  ></textarea>
+                                                  </div>
+                                            </div>
+                                                
+                                                <div class="row mt-3">
+                                                  <div class="col">
+                                                    <div class="custom-file" >
+                                                        <input type="file" class="custom-file-input" id="customFile" name="cover" >
+                                                        <label class="custom-file-label" for="customFile" >Choose cover image</label>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                        
+                            <div class="modal-footer">
+                        
+                                        <div class="col">
+                                            <button type="button" class="btn float-left" data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;"> <a   style="text-decoration: none; color:#000;">Cancel</a> </button>
+                                        </div>
+                                        <div class="col">
+                                            <button type="submit"  name="add" class="btn btn-primary float-right"
+                                            style="background-color:#1F1A6B;font-weight:700;  " >Add</button> 
+                                        </div>
+                            
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{-- end of add book modal --}}
 
         </div>
                     

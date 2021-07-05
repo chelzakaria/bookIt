@@ -119,87 +119,12 @@ function unwrap(node) {
                         <p style="font-weight:700; font-size:30px;">
                             Tasks  
                         </p>  
-                        <div class="d-none">
-                            {{$i=0}}
-                            @foreach ($notifications as $notification)
-                                        @if ((strtotime($notification->due_date) - strtotime(\Carbon\Carbon::now())) < App\Models\Task::where('id', $notification->task_id)->first()->reminder_time && !$notification->seen && $tasks->where('id', $notification->task_id)->first()->status !=="done")
-                                        {{$i++}}
-                                            @endif 
-                                            
-                                        @endforeach
-                        </div>
-                            {{-- {{auth()->user()->firstName}} --}}
-                            <div class="mb-3 ml-auto mr-0" >
-                                <div class="btn-group dropleft position-absolute" style="top:30px; right: 155px">
-                                    <a class="btn px-0 " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: none; width:25px; height:25px">
-                                        <img class="mr-5"  @if ($i>0)
-                                        src="/images/icons/notification_on_icon.svg"
-                                        @else
-                                        src="/images/icons/notification_off_icon.svg"
-                                        @endif  alt="" style="width:99%  ; height:auto;">                                         </a>
-                                  
-                                    <div class="dropdown-menu mt-4 example" aria-labelledby="dropdownMenuLink " style=" min-width: 300px;
-                                    max-height: 150px;  overflow-y: scroll;">
-                                      {{-- <div class="dropdown-item " style="background:rgb(241, 236, 236)">a</div> --}}
-                                      @if ($notifications->count())
-                                      
-                                      @foreach ($notifications as $notification)
-                                      @if ((strtotime($notification->due_date) - strtotime(\Carbon\Carbon::now()) ) < $tasks->where('id', $notification->task_id)->first()->reminder_time && $tasks->where('id', $notification->task_id)->first()->status !=="done")
-                                      <form action="{{route('notification.show', $notification->task_id)}}" method="POST">
-                                          @csrf
-                                          @if ($tasks->where('id', $notification->task_id)->first())
-                                              
-                                         
-                                        <button type="submit" class="dropdown-item " @if(!$notification->seen) style="background: rgb(235, 229, 229)" bg-secondary @endif > 
-                                            You  have
-                                            @switch($tasks->where('id', $notification->task_id)->first()->reminder_time)
-                                                @case(300)
-                                                    5 minutes
-                                                    @break
-                                                @case(600)
-                                                    10 minutes
-                                                    @break
-                                                @case(900)
-                                                    15 minutes
-                                                    @break
-                                                @case(3600)
-                                                    1 hour
-                                                    @break
-                                                @case(7200)
-                                                    2 hours
-                                                    @break
-                                                @case(86400)
-                                                    1 day
-                                                    @break
-                                                @case(172800)
-                                                    2 days
-                                                    @break
-                                               
-                                                @default
-                                                    
-                                            @endswitch
-                                            to complete  
-                                           <b> {{$tasks->where('id', $notification->task_id)->first()->task_name}}</b>
-                                              <br>
-                                              <span class="text-muted float-right" style="font-weight:600; font-size:12px;">{{$notification->due_date->subSeconds($tasks->where('id', $notification->task_id)->first()->reminder_time)->diffForHumans()}}</span>
-                         
-                                        </button>
-                                        @endif
-                                      </form>
-                                        @endif 
-                                        
-                                      @endforeach
-                                    
-                                      @endif 
-                                    
-                                </div> 
-                                    </div>
-                                  </div>
+                        @include('layouts.notification')
+
           
             
                                
-                        
-                                <img  src="/storage/profile_images/{{Auth::user()->profile_image}}" alt="" style="width: 60px; height:60px; border-radius:50%">
+                         
                             </div>
                          
                           
@@ -246,7 +171,7 @@ function unwrap(node) {
                                 <img src="/images/icons/dots_horizontal_icon.svg" alt="" style="height: auto;width:;">                                            </a>
                           
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                              <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
+                              <a   data-toggle="modal" data-target="#editTask{{$task->id}}" class="btn dropdown-item" >Edit</a>
                               <a data-toggle="modal" data-target="#exampleModal{{$task->id}}" class="btn dropdown-item" href="#"> <span>Delete</span>  </a>
                                
                             </div>
@@ -308,7 +233,9 @@ function unwrap(node) {
                         @endif
                         @endforeach
                          
-                <a href="{{route('tasks.create', 'not started')}}" style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
+                <a data-toggle="modal" data-target="#addTaskNotStarted"
+           
+                style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
                 </div></a>
                         
                 </div>
@@ -316,6 +243,153 @@ function unwrap(node) {
                     </form>
                 </div>
             </div>
+             {{-- add tsk not started modal --}}
+             <div class="modal fade" id="addTaskNotStarted" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel" style="font-weight:700; font-size:25px;">Add task
+                            </h5>
+                         
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mt-0">
+                                @error('type')
+                                <div class="col text-center ">
+                                       
+                                       <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+    
+                                       {{$message}}
+                                        </div>
+    
+                                        
+                                </div>
+                                @enderror
+                                @error('body')
+                                <div class="col text-center ">
+                                    <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+                                    {{$message}}
+                                     </div>
+                                    
+                             </div>
+                             @enderror
+                            </div>
+                             
+                            <form action="{{route('tasks')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="task_name" placeholder="Task name" style="border-radius:10px; height:50px;"  autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                     
+                                        <div class="col-md-4">
+                                             <div class="form-group">
+                                                <select class="custom-select"  name="status"   style="border-radius:10px; height:50px; ">
+                                                    <option  disabled="disabled" >Status</option>
+                                                    <option  
+                                                        selected
+                                                    >not started</option>
+                                                    <option  >in progress</option>
+                                                    <option  >done</option>
+                                                 </select>
+                                             
+                                              </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                               <select class="custom-select"  name="importance"   style="border-radius:10px; height:50px; ">
+                                                   <option selected="true" disabled="disabled" >Priority</option>
+                                                    <option>high</option>
+                                                   <option>medium</option>
+                                                   <option>low</option>
+                                                    
+                                               </select>
+                                            
+                                             </div>
+                                       </div>
+                                       <div class="col-md-4">
+                                        <div class="form-group">
+                                           <select class="custom-select"  name="book"   style="border-radius:10px; height:50px; ">
+                                               <option selected="true" disabled="disabled" >Select a book</option>
+                                               @foreach ($books as $book)
+                                               <option>{{$book->title}}</option>  
+                                             @endforeach
+                                               
+                                                
+                                           </select>
+                                        
+                                         </div>
+                                   </div>
+                                           
+                                      </div>  
+                                      <div class="row">
+    
+                                            <div class="col">
+                                                <textarea rows="6" class=" py-4 form-control" name="description" placeholder="Task description..." style=" 
+                                                border:none;
+                                                background: #e9f4ff;
+                                                border-radius: 10px;
+                                                outline:none;
+                                                padding:15px; 
+                                                resize: none;"  ></textarea>
+                                              </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="end_date" placeholder="Due date" onfocus="(this.type='datetime-local')" style="border-radius:10px; height:50px;" >
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                         
+    
+                                                  <div class="form-group mt-2">
+                                                    <label class="custom-checkbox">
+                                                 
+                                                        <input id="chekcbox-inputnt" type="hidden" name="notification" value="true">
+                                                        <span class="custom-checkbox-text"><img id="checkbox-imgnt" style="cursor: pointer" src="/images/icons/alert_on_icon.svg" alt="" onclick="click2('nt')"> &nbsp;  Alert</span>
+                                                      </label>
+                                                  </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <select id="selectTiment" class="custom-select"  name="reminder_time"   style="border-radius:10px; height:50px; " >
+                                                    <option selected="true" disabled="disabled" >Set due date reminder</option>
+                                                
+                                                    <option value="300">5 Minutes before</option>  
+                                                    <option value="600">10 Minutes before</option>  
+                                                    <option value="900">15 Minutes before</option>  
+                                                    <option value="3600">1 Hour before</option> 
+                                                    <option value="7200">2 Hours before</option>  
+                                                    <option value="86400">1 Day before</option>
+                                                    <option value="172800">2 Days before</option>
+    
+    
+                                                </select>
+                                            </div>
+                                        </div>
+                                             
+                               
+                                     
+                    </div>
+                    <div class="modal-footer">
+                     
+                        <div class="col">
+                            <button type="button" class="btn float-left" data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;"> <a   style="text-decoration: none; color:#000;">Cancel</a> </button>
+                        </div>
+                        <div class="col">
+                            <button type="submit"  name="create" class="btn btn-primary float-right"
+                            style="background-color:#1F1A6B;font-weight:700;  " >Create</button> 
+                        </div>
+              </form>
+             </div>
+                </div>
+            </div>
+             </div>
+            {{-- end of add task in progress modal --}}
         </div>
         <div class="col-sm-6 col-md-4 col-xl-3 ml-5">
             <div class="card bg-light"  style="width: 270px; min-height:70vh">
@@ -348,11 +422,11 @@ function unwrap(node) {
                                 <a class="btn  " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: none">
                                     <img src="/images/icons/dots_horizontal_icon.svg" alt="" style="height: auto;width:;">                                            </a>
                               
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
-                                  <a data-toggle="modal" data-target="#exampleModal{{$task->id}}" class="btn dropdown-item" href="#"> <span>Delete</span>  </a>
-                               
-                                </div>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a   data-toggle="modal" data-target="#editTask{{$task->id}}" class="btn dropdown-item">Edit</a>
+                                        <a data-toggle="modal" data-target="#exampleModal{{$task->id}}" class="btn dropdown-item" href="#"> <span>Delete</span>  </a>
+                                         
+                                      </div>
                                 <div class="modal fade" id="exampleModal{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -405,13 +479,161 @@ function unwrap(node) {
                         @endif
                         @endforeach
 
-                        <a href="{{route('tasks.create', 'in progress')}}" style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
+                        <a data-toggle="modal" data-target="#addTaskInProgress" 
+                         style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
                         </div></a>
                     </div>
                     <button type="submit" id="tst2" style="visibility: hidden"></button>
                     </form>
                 </div>
             </div>
+                 {{-- Add task in progress modal --}}
+                 <div class="modal fade" id="addTaskInProgress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel" style="font-weight:700; font-size:25px;">Add task
+                                </h5>
+                             
+                            </div>
+                            <div class="modal-body">
+                                <div class="row mt-0">
+                                    @error('type')
+                                    <div class="col text-center ">
+                                           
+                                           <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+        
+                                           {{$message}}
+                                            </div>
+        
+                                            
+                                    </div>
+                                    @enderror
+                                    @error('body')
+                                    <div class="col text-center ">
+                                        <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+                                        {{$message}}
+                                         </div>
+                                        
+                                 </div>
+                                 @enderror
+                                </div>
+                                 
+                                <form action="{{route('tasks')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="task_name" placeholder="Task name" style="border-radius:10px; height:50px;"  autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                         
+                                            <div class="col-md-4">
+                                                 <div class="form-group">
+                                                    <select class="custom-select"  name="status"   style="border-radius:10px; height:50px; ">
+                                                        <option  disabled="disabled" >Status</option>
+                                                        <option  
+                                                            
+                                                        >not started</option>
+                                                        <option selected >in progress</option>
+                                                        <option  >done</option>
+                                                     </select>
+                                                 
+                                                  </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                   <select class="custom-select"  name="importance"   style="border-radius:10px; height:50px; ">
+                                                       <option selected="true" disabled="disabled" >Priority</option>
+                                                        <option>high</option>
+                                                       <option>medium</option>
+                                                       <option>low</option>
+                                                        
+                                                   </select>
+                                                
+                                                 </div>
+                                           </div>
+                                           <div class="col-md-4">
+                                            <div class="form-group">
+                                               <select class="custom-select"  name="book"   style="border-radius:10px; height:50px; ">
+                                                   <option selected="true" disabled="disabled" >Select a book</option>
+                                                   @foreach ($books as $book)
+                                                   <option>{{$book->title}}</option>  
+                                                 @endforeach
+                                                   
+                                                    
+                                               </select>
+                                            
+                                             </div>
+                                       </div>
+                                               
+                                          </div>  
+                                          <div class="row">
+        
+                                                <div class="col">
+                                                    <textarea rows="6" class=" py-4 form-control" name="description" placeholder="Task description..." style=" 
+                                                    border:none;
+                                                    background: #e9f4ff;
+                                                    border-radius: 10px;
+                                                    outline:none;
+                                                    padding:15px; 
+                                                    resize: none;"  ></textarea>
+                                                  </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="end_date" placeholder="Due date" onfocus="(this.type='datetime-local')" style="border-radius:10px; height:50px;" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                             
+        
+                                                      <div class="form-group mt-2">
+                                                        <label class="custom-checkbox">
+                                                     
+                                                            <input id="chekcbox-inputip" type="hidden" name="notification" value="true">
+                                                            <span class="custom-checkbox-text"><img id="checkbox-imgip" style="cursor: pointer" src="/images/icons/alert_on_icon.svg" alt="" onclick="click2('ip')"> &nbsp;  Alert</span>
+                                                          </label>
+                                                      </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <select id="selectTimeip" class="custom-select"  name="reminder_time"   style="border-radius:10px; height:50px; " >
+                                                        <option selected="true" disabled="disabled" >Set due date reminder</option>
+                                                    
+                                                        <option value="300">5 Minutes before</option>  
+                                                        <option value="600">10 Minutes before</option>  
+                                                        <option value="900">15 Minutes before</option>  
+                                                        <option value="3600">1 Hour before</option> 
+                                                        <option value="7200">2 Hours before</option>  
+                                                        <option value="86400">1 Day before</option>
+                                                        <option value="172800">2 Days before</option>
+        
+        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                                 
+                                   
+                                         
+                        </div>
+                        <div class="modal-footer">
+                         
+                            <div class="col">
+                                <button type="button" class="btn float-left" data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;"> <a   style="text-decoration: none; color:#000;">Cancel</a> </button>
+                            </div>
+                            <div class="col">
+                                <button type="submit"  name="create" class="btn btn-primary float-right"
+                                style="background-color:#1F1A6B;font-weight:700;  " >Create</button> 
+                            </div>
+                  </form>
+                 </div>
+                    </div>
+                </div>
+                 </div>
+                {{-- end of add task  modal --}}
         </div>
         <div class="col-sm-6 col-md-4 col-xl-3 ml-5 ">
             <div class="card bg-light "  style="width: 270px;min-height:70vh">
@@ -443,11 +665,11 @@ function unwrap(node) {
                             <a class="btn  " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="outline: none">
                                 <img src="/images/icons/dots_horizontal_icon.svg" alt="" style="height: auto;width:;">                                            </a>
                           
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                              <a class="dropdown-item" href="/tasks/{{$task->id}}/edit">Edit</a>
-                                <a data-toggle="modal" data-target="#exampleModal{{$task->id}}" class="btn dropdown-item" href="#"> <span>Delete</span>  </a>
-                               
-                            </div>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a   data-toggle="modal" data-target="#editTask{{$task->id}}" class="btn dropdown-item">Edit</a>
+                                    <a data-toggle="modal" data-target="#exampleModal{{$task->id}}" class="btn dropdown-item" href="#"> <span>Delete</span>  </a>
+                                     
+                                  </div>
                             <div class="modal fade" id="exampleModal{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -503,7 +725,7 @@ function unwrap(node) {
                         @endif
                         @endforeach
 
-                        <a href="{{route('tasks.create', 'done')}}" style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
+                        <a data-toggle="modal" data-target="#addTaskDone"  style="text-decoration:none; color:#000;"><div class="text-center position-absolute mb-2 py-1"  style="background:#BDDDF8; bottom:0px;width:85%;border-radius:5px;"><span class="iconify" data-inline="false" data-icon="bi:plus-lg" style="font-size: 20px;"></span>
                         </div></a>
                         
                     </div>
@@ -511,8 +733,155 @@ function unwrap(node) {
                     </form>
                 </div>
             </div>
+             {{-- Add task in progress modal --}}
+             <div class="modal fade" id="addTaskDone" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel" style="font-weight:700; font-size:25px;">Add task
+                            </h5>
+                         
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mt-0">
+                                @error('type')
+                                <div class="col text-center ">
+                                       
+                                       <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+    
+                                       {{$message}}
+                                        </div>
+    
+                                        
+                                </div>
+                                @enderror
+                                @error('body')
+                                <div class="col text-center ">
+                                    <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+                                    {{$message}}
+                                     </div>
+                                    
+                             </div>
+                             @enderror
+                            </div>
+                             
+                            <form action="{{route('tasks')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="task_name" placeholder="Task name" style="border-radius:10px; height:50px;"  autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                     
+                                        <div class="col-md-4">
+                                             <div class="form-group">
+                                                <select class="custom-select"  name="status"   style="border-radius:10px; height:50px; ">
+                                                    <option  disabled="disabled" >Status</option>
+                                                    <option  >not started</option>
+                                                    <option  >in progress</option>
+                                                    <option  selected >done</option>
+                                                 </select>
+                                             
+                                              </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                               <select class="custom-select"  name="importance"   style="border-radius:10px; height:50px; ">
+                                                   <option selected="true" disabled="disabled" >Priority</option>
+                                                    <option>high</option>
+                                                   <option>medium</option>
+                                                   <option>low</option>
+                                                    
+                                               </select>
+                                            
+                                             </div>
+                                       </div>
+                                       <div class="col-md-4">
+                                        <div class="form-group">
+                                           <select class="custom-select"  name="book"   style="border-radius:10px; height:50px; ">
+                                               <option selected="true" disabled="disabled" >Select a book</option>
+                                               @foreach ($books as $book)
+                                               <option>{{$book->title}}</option>  
+                                             @endforeach
+                                               
+                                                
+                                           </select>
+                                        
+                                         </div>
+                                   </div>
+                                           
+                                      </div>  
+                                      <div class="row">
+    
+                                            <div class="col">
+                                                <textarea rows="6" class=" py-4 form-control" name="description" placeholder="Task description..." style=" 
+                                                border:none;
+                                                background: #e9f4ff;
+                                                border-radius: 10px;
+                                                outline:none;
+                                                padding:15px; 
+                                                resize: none;"  ></textarea>
+                                              </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="end_date" placeholder="Due date" onfocus="(this.type='datetime-local')" style="border-radius:10px; height:50px;" >
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                         
+    
+                                                  <div class="form-group mt-2">
+                                                    <label class="custom-checkbox">
+                                                 
+                                                        <input id="chekcbox-inputdn" type="hidden" name="notification" value="true">
+                                                        <span class="custom-checkbox-text"><img id="checkbox-imgdn" style="cursor: pointer" src="/images/icons/alert_on_icon.svg" alt="" onclick="click2('dn')"> &nbsp;  Alert</span>
+                                                      </label>
+                                                  </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <select id="selectTimedn" class="custom-select"  name="reminder_time"   style="border-radius:10px; height:50px; " >
+                                                    <option selected="true" disabled="disabled" >Set due date reminder</option>
+                                                
+                                                    <option value="300">5 Minutes before</option>  
+                                                    <option value="600">10 Minutes before</option>  
+                                                    <option value="900">15 Minutes before</option>  
+                                                    <option value="3600">1 Hour before</option> 
+                                                    <option value="7200">2 Hours before</option>  
+                                                    <option value="86400">1 Day before</option>
+                                                    <option value="172800">2 Days before</option>
+    
+    
+                                                </select>
+                                            </div>
+                                        </div>
+                                             
+                               
+                                     
+                    </div>
+                    <div class="modal-footer">
+                     
+                        <div class="col">
+                            <button type="button" class="btn float-left" data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;"> <a   style="text-decoration: none; color:#000;">Cancel</a> </button>
+                        </div>
+                        <div class="col">
+                            <button type="submit"  name="create" class="btn btn-primary float-right"
+                            style="background-color:#1F1A6B;font-weight:700;  " >Create</button> 
+                        </div>
+              </form>
+             </div>
+                </div>
+            </div>
+             </div>
+            {{-- end of add task done modal --}}
         </div>
     </div>
+
+
 </div>
 <!--fin-->
  
@@ -522,7 +891,177 @@ function unwrap(node) {
 
    
             </div>
+{{-- edit task --}}
+@foreach ($tasks as $task)
+    
 
+<div class="modal fade" id="editTask{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{$task->id}}" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel{{$task->id}}" style="font-weight:700; font-size:25px;">Edit task
+                </h5>
+             
+            </div>
+            <div class="modal-body">
+                <div class="row mt-0">
+                    @error('type')
+                    <div class="col text-center ">
+                           
+                           <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+
+                           {{$message}}
+                            </div>
+
+                            
+                    </div>
+                    @enderror
+                    @error('body')
+                    <div class="col text-center ">
+                        <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+                        {{$message}}
+                         </div>
+                        
+                 </div>
+                 @enderror
+                </div>
+                 
+                <form action="{{route('tasks.update', $task->id)}}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="task_name" placeholder="Task name" style="border-radius:10px; height:50px;"  autocomplete="off" value="{{$task->task_name}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                         
+                            <div class="col-md-4">
+                                 <div class="form-group">
+                                    <select class="custom-select"  name="status"   style="border-radius:10px; height:50px; ">
+                                        <option selected="true" disabled="disabled" >Status</option>
+                                        <option @if ($task->status == "not started")
+                                            selected
+                                        @endif>not started</option>
+                                        <option @if ($task->status == "in progress")
+                                            selected
+                                        @endif>in progress</option>
+                                        <option @if ($task->status == "done")
+                                            selected
+                                        @endif>done</option>
+                                     </select>
+                                 
+                                  </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                   <select class="custom-select"  name="importance"   style="border-radius:10px; height:50px; ">
+                                       <option selected="true" disabled="disabled" >Priority</option>
+                                        <option @if ($task->task_importance == "high")
+                                            selected
+                                        @endif >high</option>
+                                       <option @if ($task->task_importance == "medium")
+                                        selected
+                                    @endif>medium</option>
+                                       <option @if ($task->task_importance == "low")
+                                        selected
+                                    @endif>low</option>
+                                        
+                                   </select>
+                                
+                                 </div>
+                           </div>
+                           
+                               
+                          </div>  
+                          <div class="row">
+
+                                <div class="col">
+                                    <textarea rows="6" class=" py-4 form-control" name="description" placeholder="Task description..." style=" 
+                                    border:none;
+                                    background: #e9f4ff;
+                                    border-radius: 12px;
+                                    outline:none;
+                                    padding:15px; 
+                                    resize: none;"  >{{ $task->task_description }}</textarea>
+                                  </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <input type="datetime-local" class="form-control" name="end_date" placeholder="Due date"  style="border-radius:10px; height:50px;" value="{{ date('Y-m-d\TH:i', strtotime($task->end_date)) }}">
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="form-group my-2 ml-3">
+
+                                       
+                                        <label class="custom-checkbox{{$task->id}}">
+                                    
+                                            <input id="chekcbox-input{{$task->id}}" type="hidden" name="notification" @if($task->notification=="on") value="true" @else value="false" @endif>
+                                            <span class="custom-checkbox-text"><img id="checkbox-img{{$task->id}}" style="cursor: pointer; z-index:11111;"  @if($task->notification=="on")
+                                                src="/images/icons/alert_on_icon.svg"
+                                                @else
+                                                src="/images/icons/alert_off_icon.svg"
+                                                @endif
+                                                 alt="" onclick="click2({{$task->id}});"> &nbsp;  Alert</span>
+                                          </label>
+
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <select id="selectTime{{$task->id}}" class="custom-select"  name="reminder_time"   style="border-radius:10px; height:50px; "  @if($task->notification=="off") disabled @endif >
+                                        <option @if ($task->reminder_time ===0)
+                                            selected
+                                        @endif disabled="disabled" >Set due date reminder</option>
+                                    
+                                        <option value="300" @if ($task->reminder_time ===300)
+                                            selected
+                                        @endif>5 Minutes before</option>  
+                                        <option value="600" @if ($task->reminder_time ===600)
+                                            selected
+                                        @endif>10 Minutes before</option>  
+                                        <option value="900" @if ($task->reminder_time ===900)
+                                            selected
+                                        @endif>15 Minutes before</option>  
+                                        <option value="3600" @if ($task->reminder_time ===3600)
+                                            selected
+                                        @endif>1 Hour before</option> 
+                                        <option value="7200" @if ($task->reminder_time ===7200)
+                                            selected
+                                        @endif>2 Hours before</option>  
+                                        <option value="86400" @if ($task->reminder_time ===86400)
+                                            selected
+                                        @endif>1 Day before</option>
+                                        <option value="172800" @if ($task->reminder_time ===172800)
+                                            selected
+                                        @endif>2 Days before</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+                                 
+                     
+                       
+        <div class="modal-footer">
+         
+            <div class="col">
+                <button type="button" class="btn float-left" data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;"> <a   style="text-decoration: none; color:#000;">Cancel</a> </button>
+            </div>
+            <div class="col">
+                <button type="submit"  name="create" class="btn btn-primary float-right"
+                style="background-color:#1F1A6B;font-weight:700;  " >Edit</button> 
+            </div>
+  </form>
+ </div>
+    </div>
+</div>
+ </div>
+    </div>
+ @endforeach
+{{-- end of edit task --}}
         </div>
  <script>
      //for form1
@@ -618,7 +1157,43 @@ $('#formdrag3').on('submit',function(e){
 //         }
 //     });
 // });
-                           
+$(document).ready(function() {
+                $("#checkbox-img").click(function() {
+                    if ($("#chekcbox-input").val()=="true") {
+                        console.log('off');
+                        $("#checkbox-img").attr("src","/images/icons/alert_off_icon.svg");
+                       $('#selectTime').prop( "disabled", true );
+                       $("#chekcbox-input").val('false')
+                    } else {
+                        console.log('on');
+
+                        $("#checkbox-img").attr("src","/images/icons/alert_on_icon.svg");
+                        $("#chekcbox-input").val('true');
+                       $('#selectTime').prop( "disabled", false );
+
+                    }
+                });
+                
+            });       
+           function click2(id) {
+                     
+                    let img = "#checkbox-img"+id;
+                    let sel = '#selectTime'+id;
+                    let input = "#chekcbox-input"+id;
+                    console.log($(input));
+                    if ($(input).val()=="true") {
+                        $(img).attr("src","/images/icons/alert_off_icon.svg");
+                       $(sel).prop( "disabled", true );
+                       $(input).val('false')
+                    } else {
+                     
+                        $(img).attr("src","/images/icons/alert_on_icon.svg");
+                        $(input).val('true');
+                       $(sel).prop( "disabled", false );
+
+                    }
+                } 
+               
  </script>       
                   
     
