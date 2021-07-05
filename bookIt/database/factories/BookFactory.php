@@ -23,12 +23,12 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            'user_id'=> 5,
+            'user_id'=> 24,
             'title' => $this->faker->word(),
             'author' => $this->faker->word(),
             'num_page' => $this->faker->numberBetween(10, 500),
             'description' => $this->faker->sentence(20),
-            'rating' => $this->faker->numberBetween(0, 5),
+            'rating' => $this->faker->numberBetween(1, 5),
             'cover' => "noimage.jpg",
             'read' => $this->faker->numberBetween(0, 1),
             'category' => $this->faker->randomElement([

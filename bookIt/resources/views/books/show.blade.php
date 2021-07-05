@@ -464,7 +464,7 @@ function () {
         clearInterval(x);
         
         }*/
-        </script>
+        </script> -->
         <script>
 
             $(document).ready(function() {

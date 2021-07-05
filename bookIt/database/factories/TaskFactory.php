@@ -24,7 +24,7 @@ class TaskFactory extends Factory
     {
         return [
             'book_id' => Book::pluck('id')->random(),
-            'user_id'=> 5,
+            'user_id'=> 24,
              'task_name' => $this->faker->word(),
             'task_description' => $this->faker->sentence(5),
             'status' => $this->faker->randomElement([
@@ -41,7 +41,7 @@ class TaskFactory extends Factory
                 "off",
                 "on",
             ]),
-            'start_date' => $this->faker->dateTimeBetween('-30 days', '+30 days'),
+            'start_date' => $this->faker->dateTimeBetween('-30 days', 'now'),
             'end_date' => $this->faker->dateTimeBetween('-30 days', '+30 days'),
             'reminder_time' => $this->faker->randomElement([
                 300,

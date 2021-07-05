@@ -35,7 +35,7 @@ class TaskHistoryFactory extends Factory
                 "not started",
                 "done",
             ]),
-            'created_at' => $this->faker->dateTimeBetween('-30 days', '+30 days'),
+            'created_at' => $this->faker->dateTimeBetween('-30 days', 'now'),
         
         ];
     }

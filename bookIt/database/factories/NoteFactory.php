@@ -24,7 +24,7 @@ class NoteFactory extends Factory
     {
         return [
             'book_id' => Book::pluck('id')->random(),
-            'user_id'=> 5,
+            'user_id'=> 24,
             'body' => $this->faker->sentence(50),
             'type' => $this->faker->randomElement([
                 "Quote",

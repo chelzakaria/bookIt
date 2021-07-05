@@ -171,18 +171,20 @@
                         
         </div>
         <script>
-            $(document).ready(function() {
-              $("#checkbox-img").click(function() {
-                  if ($("#chekcbox-input").val()=="true") {
-                      $("#checkbox-img").attr("src","/images/icons/alert_off_icon.svg");
-                     
-                     $("#chekcbox-input").val('false')
-                  } else {
-                      $("#checkbox-img").attr("src","/images/icons/alert_on_icon.svg");
-                      $("#chekcbox-input").val('true')
-                  }
-              });
-          });
+        $(document).ready(function() {
+                $("#checkbox-img").click(function() {
+                    if ($("#chekcbox-input").val()=="true") {
+                        $("#checkbox-img").attr("src","/images/icons/alert_off_icon.svg");
+                       $('#selectTime').prop( "disabled", true );
+                       $("#chekcbox-input").val('false')
+                    } else {
+                        $("#checkbox-img").attr("src","/images/icons/alert_on_icon.svg");
+                        $("#chekcbox-input").val('true');
+                       $('#selectTime').prop( "disabled", false );
+
+                    }
+                });
+            });   
       </script>
     @endsection  
 
