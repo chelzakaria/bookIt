@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Membership;
+use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -38,12 +40,22 @@ class DailyPayment extends Command
      */
     public function handle()
     {
-        DB::table('task_histories')->insert([
-            'task_id' => 83,
-            'old_status' => 'in progress',
-            'new_status' => 'done',
-            'created_at' => now(),
-        ]);
+        $memberships = Membership::all();
+        foreach ($memberships as $membership) {
+            
+            if($membership->account_type === "premium" && $membership->end_date <= now())
+            {
+                $membership->account_type = "none";
+                $membership->end_date = null;
+                $membership->save();
+            }
+            if($membership->account_type === "free" && $membership->end_date && $membership->end_date<= now())
+            {
+                $membership->end_date = null;
+                $membership->save();
+            }
+          
+        }
         $this->info('Successfully daily check for users payment. ');
     }
 }

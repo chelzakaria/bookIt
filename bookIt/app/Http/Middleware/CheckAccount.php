@@ -18,7 +18,8 @@ class CheckAccount
      */
     public function handle(Request $request, Closure $next)
     {   
-          if(Membership::where('user_id', Auth::user()->id)->first()->account_type=="none")
+        $membership = Membership::where('user_id', Auth::user()->id)->first();
+          if($membership->account_type=="none")
             {
                 return response()->view('payment');
             }

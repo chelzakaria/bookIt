@@ -12,6 +12,7 @@ class Membership extends Model
         'end_date','account_type', 'user_id'
          
     ];
+    protected $dates = ['end_date'];
 
     
     public function user()

@@ -22,8 +22,9 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StripeController;
+use App\Models\Membership;
 use Stripe\StripeClient;
-
+ 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -152,6 +153,14 @@ Route::post('/pay', [PaymentController::class, 'store'])->name('pay');
 //     return view('payment');
 // });
 Route::post('/payment/get',[PaymentController::class, 'index'])->name('payment');
+Route::get('/upgrade', function(){
+    if(Membership::where('user_id', Auth::user()->id)->first()->account_type!=="free" && Membership::where('user_id', Auth::user()->id)->first()->end_date!==null){
+         return abort(403, 'Unauthorized action.');
+    }
+    return view('upgrade');
+})->name('upgrade');
+Route::post('/downgrade',[PaymentController::class, 'downgrade'])->name('downgrade');
+
 
 
 

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Auth;
 
 class Kernel extends ConsoleKernel
 {
@@ -25,8 +26,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('payment:daily')
+         $schedule->command('payment:daily')
         ->everyMinute(); /* php artisan schedule:work */
+
+        // php artisan schedule:run
+        // php artisan schedule:work
+        // php artisan payment:daily
+
     }
 
     /**
