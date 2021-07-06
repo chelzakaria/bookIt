@@ -25,10 +25,11 @@ class TaskHistoryFactory extends Factory
     {
         return [
             'task_id' => Task::pluck('id')->random(),
+            'user_id'=> 25,
                'old_status' => $this->faker->randomElement([
                 "in progress",
                 "not started",
-                "done",
+                 
             ]),
             'new_status' => $this->faker->randomElement([
                 "in progress",

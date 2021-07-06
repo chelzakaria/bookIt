@@ -23,7 +23,7 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            'user_id'=> 24,
+            'user_id'=> 25,
             'title' => $this->faker->word(),
             'author' => $this->faker->word(),
             'num_page' => $this->faker->numberBetween(10, 500),

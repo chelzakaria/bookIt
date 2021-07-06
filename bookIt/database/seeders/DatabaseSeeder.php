@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
          \App\Models\Book::factory(10)->create();
          \App\Models\Note::factory(50)->create();
          \App\Models\Task::factory(50)->create();
-         \App\Models\TaskHistory::factory(100)->create();
+         \App\Models\TaskHistory::factory(200)->create();
 
 
 

@@ -186,18 +186,39 @@ let tasks_histories = {!! json_encode($tasks_histories) !!};
         // }
 
             let type = 'line'
-
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
     
         let myChart = document.getElementById('myChart');
         const labels = [];
-
-        for(let i=1; i<31; i++)
-        {
-            labels[i-1] = i
+                var lastday = function(y,m){
+        return  new Date(y, m +1, 0).getDate();
         }
+        let k = new Date().getDate();
+        // console.log(lastday(new Date().getYear(), new Date().getMonth()));
+        let M = lastday(new Date().getYear(), new Date().getMonth());
+            let l = 0;
+        for(let i=k; i<=M; i++)
+        {
+            labels[l] = i;
+            l++;
+        }
+        for(let i=1; i<k; i++)
+        {
+            labels[l] = i;
+            l++
+        }
+
         let data_not_started = [];  
         let data_in_progress = [];  
         let data_done = [];  
+
+        // var now = new Date();
+        // var oldDate = new Date(date.setMonth(date.getMonth()-1));
+        // for (var d = new Date(2012, 0, 1); d <= now; d.setDate(d.getDate() + 1)) {
+        //     daysOfYear.push(new Date(d));
+        // }
 
                for(let i=1; i<31; i++)
                 {
