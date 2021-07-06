@@ -97,10 +97,17 @@
                                         <div class="row">&nbsp;</div>
                                         <div class="row mb-2 pb-0 pl-1" ><span  style="font-weight: 700; font-size: 27px;">
                                         @if ($tasks->where('status', 'done')->count())
+                                        @if (($tasks_count) / $tasks->where('status', 'done')->count()==1)
+                                            100%
+                                        @else
+                                            
+                                       
                                         {{number_format((($tasks_count) / $tasks->where('status', 'done')->count() *100), 2, '.', ',')}}%
+                                        @endif
                                         @else
                                         0%
                                         @endif 
+                                       
                                         </span></div>
                                         <div class="row"><span style="font-weight: 600; font-size: 11px; color: #6f6d6d;">Rate of completed
                                               tasks</span></div>

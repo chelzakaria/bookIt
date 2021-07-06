@@ -29,9 +29,16 @@ input[type="color"]::-webkit-color-swatch {
                     </div>
                     <hr style="border-top: 1px solid #00000023;margin-top:5px;">
                     @if(session('error'))
-                    <div class="col text-center w-50 mr-auto mb-3">
+                    <div class="col text-center   mr-auto mb-3">
                             <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
                                 {{ session('error') }}
+                            </div>
+                        </div>
+                    @endif
+                    @if(session('success'))
+                    <div class="col text-center   mr-auto mb-3">
+                            <div class="jumbotron py-2 mb-2 bg-success     mx-auto">
+                                {{ session('success') }}
                             </div>
                         </div>
                     @endif
@@ -123,14 +130,20 @@ input[type="color"]::-webkit-color-swatch {
                                     <p  class="mt-0" style="font-weight:700; font-size:18px;">
                                        Account type
                                     </p>
-                                    @if ($account_type=="free")
-                                    <button name="upgrade" class="btn  btn-primary"
-                                    style="background-color:# ;font-weight:700;  "  >Upgrade</button>
-                                    @elseif ($account_type=="premium")
-                                    <button name="upgrade" class="btn  btn-secondary"
-                                    style="background-color:# ;font-weight:700;  "  >Downgrade</button>
+                                 
+                                    @if ($account->account_type=="free" && !$account->end_date)
+                                    <a name="upgrade" class="btn  btn-primary text-white"
+                                    style="background-color:# ;font-weight:700; text-decoration:none; " href="{{route('upgrade')}}"  >Upgrade</a>
+
+                                    @elseif ($account->account_type=="free" && $account->end_date)
+                                    <a role="button" aria-disabled="true"  name="upgrade" class="btn  btn-primary text-white disabled"
+                                    style="background-color:# ;font-weight:700; text-decoration:none; " href="{{route('upgrade')}}"  >Upgrade</a>
+
+                                    @elseif ($account->account_type=="premium")
+                                    <a  data-toggle="modal" data-target="#downgrade" name="upgrade" class="btn  btn-secondary text-white "
+                                    style="background-color:# ;font-weight:700; text-decoration:none; "  >Downgrade</a>
                                     @endif
-                                     
+                                     <p data-toggle="modal" data-target="#details" class="text-muted font-weight-bold mt-2" style="font-size:12.5px; cursor: pointer;">view account details.</p>
                                    
 
                                     <p  class="mt-5" style="font-weight:700; font-size:18px;">
@@ -211,7 +224,76 @@ input[type="color"]::-webkit-color-swatch {
                         </div>
                     </div>
                 </div>
-   
+                <div class="modal fade" id="downgrade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to downgrade your account ?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                
+                            <div class="modal-footer">
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <button type="button" class="btn " data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;">Cancel</button>
+                                    </div>
+                                    <div class="col">
+                                         
+                                    <form action="{{route('downgrade')}}" method="POST">
+                                    @csrf
+                                    <button type="submit" data-toggle="modal" data-target="#downgrade"  name="create" class="btn btn-primary float-right" style="; font-weight: 700;">Confirm</button>
+                                    </form>
+                                          
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{--  --}}
+                <div class="modal fade" id="details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Account details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row mb-4">
+                                    <div class="col" style="font-weight:700;">Username</div>
+                                    <div class="col" style="font-weight:500;"> {{Auth::user()->username}}</div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col" style="font-weight:700;">Account type</div>
+                                    <div class="col" style="font-weight:500;  "> {{$account->account_type}} 
+                                    @if ($account->account_type=="free" && $account->end_date)
+                                        <span class="text-muted font-weight-bold" style="font-size: 12.5px;"> (after Membership ends)</span>
+                                    @endif
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col" style="font-weight:700;">Membership ends at</div>
+                                    <div class="col" style="font-weight:500;"> 
+                                    @if ($account->end_date)
+                                        {{\Carbon\Carbon::parse($account->end_date)->format('Y/m/d')}}
+                                    @else
+                                        ----/--/--
+                                    @endif
+                                    </div>
+                                </div>
+                              
+                            </div>
+                
+                         
+                        </div>
+                    </div>
+                </div>
+                {{--  --}}
             </div>
 
         </div>

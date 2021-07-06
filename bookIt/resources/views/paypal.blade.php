@@ -14,7 +14,7 @@
           <input type="text" class="form-control" name="plan" id="paln" value="{{$type}}">
           <input type="number" name="time_period" id="time_period" @if ($type=="monthly")
           value="30"           
-          @elseif ($type=="monthly")
+          @elseif ($type=="yearly")
               value="365"
           @endif>
           <input type="text" id="type" value="{{$type}}">
