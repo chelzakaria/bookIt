@@ -75,4 +75,4 @@
             </div>
           </div>
 
-          <img  src="/storage/profile_images/{{Auth::user()->profile_image}}" alt="" style="width: 60px; height:60px; border-radius:50%">
+          <img  src="/storage/profile_images/{{Auth::user()->profile_image}}" alt="" style="width: 55px; height:55px; border-radius:50%">

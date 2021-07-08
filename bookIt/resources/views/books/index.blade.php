@@ -146,7 +146,7 @@
                             </div>
                             @endforeach
                             @else
-                            <p>No books found</p>
+                            <p class="mx-auto">No books found</p>
                             @endif
                          
                              
@@ -288,7 +288,7 @@
                                                       </div>
                                                   </div>
                                                 </div>
-                                        
+                                            </div>
                             <div class="modal-footer">
                         
                                         <div class="col">

@@ -69,12 +69,12 @@ Route::post('/password/change',[App\Http\Controllers\ChangePasswordController::c
  //notes
 Route::get('/notes', [App\Http\Controllers\NoteController::class, 'index'])->name('notes');
 Route::post('/notes', [App\Http\Controllers\NoteController::class, 'store']);
-Route::get('/notes/create',[App\Http\Controllers\NoteController::class, 'create'])->name('createnote'); 
+// Route::get('/notes/create',[App\Http\Controllers\NoteController::class, 'create'])->name('createnote'); 
 
 Route::get('/notes/{id}',[App\Http\Controllers\NoteController::class, 'show'])->where('id', '[0-9]+'); 
 
 Route::delete('/notes/{id}',[NoteController::class, 'destroy'])->where('id', '[0-9]+')->name('notes.destroy');
-Route::get('/notes/{id}/edit',[NoteController::class, 'edit']);
+// Route::get('/notes/{id}/edit',[NoteController::class, 'edit']);
 Route::post('/notes/{id}',[NoteController::class, 'update'])->where('id', '[0-9]+')->name('notes.update');
 Route::post('/notes/filter', [NoteController::class, 'search'])->name('notes.search');
 
@@ -85,14 +85,14 @@ Route::get('/images/{id}',[NoteController::class, 'deleteImage'])->where('id', '
 //books
 Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books');
 
-Route::get('/books/create', function () {
-    return view('books.create');
-})->name('createbook'); 
+// Route::get('/books/create', function () {
+//     return view('books.create');
+// })->name('createbook'); 
 
  
 Route::post('/books', [App\Http\Controllers\BookController::class, 'store']);
-Route::get('/books/{id}',[App\Http\Controllers\BookController::class, 'show']);
-Route::get('/books/{id}/edit',[BookController::class, 'edit']);
+Route::get('/books/{id}',[App\Http\Controllers\BookController::class, 'show'])->where('id', '[0-9]+');
+// Route::get('/books/{id}/edit',[BookController::class, 'edit']);
 Route::post('/books/{id}',[BookController::class, 'update'])->where('id', '[0-9]+')->name('books.update');
 Route::delete('/books/{id}',[BookController::class, 'destroy'])->where('id', '[0-9]+')->name('books.destroy');
 
@@ -111,11 +111,11 @@ Route::post('/setting/{id}',[SettingController::class, 'update'])->name('setting
 Route::get('/tasks', [TaskController::class, 'index'])->name('tasks');
 Route::post('/tasks', [TaskController::class, 'store']);
 
-Route::get('/tasks/create/{status}', function ($status) {
-     $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
-    return view('tasks.create', ['books' =>  $books, 'status' => $status]);
-})->name('tasks.create'); 
-Route::get('/tasks/{id}/edit',[TaskController::class, 'edit']);
+// Route::get('/tasks/create/{status}', function ($status) {
+//      $books = Book::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+//     return view('tasks.create', ['books' =>  $books, 'status' => $status]);
+// })->name('tasks.create'); 
+// Route::get('/tasks/{id}/edit',[TaskController::class, 'edit']);
 Route::post('/tasks/update/{id}',[TaskController::class, 'update'])->name('tasks.update');
 //Route::delete('/tasks/{id}',[TaskController::class, 'destroy'])->name('tasks.destroy');
 Route::get('/tasks/{id}',[TaskController::class, 'destroy'])->name('tasks.destroy');

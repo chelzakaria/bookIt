@@ -21,7 +21,7 @@ class NoteController extends Controller
 
     public function index()
     {
-        $notifications = Notification::where('user_id', Auth::user()->id)->get();  
+         $notifications = Notification::where('user_id', Auth::user()->id)->get();  
         $images = DB::table('notes_images')->whereRaw('1 = 1')->paginate(12);
         $Setting = Setting::where('user_id', Auth::user()->id)->first();  
         $tasks = Task::where('user_id', auth()->user()->id)->get();
@@ -94,6 +94,22 @@ class NoteController extends Controller
         ]);
         $book = DB::table('books')->where('title',$request->titlebook )->first();
 
+        if(Membership::where('user_id', Auth::user()->id)->first()->account_type === "free" && !Membership::where('user_id', Auth::user()->id)->first()->end_date)
+        {
+            if(Note::where('user_id', Auth::user()->id)-> count() > 1)
+            {
+                return back()->with('warning', 'You reached your maximum notes ! Try to upgrade your account.');
+            }
+        }
+
+
+        if(Membership::where('user_id', Auth::user()->id)->first()->account_type === "free" && !Membership::where('user_id', Auth::user()->id)->first()->end_date)
+        {
+            if(Note::where('user_id', Auth::user()->id)->whereDate('created_at', '=', date('Y-m-d'))->count() > 2)
+            {
+                return back()->with('warning', 'You reached your maximum notes per day');
+            }
+        }
     
         $id =
         $request->user()->notes()->create([

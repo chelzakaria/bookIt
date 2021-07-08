@@ -12,7 +12,7 @@
     font-weight: 600;
     font-size:13px;
     }
-
+    .note-body:hover {cursor: pointer;}
 
     </style>
     <div class="container-fluid">
@@ -36,6 +36,7 @@
                           
                         
                     </div>
+                   
                     
                     <form action="{{route('notes.search')}}" method="POST" role="search" id="search_form">
                         @csrf
@@ -72,6 +73,13 @@
                             <button type="button" class="btn " style="background-color: #1F1A6B; font-weight:700;" data-toggle="modal" data-target="#createNote"> <a   style="text-decoration: none; color:#fff;">Create new note</a> </button>
                         </div>
                     </div>
+                    @if(session('warning'))
+                    <div class="col text-center w-75 mx-auto mb-3">
+                          <div class="jumbotron py-2 mb-2 bg-warning    mx-auto">
+                                {{ session('warning') }}
+                          </div>
+                    </div>
+                @endif
                     <hr style="border-top: 1px solid #00000023;">
                     
                         <div class="row">
@@ -144,13 +152,13 @@
                                       </div>
                                      
                                          <div class="card-body pb-0">
-                                            <a href="/notes/{{$note->id}}" style="text-decoration: none;color:black;">
+                                            <a  data-toggle="modal" data-target="#showNote{{$note->id}}" style="text-decoration: none;color:black;">
                                          
                                            <span class="card-text " style="font-weight: 400;font-size:15px; 
                                              height:4.2rem;     overflow: hidden;
                                                 display: -webkit-box;
                                                 -webkit-line-clamp: 3;
-                                                -webkit-box-orient: vertical;   
+                                                -webkit-box-orient: vertical; cursor: pointer;  
                                              "> 
                                              {!! html_entity_decode($note->body)!!}
                                           
@@ -166,7 +174,7 @@
                                             @if($book->id===$note->book_id) 
 
                                                
-                                             {{$book->title}}
+                                             <span class="font-weight-bold">{{$book->title}}</span>
                                             @endif
                                             {{-- edit note modal --}}
                                             <div class="modal fade" id="editNote{{$note->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
@@ -211,7 +219,9 @@
                                                         @if ($images->count())
                                                             
                                                         @foreach ($images as $image)
-                                            
+                                                        @if ($image->note_id==$note->id)
+                                                            
+                                                    
                                                         <div class="col-2">
                                                         
                         
@@ -227,6 +237,8 @@
                                                              <a class="btn" style="width:100%" data-toggle="modal" data-target="#exampleModal{{$image->id}}"   > <img src="/images/icons/delete_icon.svg" alt="" style="width: 17%; height:auto;" class="mx-auto">  </a>
                                                            
                                                          </div>
+
+
                                                          <div class="modal fade" id="exampleModal{{$image->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
@@ -252,17 +264,17 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                        
+                            @endif
                                                         @endforeach
                                                         @endif
                                                         <div class="col">
-                                                            <div class=" mt-5 mb-3 text-center " style="border-radius:10px; height:110px; width:175px; background:#D4E1F1; border:1px dashed #8A929D;     border-width:2px;  
+                                                            <div class=" mt-3 mb-3 text-center " style="border-radius:10px; height:110px; width:175px; background:#D4E1F1; border:1px dashed #8A929D;     border-width:2px;  
                                                             ">
                                                            <label for="customFile"  class="my-4">
                                                             <img  src="/../images/icons/upload_image_icon.svg" alt="" style="width:35%;
                                                             height:auto; cursor: pointer;">
                                                             <p>Tap to add images</p>
-                                                             <input type="file" id="customFile" name="note_images[]" style="position: absolute;z-index:-1;    bottom:7px; left:90px;font-weight:500;" multiple>
+                                                             <input type="file" id="customFile" name="note_images[]" style="position: absolute;z-index:-22;    bottom:7px; left:10px;font-weight:500;" multiple  >
                                                              </label>
                                                             </div>
                                                           
@@ -398,7 +410,7 @@
                                                         <img  src="/../images/icons/upload_image_icon.svg" alt="" style="width:35%;
                                                         height:auto; cursor: pointer; ">
                                                         <p>Tap to add images</p>
-                                                         <input type="file" id="customFile" name="note_images[]" style="position: absolute;z-index: ; bottom:7px; left:90px;font-weight:500;" multiple>
+                                                         <input type="file" id="customFile" name="note_images[]" style="position: absolute;z-index: -11; bottom:7px; left:90px;font-weight:500;" multiple>
                                                          </label>
                                                 </div>
                                               
@@ -407,7 +419,7 @@
                                         </div>
                                      
              
-                        <div class="modal-footer">
+                        <div class="modal-footer mt-3">
                      
                                     <div class="col">
                                         <button type="button" class="btn float-left" data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;"> <a   style="text-decoration: none; color:#000;">Cancel</a> </button>
@@ -423,10 +435,91 @@
                 </div>
             </div>
             {{-- end of create note modal --}}
-
-          
+     
         </div>
+                {{-- start of show note --}}
+                @foreach ($notes as $note)
                     
+                <div class="modal fade" id="showNote{{$note->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  >
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                            <div class="modal-body    pt-4 pb-4">
+                                     <div class="row" style="min-height: 95%">
+                                    <div class="col  " style="font-size: 17px; line-height:35px; font-weight:500; ">
+                                        {!! html_entity_decode($note->body) !!}
+        
+                                    </div>
+                                     </div>
+                                     @if ($images->where('note_id', $note->id)->count())
+        
+                                    <hr style="border-top: 1px solid #00000023;">
+        
+                                     <div class="row pr-3">
+                                            
+                                        @foreach ($images as $image)
+                                        @if ($image->note_id === $note->id)
+                                            
+                                       
+                                        <div class="col" >
+                                            <div class=" mt-3 text-center " style="border-radius:10px; height:150px; width:150px;   ;
+                                            ">
+                                            <a  data-toggle="modal" data-target="#showImage{{$image->id}}" style="cursor: pointer">
+                                            <img src="/storage/notes_images/{{$image->image}}" style="height:150px; width:150px;border-radius:2px; " alt="">
+                                        </a>
+                                             </div>
+                                         </div>
+                                   
+                                         @endif
+                                         
+                                         
+                                         
+                                         
+                                         
+                                    
+                                  
+                                
+                                    @endforeach
+                                    <div class="d-flex justify-content-end mt-3">
+                                        {!!$images->links()!!}
+                                     </div>
+                                    </div>
+                                    @endif
+                              
+                            <hr style="border-top: 1px solid #00000023;">
+                                 
+                                 
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+                @foreach ($images as $image)
+                <div class="modal fade" id="showImage{{$image->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+               
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                
+                         <div class="modal-body">
+                          <img src="/storage/notes_images/{{$image->image}}" alt="" style="width: 100%; height:auto;">
+                         </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @endforeach
+             
+            {{-- end of show note  --}}
+                 
     </div>
 
 

@@ -130,6 +130,13 @@ function unwrap(node) {
                           
                         
                     </div>
+                    @if(session('warning'))
+                    <div class="col text-center w-75 mx-auto mb-3">
+                          <div class="jumbotron py-2 mb-2 bg-warning    mx-auto">
+                                {{ session('warning') }}
+                          </div>
+                    </div>
+                @endif
                     <hr style="border-top: 1px solid #00000023;">
                     
                         <div class="row">

@@ -52,7 +52,8 @@ class DashboardController extends Controller
             'books' => $books,
             'tasks_histories' => $tasks_histories,
             'tasks_count' => $tasks_count,
-            'notifications' => $notifications
+            'notifications' => $notifications,
+            'account' => Membership::where('user_id', Auth::user()->id)->first()
             
         ]);
     }

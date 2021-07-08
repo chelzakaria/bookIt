@@ -4,6 +4,11 @@
     .checked {
   color: orange;
 }
+
+#select   {
+                        font-family: fontAwesome;
+                        
+                    }
 </style>
  
 <!---->
@@ -17,10 +22,8 @@
                         <p style="font-weight:700; font-size:30px;">
                             Books
                         </p>  
-                        <div class="ml-auto mr-0"  style="width: 45px; height:45px; border-radius:50%;background:#000;">
-                            <img src="images/about_img.svg" alt="" style="max-width:100%;
-                            max-height:100%; ">
-                        </div>
+                        @include('layouts.notification')
+                       
                     </div>
                     <div class="d-flex flex-row">
                         
@@ -103,19 +106,22 @@
                         </div>
                         <!---->
                         <div class="d-flex justify-content-end">
+
                             <div class="mr-3">
+                                <a href="#r2">
+                                <button type="button" class="btn btn-primary">
+                                Notes <span class="badge badge-light">{{$count_notes}}</span>
+                                  </button></a>
+                                </div>
+
+                            <div >
                                 <a href="#r1">
                             <button type="button" class="btn btn-primary">
                                 Tasks <span class="badge badge-light">{{$count_tasks}}</span>
                               </button></a>
                             </div>
 
-                            <div>
-                                <a href="#r2">
-                                <button type="button" class="btn btn-primary">
-                                Notes <span class="badge badge-light">{{$count_notes}}</span>
-                                  </button></a>
-                                </div>
+                         
                         </div>
                         <!---->
                         </div>
@@ -195,13 +201,14 @@
                                            
                                          
                                              <div class="card-body pb-0">
-                                                <a href="/notes/{{$note->id}}" style="text-decoration: none;color:black;">
+                                                <a   style="text-decoration: none;color:black;" data-toggle="modal" data-target="#showNote{{$note->id}}">
                                              
                                                <span class="card-text " style="font-weight: 400;font-size:15px; 
                                                  height:4.2rem;     overflow: hidden;
                                                     display: -webkit-box;
                                                     -webkit-line-clamp: 3;
-                                                    -webkit-box-orient: vertical;   
+                                                    -webkit-box-orient: vertical;  
+                                                    cursor: pointer; 
                                                  "> 
                                                  {!! html_entity_decode($note->body)!!}
                                               
@@ -219,12 +226,87 @@
                                            </div>
                                         </div>
                                      </div>
+                                     <div class="modal fade" id="showNote{{$note->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  >
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                <div class="modal-body    pt-4 pb-4">
+                                                         <div class="row" style="min-height: 95%">
+                                                        <div class="col  " style="font-size: 17px; line-height:35px; font-weight:500; ">
+                                                            {!! html_entity_decode($note->body) !!}
+                            
+                                                        </div>
+                                                         </div>
+                                                         @if ($images->where('note_id', $note->id)->count())
+                            
+                                                        <hr style="border-top: 1px solid #00000023;">
+                            
+                                                         <div class="row pr-3">
+                                                                
+                                                            @foreach ($images as $image)
+                                                            @if ($image->note_id === $note->id)
+                                                                
+                                                           
+                                                            <div class="col" >
+                                                                <div class=" mt-3 text-center " style="border-radius:10px; height:150px; width:150px;   ;
+                                                                ">
+                                                                <a  style="cursor: pointer" data-toggle="modal" data-target="#showImage{{$image->id}}">
+                                                                <img src="/storage/notes_images/{{$image->image}}" style="height:150px; width:150px;border-radius:2px; " alt="">
+                                                            </a>
+                                                                 </div>
+                                                             </div>
+                                                       
+                                                             @endif
+                                                             
+                                                             
+                                                             
+                                                             
+                                                             
+                                                        
+                                                      
+                                                    
+                                                        @endforeach
+                                                        <div class="d-flex justify-content-end mt-3">
+                                                            {!!$images->links()!!}
+                                                         </div>
+                                                        </div>
+                                                        @endif
+                                                  
+                                                <hr style="border-top: 1px solid #00000023;">
+                                                     
+                                                     
+                                            </div>
+                                        </div>
+                                    </div>
+                    
+                                    </div>
                                     @endforeach
                                 @else
                                     <p class="mx-auto">This book has no notes.</p>
                                 @endif
                               
-                            
+                                @foreach ($images as $image)
+                                <div class="modal fade" id="showImage{{$image->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                               
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                
+                                         <div  class="modal-body">
+                                          <img src="/storage/notes_images/{{$image->image}}" alt="" style="width: 100%; height:auto;">
+                                         </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
                              
                               
                          </div>
@@ -255,7 +337,7 @@
                                            
                                          
                                              <div class="card-body pb-0">
-                                                <a href="/tasks/{{$task->id}}" style="text-decoration: none;color:black;">
+                                                <a   style="text-decoration: none;color:black;">
                                              
                                                <span class="card-text " style="font-weight: 400;font-size:15px; 
                                                  height:4.2rem;     overflow: hidden;
@@ -303,7 +385,7 @@
                          <div class="row mt-2">
                             <div class="col mb-0">
                                 <hr style="border-top: 1px solid #00000023;" class="mb-2 mt-4">
-                                <button type="button" class="btn d-inline"> <a href="/books/{{$book->id}}/edit"  style="text-decoration: none; color:#fff;"><img src="/images/icons/edit_icon.svg" alt="" style="width: 80%; height:auto;"></a> </button>
+                                <button type="button" class="btn d-inline"> <a  data-toggle="modal" data-target="#editBook{{$book->id}}"  style="text-decoration: none; color:#fff;"><img src="/images/icons/edit_icon.svg" alt="" style="width: 80%; height:auto;"></a> </button>
 
                                  
                                  
@@ -352,7 +434,170 @@
             </div>
 
         </div>
-                 
+                 {{--  --}}
+                 <div class="modal fade" id="editBook{{$book->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
+                    <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel" style="font-weight:700; font-size:25px;">Edit Book
+                                </h5>
+                            
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{route('books.update', $book->id)}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+        
+                                                <input type="text" class="form-control" name="title" placeholder="Title" style="border-radius:10px; height:50px;"  autocomplete="off" value="{{ $book->title}}">
+        
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+        
+                                                <input type="text" class="form-control" name="author" placeholder="Author" style="border-radius:10px; height:50px;"  autocomplete="off" value="{{ $book->author}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <input type="number" class="form-control" name="num_page" placeholder="Number of pages" style="border-radius:10px; height:50px;" autocomplete="off" min="1" value="{{ $book->num_page}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-md-4">
+                                                 <div class="form-group">
+                                                    <select class="custom-select"  name="category"   style="border-radius:10px; height:50px; ">
+                                                        <option  disabled="disabled" >Select a category</option>
+                                                        <option @if ($book->category==="Arts & Music")
+                                                            selected
+                                                        @endif>Arts & Music</option>
+                                                        <option @if($book->category==="Biographies")
+                                                            selected
+                                                        @endif>Biographies</option>
+                                                        <option @if ($book->category==="Business")
+                                                            selected
+                                                        @endif>Business</option>
+                                                        <option @if ($book->category==="Comics")
+                                                            selected
+                                                        @endif>Comics</option>
+                                                        <option @if ($book->category==="Computers & Tech")
+                                                            selected
+                                                        @endif>Computers & Tech</option>
+                                                        <option @if ($book->category==="Cooking")
+                                                            selected
+                                                        @endif>Cooking</option>
+                                                        <option @if ($book->category==="Entertainment")
+                                                            selected
+                                                        @endif>Entertainment</option>
+                                                        <option @if ($book->category==="History")
+                                                            selected
+                                                        @endif>History</option>
+                                                        <option @if ($book->category==="Arts & Music")
+                                                            selected
+                                                        @endif>Horror</option>
+                                                        <option @if ($book->category==="Kids")
+                                                            selected
+                                                        @endif>Kids</option>
+                                                        <option @if ($book->category==="Mysteries")
+                                                            selected
+                                                        @endif>Mysteries</option>
+                                                        <option @if ($book->category==="Romance")
+                                                            selected
+                                                        @endif>Romance</option>
+                                                        <option @if ($book->category==="Sci-Fi & Fantasy")
+                                                            selected
+                                                        @endif>Sci-Fi & Fantasy</option>
+                                                        <option @if ($book->category==="Science")
+                                                            selected
+                                                        @endif>Science</option>
+                                                        <option @if ($book->category==="Sports")
+                                                            selected
+                                                        @endif>Sports</option>
+                                                        <option @if ($book->category==="True Crime")
+                                                            selected
+                                                        @endif>True Crime</option>
+                                                        <option @if ($book->category==="Others")
+                                                            selected
+                                                        @endif>Others</option>
+                                                    </select>
+                                                  </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <select id="select" class="custom-select"  name="rating"   style="border-radius:10px; height:50px; ">
+                                                        <option selected="true" disabled="disabled" >Rating</option>
+                                                        @for ($i = 1; $i < 6; $i++)
+                                                        <option @if ($book->rating === $i)
+                                                            selected
+                                                        @endif  value={{$i}} style="color: #F0C808;">
+                                                         @if ($i>=1)
+                                                         &#xf005;
+                                                         @endif &nbsp;
+                                                         @if ($i>=2)
+                                                         &#xf005;
+                                                         @endif &nbsp;
+                                                         @if ($i>=3)
+                                                         &#xf005;
+                                                         @endif &nbsp;
+                                                         @if ($i>=4)
+                                                         &#xf005;
+                                                         @endif &nbsp;
+                                                         @if ($i>=5)
+                                                         &#xf005;
+                                                         @endif
+                                                 
+                                                         @endfor
+                                                
+                                                    </select>
+                                                
+                                                 </div>
+                                           </div>
+                                          </div>  
+                                          <div class="row">
+                                                <div class="col">
+                                                    <textarea rows="8" class=" py-4 form-control" name="description" placeholder="Description..." style=" 
+                                                    border:none;
+                                                    background: #e9f4ff;
+                                                    border-radius: 12px;
+                                                    outline:none;
+                                                    padding:15px; 
+                                                    resize: none;">{{$book->description}}</textarea>
+                                                  </div>
+                                            </div>
+                                                <div class="row mt-3">
+                                                  <div class="col">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="customFile" name="cover"  >
+                                                        <label class="custom-file-label" for="customFile">Choose image</label>
+        
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                   
+                                        
+                                           
+                                          
+                             
+                </div>
+    
+                            <div class="modal-footer">
+             
+                            <div class="col">
+                                <button type="button" class="btn float-left" data-dismiss="modal" style="background-color: #D4E5F9; font-weight:700;"> <a   style="text-decoration: none; color:#000;">Cancel</a> </button>
+                            </div>
+                            <div class="col">
+                                <button type="submit"  name="create" class="btn btn-primary float-right"
+                                style="background-color:#1F1A6B;font-weight:700;  " >Edit</button> 
+                            </div>
+                  </form>
+                 </div>
+            </div>
+        </div>
+    </div>
+                 {{--  --}}
     </div>
     <!--
     <script>

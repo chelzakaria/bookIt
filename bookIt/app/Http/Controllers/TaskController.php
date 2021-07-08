@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Middleware\CheckAccount;
 use App\Models\Book;
+use App\Models\Membership;
 use App\Models\Notification;
 use App\Models\Setting;
 use App\Models\Task;
@@ -78,6 +79,24 @@ class TaskController extends Controller
         ]);
  
         $book = DB::table('books')->where('title',$request->book)->first();
+
+
+        if(Membership::where('user_id', Auth::user()->id)->first()->account_type === "free" && !Membership::where('user_id', Auth::user()->id)->first()->end_date)
+        {
+            if(Task::where('user_id', Auth::user()->id)-> count() > 49)
+            {
+                return back()->with('warning', 'You reached your maximum tasks ! Try to upgrade your account.');
+            }
+        }
+
+
+        if(Membership::where('user_id', Auth::user()->id)->first()->account_type === "free" && !Membership::where('user_id', Auth::user()->id)->first()->end_date)
+        {
+            if(Task::where('user_id', Auth::user()->id)->whereDate('created_at', '=', date('Y-m-d'))->count() > 2)
+            {
+                return back()->with('warning', 'You reached your maximum tasks per day');
+            }
+        }
           
        $id = 
        $request->user()->tasks()->create([

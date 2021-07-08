@@ -148,24 +148,38 @@
                 {{--  --}}
             
                 {{--  --}}
+                @if ($account->account_type === "premium" || ($account->account_type==="free" && $account->end_date) )
                 <div class="container ">
-                    <canvas class="mx-auto" id="myChart" style="width:100%;max-width:900px"></canvas>
-
+                    <canvas class="mx-auto" id="myChart" style="width:100%;max-width:1000px"></canvas>
+ 
                 </div>
+                @else
+                <div class="container ">
+                    <div style=" width:950px; height:500px; background-image:url('/images/graph2.png'); background-size: cover; filter:blur(3.5px); "  >
+                       
+                    
+                    </div>  
+                    <div style="position: absolute; bottom:250px; left:380px;" class="text-center">
+                        <p class="font-weight-bold mb-3" style="font-size:17px;">Upgrade to premium to see this graph  </p>
+                           <a role="button" aria-disabled="true"  name="upgrade" class="btn btn-lg btn-primary text-white  "
+                                    style="background-color:# ;font-weight:700; text-decoration:none; z-index:100;" href="{{route('upgrade')}}"  >Upgrade</a>
+                    </div>
+                    
+                </div>
+                @endif
+               
             </div>
         </div>
     </div>
     <script>
 
 let tasks_histories = {!! json_encode($tasks_histories) !!};
-       let not_started = [];
-      let in_progress = [];
-      let done = [];
+         let not_started = [];
+         let in_progress = [];
+         let done = [];
 
         tasks_histories.forEach(task_history => {
-            
-            // console.log(task_history.created_at);
-            if(task_history.new_status === "not started")
+             if(task_history.new_status === "not started")
             {
                 not_started.push(task_history);
             }
@@ -179,26 +193,38 @@ let tasks_histories = {!! json_encode($tasks_histories) !!};
             }
 
         });
-        // for (let index = 0; index < not_started.length; index++) {
-        //    let date = new Date(not_started[index].created_at);
-        //     console.log(date + "--" +date.getDate());
+   
 
-        // }
-
-            let type = 'line'
-            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-];
+             const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            ];
     
-        let myChart = document.getElementById('myChart');
         const labels = [];
-                var lastday = function(y,m){
+
+        var lastday = function(y,m){
         return  new Date(y, m +1, 0).getDate();
         }
+
         let k = new Date().getDate();
-        // console.log(lastday(new Date().getYear(), new Date().getMonth()));
-        let M = lastday(new Date().getYear(), new Date().getMonth());
-            let l = 0;
+ 
+        let M;
+        let sm, em ;
+
+        if(k!==1)
+        {
+             M = lastday(new Date().getYear(), new Date().getMonth()  - 1);
+            sm = monthNames[new Date().getMonth()  - 1];
+            em = monthNames[new Date().getMonth()];
+        }
+        else {
+             M = lastday(new Date().getYear(), new Date().getMonth());
+             sm = monthNames[new Date().getMonth() ];
+                em = monthNames[new Date().getMonth()  ];
+        }
+        
+
+
+        let l = 0;
         for(let i=k; i<=M; i++)
         {
             labels[l] = i;
@@ -214,12 +240,7 @@ let tasks_histories = {!! json_encode($tasks_histories) !!};
         let data_in_progress = [];  
         let data_done = [];  
 
-        // var now = new Date();
-        // var oldDate = new Date(date.setMonth(date.getMonth()-1));
-        // for (var d = new Date(2012, 0, 1); d <= now; d.setDate(d.getDate() + 1)) {
-        //     daysOfYear.push(new Date(d));
-        // }
-
+    
                for(let i=1; i<31; i++)
                 {
                     var count =0;
@@ -256,9 +277,24 @@ let tasks_histories = {!! json_encode($tasks_histories) !!};
                 }                
                 }
 
+                let labels2 = [];
+        l=0;
+        for(let i=k; i<=M; i++)
+        {
+            labels2[l] = i+" "+sm;
+            l++;
+        }
+        for(let i=1; i<k; i++)
+        {
+            labels2[l] = i+" "+em;
+            l++
+        }
+
+
+        let myChart = document.getElementById('myChart');
 
             const data = {
-            labels: labels,
+            labels: labels2,
             datasets: [{
                 label: 'not started',
                 backgroundColor: 'rgb(255, 99, 132)',
@@ -284,7 +320,7 @@ let tasks_histories = {!! json_encode($tasks_histories) !!};
    
       
       let graph = new Chart(myChart, {
-        type:type,  
+        type:'line',  
         data,
         options: {
         plugins: {
@@ -298,8 +334,48 @@ let tasks_histories = {!! json_encode($tasks_histories) !!};
     }
       });
       /**************************************************/
-       
-    
+        //     let myChart2 = document.getElementById('myChart2');
+
+        // const data2 = {
+        // labels: labels2,
+        // datasets: [{
+        //     label: 'not started',
+        //     backgroundColor: 'rgb(255, 99, 132)',
+        //     borderColor: 'rgb(255, 99, 132)',
+        //     data: data_not_started,
+        //     tension: 0.1
+        // },{
+        //     label: 'in progress',
+        //     backgroundColor: 'rgb(25, 99, 132)',
+        //     borderColor: 'rgb(25, 99, 132)',
+        //     data: data_in_progress,
+        //     tension: 0.1
+        // },
+        // {
+        //     label: 'done',
+        //     backgroundColor: 'rgb(6, 186, 99)',
+        //     borderColor: 'rgb(6, 186, 99)',
+        //     data: data_done,
+        //     tension: 0.1
+        // }
+        // ], 
+        // };
+
+
+        // let graph2 = new Chart(myChart2, {
+        // type:'line',  
+        // data2,
+        // options: {
+        // plugins: {
+        // title: {
+        //     display: true,
+        // },
+        // legend: {
+        //     display: true,
+        // }
+        // }
+        // }
+        // });
       /**************************************************/
  
       </script>
