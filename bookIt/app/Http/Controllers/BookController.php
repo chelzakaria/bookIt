@@ -103,6 +103,7 @@ class BookController extends Controller
     {       
             $notifications = Notification::where('user_id', Auth::user()->id)->get();  
             $Setting = Setting::where('user_id', Auth::user()->id)->first();  
+            $images = DB::table('notes_images')->whereRaw('1 = 1')->paginate(12);
 
             $book = DB::table('books')->find($id);
             $notes = Note::where('book_id', $id)->orderBy('updated_at', 'desc')->get();
@@ -129,6 +130,7 @@ class BookController extends Controller
                 // 'reads'=>$reads,
                 'notifications' => $notifications,
                 'setting' => $Setting,
+                'images' => $images
             ]);
       
     }
@@ -200,7 +202,7 @@ class BookController extends Controller
             $book->cover = $fileNameToStore;
         }
         $book->save();
-        return redirect()->route('books');
+        return back();
     }
 
 

@@ -100,9 +100,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                              <input type="date" class="form-control py-4 @error('birthDate')
+                              <input type="text" class="form-control py-4 @error('birthDate')
                               border border-danger
-                              @enderror"   placeholder="Birth date" name="birthDate" value="{{old('birthDate')}}">
+                              @enderror"  onfocus="(this.type='datetime-local')"  placeholder="Birth date" name="birthDate" value="{{old('birthDate')}}">
                             </div>
                             
                               <button type="submit" class="btn  btn-lg btn-block btn-primary"

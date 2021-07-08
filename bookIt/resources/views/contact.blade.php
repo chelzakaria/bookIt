@@ -84,7 +84,7 @@
                 </div>
             </div>
         @endif
-                        <form class="py-2 px-4  c1"  action="{{ route('contact.post') }}" method="POST">
+                        <form class="pt-2 px-4  c1"  action="{{ route('contact.post') }}" method="POST">
                             @csrf
                             <p style="font-weight: 700; color:#1F1A6B; font-size:35px;">Contact Us</p>
                              <div class="form-group c2">

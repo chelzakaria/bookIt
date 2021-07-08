@@ -29,6 +29,24 @@ class ProfileController extends Controller
             'profile_image' => 'image|nullable|max:1999'
         ]);
 
+        if(Auth::user()->email !== $request->email)
+        {
+            $this->validate($request, [
+              
+                'email' => 'unique:App\Models\User,email',
+  
+            ]);
+        }
+
+        if(Auth::user()->username !== $request->username)
+        {
+            $this->validate($request, [
+              
+                 'username' => 'unique:App\Models\User,username',
+ 
+            ]);
+        }
+
 
 
         if($request->hasFile('profile_image'))
