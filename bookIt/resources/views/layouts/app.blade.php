@@ -16,7 +16,7 @@
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
      
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-{{-- <script src="https://www.paypal.com/sdk/js?client-id=AUsOaNEFkQloBqLBBzeRXaSvIIm-E-zuUG-7HzkwHvL_OctLkmA_2vFDI3B-bCVxMMlBAp8zKuuMWnNy"></script> --}}
+ <script src="https://www.paypal.com/sdk/js?client-id=AUsOaNEFkQloBqLBBzeRXaSvIIm-E-zuUG-7HzkwHvL_OctLkmA_2vFDI3B-bCVxMMlBAp8zKuuMWnNy"></script> 
  
 
     <!-- Fonts -->
