@@ -27,7 +27,7 @@ class  RegisterController extends Controller
             'lName' => 'required|max:255',
             'username' => 'required|max:255|unique:App\Models\User,username',
             'email' => 'required|email|max:255|unique:App\Models\User,email',
-            'password' => 'required|confirmed',
+            'password' => 'required|confirmed|min:8',
             'birthDate' => 'required|date',
             
 

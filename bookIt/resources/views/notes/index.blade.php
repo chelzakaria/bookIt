@@ -81,7 +81,13 @@
                     </div>
                 @endif
                     <hr style="border-top: 1px solid #00000023;">
-                    
+                    @if(session('max_size'))
+                    <div class="col text-center   mr-auto mb-3">
+                            <div class="jumbotron py-2 mb-2 bg-danger text-white   mx-auto">
+                                {{ session('max_size') }}
+                            </div>
+                        </div>
+                    @endif
                         <div class="row">
 
                             @if ($notes->count())
@@ -406,12 +412,13 @@
                                             <div class="col">
                                                 <div class=" mt-3 text-center " style="border-radius:10px; height:110px; width:175px; background:#D4E1F1; border:1px dashed #8A929D; z-index:12    border-width:2px;  
                                                 ">
-                                                    <label for="customFile"  class="my-4">
+                                                    <label for="customFile2"  class="my-4">
                                                         <img  src="/../images/icons/upload_image_icon.svg" alt="" style="width:35%;
                                                         height:auto; cursor: pointer; ">
                                                         <p>Tap to add images</p>
-                                                         <input type="file" id="customFile" name="note_images[]" style="position: absolute;z-index: -11; bottom:7px; left:90px;font-weight:500;" multiple>
+                                                         <input type="file" id="customFile2" name="note_images[]" style="position: absolute;z-index: -11; bottom:7px; left:90px;font-weight:500;" multiple>
                                                          </label>
+                                                
                                                 </div>
                                               
                                                    

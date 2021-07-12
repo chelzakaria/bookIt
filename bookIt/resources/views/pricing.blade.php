@@ -29,7 +29,7 @@
                 </div>
                 <div class="row mx-4" style="font-size:25px;">
                     <div class="col-4 text-center py-5" style="font-weight: 700; background:#EAEAEA;">
-                        Overview
+                        Account Type
                     </div>
                     <div class="col-4 text-center py-5" style="font-weight: 700;background:#F0F5FB; ">
                         Free<br>
@@ -42,10 +42,10 @@
                 </div>
                 <div class="row mx-4" style="font-size:20px;">
                     <div class="col-4  py-4 pl-4" style="font-weight: 500; background:#d0d8f3ad;">
-                        Overview
+                        Unlimited Notes
                     </div>
                     <div class="col-4  py-4 text-center" style="font-weight: 500; background:#C9DFF9;">
-                        <img src="images/icons/true_icon_blue.svg" style="width:12%; height:auto;" alt="">
+                        <img src="images/icons/false_icon_blue.svg" style="width:12%; height:auto;" alt="">
                     </div>
                     <div class="col-4  py-4 text-center" style="font-weight: 500; background:#C5D3FB;">
                         <img src="images/icons/true_icon_white.svg" style="width:12%; height:auto;" alt="">
@@ -53,10 +53,10 @@
                 </div>
                 <div class="row mx-4" style="font-size:20px;">
                     <div class="col-4  py-4 pl-4" style="font-weight: 500; background:#EAEAEA;" >
-                        Overview
+                        Unlimited Books
                     </div>
                     <div class="col-4  py-4 text-center" style="font-weight: 500; background:#F0F5FB;">
-                        <img src="images/icons/true_icon_blue.svg" style="width:12%; height:auto;" alt="">
+                        <img src="images/icons/false_icon_blue.svg" style="width:12%; height:auto;" alt="">
                     </div>
                     <div class="col-4  py-4 text-center" style="font-weight: 500; background:#94A9E5;">
                         <img src="images/icons/true_icon_white.svg" style="width:12%; height:auto;" alt="">
@@ -64,10 +64,10 @@
                 </div>
                 <div class="row mx-4" style="font-size:20px;">
                     <div class="col-4  py-4 pl-4" style="font-weight: 500; background:#d0d8f3ad;">
-                        Overview
+                        Unlimited Tasks
                     </div>
                     <div class="col-4  py-4 text-center" style="font-weight: 500; background:#C9DFF9;">
-                        <img src="images/icons/true_icon_blue.svg" style="width:12%; height:auto;" alt="">
+                        <img src="images/icons/false_icon_blue.svg" style="width:12%; height:auto;" alt="">
                     </div>
                     <div class="col-4  py-4 text-center" style="font-weight: 500; background:#C5D3FB;">
                         <img src="images/icons/true_icon_white.svg" style="width:12%; height:auto;" alt="">
@@ -75,43 +75,41 @@
                 </div>
                 <div class="row mx-4" style="font-size:20px;">
                     <div class="col-4  py-4 pl-4" style="font-weight: 500; background:#EAEAEA;" >
-                        Overview
+                        Daily Notes
                     </div>
                     <div class="col-4  py-4 text-center" style="font-weight: 500; background:#F0F5FB;">
-                        <img src="images/icons/true_icon_blue.svg" style="width:12%; height:auto;" alt="">
-                    </div>
+                        30
+                     </div>
                     <div class="col-4  py-4 text-center" style="font-weight: 500; background:#94A9E5;">
-                        <img src="images/icons/true_icon_white.svg" style="width:12%; height:auto;" alt="">
+                    Unlimited
                     </div>
                 </div>
                 <div class="row mx-4" style="font-size:20px;">
                     <div class="col-4  py-4 pl-4" style="font-weight: 500; background:#d0d8f3ad;">
-                        Overview
+                        Daily Tasks
                     </div>
                     <div class="col-4  py-4 text-center" style="font-weight: 500; background:#C9DFF9;">
-                        <img src="images/icons/true_icon_blue.svg" style="width:12%; height:auto;" alt="">
-                    </div>
+30                    </div>
                     <div class="col-4  py-4 text-center" style="font-weight: 500; background:#C5D3FB;">
-                        <img src="images/icons/true_icon_white.svg" style="width:12%; height:auto;" alt="">
-                    </div>
+Unlimited                    </div>
                 </div>
                 <div class="row mx-4" style="font-size:20px;">
                     <div class="col-4  py-4 pl-4" style="font-weight: 500; background:#EAEAEA;" >
-                        Overview
+                        Max size of notes images
                     </div>
                     <div class="col-4  py-4 text-center" style="font-weight: 500; background:#F0F5FB;">
-                        <img src="images/icons/true_icon_blue.svg" style="width:12%; height:auto;" alt="">
+                       1GB
                     </div>
                     <div class="col-4  py-4 text-center" style="font-weight: 500; background:#94A9E5;">
-                        <img src="images/icons/true_icon_white.svg" style="width:12%; height:auto;" alt="">
+                        10GB
                     </div>
                 </div>
                 <div class="row mx-4" style="font-size:20px;">
                     <div class="col-4  py-4 pl-4" style="font-weight: 500; background:#d0d8f3ad;">
-                        Overview
+                        Tracking tasks
                     </div>
                     <div class="col-4  py-4 text-center" style="font-weight: 500; background:#C9DFF9;">
-                        <img src="images/icons/true_icon_blue.svg" style="width:12%; height:auto;" alt="">
+                        <img src="images/icons/false_icon_blue.svg" style="width:12%; height:auto;" alt="">
                     </div>
                     <div class="col-4  py-4 text-center" style="font-weight: 500; background:#C5D3FB;">
                         <img src="images/icons/true_icon_white.svg" style="width:12%; height:auto;" alt="">
