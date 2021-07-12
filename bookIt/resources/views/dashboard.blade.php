@@ -56,7 +56,7 @@
                                     0
                                 @endif
                                     </span></div>
-                                <div class="row"><span style="font-weight: 500; font-size: 14px; color: #6f6d6d;">Avg.of notes <br> per book </span></div>
+                                <div class="row"><span style="font-weight: 500; font-size: 14px; color: #6f6d6d;">Avg. of notes <br> per book </span></div>
                             </div>
                         </div>
                         <div class="col mr-5" style="height: 150px; border-radius: 10px; background: #FFFDDB;">
@@ -67,7 +67,7 @@
                                 @else
                                     0
                                 @endif </span></div>
-                                <div class="row"><span style="font-weight: 500; font-size: 14px; color: #6f6d6d;">Avg.of tasks <br> per book </span></div>
+                                <div class="row"><span style="font-weight: 500; font-size: 14px; color: #6f6d6d;">Avg. of tasks <br> per book </span></div>
                             </div>
                         </div>
                     </div>
@@ -130,7 +130,7 @@
                                     </div>
                                     <div class="col mr-4">
                                         <div class="row">&nbsp;</div>
-                                        <div class="row mb-1 pb-0 pl-2" ><span  style="font-weight: 700; font-size: 30px;">23 <span style="font-size:25px; ">min</span></span></div>
+                                        <div class="row mb-1 pb-0 pl-2" ><span  style="font-weight: 700; font-size: 30px;">0 <span style="font-size:25px; ">min</span></span></div>
                                         <div class="row"><span style="font-weight: 600; font-size: 11px; color: #6f6d6d;">Avg. reading time <br>
                                             per day</span></div>
                                     </div>
@@ -174,6 +174,7 @@
     <script>
 
 let tasks_histories = {!! json_encode($tasks_histories) !!};
+// console.log(tasks_histories);
          let not_started = [];
          let in_progress = [];
          let done = [];
@@ -194,7 +195,6 @@ let tasks_histories = {!! json_encode($tasks_histories) !!};
 
         });
    
-
              const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
             ];
@@ -225,31 +225,33 @@ let tasks_histories = {!! json_encode($tasks_histories) !!};
 
 
         let l = 0;
-        for(let i=k; i<=M; i++)
+        for(let i=k+1; i<=M; i++)
         {
             labels[l] = i;
             l++;
         }
-        for(let i=1; i<k; i++)
+        for(let i=1; i<=k; i++)
         {
             labels[l] = i;
             l++
         }
-
+        console.log(labels.indexOf(11));
         let data_not_started = [];  
         let data_in_progress = [];  
         let data_done = [];  
 
-    
+        
+
                for(let i=1; i<31; i++)
                 {
                     var count =0;
                     for (let index = 0; index < not_started.length; index++) {
                     let date = new Date(not_started[index].created_at);
+                 
                         if(date.getDate()==i){
                             count++;
                         }
-                        data_not_started[i-1] = count;  
+                        data_not_started[labels.indexOf(i)] = count;  
                 }                
                 }
 
@@ -261,7 +263,7 @@ let tasks_histories = {!! json_encode($tasks_histories) !!};
                         if(date.getDate()==i){
                             count++;
                         }
-                        data_in_progress[i-1] = count;  
+                        data_in_progress[labels.indexOf(i)] = count;  
                 }                
                 }
 
@@ -273,18 +275,18 @@ let tasks_histories = {!! json_encode($tasks_histories) !!};
                         if(date.getDate()==i){
                             count++;
                         }
-                        data_done[i-1] = count;  
+                        data_done[labels.indexOf(i)] = count;  
                 }                
                 }
 
                 let labels2 = [];
         l=0;
-        for(let i=k; i<=M; i++)
+        for(let i=k+1; i<=M; i++)
         {
             labels2[l] = i+" "+sm;
             l++;
         }
-        for(let i=1; i<k; i++)
+        for(let i=1; i<=k; i++)
         {
             labels2[l] = i+" "+em;
             l++

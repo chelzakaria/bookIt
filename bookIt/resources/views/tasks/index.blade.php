@@ -186,7 +186,7 @@ function unwrap(node) {
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this note?</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this task?</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -438,7 +438,7 @@ function unwrap(node) {
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this note?</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this task?</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -681,7 +681,7 @@ function unwrap(node) {
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this note? {{$task->task_name}}</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this task?</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>

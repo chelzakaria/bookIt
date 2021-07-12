@@ -12,6 +12,8 @@ use CreateNotesTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 class NoteController extends Controller
 {
 
@@ -84,9 +86,8 @@ class NoteController extends Controller
      }
 
     public function store(Request $request){
-  
-
-        $this->validate($request,[
+     
+         $this->validate($request,[
             'body' => 'required',
             'type' => 'required',
             'titlebook'=>'required',
@@ -94,18 +95,18 @@ class NoteController extends Controller
         ]);
         $book = DB::table('books')->where('title',$request->titlebook )->first();
 
-        if(Membership::where('user_id', Auth::user()->id)->first()->account_type === "free" && !Membership::where('user_id', Auth::user()->id)->first()->end_date)
-        {
-            if(Note::where('user_id', Auth::user()->id)-> count() > 1)
-            {
-                return back()->with('warning', 'You reached your maximum notes ! Try to upgrade your account.');
-            }
-        }
+        // if(Membership::where('user_id', Auth::user()->id)->first()->account_type === "free" && !Membership::where('user_id', Auth::user()->id)->first()->end_date)
+        // {
+        //     if(Note::where('user_id', Auth::user()->id)-> count() > 1)
+        //     {
+        //         return back()->with('warning', 'You reached your maximum notes ! Try to upgrade your account.');
+        //     }
+        // }
 
 
         if(Membership::where('user_id', Auth::user()->id)->first()->account_type === "free" && !Membership::where('user_id', Auth::user()->id)->first()->end_date)
         {
-            if(Note::where('user_id', Auth::user()->id)->whereDate('created_at', '=', date('Y-m-d'))->count() > 2)
+            if(Note::where('user_id', Auth::user()->id)->whereDate('created_at', '=', date('Y-m-d'))->count() > 30)
             {
                 return back()->with('warning', 'You reached your maximum notes per day');
             }
@@ -122,6 +123,20 @@ class NoteController extends Controller
 
         if($request->hasFile('note_images'))
         {
+            $images = DB::table('notes_images')->where('user_id', Auth::user()->id)->get();
+            $sum = 0;
+            foreach($images as $image )
+            {
+               $sum = $sum + Storage::size('public/notes_images/'.$image->image);
+            }
+            if($sum>1000000000 &&  Membership::where('user_id', Auth::user()->id)->first()->account_type === "free" && !Membership::where('user_id', Auth::user()->id)->first()->end_date)
+            {
+                return back()->with('max_size', 'You reached already 1 GB of notes images!');
+            }
+            else if($sum>100000000000 &&  Membership::where('user_id', Auth::user()->id)->first()->account_type === "premium" || ( Membership::where('user_id', Auth::user()->id)->first()->account_type === "free" && Membership::where('user_id', Auth::user()->id)->first()->end_date))
+            {
+                return back()->with('max_size', 'You reached already 10 GB of notes images!');
+            }
             foreach($request->file('note_images') as $file)
             {
                  $fileNameWithExt = $file->getClientOriginalName();
@@ -142,6 +157,7 @@ class NoteController extends Controller
             }
            
         }
+     
 
         return redirect('notes');
   
@@ -183,7 +199,20 @@ class NoteController extends Controller
         $note->type = $request->input('type');
         if($request->hasFile('note_images'))
         {
-             
+            $images = DB::table('notes_images')->where('user_id', Auth::user()->id)->get();
+            $sum = 0;
+            foreach($images as $image )
+            {
+               $sum = $sum + Storage::size('public/notes_images/'.$image->image);
+            }
+            if($sum>1000000000 &&  Membership::where('user_id', Auth::user()->id)->first()->account_type === "free" && !Membership::where('user_id', Auth::user()->id)->first()->end_date)
+            {
+                return back()->with('max_size', 'You reached already 1 GB of notes images!');
+            }
+            else if($sum>100000000000 &&  Membership::where('user_id', Auth::user()->id)->first()->account_type === "premium" || ( Membership::where('user_id', Auth::user()->id)->first()->account_type === "free" && Membership::where('user_id', Auth::user()->id)->first()->end_date))
+            {
+                return back()->with('max_size', 'You reached already 10 GB of notes images!');
+            }
             foreach($request->file('note_images') as $file)
             {
                  $fileNameWithExt = $file->getClientOriginalName();

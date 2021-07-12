@@ -19,7 +19,7 @@
                  }
                  @media screen and (min-width: 1200px) {
                   .c1{
-                      padding-top: 80px;
+                      padding-top:50px;
                        
                   }
                 
@@ -80,11 +80,29 @@
                                 <input type="text" class="form-control py-4 @error('username')
                                 border border-danger
                                 @enderror"   placeholder="Username" name="username" value="{{old('username')}}">
+                                @error('username')
+                                @if ($message !== "The username field is required.")
+
+                                <span class="ml-1 text-danger" style="font-size: 15px; font-weight:500;">
+                                  {{$message}}
+                                  
+                                  </span>
+                                  @endif
+                                @enderror
                               </div>
                               <div class="form-group">
                                 <input type="email" class="form-control py-4 @error('email')
                                 border border-danger
                                 @enderror"   placeholder="Email" name="email" value="{{old('email')}}">
+                                @error('email')
+                                @if ($message !== "The email field is required.")
+
+                                <span class="ml-1 text-danger" style="font-size: 15px; font-weight:500;">
+                                  {{$message}}
+                                  
+                                  </span>
+                                  @endif
+                                @enderror
                               </div>
                               <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -92,7 +110,17 @@
                                   <input type="password" class="form-control py-4 @error('password')
                                   border border-danger
                                   @enderror"   placeholder="Password" name="password" >
+                                  @error('password')
+                                  @if ($message !== "The password field is required.")
+  
+                                  <span class="ml-1 text-danger" style="font-size: 15px; font-weight:500;">
+                                    {{$message}}
+                                    
+                                    </span>
+                                    @endif
+                                  @enderror
                                 </div>
+                                
                                 <div class="form-group col-md-6">
                                   <input type="password" class="form-control py-4 @error('password_confirmation')
                                   border border-danger
@@ -102,7 +130,8 @@
                             <div class="form-group">
                               <input type="text" class="form-control py-4 @error('birthDate')
                               border border-danger
-                              @enderror"  onfocus="(this.type='datetime-local')"  placeholder="Birth date" name="birthDate" value="{{old('birthDate')}}">
+                              @enderror"  onfocus="(this.type='date')"  placeholder="Birth date" name="birthDate" value="{{old('birthDate')}}">
+                           
                             </div>
                             
                               <button type="submit" class="btn  btn-lg btn-block btn-primary"

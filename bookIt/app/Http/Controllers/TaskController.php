@@ -81,18 +81,18 @@ class TaskController extends Controller
         $book = DB::table('books')->where('title',$request->book)->first();
 
 
-        if(Membership::where('user_id', Auth::user()->id)->first()->account_type === "free" && !Membership::where('user_id', Auth::user()->id)->first()->end_date)
-        {
-            if(Task::where('user_id', Auth::user()->id)-> count() > 49)
-            {
-                return back()->with('warning', 'You reached your maximum tasks ! Try to upgrade your account.');
-            }
-        }
+        // if(Membership::where('user_id', Auth::user()->id)->first()->account_type === "free" && !Membership::where('user_id', Auth::user()->id)->first()->end_date)
+        // {
+        //     if(Task::where('user_id', Auth::user()->id)-> count() > 49)
+        //     {
+        //         return back()->with('warning', 'You reached your maximum tasks ! Try to upgrade your account.');
+        //     }
+        // }
 
 
         if(Membership::where('user_id', Auth::user()->id)->first()->account_type === "free" && !Membership::where('user_id', Auth::user()->id)->first()->end_date)
         {
-            if(Task::where('user_id', Auth::user()->id)->whereDate('created_at', '=', date('Y-m-d'))->count() > 2)
+            if(Task::where('user_id', Auth::user()->id)->whereDate('created_at', '=', date('Y-m-d'))->count() > 30)
             {
                 return back()->with('warning', 'You reached your maximum tasks per day');
             }
